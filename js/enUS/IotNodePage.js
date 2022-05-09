@@ -31,26 +31,6 @@ function searchIotNodeFilters($formFilters) {
 		if(filterObjectId != null && filterObjectId !== '')
 			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-		var filterArchived = null;
-		if(filterArchivedSelectVal !== '')
-			filterArchived = filterArchivedSelectVal == 'true';
-		if(filterArchived != null && filterArchived === true)
-			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-		var filterDeleted = null;
-		if(filterDeletedSelectVal !== '')
-			filterDeleted = filterDeletedSelectVal == 'true';
-		if(filterDeleted != null && filterDeleted === true)
-			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
-
 		var filterNodeName = $formFilters.find('.valueNodeName').val();
 		if(filterNodeName != null && filterNodeName !== '')
 			filters.push({ name: 'fq', value: 'nodeName:' + filterNodeName });
@@ -70,6 +50,26 @@ function searchIotNodeFilters($formFilters) {
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -122,6 +122,10 @@ function searchIotNodeFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterJson = $formFilters.find('.valueJson').val();
+		if(filterJson != null && filterJson !== '')
+			filters.push({ name: 'fq', value: 'json:' + filterJson });
 	}
 	return filters;
 }
@@ -154,6 +158,19 @@ function suggestIotNodeObjectSuggest($formFilters, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	searchIotNodeVals($formFilters, success, error);
+}
+
+// GET //
+
+async function getIotNode(pk) {
+	$.ajax({
+		url: '/api/iot-node/' + id
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
 }
 
 // PATCH //
@@ -210,36 +227,6 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	var removeObjectId = $formValues.find('.removeObjectId').val();
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
-
-	var valueArchived = $formValues.find('.valueArchived').val();
-	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
-	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
-	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
-		valueArchived = valueArchivedSelectVal == 'true';
-	var setArchived = removeArchived ? null : valueArchived;
-	var addArchived = $formValues.find('.addArchived').prop('checked');
-	if(removeArchived || setArchived != null && setArchived !== '')
-		vals['setArchived'] = setArchived;
-	if(addArchived != null && addArchived !== '')
-		vals['addArchived'] = addArchived;
-	var removeArchived = $formValues.find('.removeArchived').prop('checked');
-	if(removeArchived != null && removeArchived !== '')
-		vals['removeArchived'] = removeArchived;
-
-	var valueDeleted = $formValues.find('.valueDeleted').val();
-	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
-	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
-	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
-		valueDeleted = valueDeletedSelectVal == 'true';
-	var setDeleted = removeDeleted ? null : valueDeleted;
-	var addDeleted = $formValues.find('.addDeleted').prop('checked');
-	if(removeDeleted || setDeleted != null && setDeleted !== '')
-		vals['setDeleted'] = setDeleted;
-	if(addDeleted != null && addDeleted !== '')
-		vals['addDeleted'] = addDeleted;
-	var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
-	if(removeDeleted != null && removeDeleted !== '')
-		vals['removeDeleted'] = removeDeleted;
 
 	var valueNodeName = $formValues.find('.valueNodeName').val();
 	var removeNodeName = $formValues.find('.removeNodeName').val() === 'true';
@@ -301,6 +288,36 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valueArchived = $formValues.find('.valueArchived').val();
+	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	var setArchived = removeArchived ? null : valueArchived;
+	var addArchived = $formValues.find('.addArchived').prop('checked');
+	if(removeArchived || setArchived != null && setArchived !== '')
+		vals['setArchived'] = setArchived;
+	if(addArchived != null && addArchived !== '')
+		vals['addArchived'] = addArchived;
+	var removeArchived = $formValues.find('.removeArchived').prop('checked');
+	if(removeArchived != null && removeArchived !== '')
+		vals['removeArchived'] = removeArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').val();
+	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	var setDeleted = removeDeleted ? null : valueDeleted;
+	var addDeleted = $formValues.find('.addDeleted').prop('checked');
+	if(removeDeleted || setDeleted != null && setDeleted !== '')
+		vals['setDeleted'] = setDeleted;
+	if(addDeleted != null && addDeleted !== '')
+		vals['addDeleted'] = addDeleted;
+	var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
+	if(removeDeleted != null && removeDeleted !== '')
+		vals['removeDeleted'] = removeDeleted;
+
 	var valueSessionId = $formValues.find('.valueSessionId').val();
 	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
 	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -337,6 +354,18 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueJson = $formValues.find('.valueJson').val();
+	var removeJson = $formValues.find('.removeJson').val() === 'true';
+	var setJson = removeJson ? null : $formValues.find('.setJson').val();
+	var addJson = $formValues.find('.addJson').val();
+	if(removeJson || setJson != null && setJson !== '')
+		vals['setJson'] = setJson;
+	if(addJson != null && addJson !== '')
+		vals['addJson'] = addJson;
+	var removeJson = $formValues.find('.removeJson').val();
+	if(removeJson != null && removeJson !== '')
+		vals['removeJson'] = removeJson;
+
 	patchIotNodeVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -361,26 +390,6 @@ function patchIotNodeFilters($formFilters) {
 		if(filterObjectId != null && filterObjectId !== '')
 			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-		var filterArchived = null;
-		if(filterArchivedSelectVal !== '')
-			filterArchived = filterArchivedSelectVal == 'true';
-		if(filterArchived != null && filterArchived === true)
-			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-		var filterDeleted = null;
-		if(filterDeletedSelectVal !== '')
-			filterDeleted = filterDeletedSelectVal == 'true';
-		if(filterDeleted != null && filterDeleted === true)
-			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
-
 		var filterNodeName = $formFilters.find('.valueNodeName').val();
 		if(filterNodeName != null && filterNodeName !== '')
 			filters.push({ name: 'fq', value: 'nodeName:' + filterNodeName });
@@ -400,6 +409,26 @@ function patchIotNodeFilters($formFilters) {
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -452,6 +481,10 @@ function patchIotNodeFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterJson = $formFilters.find('.valueJson').val();
+		if(filterJson != null && filterJson !== '')
+			filters.push({ name: 'fq', value: 'json:' + filterJson });
 	}
 	return filters;
 }
@@ -508,14 +541,6 @@ async function postIotNode($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').val();
-	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived == 'true';
-
-	var valueDeleted = $formValues.find('.valueDeleted').val();
-	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted == 'true';
-
 	var valueNodeName = $formValues.find('.valueNodeName').val();
 	if(valueNodeName != null && valueNodeName !== '')
 		vals['nodeName'] = valueNodeName;
@@ -536,6 +561,14 @@ async function postIotNode($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueArchived = $formValues.find('.valueArchived').val();
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived == 'true';
+
+	var valueDeleted = $formValues.find('.valueDeleted').val();
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted == 'true';
+
 	var valueSessionId = $formValues.find('.valueSessionId').val();
 	if(valueSessionId != null && valueSessionId !== '')
 		vals['sessionId'] = valueSessionId;
@@ -547,6 +580,10 @@ async function postIotNode($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueJson = $formValues.find('.valueJson').val();
+	if(valueJson != null && valueJson !== '')
+		vals['json'] = valueJson;
 
 	$.ajax({
 		url: '/api/iot-node'
@@ -581,7 +618,7 @@ async function putimportIotNode($formValues, pk, success, error) {
 
 function putimportIotNodeVals(json, success, error) {
 	$.ajax({
-		url: '/api/iot-node/import'
+		url: '/api/iot-node-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -595,7 +632,6 @@ async function websocketIotNode(success) {
 	window.eventBus.onopen = function () {
 
 		window.eventBus.registerHandler('websocketIotNode', function (error, message) {
-			searchPage();
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -699,30 +735,6 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				addGlow($('.inputIotNode' + pk + 'ObjectId'));
 			}
-			var val = o['archived'];
-			if(vars.includes('archived')) {
-				$('.inputIotNode' + pk + 'Archived').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varIotNode' + pk + 'Archived').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputIotNode' + pk + 'Archived'));
-			}
-			var val = o['deleted'];
-			if(vars.includes('deleted')) {
-				$('.inputIotNode' + pk + 'Deleted').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varIotNode' + pk + 'Deleted').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputIotNode' + pk + 'Deleted'));
-			}
 			var val = o['nodeName'];
 			if(vars.includes('nodeName')) {
 				$('.inputIotNode' + pk + 'NodeName').each(function() {
@@ -782,6 +794,30 @@ async function websocketIotNodeInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'InheritPk'));
+			}
+			var val = o['archived'];
+			if(vars.includes('archived')) {
+				$('.inputIotNode' + pk + 'Archived').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varIotNode' + pk + 'Archived').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputIotNode' + pk + 'Archived'));
+			}
+			var val = o['deleted'];
+			if(vars.includes('deleted')) {
+				$('.inputIotNode' + pk + 'Deleted').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varIotNode' + pk + 'Deleted').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputIotNode' + pk + 'Deleted'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
@@ -939,6 +975,18 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				addGlow($('.inputIotNode' + pk + 'Id'));
 			}
+			var val = o['json'];
+			if(vars.includes('json')) {
+				$('.inputIotNode' + pk + 'Json').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varIotNode' + pk + 'Json').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputIotNode' + pk + 'Json'));
+			}
 		});
 	}
 }
@@ -950,11 +998,18 @@ function pageGraph(apiRequest) {
 		if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
 			var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
 			var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
-			var rangeName = range.name;
-			var rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
-			var rangeVarFq = window.varsFq[rangeVar];
-			var rangeCounts = range.counts;
-			var rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+			var rangeName;
+			var rangeVar;
+			var rangeVarFq;
+			var rangeCounts;
+			var rangeVals;
+			if(range) {
+				rangeName = range.name;
+				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+				rangeVarFq = window.varsFq[rangeVar];
+				rangeCounts = range.counts;
+				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+			}
 			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
 			var pivot1VarIndexed = pivot1Name;
 			if(pivot1VarIndexed.includes(','))
@@ -1001,7 +1056,7 @@ function pageGraph(apiRequest) {
 					}
 				});
 				data.push(trace);
-			} else {
+			} else if(range) {
 				layout['title'] = 'IotNode';
 				layout['xaxis'] = {
 					title: rangeVarFq.displayName

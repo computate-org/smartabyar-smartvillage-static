@@ -3,7 +3,6 @@ async function websocketBaseModel(success) {
 	window.eventBus.onopen = function () {
 
 		window.eventBus.registerHandler('websocketBaseModel', function (error, message) {
-			searchPage();
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -107,6 +106,18 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectId'));
 			}
+			var val = o['inheritPk'];
+			if(vars.includes('inheritPk')) {
+				$('.inputBaseModel' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varBaseModel' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
+			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputBaseModel' + pk + 'Archived').each(function() {
@@ -130,18 +141,6 @@ async function websocketBaseModelInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Deleted'));
-			}
-			var val = o['inheritPk'];
-			if(vars.includes('inheritPk')) {
-				$('.inputBaseModel' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varBaseModel' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
@@ -310,11 +309,18 @@ function pageGraph(apiRequest) {
 		if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
 			var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
 			var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
-			var rangeName = range.name;
-			var rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
-			var rangeVarFq = window.varsFq[rangeVar];
-			var rangeCounts = range.counts;
-			var rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+			var rangeName;
+			var rangeVar;
+			var rangeVarFq;
+			var rangeCounts;
+			var rangeVals;
+			if(range) {
+				rangeName = range.name;
+				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+				rangeVarFq = window.varsFq[rangeVar];
+				rangeCounts = range.counts;
+				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+			}
 			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
 			var pivot1VarIndexed = pivot1Name;
 			if(pivot1VarIndexed.includes(','))
@@ -361,7 +367,7 @@ function pageGraph(apiRequest) {
 					}
 				});
 				data.push(trace);
-			} else {
+			} else if(range) {
 				layout['title'] = 'BaseModel';
 				layout['xaxis'] = {
 					title: rangeVarFq.displayName

@@ -12,6 +12,15 @@ $(window).on('load', function() {
     });
 });
 
+function paramChange(elem) {
+	var $elem = $(elem);
+	if($elem.val())
+		$elem.next().text($elem.attr('data-var') + "=" + encodeURIComponent($elem.val()));
+	else
+		$elem.next().text("");
+	searchPage();
+}
+
 function qChange(elem) {
 	var $elem = $(elem);
 	if($elem.val())
@@ -28,6 +37,12 @@ function fqChange(elem) {
 	else
 		$("#pageSearchVal-" + $(elem).attr("id")).text("");
 	searchPage();
+}
+
+function fqReplace(elem) {
+	var $fq = $('#fq' + elem.getAttribute('data-class') + '_' + elem.getAttribute('data-var'));
+	$fq.val(elem.getAttribute('data-val'));
+	fqChange($fq[0]);
 }
 
 function facetFieldChange(elem) {
@@ -61,16 +76,54 @@ function facetRangeChange(elem, classSimpleName) {
 
 function facetPivotChange(elem, classSimpleName) {
 	var $elem = $(elem);
-	var $list = $("#pageSearchVal-hidden" + classSimpleName);
+	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
 	if($elem.is(":checked")) {
-		$list.append($("<div>")
-				.attr("id", "pageSearchVal-hidden" + classSimpleName + "_" + $elem.val())
-				.attr("class", "pageSearchVal pageSearchVal-hidden" + classSimpleName + " ")
-				.text("facet.pivot={!range=r1}" + $elem.val())
+		$listHidden.append($("<div>")
+				.attr("id", "pageSearchVal-Pivot" + classSimpleName + "Hidden_" + $elem.val())
+				.attr("class", "pageSearchVal-Pivot" + classSimpleName + "Hidden ")
+				.text($elem.val())
 				)
 				;
 	} else {
-		$("#pageSearchVal-hidden" + classSimpleName + "_" + $elem.val()).remove();
+		$("#pageSearchVal-Pivot" + classSimpleName + "Hidden_" + $elem.val()).remove();
+	}
+	$("#pageSearchVal-Pivot" + classSimpleName + "_1").remove();
+	var $list = $("#pageSearchVal-Pivot" + classSimpleName);
+	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
+	if($listHidden.children().length > 0) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-Pivot" + classSimpleName + "_1")
+				.attr("class", "pageSearchVal pageSearchVal-Pivot" + classSimpleName + " ")
+				.text("facet.pivot={!range=r1}" + $elem.val())
+				)
+				;
+	}
+	searchPage();
+}
+
+function facetFieldListChange(elem, classSimpleName) {
+	var $elem = $(elem);
+	var $listHidden = $("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
+	if($elem.is(":checked")) {
+		$listHidden.append($("<div>")
+				.attr("id", "pageSearchVal-FieldList" + classSimpleName + "Hidden_" + $elem.val())
+				.attr("class", "pageSearchVal-FieldList" + classSimpleName + "Hidden ")
+				.text($elem.val())
+				)
+				;
+	} else {
+		$("#pageSearchVal-FieldList" + classSimpleName + "Hidden_" + $elem.val()).remove();
+	}
+	$("#pageSearchVal-FieldList" + classSimpleName + "_1").remove();
+	var $list = $("#pageSearchVal-FieldList" + classSimpleName);
+	var $listHidden = $("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
+	if($listHidden.children().length > 0) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-FieldList" + classSimpleName + "_1")
+				.attr("class", "pageSearchVal pageSearchVal-FieldList" + classSimpleName + " ")
+				.text("fl=" + $listHidden.children().toArray().map(elem => elem.innerText).join(","))
+				)
+				;
 	}
 	searchPage();
 }
