@@ -106,18 +106,6 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectId'));
 			}
-			var val = o['inheritPk'];
-			if(vars.includes('inheritPk')) {
-				$('.inputBaseModel' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varBaseModel' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
-			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputBaseModel' + pk + 'Archived').each(function() {
@@ -141,6 +129,18 @@ async function websocketBaseModelInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Deleted'));
+			}
+			var val = o['inheritPk'];
+			if(vars.includes('inheritPk')) {
+				$('.inputBaseModel' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varBaseModel' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {

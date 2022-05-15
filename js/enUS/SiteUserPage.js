@@ -31,6 +31,26 @@ function searchSiteUserFilters($formFilters) {
 		if(filterObjectId != null && filterObjectId !== '')
 			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+
 		var $filterSeeArchivedCheckbox = $formFilters.find('input.valueSeeArchived[type = "checkbox"]');
 		var $filterSeeArchivedSelect = $formFilters.find('select.valueSeeArchived');
 		var filterSeeArchived = $filterSeeArchivedSelect.length ? $filterSeeArchivedSelect.val() : $filterSeeArchivedCheckbox.prop('checked');
@@ -54,26 +74,6 @@ function searchSiteUserFilters($formFilters) {
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-		var filterArchived = null;
-		if(filterArchivedSelectVal !== '')
-			filterArchived = filterArchivedSelectVal == 'true';
-		if(filterArchived != null && filterArchived === true)
-			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-		var filterDeleted = null;
-		if(filterDeletedSelectVal !== '')
-			filterDeleted = filterDeletedSelectVal == 'true';
-		if(filterDeleted != null && filterDeleted === true)
-			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -242,6 +242,36 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
+	var valueArchived = $formValues.find('.valueArchived').val();
+	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	var setArchived = removeArchived ? null : valueArchived;
+	var addArchived = $formValues.find('.addArchived').prop('checked');
+	if(removeArchived || setArchived != null && setArchived !== '')
+		vals['setArchived'] = setArchived;
+	if(addArchived != null && addArchived !== '')
+		vals['addArchived'] = addArchived;
+	var removeArchived = $formValues.find('.removeArchived').prop('checked');
+	if(removeArchived != null && removeArchived !== '')
+		vals['removeArchived'] = removeArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').val();
+	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	var setDeleted = removeDeleted ? null : valueDeleted;
+	var addDeleted = $formValues.find('.addDeleted').prop('checked');
+	if(removeDeleted || setDeleted != null && setDeleted !== '')
+		vals['setDeleted'] = setDeleted;
+	if(addDeleted != null && addDeleted !== '')
+		vals['addDeleted'] = addDeleted;
+	var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
+	if(removeDeleted != null && removeDeleted !== '')
+		vals['removeDeleted'] = removeDeleted;
+
 	var valueSeeArchived = $formValues.find('.valueSeeArchived').val();
 	var removeSeeArchived = $formValues.find('.removeSeeArchived').val() === 'true';
 	var valueSeeArchivedSelectVal = $formValues.find('select.setSeeArchived').val();
@@ -283,36 +313,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var removeInheritPk = $formValues.find('.removeInheritPk').val();
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
-
-	var valueArchived = $formValues.find('.valueArchived').val();
-	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
-	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
-	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
-		valueArchived = valueArchivedSelectVal == 'true';
-	var setArchived = removeArchived ? null : valueArchived;
-	var addArchived = $formValues.find('.addArchived').prop('checked');
-	if(removeArchived || setArchived != null && setArchived !== '')
-		vals['setArchived'] = setArchived;
-	if(addArchived != null && addArchived !== '')
-		vals['addArchived'] = addArchived;
-	var removeArchived = $formValues.find('.removeArchived').prop('checked');
-	if(removeArchived != null && removeArchived !== '')
-		vals['removeArchived'] = removeArchived;
-
-	var valueDeleted = $formValues.find('.valueDeleted').val();
-	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
-	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
-	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
-		valueDeleted = valueDeletedSelectVal == 'true';
-	var setDeleted = removeDeleted ? null : valueDeleted;
-	var addDeleted = $formValues.find('.addDeleted').prop('checked');
-	if(removeDeleted || setDeleted != null && setDeleted !== '')
-		vals['setDeleted'] = setDeleted;
-	if(addDeleted != null && addDeleted !== '')
-		vals['addDeleted'] = addDeleted;
-	var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
-	if(removeDeleted != null && removeDeleted !== '')
-		vals['removeDeleted'] = removeDeleted;
 
 	var valueSessionId = $formValues.find('.valueSessionId').val();
 	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -446,6 +446,26 @@ function patchSiteUserFilters($formFilters) {
 		if(filterObjectId != null && filterObjectId !== '')
 			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+
 		var $filterSeeArchivedCheckbox = $formFilters.find('input.valueSeeArchived[type = "checkbox"]');
 		var $filterSeeArchivedSelect = $formFilters.find('select.valueSeeArchived');
 		var filterSeeArchived = $filterSeeArchivedSelect.length ? $filterSeeArchivedSelect.val() : $filterSeeArchivedCheckbox.prop('checked');
@@ -469,26 +489,6 @@ function patchSiteUserFilters($formFilters) {
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-		var filterArchived = null;
-		if(filterArchivedSelectVal !== '')
-			filterArchived = filterArchivedSelectVal == 'true';
-		if(filterArchived != null && filterArchived === true)
-			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-		var filterDeleted = null;
-		if(filterDeletedSelectVal !== '')
-			filterDeleted = filterDeletedSelectVal == 'true';
-		if(filterDeleted != null && filterDeleted === true)
-			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -625,6 +625,14 @@ async function postSiteUser($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
+	var valueArchived = $formValues.find('.valueArchived').val();
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived == 'true';
+
+	var valueDeleted = $formValues.find('.valueDeleted').val();
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted == 'true';
+
 	var valueSeeArchived = $formValues.find('.valueSeeArchived').val();
 	if(valueSeeArchived != null && valueSeeArchived !== '')
 		vals['seeArchived'] = valueSeeArchived == 'true';
@@ -636,14 +644,6 @@ async function postSiteUser($formValues, success, error) {
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
-
-	var valueArchived = $formValues.find('.valueArchived').val();
-	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived == 'true';
-
-	var valueDeleted = $formValues.find('.valueDeleted').val();
-	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted == 'true';
 
 	var valueSessionId = $formValues.find('.valueSessionId').val();
 	if(valueSessionId != null && valueSessionId !== '')
@@ -831,6 +831,30 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'ObjectId'));
 			}
+			var val = o['archived'];
+			if(vars.includes('archived')) {
+				$('.inputSiteUser' + pk + 'Archived').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Archived').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Archived'));
+			}
+			var val = o['deleted'];
+			if(vars.includes('deleted')) {
+				$('.inputSiteUser' + pk + 'Deleted').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Deleted').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Deleted'));
+			}
 			var val = o['seeArchived'];
 			if(vars.includes('seeArchived')) {
 				$('.inputSiteUser' + pk + 'SeeArchived').each(function() {
@@ -866,30 +890,6 @@ async function websocketSiteUserInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
-			}
-			var val = o['archived'];
-			if(vars.includes('archived')) {
-				$('.inputSiteUser' + pk + 'Archived').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSiteUser' + pk + 'Archived').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSiteUser' + pk + 'Archived'));
-			}
-			var val = o['deleted'];
-			if(vars.includes('deleted')) {
-				$('.inputSiteUser' + pk + 'Deleted').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSiteUser' + pk + 'Deleted').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSiteUser' + pk + 'Deleted'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
