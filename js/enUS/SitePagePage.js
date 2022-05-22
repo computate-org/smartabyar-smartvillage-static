@@ -19,6 +19,10 @@ function searchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
+		var filterAuthor = $formFilters.find('.valueAuthor').val();
+		if(filterAuthor != null && filterAuthor !== '')
+			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
+
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -186,6 +190,10 @@ async function postSitePage($formValues, success, error) {
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
+	var valueAuthor = $formValues.find('.valueAuthor').val();
+	if(valueAuthor != null && valueAuthor !== '')
+		vals['author'] = valueAuthor;
+
 	var valueModified = $formValues.find('.valueModified').val();
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
@@ -275,6 +283,18 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeCreated = $formValues.find('.removeCreated').val();
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
+
+	var valueAuthor = $formValues.find('.valueAuthor').val();
+	var removeAuthor = $formValues.find('.removeAuthor').val() === 'true';
+	var setAuthor = removeAuthor ? null : $formValues.find('.setAuthor').val();
+	var addAuthor = $formValues.find('.addAuthor').val();
+	if(removeAuthor || setAuthor != null && setAuthor !== '')
+		vals['setAuthor'] = setAuthor;
+	if(addAuthor != null && addAuthor !== '')
+		vals['addAuthor'] = addAuthor;
+	var removeAuthor = $formValues.find('.removeAuthor').val();
+	if(removeAuthor != null && removeAuthor !== '')
+		vals['removeAuthor'] = removeAuthor;
 
 	var valueModified = $formValues.find('.valueModified').val();
 	var removeModified = $formValues.find('.removeModified').val() === 'true';
@@ -438,6 +458,10 @@ function patchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
+		var filterAuthor = $formFilters.find('.valueAuthor').val();
+		if(filterAuthor != null && filterAuthor !== '')
+			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
+
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -597,7 +621,7 @@ async function websocketSitePage(success) {
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-2017-navy-peony ').attr('id', 'header-' + id);
 			var $i = $('<i>').attr('class', 'fad fa-sensor-triangle-exclamation w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify pages in ' + json.timeRemaining);
+			var $headerSpan = $('<span>').attr('class', '').text('modify articles in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
@@ -649,6 +673,18 @@ async function websocketSitePageInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Created'));
+			}
+			var val = o['author'];
+			if(vars.includes('author')) {
+				$('.inputSitePage' + pk + 'Author').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'Author').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'Author'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {

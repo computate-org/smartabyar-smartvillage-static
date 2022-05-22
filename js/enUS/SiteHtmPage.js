@@ -79,6 +79,14 @@ function searchSiteHtmFilters($formFilters) {
 		if(filterEAfter != null && filterEAfter !== '')
 			filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
+		var filterA = $formFilters.find('.valueA').val();
+		if(filterA != null && filterA !== '')
+			filters.push({ name: 'fq', value: 'a:' + filterA });
+
+		var filterText = $formFilters.find('.valueText').val();
+		if(filterText != null && filterText !== '')
+			filters.push({ name: 'fq', value: 'text:' + filterText });
+
 		var filterTabs = $formFilters.find('.valueTabs').val();
 		if(filterTabs != null && filterTabs !== '')
 			filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
@@ -112,10 +120,6 @@ function searchSiteHtmFilters($formFilters) {
 		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 		if(filterObjectSuggest != null && filterObjectSuggest !== '')
 			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-		var filterObjectText = $formFilters.find('.valueObjectText').val();
-		if(filterObjectText != null && filterObjectText !== '')
-			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 		if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -263,10 +267,6 @@ async function postSiteHtm($formValues, success, error) {
 	var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
 	if(valueHtmBefore != null && valueHtmBefore !== '')
 		vals['htmBefore'] = valueHtmBefore;
-
-	var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
-	if(valueHtmMiddle != null && valueHtmMiddle !== '')
-		vals['htmMiddle'] = valueHtmMiddle;
 
 	var valueHtmAfter = $formValues.find('.valueHtmAfter').val();
 	if(valueHtmAfter != null && valueHtmAfter !== '')
@@ -519,18 +519,6 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	if(removeHtmBefore != null && removeHtmBefore !== '')
 		vals['removeHtmBefore'] = removeHtmBefore;
 
-	var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
-	var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val() === 'true';
-	var setHtmMiddle = removeHtmMiddle ? null : $formValues.find('.setHtmMiddle').val();
-	var addHtmMiddle = $formValues.find('.addHtmMiddle').val();
-	if(removeHtmMiddle || setHtmMiddle != null && setHtmMiddle !== '')
-		vals['setHtmMiddle'] = setHtmMiddle;
-	if(addHtmMiddle != null && addHtmMiddle !== '')
-		vals['addHtmMiddle'] = addHtmMiddle;
-	var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val();
-	if(removeHtmMiddle != null && removeHtmMiddle !== '')
-		vals['removeHtmMiddle'] = removeHtmMiddle;
-
 	var valueHtmAfter = $formValues.find('.valueHtmAfter').val();
 	var removeHtmAfter = $formValues.find('.removeHtmAfter').val() === 'true';
 	var setHtmAfter = removeHtmAfter ? null : $formValues.find('.setHtmAfter').val();
@@ -627,6 +615,14 @@ function patchSiteHtmFilters($formFilters) {
 		if(filterEAfter != null && filterEAfter !== '')
 			filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
+		var filterA = $formFilters.find('.valueA').val();
+		if(filterA != null && filterA !== '')
+			filters.push({ name: 'fq', value: 'a:' + filterA });
+
+		var filterText = $formFilters.find('.valueText').val();
+		if(filterText != null && filterText !== '')
+			filters.push({ name: 'fq', value: 'text:' + filterText });
+
 		var filterTabs = $formFilters.find('.valueTabs').val();
 		if(filterTabs != null && filterTabs !== '')
 			filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
@@ -660,10 +656,6 @@ function patchSiteHtmFilters($formFilters) {
 		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 		if(filterObjectSuggest != null && filterObjectSuggest !== '')
 			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-		var filterObjectText = $formFilters.find('.valueObjectText').val();
-		if(filterObjectText != null && filterObjectText !== '')
-			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 		if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -997,18 +989,6 @@ async function websocketSiteHtmInner(apiRequest) {
 				});
 				addGlow($('.inputSiteHtm' + pk + 'HtmBefore'));
 			}
-			var val = o['htmMiddle'];
-			if(vars.includes('htmMiddle')) {
-				$('.inputSiteHtm' + pk + 'HtmMiddle').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSiteHtm' + pk + 'HtmMiddle').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSiteHtm' + pk + 'HtmMiddle'));
-			}
 			var val = o['htmAfter'];
 			if(vars.includes('htmAfter')) {
 				$('.inputSiteHtm' + pk + 'HtmAfter').each(function() {
@@ -1080,18 +1060,6 @@ async function websocketSiteHtmInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteHtm' + pk + 'ObjectSuggest'));
-			}
-			var val = o['objectText'];
-			if(vars.includes('objectText')) {
-				$('.inputSiteHtm' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSiteHtm' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSiteHtm' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
