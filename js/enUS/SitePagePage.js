@@ -19,10 +19,6 @@ function searchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-		var filterAuthor = $formFilters.find('.valueAuthor').val();
-		if(filterAuthor != null && filterAuthor !== '')
-			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
-
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -58,6 +54,18 @@ function searchSitePageFilters($formFilters) {
 		var filterUri = $formFilters.find('.valueUri').val();
 		if(filterUri != null && filterUri !== '')
 			filters.push({ name: 'fq', value: 'uri:' + filterUri });
+
+		var filterAuthor = $formFilters.find('.valueAuthor').val();
+		if(filterAuthor != null && filterAuthor !== '')
+			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
+
+		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+		if(filterCourseNum != null && filterCourseNum !== '')
+			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+		if(filterLessonNum != null && filterLessonNum !== '')
+			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
 
 		var filterH1 = $formFilters.find('.valueH1').val();
 		if(filterH1 != null && filterH1 !== '')
@@ -127,6 +135,9 @@ function searchSitePageFilters($formFilters) {
 }
 
 function searchSitePageVals(filters, success, error) {
+
+	filters.push({ name: 'sort', value: 'courseNum asc' });
+	filters.push({ name: 'sort', value: 'lessonNum asc' });
 	$.ajax({
 		url: '/api/page?' + $.param(filters)
 		, dataType: 'json'
@@ -190,10 +201,6 @@ async function postSitePage($formValues, success, error) {
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueAuthor = $formValues.find('.valueAuthor').val();
-	if(valueAuthor != null && valueAuthor !== '')
-		vals['author'] = valueAuthor;
-
 	var valueModified = $formValues.find('.valueModified').val();
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
@@ -217,6 +224,18 @@ async function postSitePage($formValues, success, error) {
 	var valueUri = $formValues.find('.valueUri').val();
 	if(valueUri != null && valueUri !== '')
 		vals['uri'] = valueUri;
+
+	var valueAuthor = $formValues.find('.valueAuthor').val();
+	if(valueAuthor != null && valueAuthor !== '')
+		vals['author'] = valueAuthor;
+
+	var valueCourseNum = $formValues.find('.valueCourseNum').val();
+	if(valueCourseNum != null && valueCourseNum !== '')
+		vals['courseNum'] = valueCourseNum;
+
+	var valueLessonNum = $formValues.find('.valueLessonNum').val();
+	if(valueLessonNum != null && valueLessonNum !== '')
+		vals['lessonNum'] = valueLessonNum;
 
 	var valueH1 = $formValues.find('.valueH1').val();
 	if(valueH1 != null && valueH1 !== '')
@@ -283,18 +302,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeCreated = $formValues.find('.removeCreated').val();
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
-
-	var valueAuthor = $formValues.find('.valueAuthor').val();
-	var removeAuthor = $formValues.find('.removeAuthor').val() === 'true';
-	var setAuthor = removeAuthor ? null : $formValues.find('.setAuthor').val();
-	var addAuthor = $formValues.find('.addAuthor').val();
-	if(removeAuthor || setAuthor != null && setAuthor !== '')
-		vals['setAuthor'] = setAuthor;
-	if(addAuthor != null && addAuthor !== '')
-		vals['addAuthor'] = addAuthor;
-	var removeAuthor = $formValues.find('.removeAuthor').val();
-	if(removeAuthor != null && removeAuthor !== '')
-		vals['removeAuthor'] = removeAuthor;
 
 	var valueModified = $formValues.find('.valueModified').val();
 	var removeModified = $formValues.find('.removeModified').val() === 'true';
@@ -373,6 +380,42 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeUri = $formValues.find('.removeUri').val();
 	if(removeUri != null && removeUri !== '')
 		vals['removeUri'] = removeUri;
+
+	var valueAuthor = $formValues.find('.valueAuthor').val();
+	var removeAuthor = $formValues.find('.removeAuthor').val() === 'true';
+	var setAuthor = removeAuthor ? null : $formValues.find('.setAuthor').val();
+	var addAuthor = $formValues.find('.addAuthor').val();
+	if(removeAuthor || setAuthor != null && setAuthor !== '')
+		vals['setAuthor'] = setAuthor;
+	if(addAuthor != null && addAuthor !== '')
+		vals['addAuthor'] = addAuthor;
+	var removeAuthor = $formValues.find('.removeAuthor').val();
+	if(removeAuthor != null && removeAuthor !== '')
+		vals['removeAuthor'] = removeAuthor;
+
+	var valueCourseNum = $formValues.find('.valueCourseNum').val();
+	var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
+	var setCourseNum = removeCourseNum ? null : $formValues.find('.setCourseNum').val();
+	var addCourseNum = $formValues.find('.addCourseNum').val();
+	if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
+		vals['setCourseNum'] = setCourseNum;
+	if(addCourseNum != null && addCourseNum !== '')
+		vals['addCourseNum'] = addCourseNum;
+	var removeCourseNum = $formValues.find('.removeCourseNum').val();
+	if(removeCourseNum != null && removeCourseNum !== '')
+		vals['removeCourseNum'] = removeCourseNum;
+
+	var valueLessonNum = $formValues.find('.valueLessonNum').val();
+	var removeLessonNum = $formValues.find('.removeLessonNum').val() === 'true';
+	var setLessonNum = removeLessonNum ? null : $formValues.find('.setLessonNum').val();
+	var addLessonNum = $formValues.find('.addLessonNum').val();
+	if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
+		vals['setLessonNum'] = setLessonNum;
+	if(addLessonNum != null && addLessonNum !== '')
+		vals['addLessonNum'] = addLessonNum;
+	var removeLessonNum = $formValues.find('.removeLessonNum').val();
+	if(removeLessonNum != null && removeLessonNum !== '')
+		vals['removeLessonNum'] = removeLessonNum;
 
 	var valueH1 = $formValues.find('.valueH1').val();
 	var removeH1 = $formValues.find('.removeH1').val() === 'true';
@@ -458,10 +501,6 @@ function patchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-		var filterAuthor = $formFilters.find('.valueAuthor').val();
-		if(filterAuthor != null && filterAuthor !== '')
-			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
-
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -497,6 +536,18 @@ function patchSitePageFilters($formFilters) {
 		var filterUri = $formFilters.find('.valueUri').val();
 		if(filterUri != null && filterUri !== '')
 			filters.push({ name: 'fq', value: 'uri:' + filterUri });
+
+		var filterAuthor = $formFilters.find('.valueAuthor').val();
+		if(filterAuthor != null && filterAuthor !== '')
+			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
+
+		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+		if(filterCourseNum != null && filterCourseNum !== '')
+			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+		if(filterLessonNum != null && filterLessonNum !== '')
+			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
 
 		var filterH1 = $formFilters.find('.valueH1').val();
 		if(filterH1 != null && filterH1 !== '')
@@ -674,18 +725,6 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				addGlow($('.inputSitePage' + pk + 'Created'));
 			}
-			var val = o['author'];
-			if(vars.includes('author')) {
-				$('.inputSitePage' + pk + 'Author').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'Author').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'Author'));
-			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputSitePage' + pk + 'Modified').each(function() {
@@ -757,6 +796,42 @@ async function websocketSitePageInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Uri'));
+			}
+			var val = o['author'];
+			if(vars.includes('author')) {
+				$('.inputSitePage' + pk + 'Author').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'Author').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'Author'));
+			}
+			var val = o['courseNum'];
+			if(vars.includes('courseNum')) {
+				$('.inputSitePage' + pk + 'CourseNum').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'CourseNum').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'CourseNum'));
+			}
+			var val = o['lessonNum'];
+			if(vars.includes('lessonNum')) {
+				$('.inputSitePage' + pk + 'LessonNum').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'LessonNum').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'LessonNum'));
 			}
 			var val = o['h1'];
 			if(vars.includes('h1')) {
