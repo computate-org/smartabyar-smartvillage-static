@@ -1,17 +1,17 @@
 
 // Search //
 
-async function searchSitePage($formFilters, success, error) {
-	var filters = searchSitePageFilters($formFilters);
+async function searchTimeStep($formFilters, success, error) {
+	var filters = searchTimeStepFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	searchSitePageVals(filters, success, error);
+	searchTimeStepVals(filters, success, error);
 }
 
-function searchSitePageFilters($formFilters) {
+function searchTimeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 
@@ -47,37 +47,13 @@ function searchSitePageFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterPageId = $formFilters.find('.valuePageId').val();
-		if(filterPageId != null && filterPageId !== '')
-			filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterUri = $formFilters.find('.valueUri').val();
-		if(filterUri != null && filterUri !== '')
-			filters.push({ name: 'fq', value: 'uri:' + filterUri });
-
-		var filterAuthor = $formFilters.find('.valueAuthor').val();
-		if(filterAuthor != null && filterAuthor !== '')
-			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
-
-		var filterPageImageUri = $formFilters.find('.valuePageImageUri').val();
-		if(filterPageImageUri != null && filterPageImageUri !== '')
-			filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
-
-		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-		if(filterCourseNum != null && filterCourseNum !== '')
-			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-		if(filterLessonNum != null && filterLessonNum !== '')
-			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-		var filterH1 = $formFilters.find('.valueH1').val();
-		if(filterH1 != null && filterH1 !== '')
-			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-		var filterH2 = $formFilters.find('.valueH2').val();
-		if(filterH2 != null && filterH2 !== '')
-			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -138,12 +114,10 @@ function searchSitePageFilters($formFilters) {
 	return filters;
 }
 
-function searchSitePageVals(filters, success, error) {
+function searchTimeStepVals(filters, success, error) {
 
-	filters.push({ name: 'sort', value: 'courseNum asc' });
-	filters.push({ name: 'sort', value: 'lessonNum asc' });
 	$.ajax({
-		url: '/api/page?' + $.param(filters)
+		url: '/api/time-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -152,11 +126,11 @@ function searchSitePageVals(filters, success, error) {
 	});
 }
 
-function suggestSitePageObjectSuggest($formFilters, $list) {
+function suggestTimeStepObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-page ');
+			var $i = $('<i>').attr('class', 'fad fa-timer ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -167,14 +141,14 @@ function suggestSitePageObjectSuggest($formFilters, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSitePageVals($formFilters, success, error);
+	searchTimeStepVals($formFilters, success, error);
 }
 
 // GET //
 
-async function getSitePage() {
+async function getTimeStep() {
 	$.ajax({
-		url: '/api/page/' + id
+		url: '/api/time-step/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -183,119 +157,10 @@ async function getSitePage() {
 	});
 }
 
-// POST //
-
-async function postSitePage($formValues, success, error) {
-	var vals = {};
-	if(success == null) {
-		success = function( data, textStatus, jQxhr ) {
-			addGlow($formValues.next('button'));
-			var url = data['pageUrlPk'];
-			if(url)
-				window.location.href = url;
-		};
-	}
-	if(error == null) {
-		error = function( jqXhr, textStatus, errorThrown ) {
-			addError($formValues.next('button'));
-		};
-	}
-
-	var valueCreated = $formValues.find('.valueCreated').val();
-	if(valueCreated != null && valueCreated !== '')
-		vals['created'] = valueCreated;
-
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
-
-	var valueObjectId = $formValues.find('.valueObjectId').val();
-	if(valueObjectId != null && valueObjectId !== '')
-		vals['objectId'] = valueObjectId;
-
-	var valueArchived = $formValues.find('.valueArchived').val();
-	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived == 'true';
-
-	var valueDeleted = $formValues.find('.valueDeleted').val();
-	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted == 'true';
-
-	var valuePageId = $formValues.find('.valuePageId').val();
-	if(valuePageId != null && valuePageId !== '')
-		vals['pageId'] = valuePageId;
-
-	var valueUri = $formValues.find('.valueUri').val();
-	if(valueUri != null && valueUri !== '')
-		vals['uri'] = valueUri;
-
-	var valueAuthor = $formValues.find('.valueAuthor').val();
-	if(valueAuthor != null && valueAuthor !== '')
-		vals['author'] = valueAuthor;
-
-	var valuePageImageUri = $formValues.find('.valuePageImageUri').val();
-	if(valuePageImageUri != null && valuePageImageUri !== '')
-		vals['pageImageUri'] = valuePageImageUri;
-
-	var valueCourseNum = $formValues.find('.valueCourseNum').val();
-	if(valueCourseNum != null && valueCourseNum !== '')
-		vals['courseNum'] = valueCourseNum;
-
-	var valueLessonNum = $formValues.find('.valueLessonNum').val();
-	if(valueLessonNum != null && valueLessonNum !== '')
-		vals['lessonNum'] = valueLessonNum;
-
-	var valueH1 = $formValues.find('.valueH1').val();
-	if(valueH1 != null && valueH1 !== '')
-		vals['h1'] = valueH1;
-
-	var valueH2 = $formValues.find('.valueH2').val();
-	if(valueH2 != null && valueH2 !== '')
-		vals['h2'] = valueH2;
-
-	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	if(valueInheritPk != null && valueInheritPk !== '')
-		vals['inheritPk'] = valueInheritPk;
-
-	var valueSessionId = $formValues.find('.valueSessionId').val();
-	if(valueSessionId != null && valueSessionId !== '')
-		vals['sessionId'] = valueSessionId;
-
-	var valueUserKey = $formValues.find('.valueUserKey').val();
-	if(valueUserKey != null && valueUserKey !== '')
-		vals['userKey'] = valueUserKey;
-
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-		vals['objectTitle'] = valueObjectTitle;
-
-	$.ajax({
-		url: '/api/page'
-		, dataType: 'json'
-		, type: 'POST'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
-function postSitePageVals(vals, success, error) {
-	$.ajax({
-		url: '/api/page'
-		, dataType: 'json'
-		, type: 'POST'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // PATCH //
 
-async function patchSitePage($formFilters, $formValues, id, success, error) {
-	var filters = patchSitePageFilters($formFilters);
+async function patchTimeStep($formFilters, $formValues, id, success, error) {
+	var filters = patchTimeStepFilters($formFilters);
 
 	var vals = {};
 
@@ -365,101 +230,29 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valuePageId = $formValues.find('.valuePageId').val();
-	var removePageId = $formValues.find('.removePageId').val() === 'true';
-	var setPageId = removePageId ? null : $formValues.find('.setPageId').val();
-	var addPageId = $formValues.find('.addPageId').val();
-	if(removePageId || setPageId != null && setPageId !== '')
-		vals['setPageId'] = setPageId;
-	if(addPageId != null && addPageId !== '')
-		vals['addPageId'] = addPageId;
-	var removePageId = $formValues.find('.removePageId').val();
-	if(removePageId != null && removePageId !== '')
-		vals['removePageId'] = removePageId;
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
+	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
+	var addSimulationKey = $formValues.find('.addSimulationKey').val();
+	if(removeSimulationKey || setSimulationKey != null && setSimulationKey !== '')
+		vals['setSimulationKey'] = setSimulationKey;
+	if(addSimulationKey != null && addSimulationKey !== '')
+		vals['addSimulationKey'] = addSimulationKey;
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
+	if(removeSimulationKey != null && removeSimulationKey !== '')
+		vals['removeSimulationKey'] = removeSimulationKey;
 
-	var valueUri = $formValues.find('.valueUri').val();
-	var removeUri = $formValues.find('.removeUri').val() === 'true';
-	var setUri = removeUri ? null : $formValues.find('.setUri').val();
-	var addUri = $formValues.find('.addUri').val();
-	if(removeUri || setUri != null && setUri !== '')
-		vals['setUri'] = setUri;
-	if(addUri != null && addUri !== '')
-		vals['addUri'] = addUri;
-	var removeUri = $formValues.find('.removeUri').val();
-	if(removeUri != null && removeUri !== '')
-		vals['removeUri'] = removeUri;
-
-	var valueAuthor = $formValues.find('.valueAuthor').val();
-	var removeAuthor = $formValues.find('.removeAuthor').val() === 'true';
-	var setAuthor = removeAuthor ? null : $formValues.find('.setAuthor').val();
-	var addAuthor = $formValues.find('.addAuthor').val();
-	if(removeAuthor || setAuthor != null && setAuthor !== '')
-		vals['setAuthor'] = setAuthor;
-	if(addAuthor != null && addAuthor !== '')
-		vals['addAuthor'] = addAuthor;
-	var removeAuthor = $formValues.find('.removeAuthor').val();
-	if(removeAuthor != null && removeAuthor !== '')
-		vals['removeAuthor'] = removeAuthor;
-
-	var valuePageImageUri = $formValues.find('.valuePageImageUri').val();
-	var removePageImageUri = $formValues.find('.removePageImageUri').val() === 'true';
-	var setPageImageUri = removePageImageUri ? null : $formValues.find('.setPageImageUri').val();
-	var addPageImageUri = $formValues.find('.addPageImageUri').val();
-	if(removePageImageUri || setPageImageUri != null && setPageImageUri !== '')
-		vals['setPageImageUri'] = setPageImageUri;
-	if(addPageImageUri != null && addPageImageUri !== '')
-		vals['addPageImageUri'] = addPageImageUri;
-	var removePageImageUri = $formValues.find('.removePageImageUri').val();
-	if(removePageImageUri != null && removePageImageUri !== '')
-		vals['removePageImageUri'] = removePageImageUri;
-
-	var valueCourseNum = $formValues.find('.valueCourseNum').val();
-	var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
-	var setCourseNum = removeCourseNum ? null : $formValues.find('.setCourseNum').val();
-	var addCourseNum = $formValues.find('.addCourseNum').val();
-	if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
-		vals['setCourseNum'] = setCourseNum;
-	if(addCourseNum != null && addCourseNum !== '')
-		vals['addCourseNum'] = addCourseNum;
-	var removeCourseNum = $formValues.find('.removeCourseNum').val();
-	if(removeCourseNum != null && removeCourseNum !== '')
-		vals['removeCourseNum'] = removeCourseNum;
-
-	var valueLessonNum = $formValues.find('.valueLessonNum').val();
-	var removeLessonNum = $formValues.find('.removeLessonNum').val() === 'true';
-	var setLessonNum = removeLessonNum ? null : $formValues.find('.setLessonNum').val();
-	var addLessonNum = $formValues.find('.addLessonNum').val();
-	if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
-		vals['setLessonNum'] = setLessonNum;
-	if(addLessonNum != null && addLessonNum !== '')
-		vals['addLessonNum'] = addLessonNum;
-	var removeLessonNum = $formValues.find('.removeLessonNum').val();
-	if(removeLessonNum != null && removeLessonNum !== '')
-		vals['removeLessonNum'] = removeLessonNum;
-
-	var valueH1 = $formValues.find('.valueH1').val();
-	var removeH1 = $formValues.find('.removeH1').val() === 'true';
-	var setH1 = removeH1 ? null : $formValues.find('.setH1').val();
-	var addH1 = $formValues.find('.addH1').val();
-	if(removeH1 || setH1 != null && setH1 !== '')
-		vals['setH1'] = setH1;
-	if(addH1 != null && addH1 !== '')
-		vals['addH1'] = addH1;
-	var removeH1 = $formValues.find('.removeH1').val();
-	if(removeH1 != null && removeH1 !== '')
-		vals['removeH1'] = removeH1;
-
-	var valueH2 = $formValues.find('.valueH2').val();
-	var removeH2 = $formValues.find('.removeH2').val() === 'true';
-	var setH2 = removeH2 ? null : $formValues.find('.setH2').val();
-	var addH2 = $formValues.find('.addH2').val();
-	if(removeH2 || setH2 != null && setH2 !== '')
-		vals['setH2'] = setH2;
-	if(addH2 != null && addH2 !== '')
-		vals['addH2'] = addH2;
-	var removeH2 = $formValues.find('.removeH2').val();
-	if(removeH2 != null && removeH2 !== '')
-		vals['removeH2'] = removeH2;
+	var valueTime = $formValues.find('.valueTime').val();
+	var removeTime = $formValues.find('.removeTime').val() === 'true';
+	var setTime = removeTime ? null : $formValues.find('.setTime').val();
+	var addTime = $formValues.find('.addTime').val();
+	if(removeTime || setTime != null && setTime !== '')
+		vals['setTime'] = setTime;
+	if(addTime != null && addTime !== '')
+		vals['addTime'] = addTime;
+	var removeTime = $formValues.find('.removeTime').val();
+	if(removeTime != null && removeTime !== '')
+		vals['removeTime'] = removeTime;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -509,10 +302,10 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchSitePageVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
+	patchTimeStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
-function patchSitePageFilters($formFilters) {
+function patchTimeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
@@ -549,37 +342,13 @@ function patchSitePageFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterPageId = $formFilters.find('.valuePageId').val();
-		if(filterPageId != null && filterPageId !== '')
-			filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterUri = $formFilters.find('.valueUri').val();
-		if(filterUri != null && filterUri !== '')
-			filters.push({ name: 'fq', value: 'uri:' + filterUri });
-
-		var filterAuthor = $formFilters.find('.valueAuthor').val();
-		if(filterAuthor != null && filterAuthor !== '')
-			filters.push({ name: 'fq', value: 'author:' + filterAuthor });
-
-		var filterPageImageUri = $formFilters.find('.valuePageImageUri').val();
-		if(filterPageImageUri != null && filterPageImageUri !== '')
-			filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
-
-		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-		if(filterCourseNum != null && filterCourseNum !== '')
-			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-		if(filterLessonNum != null && filterLessonNum !== '')
-			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-		var filterH1 = $formFilters.find('.valueH1').val();
-		if(filterH1 != null && filterH1 !== '')
-			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-		var filterH2 = $formFilters.find('.valueH2').val();
-		if(filterH2 != null && filterH2 !== '')
-			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -640,15 +409,15 @@ function patchSitePageFilters($formFilters) {
 	return filters;
 }
 
-function patchSitePageVal(filters, v, val, success, error) {
+function patchTimeStepVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchSitePageVals(filters, vals, success, error);
+	patchTimeStepVals(filters, vals, success, error);
 }
 
-function patchSitePageVals(filters, vals, success, error) {
+function patchTimeStepVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/page?' + $.param(filters)
+		url: '/api/time-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -658,17 +427,102 @@ function patchSitePageVals(filters, vals, success, error) {
 	});
 }
 
-// PUTImport //
+// POST //
 
-async function putimportSitePage($formValues, id, success, error) {
-	var json = $formValues.find('.PUTImport_searchList').val();
-	if(json != null && json !== '')
-		putimportSitePageVals(JSON.parse(json), success, error);
+async function postTimeStep($formValues, success, error) {
+	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			addGlow($formValues.next('button'));
+			var url = data['pageUrlPk'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			addError($formValues.next('button'));
+		};
+	}
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').val();
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived == 'true';
+
+	var valueDeleted = $formValues.find('.valueDeleted').val();
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted == 'true';
+
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	if(valueSimulationKey != null && valueSimulationKey !== '')
+		vals['simulationKey'] = valueSimulationKey;
+
+	var valueTime = $formValues.find('.valueTime').val();
+	if(valueTime != null && valueTime !== '')
+		vals['time'] = valueTime;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	$.ajax({
+		url: '/api/time-step'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
 }
 
-function putimportSitePageVals(json, success, error) {
+function postTimeStepVals(vals, success, error) {
 	$.ajax({
-		url: '/api/page-import'
+		url: '/api/time-step'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTImport //
+
+async function putimportTimeStep($formValues, id, success, error) {
+	var json = $formValues.find('.PUTImport_searchList').val();
+	if(json != null && json !== '')
+		putimportTimeStepVals(JSON.parse(json), success, error);
+}
+
+function putimportTimeStepVals(json, success, error) {
+	$.ajax({
+		url: '/api/time-step-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -678,14 +532,14 @@ function putimportSitePageVals(json, success, error) {
 	});
 }
 
-async function websocketSitePage(success) {
+async function websocketTimeStep(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketSitePage', function (error, message) {
+		window.eventBus.registerHandler('websocketTimeStep', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#SitePageForm :input[name=id]').val();
+			var pkPage = $('#TimeStepForm :input[name=id]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -694,13 +548,13 @@ async function websocketSitePage(success) {
 			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-2017-navy-peony ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fad fa-page w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify articles in ' + json.timeRemaining);
+			var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fad fa-timer w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify time steps in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-2017-navy-peony ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);
@@ -727,7 +581,7 @@ async function websocketSitePage(success) {
 		});
 	}
 }
-async function websocketSitePageInner(apiRequest) {
+async function websocketTimeStepInner(apiRequest) {
 	var pk = apiRequest['pk'];
 	var pks = apiRequest['pks'];
 	var classes = apiRequest['classes'];
@@ -735,331 +589,259 @@ async function websocketSitePageInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchSitePageVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchTimeStepVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			var val = o['created'];
 			if(vars.includes('created')) {
-				$('.inputSitePage' + pk + 'Created').each(function() {
+				$('.inputTimeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Created').each(function() {
+				$('.varTimeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Created'));
+				addGlow($('.inputTimeStep' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
-				$('.inputSitePage' + pk + 'Modified').each(function() {
+				$('.inputTimeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Modified').each(function() {
+				$('.varTimeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Modified'));
+				addGlow($('.inputTimeStep' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
-				$('.inputSitePage' + pk + 'ObjectId').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ObjectId').each(function() {
+				$('.varTimeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ObjectId'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
-				$('.inputSitePage' + pk + 'Archived').each(function() {
+				$('.inputTimeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Archived').each(function() {
+				$('.varTimeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Archived'));
+				addGlow($('.inputTimeStep' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
-				$('.inputSitePage' + pk + 'Deleted').each(function() {
+				$('.inputTimeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Deleted').each(function() {
+				$('.varTimeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Deleted'));
+				addGlow($('.inputTimeStep' + pk + 'Deleted'));
 			}
-			var val = o['pageId'];
-			if(vars.includes('pageId')) {
-				$('.inputSitePage' + pk + 'PageId').each(function() {
+			var val = o['simulationKey'];
+			if(vars.includes('simulationKey')) {
+				$('.inputTimeStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'PageId').each(function() {
+				$('.varTimeStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'PageId'));
+				addGlow($('.inputTimeStep' + pk + 'SimulationKey'));
 			}
-			var val = o['uri'];
-			if(vars.includes('uri')) {
-				$('.inputSitePage' + pk + 'Uri').each(function() {
+			var val = o['time'];
+			if(vars.includes('time')) {
+				$('.inputTimeStep' + pk + 'Time').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Uri').each(function() {
+				$('.varTimeStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Uri'));
-			}
-			var val = o['author'];
-			if(vars.includes('author')) {
-				$('.inputSitePage' + pk + 'Author').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'Author').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'Author'));
-			}
-			var val = o['pageImageUri'];
-			if(vars.includes('pageImageUri')) {
-				$('.inputSitePage' + pk + 'PageImageUri').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'PageImageUri').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'PageImageUri'));
-			}
-			var val = o['courseNum'];
-			if(vars.includes('courseNum')) {
-				$('.inputSitePage' + pk + 'CourseNum').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'CourseNum').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'CourseNum'));
-			}
-			var val = o['lessonNum'];
-			if(vars.includes('lessonNum')) {
-				$('.inputSitePage' + pk + 'LessonNum').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'LessonNum').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'LessonNum'));
-			}
-			var val = o['h1'];
-			if(vars.includes('h1')) {
-				$('.inputSitePage' + pk + 'H1').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'H1').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'H1'));
-			}
-			var val = o['h2'];
-			if(vars.includes('h2')) {
-				$('.inputSitePage' + pk + 'H2').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'H2').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'H2'));
+				addGlow($('.inputTimeStep' + pk + 'Time'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputSitePage' + pk + 'InheritPk').each(function() {
+				$('.inputTimeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'InheritPk').each(function() {
+				$('.varTimeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'InheritPk'));
+				addGlow($('.inputTimeStep' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
-				$('.inputSitePage' + pk + 'ClassCanonicalName').each(function() {
+				$('.inputTimeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ClassCanonicalName').each(function() {
+				$('.varTimeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ClassCanonicalName'));
+				addGlow($('.inputTimeStep' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
-				$('.inputSitePage' + pk + 'ClassSimpleName').each(function() {
+				$('.inputTimeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ClassSimpleName').each(function() {
+				$('.varTimeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ClassSimpleName'));
+				addGlow($('.inputTimeStep' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
-				$('.inputSitePage' + pk + 'ClassCanonicalNames').each(function() {
+				$('.inputTimeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ClassCanonicalNames').each(function() {
+				$('.varTimeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ClassCanonicalNames'));
+				addGlow($('.inputTimeStep' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputSitePage' + pk + 'SessionId').each(function() {
+				$('.inputTimeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'SessionId').each(function() {
+				$('.varTimeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'SessionId'));
+				addGlow($('.inputTimeStep' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
-				$('.inputSitePage' + pk + 'UserKey').each(function() {
+				$('.inputTimeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'UserKey').each(function() {
+				$('.varTimeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'UserKey'));
+				addGlow($('.inputTimeStep' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
-				$('.inputSitePage' + pk + 'Saves').each(function() {
+				$('.inputTimeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Saves').each(function() {
+				$('.varTimeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Saves'));
+				addGlow($('.inputTimeStep' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
-				$('.inputSitePage' + pk + 'ObjectTitle').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ObjectTitle').each(function() {
+				$('.varTimeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ObjectTitle'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
-				$('.inputSitePage' + pk + 'ObjectSuggest').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ObjectSuggest').each(function() {
+				$('.varTimeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ObjectSuggest'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
-				$('.inputSitePage' + pk + 'ObjectText').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'ObjectText').each(function() {
+				$('.varTimeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'ObjectText'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputSitePage' + pk + 'PageUrlId').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'PageUrlId').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'PageUrlId'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputSitePage' + pk + 'PageUrlPk').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'PageUrlPk').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'PageUrlPk'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputSitePage' + pk + 'PageUrlApi').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'PageUrlApi').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'PageUrlApi'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputSitePage' + pk + 'Id').each(function() {
+				$('.inputTimeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSitePage' + pk + 'Id').each(function() {
+				$('.varTimeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSitePage' + pk + 'Id'));
+				addGlow($('.inputTimeStep' + pk + 'Id'));
 			}
 		});
 	}
@@ -1131,7 +913,7 @@ function pageGraph(apiRequest) {
 				});
 				data.push(trace);
 			} else if(range) {
-				layout['title'] = 'SitePage';
+				layout['title'] = 'TimeStep';
 				layout['xaxis'] = {
 					title: rangeVarFq.displayName
 				}
@@ -1149,7 +931,7 @@ function pageGraph(apiRequest) {
 					data.push(trace);
 				});
 			}
-			Plotly.newPlot('htmBodyGraphPageLayout', data, layout);
+			Plotly.newPlot('htmBodyGraphBaseModelPage', data, layout);
 		}
 	}
 }
