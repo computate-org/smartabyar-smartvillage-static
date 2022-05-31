@@ -128,16 +128,36 @@ function facetFieldListChange(elem, classSimpleName) {
 	searchPage();
 }
 
+function facetStatsChange(elem, classSimpleName) {
+	var $elem = $(elem);
+	var $list = $("#pageSearchVal-Stats" + classSimpleName);
+	if($elem.is(":checked")) {
+		$list.append($("<div>")
+				.attr("id", "pageSearchVal-Stats" + classSimpleName + "_" + $elem.val())
+				.attr("class", "pageSearchVal pageSearchVal-Stats" + classSimpleName + "_" + $elem.val() + " ")
+				.text("stats.field=" + $elem.val())
+				)
+				;
+	} else {
+		$("#pageSearchVal-Stats" + classSimpleName + "_" + $elem.val()).remove();
+	}
+	searchPage();
+}
+
 function searchPage() {
 	var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
 	var uri = location.pathname + queryParams;
 	$.get(uri, {}, function(data) {
 		var $response = $("<html/>").html(data);
-		$(".pageContent").replaceWith($response.find(".pageContent"));
 		$('.pageFacetField').each(function(index, facetField) {
 			var $facetField = $(facetField);
-			$facetField.replaceWith($response.find("#" + $facetField.attr("id")));
+			$facetField.replaceWith($response.find("." + $facetField.attr("id")));
 		});
+		$('.pageStatsField').each(function(index, statsField) {
+			var $statsField = $(statsField);
+			$statsField.replaceWith($response.find("." + $statsField.attr("id")));
+		});
+		$(".pageContent").replaceWith($response.find(".pageContent"));
 		pageGraph();
 	}, 'html');
 	window.history.replaceState('', '', uri);
