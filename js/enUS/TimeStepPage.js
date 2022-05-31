@@ -1,23 +1,19 @@
 
 // Search //
 
-async function searchTrafficSimulation($formFilters, success, error) {
-	var filters = searchTrafficSimulationFilters($formFilters);
+async function searchTimeStep($formFilters, success, error) {
+	var filters = searchTimeStepFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	searchTrafficSimulationVals(filters, success, error);
+	searchTimeStepVals(filters, success, error);
 }
 
-function searchTrafficSimulationFilters($formFilters) {
+function searchTimeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
-
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
@@ -51,31 +47,13 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-		if(filterStartSeconds != null && filterStartSeconds !== '')
-			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
-
-		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
-		if(filterEndSeconds != null && filterEndSeconds !== '')
-			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
-		if(filterStepSeconds != null && filterStepSeconds !== '')
-			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
-
-		var $filterFcdOutputGeoCheckbox = $formFilters.find('input.valueFcdOutputGeo[type = "checkbox"]');
-		var $filterFcdOutputGeoSelect = $formFilters.find('select.valueFcdOutputGeo');
-		var filterFcdOutputGeo = $filterFcdOutputGeoSelect.length ? $filterFcdOutputGeoSelect.val() : $filterFcdOutputGeoCheckbox.prop('checked');
-		var filterFcdOutputGeoSelectVal = $formFilters.find('select.filterFcdOutputGeo').val();
-		var filterFcdOutputGeo = null;
-		if(filterFcdOutputGeoSelectVal !== '')
-			filterFcdOutputGeo = filterFcdOutputGeoSelectVal == 'true';
-		if(filterFcdOutputGeo != null && filterFcdOutputGeo === true)
-			filters.push({ name: 'fq', value: 'fcdOutputGeo:' + filterFcdOutputGeo });
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -136,10 +114,10 @@ function searchTrafficSimulationFilters($formFilters) {
 	return filters;
 }
 
-function searchTrafficSimulationVals(filters, success, error) {
+function searchTimeStepVals(filters, success, error) {
 
 	$.ajax({
-		url: '/api/traffic-simulation?' + $.param(filters)
+		url: '/api/time-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -148,11 +126,11 @@ function searchTrafficSimulationVals(filters, success, error) {
 	});
 }
 
-function suggestTrafficSimulationObjectSuggest($formFilters, $list) {
+function suggestTimeStepObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-traffic-light-stop ');
+			var $i = $('<i>').attr('class', 'fad fa-timer ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -163,14 +141,14 @@ function suggestTrafficSimulationObjectSuggest($formFilters, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchTrafficSimulationVals($formFilters, success, error);
+	searchTimeStepVals($formFilters, success, error);
 }
 
 // GET //
 
-async function getTrafficSimulation(pk) {
+async function getTimeStep() {
 	$.ajax({
-		url: '/api/traffic-simulation/' + id
+		url: '/api/time-step/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -181,22 +159,10 @@ async function getTrafficSimulation(pk) {
 
 // PATCH //
 
-async function patchTrafficSimulation($formFilters, $formValues, pk, success, error) {
-	var filters = patchTrafficSimulationFilters($formFilters);
+async function patchTimeStep($formFilters, $formValues, id, success, error) {
+	var filters = patchTimeStepFilters($formFilters);
 
 	var vals = {};
-
-	var valuePk = $formValues.find('.valuePk').val();
-	var removePk = $formValues.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	var addPk = $formValues.find('.addPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
@@ -264,68 +230,29 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueSimulationName = $formValues.find('.valueSimulationName').val();
-	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
-	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
-	var addSimulationName = $formValues.find('.addSimulationName').val();
-	if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
-		vals['setSimulationName'] = setSimulationName;
-	if(addSimulationName != null && addSimulationName !== '')
-		vals['addSimulationName'] = addSimulationName;
-	var removeSimulationName = $formValues.find('.removeSimulationName').val();
-	if(removeSimulationName != null && removeSimulationName !== '')
-		vals['removeSimulationName'] = removeSimulationName;
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
+	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
+	var addSimulationKey = $formValues.find('.addSimulationKey').val();
+	if(removeSimulationKey || setSimulationKey != null && setSimulationKey !== '')
+		vals['setSimulationKey'] = setSimulationKey;
+	if(addSimulationKey != null && addSimulationKey !== '')
+		vals['addSimulationKey'] = addSimulationKey;
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
+	if(removeSimulationKey != null && removeSimulationKey !== '')
+		vals['removeSimulationKey'] = removeSimulationKey;
 
-	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
-	var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
-	var setStartSeconds = removeStartSeconds ? null : $formValues.find('.setStartSeconds').val();
-	var addStartSeconds = $formValues.find('.addStartSeconds').val();
-	if(removeStartSeconds || setStartSeconds != null && setStartSeconds !== '')
-		vals['setStartSeconds'] = setStartSeconds;
-	if(addStartSeconds != null && addStartSeconds !== '')
-		vals['addStartSeconds'] = addStartSeconds;
-	var removeStartSeconds = $formValues.find('.removeStartSeconds').val();
-	if(removeStartSeconds != null && removeStartSeconds !== '')
-		vals['removeStartSeconds'] = removeStartSeconds;
-
-	var valueEndSeconds = $formValues.find('.valueEndSeconds').val();
-	var removeEndSeconds = $formValues.find('.removeEndSeconds').val() === 'true';
-	var setEndSeconds = removeEndSeconds ? null : $formValues.find('.setEndSeconds').val();
-	var addEndSeconds = $formValues.find('.addEndSeconds').val();
-	if(removeEndSeconds || setEndSeconds != null && setEndSeconds !== '')
-		vals['setEndSeconds'] = setEndSeconds;
-	if(addEndSeconds != null && addEndSeconds !== '')
-		vals['addEndSeconds'] = addEndSeconds;
-	var removeEndSeconds = $formValues.find('.removeEndSeconds').val();
-	if(removeEndSeconds != null && removeEndSeconds !== '')
-		vals['removeEndSeconds'] = removeEndSeconds;
-
-	var valueStepSeconds = $formValues.find('.valueStepSeconds').val();
-	var removeStepSeconds = $formValues.find('.removeStepSeconds').val() === 'true';
-	var setStepSeconds = removeStepSeconds ? null : $formValues.find('.setStepSeconds').val();
-	var addStepSeconds = $formValues.find('.addStepSeconds').val();
-	if(removeStepSeconds || setStepSeconds != null && setStepSeconds !== '')
-		vals['setStepSeconds'] = setStepSeconds;
-	if(addStepSeconds != null && addStepSeconds !== '')
-		vals['addStepSeconds'] = addStepSeconds;
-	var removeStepSeconds = $formValues.find('.removeStepSeconds').val();
-	if(removeStepSeconds != null && removeStepSeconds !== '')
-		vals['removeStepSeconds'] = removeStepSeconds;
-
-	var valueFcdOutputGeo = $formValues.find('.valueFcdOutputGeo').val();
-	var removeFcdOutputGeo = $formValues.find('.removeFcdOutputGeo').val() === 'true';
-	var valueFcdOutputGeoSelectVal = $formValues.find('select.setFcdOutputGeo').val();
-	if(valueFcdOutputGeoSelectVal != null && valueFcdOutputGeoSelectVal !== '')
-		valueFcdOutputGeo = valueFcdOutputGeoSelectVal == 'true';
-	var setFcdOutputGeo = removeFcdOutputGeo ? null : valueFcdOutputGeo;
-	var addFcdOutputGeo = $formValues.find('.addFcdOutputGeo').prop('checked');
-	if(removeFcdOutputGeo || setFcdOutputGeo != null && setFcdOutputGeo !== '')
-		vals['setFcdOutputGeo'] = setFcdOutputGeo;
-	if(addFcdOutputGeo != null && addFcdOutputGeo !== '')
-		vals['addFcdOutputGeo'] = addFcdOutputGeo;
-	var removeFcdOutputGeo = $formValues.find('.removeFcdOutputGeo').prop('checked');
-	if(removeFcdOutputGeo != null && removeFcdOutputGeo !== '')
-		vals['removeFcdOutputGeo'] = removeFcdOutputGeo;
+	var valueTime = $formValues.find('.valueTime').val();
+	var removeTime = $formValues.find('.removeTime').val() === 'true';
+	var setTime = removeTime ? null : $formValues.find('.setTime').val();
+	var addTime = $formValues.find('.addTime').val();
+	if(removeTime || setTime != null && setTime !== '')
+		vals['setTime'] = setTime;
+	if(addTime != null && addTime !== '')
+		vals['addTime'] = addTime;
+	var removeTime = $formValues.find('.removeTime').val();
+	if(removeTime != null && removeTime !== '')
+		vals['removeTime'] = removeTime;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -375,17 +302,13 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	patchTimeStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
-function patchTrafficSimulationFilters($formFilters) {
+function patchTimeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
-
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
@@ -419,31 +342,13 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-		if(filterStartSeconds != null && filterStartSeconds !== '')
-			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
-
-		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
-		if(filterEndSeconds != null && filterEndSeconds !== '')
-			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
-		if(filterStepSeconds != null && filterStepSeconds !== '')
-			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
-
-		var $filterFcdOutputGeoCheckbox = $formFilters.find('input.valueFcdOutputGeo[type = "checkbox"]');
-		var $filterFcdOutputGeoSelect = $formFilters.find('select.valueFcdOutputGeo');
-		var filterFcdOutputGeo = $filterFcdOutputGeoSelect.length ? $filterFcdOutputGeoSelect.val() : $filterFcdOutputGeoCheckbox.prop('checked');
-		var filterFcdOutputGeoSelectVal = $formFilters.find('select.filterFcdOutputGeo').val();
-		var filterFcdOutputGeo = null;
-		if(filterFcdOutputGeoSelectVal !== '')
-			filterFcdOutputGeo = filterFcdOutputGeoSelectVal == 'true';
-		if(filterFcdOutputGeo != null && filterFcdOutputGeo === true)
-			filters.push({ name: 'fq', value: 'fcdOutputGeo:' + filterFcdOutputGeo });
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -504,15 +409,15 @@ function patchTrafficSimulationFilters($formFilters) {
 	return filters;
 }
 
-function patchTrafficSimulationVal(filters, v, val, success, error) {
+function patchTimeStepVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchTrafficSimulationVals(filters, vals, success, error);
+	patchTimeStepVals(filters, vals, success, error);
 }
 
-function patchTrafficSimulationVals(filters, vals, success, error) {
+function patchTimeStepVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/traffic-simulation?' + $.param(filters)
+		url: '/api/time-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -524,7 +429,7 @@ function patchTrafficSimulationVals(filters, vals, success, error) {
 
 // POST //
 
-async function postTrafficSimulation($formValues, success, error) {
+async function postTimeStep($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -539,10 +444,6 @@ async function postTrafficSimulation($formValues, success, error) {
 			addError($formValues.next('button'));
 		};
 	}
-
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
@@ -564,25 +465,13 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
-	var valueSimulationName = $formValues.find('.valueSimulationName').val();
-	if(valueSimulationName != null && valueSimulationName !== '')
-		vals['simulationName'] = valueSimulationName;
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	if(valueSimulationKey != null && valueSimulationKey !== '')
+		vals['simulationKey'] = valueSimulationKey;
 
-	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
-	if(valueStartSeconds != null && valueStartSeconds !== '')
-		vals['startSeconds'] = valueStartSeconds;
-
-	var valueEndSeconds = $formValues.find('.valueEndSeconds').val();
-	if(valueEndSeconds != null && valueEndSeconds !== '')
-		vals['endSeconds'] = valueEndSeconds;
-
-	var valueStepSeconds = $formValues.find('.valueStepSeconds').val();
-	if(valueStepSeconds != null && valueStepSeconds !== '')
-		vals['stepSeconds'] = valueStepSeconds;
-
-	var valueFcdOutputGeo = $formValues.find('.valueFcdOutputGeo').val();
-	if(valueFcdOutputGeo != null && valueFcdOutputGeo !== '')
-		vals['fcdOutputGeo'] = valueFcdOutputGeo == 'true';
+	var valueTime = $formValues.find('.valueTime').val();
+	if(valueTime != null && valueTime !== '')
+		vals['time'] = valueTime;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -601,7 +490,7 @@ async function postTrafficSimulation($formValues, success, error) {
 		vals['objectTitle'] = valueObjectTitle;
 
 	$.ajax({
-		url: '/api/traffic-simulation'
+		url: '/api/time-step'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -611,9 +500,9 @@ async function postTrafficSimulation($formValues, success, error) {
 	});
 }
 
-function postTrafficSimulationVals(vals, success, error) {
+function postTimeStepVals(vals, success, error) {
 	$.ajax({
-		url: '/api/traffic-simulation'
+		url: '/api/time-step'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -625,15 +514,15 @@ function postTrafficSimulationVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportTrafficSimulation($formValues, pk, success, error) {
+async function putimportTimeStep($formValues, id, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
-		putimportTrafficSimulationVals(json, success, error);
+		putimportTimeStepVals(JSON.parse(json), success, error);
 }
 
-function putimportTrafficSimulationVals(json, success, error) {
+function putimportTimeStepVals(json, success, error) {
 	$.ajax({
-		url: '/api/traffic-simulation-import'
+		url: '/api/time-step-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -643,14 +532,14 @@ function putimportTrafficSimulationVals(json, success, error) {
 	});
 }
 
-async function websocketTrafficSimulation(success) {
+async function websocketTimeStep(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketTrafficSimulation', function (error, message) {
+		window.eventBus.registerHandler('websocketTimeStep', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#TrafficSimulationForm :input[name=pk]').val();
+			var pkPage = $('#TimeStepForm :input[name=id]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -660,8 +549,8 @@ async function websocketTrafficSimulation(success) {
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fad fa-traffic-light-stop w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify traffic simulations in ' + json.timeRemaining);
+			var $i = $('<i>').attr('class', 'fad fa-timer w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify time steps in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
@@ -692,7 +581,7 @@ async function websocketTrafficSimulation(success) {
 		});
 	}
 }
-async function websocketTrafficSimulationInner(apiRequest) {
+async function websocketTimeStepInner(apiRequest) {
 	var pk = apiRequest['pk'];
 	var pks = apiRequest['pks'];
 	var classes = apiRequest['classes'];
@@ -700,307 +589,259 @@ async function websocketTrafficSimulationInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchTrafficSimulationVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchTimeStepVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['pk'];
-			if(vars.includes('pk')) {
-				$('.inputTrafficSimulation' + pk + 'Pk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficSimulation' + pk + 'Pk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Pk'));
-			}
 			var val = o['created'];
 			if(vars.includes('created')) {
-				$('.inputTrafficSimulation' + pk + 'Created').each(function() {
+				$('.inputTimeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Created').each(function() {
+				$('.varTimeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Created'));
+				addGlow($('.inputTimeStep' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
-				$('.inputTrafficSimulation' + pk + 'Modified').each(function() {
+				$('.inputTimeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Modified').each(function() {
+				$('.varTimeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Modified'));
+				addGlow($('.inputTimeStep' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
-				$('.inputTrafficSimulation' + pk + 'ObjectId').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ObjectId').each(function() {
+				$('.varTimeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ObjectId'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
-				$('.inputTrafficSimulation' + pk + 'Archived').each(function() {
+				$('.inputTimeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Archived').each(function() {
+				$('.varTimeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Archived'));
+				addGlow($('.inputTimeStep' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
-				$('.inputTrafficSimulation' + pk + 'Deleted').each(function() {
+				$('.inputTimeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Deleted').each(function() {
+				$('.varTimeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Deleted'));
+				addGlow($('.inputTimeStep' + pk + 'Deleted'));
 			}
-			var val = o['simulationName'];
-			if(vars.includes('simulationName')) {
-				$('.inputTrafficSimulation' + pk + 'SimulationName').each(function() {
+			var val = o['simulationKey'];
+			if(vars.includes('simulationKey')) {
+				$('.inputTimeStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'SimulationName').each(function() {
+				$('.varTimeStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'SimulationName'));
+				addGlow($('.inputTimeStep' + pk + 'SimulationKey'));
 			}
-			var val = o['startSeconds'];
-			if(vars.includes('startSeconds')) {
-				$('.inputTrafficSimulation' + pk + 'StartSeconds').each(function() {
+			var val = o['time'];
+			if(vars.includes('time')) {
+				$('.inputTimeStep' + pk + 'Time').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'StartSeconds').each(function() {
+				$('.varTimeStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'StartSeconds'));
-			}
-			var val = o['endSeconds'];
-			if(vars.includes('endSeconds')) {
-				$('.inputTrafficSimulation' + pk + 'EndSeconds').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficSimulation' + pk + 'EndSeconds').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficSimulation' + pk + 'EndSeconds'));
-			}
-			var val = o['stepSeconds'];
-			if(vars.includes('stepSeconds')) {
-				$('.inputTrafficSimulation' + pk + 'StepSeconds').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficSimulation' + pk + 'StepSeconds').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficSimulation' + pk + 'StepSeconds'));
-			}
-			var val = o['fcdOutputGeo'];
-			if(vars.includes('fcdOutputGeo')) {
-				$('.inputTrafficSimulation' + pk + 'FcdOutputGeo').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficSimulation' + pk + 'FcdOutputGeo').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficSimulation' + pk + 'FcdOutputGeo'));
+				addGlow($('.inputTimeStep' + pk + 'Time'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputTrafficSimulation' + pk + 'InheritPk').each(function() {
+				$('.inputTimeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'InheritPk').each(function() {
+				$('.varTimeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'InheritPk'));
+				addGlow($('.inputTimeStep' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
-				$('.inputTrafficSimulation' + pk + 'ClassCanonicalName').each(function() {
+				$('.inputTimeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ClassCanonicalName').each(function() {
+				$('.varTimeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ClassCanonicalName'));
+				addGlow($('.inputTimeStep' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
-				$('.inputTrafficSimulation' + pk + 'ClassSimpleName').each(function() {
+				$('.inputTimeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ClassSimpleName').each(function() {
+				$('.varTimeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ClassSimpleName'));
+				addGlow($('.inputTimeStep' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
-				$('.inputTrafficSimulation' + pk + 'ClassCanonicalNames').each(function() {
+				$('.inputTimeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ClassCanonicalNames').each(function() {
+				$('.varTimeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ClassCanonicalNames'));
+				addGlow($('.inputTimeStep' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputTrafficSimulation' + pk + 'SessionId').each(function() {
+				$('.inputTimeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'SessionId').each(function() {
+				$('.varTimeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'SessionId'));
+				addGlow($('.inputTimeStep' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
-				$('.inputTrafficSimulation' + pk + 'UserKey').each(function() {
+				$('.inputTimeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'UserKey').each(function() {
+				$('.varTimeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'UserKey'));
+				addGlow($('.inputTimeStep' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
-				$('.inputTrafficSimulation' + pk + 'Saves').each(function() {
+				$('.inputTimeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Saves').each(function() {
+				$('.varTimeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Saves'));
+				addGlow($('.inputTimeStep' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
-				$('.inputTrafficSimulation' + pk + 'ObjectTitle').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ObjectTitle').each(function() {
+				$('.varTimeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ObjectTitle'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
-				$('.inputTrafficSimulation' + pk + 'ObjectSuggest').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ObjectSuggest').each(function() {
+				$('.varTimeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ObjectSuggest'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
-				$('.inputTrafficSimulation' + pk + 'ObjectText').each(function() {
+				$('.inputTimeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'ObjectText').each(function() {
+				$('.varTimeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'ObjectText'));
+				addGlow($('.inputTimeStep' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputTrafficSimulation' + pk + 'PageUrlId').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'PageUrlId').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'PageUrlId'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputTrafficSimulation' + pk + 'PageUrlPk').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'PageUrlPk').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'PageUrlPk'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputTrafficSimulation' + pk + 'PageUrlApi').each(function() {
+				$('.inputTimeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'PageUrlApi').each(function() {
+				$('.varTimeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'PageUrlApi'));
+				addGlow($('.inputTimeStep' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputTrafficSimulation' + pk + 'Id').each(function() {
+				$('.inputTimeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'Id').each(function() {
+				$('.varTimeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'Id'));
+				addGlow($('.inputTimeStep' + pk + 'Id'));
 			}
 		});
 	}
@@ -1072,7 +913,7 @@ function pageGraph(apiRequest) {
 				});
 				data.push(trace);
 			} else if(range) {
-				layout['title'] = 'TrafficSimulation';
+				layout['title'] = 'TimeStep';
 				layout['xaxis'] = {
 					title: rangeVarFq.displayName
 				}
