@@ -2339,27 +2339,34 @@ function pageGraph(apiRequest) {
 				trace['lat'] = lat;
 				trace['lon'] = lon;
 				trace['text'] = text;
-				trace['customdata'] = customdata;
 				json.response.docs.forEach((record) => {
-					var location = record.fields[pivot1VarIndexed];
+					let location = record.fields[pivot1VarIndexed];
+					let pk = record.fields['pk_docvalues_long'];
 					if(location) {
-						var locationParts = location.split(',');
-						text.push('pivot1Val');
+						let locationParts = location.split(',');
+						let objectTitle = record.fields['objectTitle_docvalues_string'];
+						text.push(objectTitle);
 						lat.push(parseFloat(locationParts[0]));
 						lon.push(parseFloat(locationParts[1]));
-						var vals = {};
-						var hovertemplate = '';
-						Object.entries(window.varsFq).forEach(([key, data]) => {
-							if(data.displayName) {
-								vals[data.var] = record.fields[data.varStored];
-								hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
+						let vals = {};
+						let hovertemplate = '';
+						let entries = Object.entries(window.varsFq);
+						for(let i = 0; i < entries.length; i++) {
+							let entry = entries[i];
+							let data = entry[1];
+							let val = record.fields[data.varStored];
+							if(val && customdata.length < 10) {
+								vals[data.var] = val;
+								hovertemplate += '<b>' + (data.displayName ? data.displayName : data.var) + ': %{customdata.' + data.var + '}</b><br>';
+								customdata.push(vals);
 							}
-							customdata.push(vals);
-						});
+						}
+						trace['hovertemplate'] = '' + pk + '<br>';
+						//trace['hovertemplate'] = hovertemplate;
 						customdata.push(vals);
-						trace['hovertemplate'] = hovertemplate;
 					}
 				});
+				trace['customdata'] = customdata;
 				data.push(trace);
 			} else if(range) {
 				layout['title'] = 'IotNode';

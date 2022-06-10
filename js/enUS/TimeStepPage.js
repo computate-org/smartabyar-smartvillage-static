@@ -51,6 +51,10 @@ function searchTimeStepFilters($formFilters) {
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
+		var filterPath = $formFilters.find('.valuePath').val();
+		if(filterPath != null && filterPath !== '')
+			filters.push({ name: 'fq', value: 'path:' + filterPath });
+
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
@@ -242,6 +246,18 @@ async function patchTimeStep($formFilters, $formValues, id, success, error) {
 	if(removeSimulationKey != null && removeSimulationKey !== '')
 		vals['removeSimulationKey'] = removeSimulationKey;
 
+	var valuePath = $formValues.find('.valuePath').val();
+	var removePath = $formValues.find('.removePath').val() === 'true';
+	var setPath = removePath ? null : $formValues.find('.setPath').val();
+	var addPath = $formValues.find('.addPath').val();
+	if(removePath || setPath != null && setPath !== '')
+		vals['setPath'] = setPath;
+	if(addPath != null && addPath !== '')
+		vals['addPath'] = addPath;
+	var removePath = $formValues.find('.removePath').val();
+	if(removePath != null && removePath !== '')
+		vals['removePath'] = removePath;
+
 	var valueTime = $formValues.find('.valueTime').val();
 	var removeTime = $formValues.find('.removeTime').val() === 'true';
 	var setTime = removeTime ? null : $formValues.find('.setTime').val();
@@ -345,6 +361,10 @@ function patchTimeStepFilters($formFilters) {
 		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterPath = $formFilters.find('.valuePath').val();
+		if(filterPath != null && filterPath !== '')
+			filters.push({ name: 'fq', value: 'path:' + filterPath });
 
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
@@ -468,6 +488,10 @@ async function postTimeStep($formValues, success, error) {
 	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
 	if(valueSimulationKey != null && valueSimulationKey !== '')
 		vals['simulationKey'] = valueSimulationKey;
+
+	var valuePath = $formValues.find('.valuePath').val();
+	if(valuePath != null && valuePath !== '')
+		vals['path'] = valuePath;
 
 	var valueTime = $formValues.find('.valueTime').val();
 	if(valueTime != null && valueTime !== '')
@@ -662,6 +686,18 @@ async function websocketTimeStepInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputTimeStep' + pk + 'SimulationKey'));
+			}
+			var val = o['path'];
+			if(vars.includes('path')) {
+				$('.inputTimeStep' + pk + 'Path').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTimeStep' + pk + 'Path').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTimeStep' + pk + 'Path'));
 			}
 			var val = o['time'];
 			if(vars.includes('time')) {
