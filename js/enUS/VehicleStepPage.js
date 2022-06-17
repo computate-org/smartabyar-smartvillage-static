@@ -51,9 +51,9 @@ function searchVehicleStepFilters($formFilters) {
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterTimeStepKey = $formFilters.find('.valueTimeStepKey').val();
-		if(filterTimeStepKey != null && filterTimeStepKey !== '')
-			filters.push({ name: 'fq', value: 'timeStepKey:' + filterTimeStepKey });
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
@@ -274,17 +274,17 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	if(removeSimulationKey != null && removeSimulationKey !== '')
 		vals['removeSimulationKey'] = removeSimulationKey;
 
-	var valueTimeStepKey = $formValues.find('.valueTimeStepKey').val();
-	var removeTimeStepKey = $formValues.find('.removeTimeStepKey').val() === 'true';
-	var setTimeStepKey = removeTimeStepKey ? null : $formValues.find('.setTimeStepKey').val();
-	var addTimeStepKey = $formValues.find('.addTimeStepKey').val();
-	if(removeTimeStepKey || setTimeStepKey != null && setTimeStepKey !== '')
-		vals['setTimeStepKey'] = setTimeStepKey;
-	if(addTimeStepKey != null && addTimeStepKey !== '')
-		vals['addTimeStepKey'] = addTimeStepKey;
-	var removeTimeStepKey = $formValues.find('.removeTimeStepKey').val();
-	if(removeTimeStepKey != null && removeTimeStepKey !== '')
-		vals['removeTimeStepKey'] = removeTimeStepKey;
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
 
 	var valueTime = $formValues.find('.valueTime').val();
 	var removeTime = $formValues.find('.removeTime').val() === 'true';
@@ -498,9 +498,9 @@ function patchVehicleStepFilters($formFilters) {
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
-		var filterTimeStepKey = $formFilters.find('.valueTimeStepKey').val();
-		if(filterTimeStepKey != null && filterTimeStepKey !== '')
-			filters.push({ name: 'fq', value: 'timeStepKey:' + filterTimeStepKey });
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
@@ -653,9 +653,9 @@ async function postVehicleStep($formValues, success, error) {
 	if(valueSimulationKey != null && valueSimulationKey !== '')
 		vals['simulationKey'] = valueSimulationKey;
 
-	var valueTimeStepKey = $formValues.find('.valueTimeStepKey').val();
-	if(valueTimeStepKey != null && valueTimeStepKey !== '')
-		vals['timeStepKey'] = valueTimeStepKey;
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
 
 	var valueTime = $formValues.find('.valueTime').val();
 	if(valueTime != null && valueTime !== '')
@@ -887,17 +887,17 @@ async function websocketVehicleStepInner(apiRequest) {
 				});
 				addGlow($('.inputVehicleStep' + pk + 'SimulationKey'));
 			}
-			var val = o['timeStepKey'];
-			if(vars.includes('timeStepKey')) {
-				$('.inputVehicleStep' + pk + 'TimeStepKey').each(function() {
+			var val = o['timeStepId'];
+			if(vars.includes('timeStepId')) {
+				$('.inputVehicleStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varVehicleStep' + pk + 'TimeStepKey').each(function() {
+				$('.varVehicleStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputVehicleStep' + pk + 'TimeStepKey'));
+				addGlow($('.inputVehicleStep' + pk + 'TimeStepId'));
 			}
 			var val = o['time'];
 			if(vars.includes('time')) {
