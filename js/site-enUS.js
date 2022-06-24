@@ -237,7 +237,7 @@ function ajouterRemplacer($input) {
     return false; 
 }
 
-function rechercher($input) {
+function search($input) {
     $form = $input.closest('form');
     $icone = $input.prev('i');
     $icone.addClass('w3-spin-fast');

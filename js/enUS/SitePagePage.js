@@ -156,7 +156,7 @@ function suggestSitePageObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-page ');
+			var $i = $('<i>').attr('class', 'fad fa-newspaper ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -268,6 +268,10 @@ async function postSitePage($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueObjectText = $formValues.find('.valueObjectText').val();
+	if(valueObjectText != null && valueObjectText !== '')
+		vals['objectText'] = valueObjectText;
 
 	$.ajax({
 		url: '/api/page'
@@ -509,6 +513,18 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueObjectText = $formValues.find('.valueObjectText').val();
+	var removeObjectText = $formValues.find('.removeObjectText').val() === 'true';
+	var setObjectText = removeObjectText ? null : $formValues.find('.setObjectText').val();
+	var addObjectText = $formValues.find('.addObjectText').val();
+	if(removeObjectText || setObjectText != null && setObjectText !== '')
+		vals['setObjectText'] = setObjectText;
+	if(addObjectText != null && addObjectText !== '')
+		vals['addObjectText'] = addObjectText;
+	var removeObjectText = $formValues.find('.removeObjectText').val();
+	if(removeObjectText != null && removeObjectText !== '')
+		vals['removeObjectText'] = removeObjectText;
+
 	patchSitePageVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -695,7 +711,7 @@ async function websocketSitePage(success) {
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-2017-navy-peony ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fad fa-page w3-margin-right ').attr('id', 'icon-' + id);
+			var $i = $('<i>').attr('class', 'fad fa-newspaper w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modify articles in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
@@ -1096,7 +1112,7 @@ function pageGraph(apiRequest) {
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
 				layout['dragmode'] = 'zoom';
-				layout['mapbox'] = { style: 'open-street-map' };
+				layout['mapbox'] = { style: 'open-street-map', center: { lat: 55.61888, lon: 13.548799 }, zoom: 11 };
 				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 				var trace = {};
 				trace['type'] = 'scattermapbox';

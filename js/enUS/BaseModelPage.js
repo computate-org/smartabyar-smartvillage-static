@@ -333,7 +333,7 @@ function pageGraph(apiRequest) {
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
 				layout['dragmode'] = 'zoom';
-				layout['mapbox'] = { style: 'open-street-map' };
+				layout['mapbox'] = { style: 'open-street-map', center: { lat: 55.61888, lon: 13.548799 }, zoom: 11 };
 				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 				var trace = {};
 				trace['type'] = 'scattermapbox';
