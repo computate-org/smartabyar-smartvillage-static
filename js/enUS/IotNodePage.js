@@ -2327,6 +2327,7 @@ function pageGraph(apiRequest) {
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
 				layout['dragmode'] = 'zoom';
+				layout['uirevision'] = 'true';
 				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
 					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
 				else if(window['DEFAULT_MAP_ZOOM'])
@@ -2390,4 +2391,22 @@ function pageGraph(apiRequest) {
 			Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 		}
 	}
+}
+
+function animateStats() {
+	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+	let xStep = parseFloat($('#animateStatsStep').val());
+	let xMin = parseFloat($('#animateStatsMin').val());
+	let xMax = parseFloat($('#animateStatsMax').val());
+	let x = xMin;
+
+	let animateInterval = window.setInterval(() => {
+	x = x + xStep;
+	if (x > xMax || x < 0) {
+		clearInterval(animateInterval);
+	}
+	$('#fqVehicleStep_time').val(x);
+	$('#fqVehicleStep_time').change();
+	searchPage();
+	}, speedRate);
 }
