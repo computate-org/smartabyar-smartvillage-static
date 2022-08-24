@@ -344,8 +344,9 @@ on("ready", function(){
     };
     
 
-    // set default position to center Berlin
-    setPosition(13.4, 52.52);
+    // set default position on map. 
+    var latLon = elem("#lat_lon").value.split(' ');
+    setPosition(parseFloat(latLon[1]), parseFloat(latLon[0]));
 
     /**
      * @listener
@@ -421,7 +422,9 @@ on("ready", function(){
             var type = message.substr(0, index);
             message = message.substr(index + 1);
 
-            if(type === "zip"){
+            if(type === "json"){
+                createSimulation(message);
+            } else if(type === "zip"){
                 showZip(message);
             } else if(type === "report"){
                 currentStep++;
@@ -513,5 +516,15 @@ on("ready", function(){
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    }
+
+    /**
+     * @function
+     * @param uri: A JSON String with data about a recently created scenario. 
+     * Creates a new simulation from a newly created Sumo scenario. 
+     */
+    function createSimulation(jsonStr){
+        var json = JSON.parse(jsonStr);
+        console.log(json);
     }
 });

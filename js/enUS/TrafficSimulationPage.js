@@ -55,6 +55,10 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
+		var filterSimulationPath = $formFilters.find('.valueSimulationPath').val();
+		if(filterSimulationPath != null && filterSimulationPath !== '')
+			filters.push({ name: 'fq', value: 'simulationPath:' + filterSimulationPath });
+
 		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
 		if(filterStartSeconds != null && filterStartSeconds !== '')
 			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
@@ -276,6 +280,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
 
+	var valueSimulationPath = $formValues.find('.valueSimulationPath').val();
+	var removeSimulationPath = $formValues.find('.removeSimulationPath').val() === 'true';
+	var setSimulationPath = removeSimulationPath ? null : $formValues.find('.setSimulationPath').val();
+	var addSimulationPath = $formValues.find('.addSimulationPath').val();
+	if(removeSimulationPath || setSimulationPath != null && setSimulationPath !== '')
+		vals['setSimulationPath'] = setSimulationPath;
+	if(addSimulationPath != null && addSimulationPath !== '')
+		vals['addSimulationPath'] = addSimulationPath;
+	var removeSimulationPath = $formValues.find('.removeSimulationPath').val();
+	if(removeSimulationPath != null && removeSimulationPath !== '')
+		vals['removeSimulationPath'] = removeSimulationPath;
+
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
 	var setStartSeconds = removeStartSeconds ? null : $formValues.find('.setStartSeconds').val();
@@ -423,6 +439,10 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
+		var filterSimulationPath = $formFilters.find('.valueSimulationPath').val();
+		if(filterSimulationPath != null && filterSimulationPath !== '')
+			filters.push({ name: 'fq', value: 'simulationPath:' + filterSimulationPath });
+
 		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
 		if(filterStartSeconds != null && filterStartSeconds !== '')
 			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
@@ -567,6 +587,10 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
+
+	var valueSimulationPath = $formValues.find('.valueSimulationPath').val();
+	if(valueSimulationPath != null && valueSimulationPath !== '')
+		vals['simulationPath'] = valueSimulationPath;
 
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	if(valueStartSeconds != null && valueStartSeconds !== '')
@@ -785,6 +809,18 @@ async function websocketTrafficSimulationInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputTrafficSimulation' + pk + 'SimulationName'));
+			}
+			var val = o['simulationPath'];
+			if(vars.includes('simulationPath')) {
+				$('.inputTrafficSimulation' + pk + 'SimulationPath').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficSimulation' + pk + 'SimulationPath').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficSimulation' + pk + 'SimulationPath'));
 			}
 			var val = o['startSeconds'];
 			if(vars.includes('startSeconds')) {
@@ -1007,98 +1043,104 @@ async function websocketTrafficSimulationInner(apiRequest) {
 }
 
 function pageGraph(apiRequest) {
-	var json = JSON.parse($('.pageForm .pageResponse').val());
-	if(json['facetCounts']) {
-		var facetCounts = json.facetCounts;
-		if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
-			var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
-			var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
-			var rangeName;
-			var rangeVar;
-			var rangeVarFq;
-			var rangeCounts;
-			var rangeVals;
-			if(range) {
-				rangeName = range.name;
-				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
-				rangeVarFq = window.varsFq[rangeVar];
-				rangeCounts = range.counts;
-				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
-			}
-			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
-			var pivot1VarIndexed = pivot1Name;
-			if(pivot1VarIndexed.includes(','))
-				pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
-			var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
-			var pivot1VarFq = window.varsFq[pivot1Var];
-			var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
-			var pivot1Vals = Object.keys(pivot1Map);
-			var data = [];
-			var layout = {};
-			if(pivot1VarFq.classSimpleName === 'Point') {
-				layout['dragmode'] = 'zoom';
-				layout['uirevision'] = 'true';
-				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-				else if(window['DEFAULT_MAP_ZOOM'])
-					layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-				else if(window['DEFAULT_MAP_LOCATION'])
-					layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-				else
-					layout['mapbox'] = { style: 'open-street-map' };
-				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-				var trace = {};
-				trace['type'] = 'scattermapbox';
-				trace['marker'] = { color: 'fuchsia', size: 6 };
-				var lat = [];
-				var lon = [];
-				var text = [];
-				var customdata = [];
-				trace['lat'] = lat;
-				trace['lon'] = lon;
-				trace['text'] = text;
-				trace['customdata'] = customdata;
-				json.response.docs.forEach((record) => {
-					var location = record.fields[pivot1VarIndexed];
-					if(location) {
-						var locationParts = location.split(',');
-						text.push('pivot1Val');
-						lat.push(parseFloat(locationParts[0]));
-						lon.push(parseFloat(locationParts[1]));
-						var vals = {};
-						var hovertemplate = '';
-						Object.entries(window.varsFq).forEach(([key, data]) => {
-							if(data.displayName) {
-								vals[data.var] = record.fields[data.varStored];
-								hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-							}
-							customdata.push(vals);
-						});
-						customdata.push(vals);
-						trace['hovertemplate'] = hovertemplate;
-					}
-				});
-				data.push(trace);
-			} else if(range) {
-				layout['title'] = 'TrafficSimulation';
-				layout['xaxis'] = {
-					title: rangeVarFq.displayName
+	var r = $('.pageForm .pageResponse').val();
+	if(r) {
+	var json = JSON.parse(r);
+		if(json['facetCounts']) {
+			var facetCounts = json.facetCounts;
+			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
+				var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
+				var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
+				var rangeName;
+				var rangeVar;
+				var rangeVarFq;
+				var rangeCounts;
+				var rangeVals;
+				if(range) {
+					rangeName = range.name;
+					rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+					rangeVarFq = window.varsFq[rangeVar];
+					rangeCounts = range.counts;
+					rangeVals = Object.keys(rangeCounts).map(key => key);
 				}
-				layout['yaxis'] = {
-					title: pivot1VarFq.displayName
-				}
-				pivot1Vals.forEach((pivot1Val) => {
-					var pivot1 = pivot1Map[pivot1Val];
-					var pivot1Counts = pivot1.ranges[rangeName].counts;
+				var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
+				var pivot1VarIndexed = pivot1Name;
+				if(pivot1VarIndexed.includes(','))
+					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
+				var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
+				var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
+				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
+				var pivot1Vals = Object.keys(pivot1Map);
+				var data = [];
+				var layout = {};
+				if(pivot1VarFq.classSimpleName === 'Point') {
+					layout['showlegend'] = true;
+					layout['dragmode'] = 'zoom';
+					layout['uirevision'] = 'true';
+					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_LOCATION'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+					else
+						layout['mapbox'] = { style: 'open-street-map' };
+					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 					var trace = {};
-					trace['x'] = Object.keys(pivot1Counts).map(key => key.substring(0, 10));
-					trace['y'] = Object.values(pivot1Counts);
-					trace['mode'] = 'lines+markers';
-					trace['name'] = pivot1Val;
+					trace['showlegend'] = true;
+					trace['type'] = 'scattermapbox';
+					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var lat = [];
+					var lon = [];
+					var text = [];
+					var customdata = [];
+					trace['lat'] = lat;
+					trace['lon'] = lon;
+					trace['text'] = text;
+					trace['customdata'] = customdata;
+					json.response.docs.forEach((record) => {
+						var location = record.fields[pivot1VarIndexed];
+						if(location) {
+							var locationParts = location.split(',');
+							text.push('pivot1Val');
+							lat.push(parseFloat(locationParts[0]));
+							lon.push(parseFloat(locationParts[1]));
+							var vals = {};
+							var hovertemplate = '';
+							Object.entries(window.varsFq).forEach(([key, data]) => {
+								if(data.displayName) {
+									vals[data.var] = record.fields[data.varStored];
+									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
+								}
+								customdata.push(vals);
+							});
+							customdata.push(vals);
+							trace['hovertemplate'] = hovertemplate;
+						}
+					});
 					data.push(trace);
-				});
+				} else if(range) {
+					layout['title'] = 'TrafficSimulation';
+					layout['xaxis'] = {
+						title: rangeVarFq.displayName
+					}
+					layout['yaxis'] = {
+						title: pivot1VarFq.displayName
+					}
+					pivot1Vals.forEach((pivot1Val) => {
+						var pivot1 = pivot1Map[pivot1Val];
+						var pivot1Counts = pivot1.ranges[rangeName].counts;
+						var trace = {};
+						trace['showlegend'] = true;
+						trace['x'] = Object.keys(pivot1Counts).map(key => key);
+						trace['y'] = Object.values(pivot1Counts);
+						trace['mode'] = 'lines+markers';
+						trace['name'] = pivot1Val;
+						data.push(trace);
+					});
+				}
+				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
-			Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 		}
 	}
 }

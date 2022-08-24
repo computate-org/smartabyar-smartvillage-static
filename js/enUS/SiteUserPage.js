@@ -1152,19 +1152,20 @@ function pageGraph(apiRequest) {
 				rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
 				rangeVarFq = window.varsFq[rangeVar];
 				rangeCounts = range.counts;
-				rangeVals = Object.keys(rangeCounts).map(key => key.substring(0, 10));
+				rangeVals = Object.keys(rangeCounts).map(key => key);
 			}
 			var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
 			var pivot1VarIndexed = pivot1Name;
 			if(pivot1VarIndexed.includes(','))
 				pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
 			var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
-			var pivot1VarFq = window.varsFq[pivot1Var];
+			var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
 			var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
 			var pivot1Vals = Object.keys(pivot1Map);
 			var data = [];
 			var layout = {};
 			if(pivot1VarFq.classSimpleName === 'Point') {
+				layout['showlegend'] = true;
 				layout['dragmode'] = 'zoom';
 				layout['uirevision'] = 'true';
 				if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
@@ -1177,6 +1178,7 @@ function pageGraph(apiRequest) {
 					layout['mapbox'] = { style: 'open-street-map' };
 				layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 				var trace = {};
+				trace['showlegend'] = true;
 				trace['type'] = 'scattermapbox';
 				trace['marker'] = { color: 'fuchsia', size: 6 };
 				var lat = [];
@@ -1220,7 +1222,8 @@ function pageGraph(apiRequest) {
 					var pivot1 = pivot1Map[pivot1Val];
 					var pivot1Counts = pivot1.ranges[rangeName].counts;
 					var trace = {};
-					trace['x'] = Object.keys(pivot1Counts).map(key => key.substring(0, 10));
+					trace['showlegend'] = true;
+					trace['x'] = Object.keys(pivot1Counts).map(key => key);
 					trace['y'] = Object.values(pivot1Counts);
 					trace['mode'] = 'lines+markers';
 					trace['name'] = pivot1Val;
