@@ -1,12 +1,12 @@
 
-async function websocketBaseModel(success) {
+async function websocketBaseResult(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketBaseModel', function (error, message) {
+		window.eventBus.registerHandler('websocketBaseResult', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#BaseModelForm :input[name=pk]').val();
+			var pkPage = $('#BaseResultForm :input[name=id]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -48,7 +48,7 @@ async function websocketBaseModel(success) {
 		});
 	}
 }
-async function websocketBaseModelInner(apiRequest) {
+async function websocketBaseResultInner(apiRequest) {
 	var pk = apiRequest['pk'];
 	var pks = apiRequest['pks'];
 	var classes = apiRequest['classes'];
@@ -56,247 +56,235 @@ async function websocketBaseModelInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchBaseModelVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchBaseResultVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['pk'];
-			if(vars.includes('pk')) {
-				$('.inputBaseModel' + pk + 'Pk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varBaseModel' + pk + 'Pk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputBaseModel' + pk + 'Pk'));
-			}
 			var val = o['created'];
 			if(vars.includes('created')) {
-				$('.inputBaseModel' + pk + 'Created').each(function() {
+				$('.inputBaseResult' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Created').each(function() {
+				$('.varBaseResult' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Created'));
+				addGlow($('.inputBaseResult' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
-				$('.inputBaseModel' + pk + 'Modified').each(function() {
+				$('.inputBaseResult' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Modified').each(function() {
+				$('.varBaseResult' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Modified'));
+				addGlow($('.inputBaseResult' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
-				$('.inputBaseModel' + pk + 'ObjectId').each(function() {
+				$('.inputBaseResult' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ObjectId').each(function() {
+				$('.varBaseResult' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ObjectId'));
+				addGlow($('.inputBaseResult' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
-				$('.inputBaseModel' + pk + 'Archived').each(function() {
+				$('.inputBaseResult' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Archived').each(function() {
+				$('.varBaseResult' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Archived'));
+				addGlow($('.inputBaseResult' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
-				$('.inputBaseModel' + pk + 'Deleted').each(function() {
+				$('.inputBaseResult' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Deleted').each(function() {
+				$('.varBaseResult' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Deleted'));
+				addGlow($('.inputBaseResult' + pk + 'Deleted'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputBaseModel' + pk + 'InheritPk').each(function() {
+				$('.inputBaseResult' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'InheritPk').each(function() {
+				$('.varBaseResult' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
+				addGlow($('.inputBaseResult' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
-				$('.inputBaseModel' + pk + 'ClassCanonicalName').each(function() {
+				$('.inputBaseResult' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ClassCanonicalName').each(function() {
+				$('.varBaseResult' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ClassCanonicalName'));
+				addGlow($('.inputBaseResult' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
-				$('.inputBaseModel' + pk + 'ClassSimpleName').each(function() {
+				$('.inputBaseResult' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ClassSimpleName').each(function() {
+				$('.varBaseResult' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ClassSimpleName'));
+				addGlow($('.inputBaseResult' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
-				$('.inputBaseModel' + pk + 'ClassCanonicalNames').each(function() {
+				$('.inputBaseResult' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ClassCanonicalNames').each(function() {
+				$('.varBaseResult' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ClassCanonicalNames'));
+				addGlow($('.inputBaseResult' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputBaseModel' + pk + 'SessionId').each(function() {
+				$('.inputBaseResult' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'SessionId').each(function() {
+				$('.varBaseResult' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'SessionId'));
+				addGlow($('.inputBaseResult' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
-				$('.inputBaseModel' + pk + 'UserKey').each(function() {
+				$('.inputBaseResult' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'UserKey').each(function() {
+				$('.varBaseResult' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'UserKey'));
+				addGlow($('.inputBaseResult' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
-				$('.inputBaseModel' + pk + 'Saves').each(function() {
+				$('.inputBaseResult' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Saves').each(function() {
+				$('.varBaseResult' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Saves'));
+				addGlow($('.inputBaseResult' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
-				$('.inputBaseModel' + pk + 'ObjectTitle').each(function() {
+				$('.inputBaseResult' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ObjectTitle').each(function() {
+				$('.varBaseResult' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ObjectTitle'));
+				addGlow($('.inputBaseResult' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
-				$('.inputBaseModel' + pk + 'ObjectSuggest').each(function() {
+				$('.inputBaseResult' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ObjectSuggest').each(function() {
+				$('.varBaseResult' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ObjectSuggest'));
+				addGlow($('.inputBaseResult' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
-				$('.inputBaseModel' + pk + 'ObjectText').each(function() {
+				$('.inputBaseResult' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'ObjectText').each(function() {
+				$('.varBaseResult' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'ObjectText'));
+				addGlow($('.inputBaseResult' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputBaseModel' + pk + 'PageUrlId').each(function() {
+				$('.inputBaseResult' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'PageUrlId').each(function() {
+				$('.varBaseResult' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'PageUrlId'));
+				addGlow($('.inputBaseResult' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputBaseModel' + pk + 'PageUrlPk').each(function() {
+				$('.inputBaseResult' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'PageUrlPk').each(function() {
+				$('.varBaseResult' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'PageUrlPk'));
+				addGlow($('.inputBaseResult' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputBaseModel' + pk + 'PageUrlApi').each(function() {
+				$('.inputBaseResult' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'PageUrlApi').each(function() {
+				$('.varBaseResult' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'PageUrlApi'));
+				addGlow($('.inputBaseResult' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputBaseModel' + pk + 'Id').each(function() {
+				$('.inputBaseResult' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varBaseModel' + pk + 'Id').each(function() {
+				$('.varBaseResult' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputBaseModel' + pk + 'Id'));
+				addGlow($('.inputBaseResult' + pk + 'Id'));
 			}
 		});
 	}
@@ -327,8 +315,8 @@ function pageGraph(apiRequest) {
 				var pivot1VarIndexed = pivot1Name;
 				if(pivot1VarIndexed.includes(','))
 					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
-				var pivot1VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot1VarIndexed);
-				var pivot1VarFq = pivot1VarObj ? pivot1VarObj.var : 'classSimpleName';
+				var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
+				var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
 				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
@@ -380,17 +368,14 @@ function pageGraph(apiRequest) {
 					});
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'BaseModel';
+					layout['title'] = 'BaseResult';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
+					layout['yaxis'] = {
+						title: pivot1VarFq.displayName
+					}
 					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
-						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
-						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
-						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
-						layout['yaxis'] = {
-							title: pivot2VarObj.displayName
-						}
 						pivot1Vals.forEach((pivot1Val) => {
 							var pivot1 = pivot1Map[pivot1Val];
 							var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -401,17 +386,17 @@ function pageGraph(apiRequest) {
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
-							if(pivot2Map) {
+							if(facetField) {
 								var ys = [];
+								var pivot2Map = pivot1.pivotMap;
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
-										ys.push(parseFloat(pivot2Val));
+										ys.push(parseInt(count) > 0 ? parseFloat(pivot2Val) : 0);
 									});
 								});
-								trace['y'] = ys;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -421,13 +406,10 @@ function pageGraph(apiRequest) {
 							data.push(trace);
 						});
 					} else {
-						layout['yaxis'] = {
-							title: pivot1VarFq.displayName
-						}
 						var trace = {};
 						trace['showlegend'] = true;
 						trace['mode'] = 'lines+markers';
-						trace['name'] = 'BaseModel';
+						trace['name'] = 'BaseResult';
 						var ys = [];
 						trace['x'] = Object.keys(pivot1Counts).map(key => key);
 						pivot1Vals.forEach((pivot1Val) => {

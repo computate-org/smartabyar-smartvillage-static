@@ -1067,8 +1067,8 @@ function pageGraph(apiRequest) {
 				var pivot1VarIndexed = pivot1Name;
 				if(pivot1VarIndexed.includes(','))
 					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
-				var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
-				var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
+				var pivot1VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot1VarIndexed);
+				var pivot1VarFq = pivot1VarObj ? pivot1VarObj.var : 'classSimpleName';
 				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
@@ -1124,20 +1124,58 @@ function pageGraph(apiRequest) {
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
-					layout['yaxis'] = {
-						title: pivot1VarFq.displayName
-					}
-					pivot1Vals.forEach((pivot1Val) => {
-						var pivot1 = pivot1Map[pivot1Val];
-						var pivot1Counts = pivot1.ranges[rangeName].counts;
+					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
+						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
+						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
+						layout['yaxis'] = {
+							title: pivot2VarObj.displayName
+						}
+						pivot1Vals.forEach((pivot1Val) => {
+							var pivot1 = pivot1Map[pivot1Val];
+							var pivot1Counts = pivot1.ranges[rangeName].counts;
+							var pivot2Map = pivot1.pivotMap;
+							var trace = {};
+							var facetField;
+							trace['showlegend'] = true;
+							trace['mode'] = 'lines+markers';
+							trace['name'] = pivot1Val;
+							trace['x'] = Object.keys(pivot1Counts).map(key => key);
+							if(pivot2Map) {
+								var ys = [];
+								var pivot2Vals = Object.keys(pivot2Map);
+								pivot2Vals.forEach((pivot2Val) => {
+									var pivot2 = pivot2Map[pivot2Val];
+									var pivot2Counts = pivot2.ranges[rangeName].counts;
+									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										ys.push(parseFloat(pivot2Val));
+									});
+								});
+								trace['y'] = ys;
+							} else {
+									var pivot1 = pivot1Map[pivot1Val];
+									var pivot1Counts = pivot1.ranges[rangeName].counts;
+									trace['x'] = Object.keys(pivot1Counts).map(key => key);
+									trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							data.push(trace);
+						});
+					} else {
+						layout['yaxis'] = {
+							title: pivot1VarFq.displayName
+						}
 						var trace = {};
 						trace['showlegend'] = true;
-						trace['x'] = Object.keys(pivot1Counts).map(key => key);
-						trace['y'] = Object.values(pivot1Counts);
 						trace['mode'] = 'lines+markers';
-						trace['name'] = pivot1Val;
+						trace['name'] = 'TrafficSimulation';
+						var ys = [];
+						trace['x'] = Object.keys(pivot1Counts).map(key => key);
+						pivot1Vals.forEach((pivot1Val) => {
+							ys.push(parseFloat(pivot1Val));
+						});
+						trace['y'] = ys;
 						data.push(trace);
-					});
+					}
 				}
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}

@@ -91,10 +91,16 @@ function facetPivotChange(elem, classSimpleName) {
 	var $list = $("#pageSearchVal-Pivot" + classSimpleName);
 	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
 	if($listHidden.children().length > 0) {
+		var pivotVal = '';
+		$listHidden.children().each(function(index, pivotElem) {
+			if(pivotVal)
+				pivotVal += ",";
+			pivotVal += pivotElem.innerText;
+		});
 		$list.append($("<div>")
 				.attr("id", "pageSearchVal-Pivot" + classSimpleName + "_1")
 				.attr("class", "pageSearchVal pageSearchVal-Pivot" + classSimpleName + " ")
-				.text("facet.pivot={!range=r1}" + $elem.val())
+				.text("facet.pivot={!range=r1}" + pivotVal)
 				)
 				;
 	}

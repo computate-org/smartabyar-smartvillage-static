@@ -1,23 +1,19 @@
 
 // Search //
 
-async function searchIotNode($formFilters, success, error) {
-	var filters = searchIotNodeFilters($formFilters);
+async function searchIotNodeStep($formFilters, success, error) {
+	var filters = searchIotNodeStepFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	searchIotNodeVals(filters, success, error);
+	searchIotNodeStepVals(filters, success, error);
 }
 
-function searchIotNodeFilters($formFilters) {
+function searchIotNodeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
-
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
@@ -288,10 +284,10 @@ function searchIotNodeFilters($formFilters) {
 	return filters;
 }
 
-function searchIotNodeVals(filters, success, error) {
+function searchIotNodeStepVals(filters, success, error) {
 
 	$.ajax({
-		url: '/api/iot-node?' + $.param(filters)
+		url: '/api/iot-node-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -300,7 +296,7 @@ function searchIotNodeVals(filters, success, error) {
 	});
 }
 
-function suggestIotNodeObjectSuggest($formFilters, $list) {
+function suggestIotNodeStepObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -315,14 +311,14 @@ function suggestIotNodeObjectSuggest($formFilters, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchIotNodeVals($formFilters, success, error);
+	searchIotNodeStepVals($formFilters, success, error);
 }
 
 // GET //
 
-async function getIotNode(pk) {
+async function getIotNodeStep() {
 	$.ajax({
-		url: '/api/iot-node/' + id
+		url: '/api/iot-node-step/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -333,22 +329,10 @@ async function getIotNode(pk) {
 
 // PATCH //
 
-async function patchIotNode($formFilters, $formValues, pk, success, error) {
-	var filters = patchIotNodeFilters($formFilters);
+async function patchIotNodeStep($formFilters, $formValues, id, success, error) {
+	var filters = patchIotNodeStepFilters($formFilters);
 
 	var vals = {};
-
-	var valuePk = $formValues.find('.valuePk').val();
-	var removePk = $formValues.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	var addPk = $formValues.find('.addPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
@@ -941,6 +925,18 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
 	var valueJson = $formValues.find('.valueJson').val();
 	var removeJson = $formValues.find('.removeJson').val() === 'true';
 	var setJson = removeJson ? null : $formValues.find('.setJson').val();
@@ -953,17 +949,13 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	if(removeJson != null && removeJson !== '')
 		vals['removeJson'] = removeJson;
 
-	patchIotNodeVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	patchIotNodeStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
-function patchIotNodeFilters($formFilters) {
+function patchIotNodeStepFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
-
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
@@ -1234,15 +1226,15 @@ function patchIotNodeFilters($formFilters) {
 	return filters;
 }
 
-function patchIotNodeVal(filters, v, val, success, error) {
+function patchIotNodeStepVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchIotNodeVals(filters, vals, success, error);
+	patchIotNodeStepVals(filters, vals, success, error);
 }
 
-function patchIotNodeVals(filters, vals, success, error) {
+function patchIotNodeStepVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/iot-node?' + $.param(filters)
+		url: '/api/iot-node-step?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -1254,7 +1246,7 @@ function patchIotNodeVals(filters, vals, success, error) {
 
 // POST //
 
-async function postIotNode($formValues, success, error) {
+async function postIotNodeStep($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -1269,10 +1261,6 @@ async function postIotNode($formValues, success, error) {
 			addError($formValues.next('button'));
 		};
 	}
-
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
@@ -1466,12 +1454,16 @@ async function postIotNode($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
+
 	var valueJson = $formValues.find('.valueJson').val();
 	if(valueJson != null && valueJson !== '')
 		vals['json'] = valueJson;
 
 	$.ajax({
-		url: '/api/iot-node'
+		url: '/api/iot-node-step'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -1481,9 +1473,9 @@ async function postIotNode($formValues, success, error) {
 	});
 }
 
-function postIotNodeVals(vals, success, error) {
+function postIotNodeStepVals(vals, success, error) {
 	$.ajax({
-		url: '/api/iot-node'
+		url: '/api/iot-node-step'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -1495,15 +1487,15 @@ function postIotNodeVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportIotNode($formValues, pk, success, error) {
+async function putimportIotNodeStep($formValues, id, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
-		putimportIotNodeVals(JSON.parse(json), success, error);
+		putimportIotNodeStepVals(JSON.parse(json), success, error);
 }
 
-function putimportIotNodeVals(json, success, error) {
+function putimportIotNodeStepVals(json, success, error) {
 	$.ajax({
-		url: '/api/iot-node-import'
+		url: '/api/iot-node-step-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -1513,14 +1505,14 @@ function putimportIotNodeVals(json, success, error) {
 	});
 }
 
-async function websocketIotNode(success) {
+async function websocketIotNodeStep(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketIotNode', function (error, message) {
+		window.eventBus.registerHandler('websocketIotNodeStep', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#IotNodeForm :input[name=pk]').val();
+			var pkPage = $('#IotNodeStepForm :input[name=id]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -1531,7 +1523,7 @@ async function websocketIotNode(success) {
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
 			var $i = $('<i>').attr('class', 'fad fa-router w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify IOT nodes in ' + json.timeRemaining);
+			var $headerSpan = $('<span>').attr('class', '').text('modify IOT node steps in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
@@ -1562,7 +1554,7 @@ async function websocketIotNode(success) {
 		});
 	}
 }
-async function websocketIotNodeInner(apiRequest) {
+async function websocketIotNodeStepInner(apiRequest) {
 	var pk = apiRequest['pk'];
 	var pks = apiRequest['pks'];
 	var classes = apiRequest['classes'];
@@ -1570,727 +1562,715 @@ async function websocketIotNodeInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchIotNodeVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchIotNodeStepVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['pk'];
-			if(vars.includes('pk')) {
-				$('.inputIotNode' + pk + 'Pk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varIotNode' + pk + 'Pk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputIotNode' + pk + 'Pk'));
-			}
 			var val = o['created'];
 			if(vars.includes('created')) {
-				$('.inputIotNode' + pk + 'Created').each(function() {
+				$('.inputIotNodeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Created').each(function() {
+				$('.varIotNodeStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Created'));
+				addGlow($('.inputIotNodeStep' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
-				$('.inputIotNode' + pk + 'Modified').each(function() {
+				$('.inputIotNodeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Modified').each(function() {
+				$('.varIotNodeStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Modified'));
+				addGlow($('.inputIotNodeStep' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
-				$('.inputIotNode' + pk + 'ObjectId').each(function() {
+				$('.inputIotNodeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ObjectId').each(function() {
+				$('.varIotNodeStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ObjectId'));
+				addGlow($('.inputIotNodeStep' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
-				$('.inputIotNode' + pk + 'Archived').each(function() {
+				$('.inputIotNodeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Archived').each(function() {
+				$('.varIotNodeStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Archived'));
+				addGlow($('.inputIotNodeStep' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
-				$('.inputIotNode' + pk + 'Deleted').each(function() {
+				$('.inputIotNodeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Deleted').each(function() {
+				$('.varIotNodeStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Deleted'));
+				addGlow($('.inputIotNodeStep' + pk + 'Deleted'));
 			}
 			var val = o['nodeName'];
 			if(vars.includes('nodeName')) {
-				$('.inputIotNode' + pk + 'NodeName').each(function() {
+				$('.inputIotNodeStep' + pk + 'NodeName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'NodeName').each(function() {
+				$('.varIotNodeStep' + pk + 'NodeName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'NodeName'));
+				addGlow($('.inputIotNodeStep' + pk + 'NodeName'));
 			}
 			var val = o['nodeType'];
 			if(vars.includes('nodeType')) {
-				$('.inputIotNode' + pk + 'NodeType').each(function() {
+				$('.inputIotNodeStep' + pk + 'NodeType').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'NodeType').each(function() {
+				$('.varIotNodeStep' + pk + 'NodeType').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'NodeType'));
+				addGlow($('.inputIotNodeStep' + pk + 'NodeType'));
 			}
 			var val = o['nodeId'];
 			if(vars.includes('nodeId')) {
-				$('.inputIotNode' + pk + 'NodeId').each(function() {
+				$('.inputIotNodeStep' + pk + 'NodeId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'NodeId').each(function() {
+				$('.varIotNodeStep' + pk + 'NodeId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'NodeId'));
+				addGlow($('.inputIotNodeStep' + pk + 'NodeId'));
 			}
 			var val = o['location'];
 			if(vars.includes('location')) {
-				$('.inputIotNode' + pk + 'Location').each(function() {
+				$('.inputIotNodeStep' + pk + 'Location').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Location').each(function() {
+				$('.varIotNodeStep' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Location'));
+				addGlow($('.inputIotNodeStep' + pk + 'Location'));
 			}
 			var val = o['json_moisture'];
 			if(vars.includes('json_moisture')) {
-				$('.inputIotNode' + pk + 'Json_moisture').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_moisture').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_moisture').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_moisture').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_moisture'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_moisture'));
 			}
 			var val = o['json_moisture0'];
 			if(vars.includes('json_moisture0')) {
-				$('.inputIotNode' + pk + 'Json_moisture0').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_moisture0').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_moisture0').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_moisture0').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_moisture0'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_moisture0'));
 			}
 			var val = o['json_moisture1'];
 			if(vars.includes('json_moisture1')) {
-				$('.inputIotNode' + pk + 'Json_moisture1').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_moisture1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_moisture1').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_moisture1').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_moisture1'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_moisture1'));
 			}
 			var val = o['json_temperature'];
 			if(vars.includes('json_temperature')) {
-				$('.inputIotNode' + pk + 'Json_temperature').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_temperature').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_temperature').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_temperature').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_temperature'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_temperature'));
 			}
 			var val = o['json_temperature0'];
 			if(vars.includes('json_temperature0')) {
-				$('.inputIotNode' + pk + 'Json_temperature0').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_temperature0').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_temperature0').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_temperature0').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_temperature0'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_temperature0'));
 			}
 			var val = o['json_temperatureAverage'];
 			if(vars.includes('json_temperatureAverage')) {
-				$('.inputIotNode' + pk + 'Json_temperatureAverage').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_temperatureAverage').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_temperatureAverage').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_temperatureAverage').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_temperatureAverage'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_temperatureAverage'));
 			}
 			var val = o['json_badConditionsCounter'];
 			if(vars.includes('json_badConditionsCounter')) {
-				$('.inputIotNode' + pk + 'Json_badConditionsCounter').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_badConditionsCounter').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_badConditionsCounter').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_badConditionsCounter').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_badConditionsCounter'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_badConditionsCounter'));
 			}
 			var val = o['json_door'];
 			if(vars.includes('json_door')) {
-				$('.inputIotNode' + pk + 'Json_door').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_door').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_door').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_door').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_door'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_door'));
 			}
 			var val = o['json_alarmDoor'];
 			if(vars.includes('json_alarmDoor')) {
-				$('.inputIotNode' + pk + 'Json_alarmDoor').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_alarmDoor').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_alarmDoor').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_alarmDoor').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_alarmDoor'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_alarmDoor'));
 			}
 			var val = o['json_flood'];
 			if(vars.includes('json_flood')) {
-				$('.inputIotNode' + pk + 'Json_flood').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_flood').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_flood').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_flood').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_flood'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_flood'));
 			}
 			var val = o['json_alarmFlood'];
 			if(vars.includes('json_alarmFlood')) {
-				$('.inputIotNode' + pk + 'Json_alarmFlood').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_alarmFlood').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_alarmFlood').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_alarmFlood').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_alarmFlood'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_alarmFlood'));
 			}
 			var val = o['json_lux2'];
 			if(vars.includes('json_lux2')) {
-				$('.inputIotNode' + pk + 'Json_lux2').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_lux2').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_lux2').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_lux2').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_lux2'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_lux2'));
 			}
 			var val = o['json_illuminance'];
 			if(vars.includes('json_illuminance')) {
-				$('.inputIotNode' + pk + 'Json_illuminance').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_illuminance').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_illuminance').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_illuminance').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_illuminance'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_illuminance'));
 			}
 			var val = o['json_resistance0'];
 			if(vars.includes('json_resistance0')) {
-				$('.inputIotNode' + pk + 'Json_resistance0').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_resistance0').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_resistance0').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_resistance0').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_resistance0'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_resistance0'));
 			}
 			var val = o['json_resistance1'];
 			if(vars.includes('json_resistance1')) {
-				$('.inputIotNode' + pk + 'Json_resistance1').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_resistance1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_resistance1').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_resistance1').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_resistance1'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_resistance1'));
 			}
 			var val = o['json_frequency'];
 			if(vars.includes('json_frequency')) {
-				$('.inputIotNode' + pk + 'Json_frequency').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_frequency').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_frequency').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_frequency').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_frequency'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_frequency'));
 			}
 			var val = o['json_devEui'];
 			if(vars.includes('json_devEui')) {
-				$('.inputIotNode' + pk + 'Json_devEui').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_devEui').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_devEui').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_devEui').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_devEui'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_devEui'));
 			}
 			var val = o['json_bandwidth'];
 			if(vars.includes('json_bandwidth')) {
-				$('.inputIotNode' + pk + 'Json_bandwidth').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_bandwidth').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_bandwidth').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_bandwidth').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_bandwidth'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_bandwidth'));
 			}
 			var val = o['json_dataRate'];
 			if(vars.includes('json_dataRate')) {
-				$('.inputIotNode' + pk + 'Json_dataRate').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_dataRate').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_dataRate').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_dataRate').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_dataRate'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_dataRate'));
 			}
 			var val = o['json_frameCount'];
 			if(vars.includes('json_frameCount')) {
-				$('.inputIotNode' + pk + 'Json_frameCount').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_frameCount').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_frameCount').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_frameCount').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_frameCount'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_frameCount'));
 			}
 			var val = o['json_maxPayload'];
 			if(vars.includes('json_maxPayload')) {
-				$('.inputIotNode' + pk + 'Json_maxPayload').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_maxPayload').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_maxPayload').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_maxPayload').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_maxPayload'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_maxPayload'));
 			}
 			var val = o['json_bitsPerSecond'];
 			if(vars.includes('json_bitsPerSecond')) {
-				$('.inputIotNode' + pk + 'Json_bitsPerSecond').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_bitsPerSecond').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_bitsPerSecond').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_bitsPerSecond').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_bitsPerSecond'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_bitsPerSecond'));
 			}
 			var val = o['json_batteryVoltage'];
 			if(vars.includes('json_batteryVoltage')) {
-				$('.inputIotNode' + pk + 'Json_batteryVoltage').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_batteryVoltage').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_batteryVoltage').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_batteryVoltage').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_batteryVoltage'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_batteryVoltage'));
 			}
 			var val = o['json_spreadingFactor'];
 			if(vars.includes('json_spreadingFactor')) {
-				$('.inputIotNode' + pk + 'Json_spreadingFactor').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_spreadingFactor').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_spreadingFactor').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_spreadingFactor').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_spreadingFactor'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_spreadingFactor'));
 			}
 			var val = o['json_dataRateAdaptive'];
 			if(vars.includes('json_dataRateAdaptive')) {
-				$('.inputIotNode' + pk + 'Json_dataRateAdaptive').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_dataRateAdaptive').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_dataRateAdaptive').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_dataRateAdaptive').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_dataRateAdaptive'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_dataRateAdaptive'));
 			}
 			var val = o['json_swversion'];
 			if(vars.includes('json_swversion')) {
-				$('.inputIotNode' + pk + 'Json_swversion').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_swversion').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_swversion').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_swversion').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_swversion'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_swversion'));
 			}
 			var val = o['json_batteryLevel'];
 			if(vars.includes('json_batteryLevel')) {
-				$('.inputIotNode' + pk + 'Json_batteryLevel').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_batteryLevel').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_batteryLevel').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_batteryLevel').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_batteryLevel'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_batteryLevel'));
 			}
 			var val = o['json_startUpCount'];
 			if(vars.includes('json_startUpCount')) {
-				$('.inputIotNode' + pk + 'Json_startUpCount').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_startUpCount').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_startUpCount').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_startUpCount').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_startUpCount'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_startUpCount'));
 			}
 			var val = o['json_watchdogCount'];
 			if(vars.includes('json_watchdogCount')) {
-				$('.inputIotNode' + pk + 'Json_watchdogCount').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_watchdogCount').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_watchdogCount').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_watchdogCount').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_watchdogCount'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_watchdogCount'));
 			}
 			var val = o['json_historySequence'];
 			if(vars.includes('json_historySequence')) {
-				$('.inputIotNode' + pk + 'Json_historySequence').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_historySequence').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_historySequence').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_historySequence').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_historySequence'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_historySequence'));
 			}
 			var val = o['json_versionFirmware'];
 			if(vars.includes('json_versionFirmware')) {
-				$('.inputIotNode' + pk + 'Json_versionFirmware').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_versionFirmware').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_versionFirmware').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_versionFirmware').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_versionFirmware'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_versionFirmware'));
 			}
 			var val = o['json_stackTxFailRebootCount'];
 			if(vars.includes('json_stackTxFailRebootCount')) {
-				$('.inputIotNode' + pk + 'Json_stackTxFailRebootCount').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_stackTxFailRebootCount').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_stackTxFailRebootCount').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_stackTxFailRebootCount').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_stackTxFailRebootCount'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_stackTxFailRebootCount'));
 			}
 			var val = o['json_historySequencePrevious'];
 			if(vars.includes('json_historySequencePrevious')) {
-				$('.inputIotNode' + pk + 'Json_historySequencePrevious').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_historySequencePrevious').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_historySequencePrevious').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_historySequencePrevious').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_historySequencePrevious'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_historySequencePrevious'));
 			}
 			var val = o['json_snr'];
 			if(vars.includes('json_snr')) {
-				$('.inputIotNode' + pk + 'Json_snr').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_snr').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_snr').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_snr').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_snr'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_snr'));
 			}
 			var val = o['json_rssi'];
 			if(vars.includes('json_rssi')) {
-				$('.inputIotNode' + pk + 'Json_rssi').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json_rssi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json_rssi').each(function() {
+				$('.varIotNodeStep' + pk + 'Json_rssi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json_rssi'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json_rssi'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputIotNode' + pk + 'InheritPk').each(function() {
+				$('.inputIotNodeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'InheritPk').each(function() {
+				$('.varIotNodeStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'InheritPk'));
+				addGlow($('.inputIotNodeStep' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
-				$('.inputIotNode' + pk + 'ClassCanonicalName').each(function() {
+				$('.inputIotNodeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ClassCanonicalName').each(function() {
+				$('.varIotNodeStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ClassCanonicalName'));
+				addGlow($('.inputIotNodeStep' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
-				$('.inputIotNode' + pk + 'ClassSimpleName').each(function() {
+				$('.inputIotNodeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ClassSimpleName').each(function() {
+				$('.varIotNodeStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ClassSimpleName'));
+				addGlow($('.inputIotNodeStep' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
-				$('.inputIotNode' + pk + 'ClassCanonicalNames').each(function() {
+				$('.inputIotNodeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ClassCanonicalNames').each(function() {
+				$('.varIotNodeStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ClassCanonicalNames'));
+				addGlow($('.inputIotNodeStep' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputIotNode' + pk + 'SessionId').each(function() {
+				$('.inputIotNodeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'SessionId').each(function() {
+				$('.varIotNodeStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'SessionId'));
+				addGlow($('.inputIotNodeStep' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
-				$('.inputIotNode' + pk + 'UserKey').each(function() {
+				$('.inputIotNodeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'UserKey').each(function() {
+				$('.varIotNodeStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'UserKey'));
+				addGlow($('.inputIotNodeStep' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
-				$('.inputIotNode' + pk + 'Saves').each(function() {
+				$('.inputIotNodeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Saves').each(function() {
+				$('.varIotNodeStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Saves'));
+				addGlow($('.inputIotNodeStep' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
-				$('.inputIotNode' + pk + 'ObjectTitle').each(function() {
+				$('.inputIotNodeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ObjectTitle').each(function() {
+				$('.varIotNodeStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ObjectTitle'));
+				addGlow($('.inputIotNodeStep' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
-				$('.inputIotNode' + pk + 'ObjectSuggest').each(function() {
+				$('.inputIotNodeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ObjectSuggest').each(function() {
+				$('.varIotNodeStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ObjectSuggest'));
+				addGlow($('.inputIotNodeStep' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
-				$('.inputIotNode' + pk + 'ObjectText').each(function() {
+				$('.inputIotNodeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'ObjectText').each(function() {
+				$('.varIotNodeStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'ObjectText'));
+				addGlow($('.inputIotNodeStep' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputIotNode' + pk + 'PageUrlId').each(function() {
+				$('.inputIotNodeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'PageUrlId').each(function() {
+				$('.varIotNodeStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'PageUrlId'));
+				addGlow($('.inputIotNodeStep' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputIotNode' + pk + 'PageUrlPk').each(function() {
+				$('.inputIotNodeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'PageUrlPk').each(function() {
+				$('.varIotNodeStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'PageUrlPk'));
+				addGlow($('.inputIotNodeStep' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputIotNode' + pk + 'PageUrlApi').each(function() {
+				$('.inputIotNodeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'PageUrlApi').each(function() {
+				$('.varIotNodeStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'PageUrlApi'));
+				addGlow($('.inputIotNodeStep' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputIotNode' + pk + 'Id').each(function() {
+				$('.inputIotNodeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Id').each(function() {
+				$('.varIotNodeStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Id'));
+				addGlow($('.inputIotNodeStep' + pk + 'Id'));
 			}
 			var val = o['json'];
 			if(vars.includes('json')) {
-				$('.inputIotNode' + pk + 'Json').each(function() {
+				$('.inputIotNodeStep' + pk + 'Json').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varIotNode' + pk + 'Json').each(function() {
+				$('.varIotNodeStep' + pk + 'Json').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputIotNode' + pk + 'Json'));
+				addGlow($('.inputIotNodeStep' + pk + 'Json'));
 			}
 		});
 	}
@@ -2374,7 +2354,7 @@ function pageGraph(apiRequest) {
 					});
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'IotNode';
+					layout['title'] = 'IotNodeStep';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
@@ -2421,7 +2401,7 @@ function pageGraph(apiRequest) {
 						var trace = {};
 						trace['showlegend'] = true;
 						trace['mode'] = 'lines+markers';
-						trace['name'] = 'IotNode';
+						trace['name'] = 'IotNodeStep';
 						var ys = [];
 						trace['x'] = Object.keys(pivot1Counts).map(key => key);
 						pivot1Vals.forEach((pivot1Val) => {
