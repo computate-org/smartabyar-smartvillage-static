@@ -19,6 +19,14 @@ function searchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -62,22 +70,6 @@ function searchSitePageFilters($formFilters) {
 		var filterPageImageUri = $formFilters.find('.valuePageImageUri').val();
 		if(filterPageImageUri != null && filterPageImageUri !== '')
 			filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
-
-		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-		if(filterCourseNum != null && filterCourseNum !== '')
-			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-		if(filterLessonNum != null && filterLessonNum !== '')
-			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-		var filterH1 = $formFilters.find('.valueH1').val();
-		if(filterH1 != null && filterH1 !== '')
-			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-		var filterH2 = $formFilters.find('.valueH2').val();
-		if(filterH2 != null && filterH2 !== '')
-			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -134,6 +126,26 @@ function searchSitePageFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+		if(filterCourseNum != null && filterCourseNum !== '')
+			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+		if(filterLessonNum != null && filterLessonNum !== '')
+			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
+		var filterH1 = $formFilters.find('.valueH1').val();
+		if(filterH1 != null && filterH1 !== '')
+			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
+
+		var filterH2 = $formFilters.find('.valueH2').val();
+		if(filterH2 != null && filterH2 !== '')
+			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
+
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 	}
 	return filters;
 }
@@ -205,6 +217,14 @@ async function postSitePage($formValues, success, error) {
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
 	var valueModified = $formValues.find('.valueModified').val();
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
@@ -237,6 +257,26 @@ async function postSitePage($formValues, success, error) {
 	if(valuePageImageUri != null && valuePageImageUri !== '')
 		vals['pageImageUri'] = valuePageImageUri;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
+
 	var valueCourseNum = $formValues.find('.valueCourseNum').val();
 	if(valueCourseNum != null && valueCourseNum !== '')
 		vals['courseNum'] = valueCourseNum;
@@ -256,22 +296,6 @@ async function postSitePage($formValues, success, error) {
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
-
-	var valueSessionId = $formValues.find('.valueSessionId').val();
-	if(valueSessionId != null && valueSessionId !== '')
-		vals['sessionId'] = valueSessionId;
-
-	var valueUserKey = $formValues.find('.valueUserKey').val();
-	if(valueUserKey != null && valueUserKey !== '')
-		vals['userKey'] = valueUserKey;
-
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-		vals['objectTitle'] = valueObjectTitle;
-
-	var valueObjectText = $formValues.find('.valueObjectText').val();
-	if(valueObjectText != null && valueObjectText !== '')
-		vals['objectText'] = valueObjectText;
 
 	$.ajax({
 		url: '/api/page'
@@ -314,6 +338,30 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeCreated = $formValues.find('.removeCreated').val();
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
+	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
+	var addCreated = $formValues.find('.addCreated').val();
+	if(removeCreated || setCreated != null && setCreated !== '')
+		vals['setCreated'] = setCreated;
+	if(addCreated != null && addCreated !== '')
+		vals['addCreated'] = addCreated;
+	var removeCreated = $formValues.find('.removeCreated').val();
+	if(removeCreated != null && removeCreated !== '')
+		vals['removeCreated'] = removeCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	var removeModified = $formValues.find('.removeModified').val() === 'true';
+	var setModified = removeModified ? null : $formValues.find('.setModified').val();
+	var addModified = $formValues.find('.addModified').val();
+	if(removeModified || setModified != null && setModified !== '')
+		vals['setModified'] = setModified;
+	if(addModified != null && addModified !== '')
+		vals['addModified'] = addModified;
+	var removeModified = $formValues.find('.removeModified').val();
+	if(removeModified != null && removeModified !== '')
+		vals['removeModified'] = removeModified;
 
 	var valueModified = $formValues.find('.valueModified').val();
 	var removeModified = $formValues.find('.removeModified').val() === 'true';
@@ -417,6 +465,66 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removePageImageUri != null && removePageImageUri !== '')
 		vals['removePageImageUri'] = removePageImageUri;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+	var addObjectTitle = $formValues.find('.addObjectTitle').val();
+	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+		vals['setObjectTitle'] = setObjectTitle;
+	if(addObjectTitle != null && addObjectTitle !== '')
+		vals['addObjectTitle'] = addObjectTitle;
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+	if(removeObjectTitle != null && removeObjectTitle !== '')
+		vals['removeObjectTitle'] = removeObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
 	var valueCourseNum = $formValues.find('.valueCourseNum').val();
 	var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
 	var setCourseNum = removeCourseNum ? null : $formValues.find('.setCourseNum').val();
@@ -477,54 +585,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
-	var valueSessionId = $formValues.find('.valueSessionId').val();
-	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
-	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
-	var addSessionId = $formValues.find('.addSessionId').val();
-	if(removeSessionId || setSessionId != null && setSessionId !== '')
-		vals['setSessionId'] = setSessionId;
-	if(addSessionId != null && addSessionId !== '')
-		vals['addSessionId'] = addSessionId;
-	var removeSessionId = $formValues.find('.removeSessionId').val();
-	if(removeSessionId != null && removeSessionId !== '')
-		vals['removeSessionId'] = removeSessionId;
-
-	var valueUserKey = $formValues.find('.valueUserKey').val();
-	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
-	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
-	var addUserKey = $formValues.find('.addUserKey').val();
-	if(removeUserKey || setUserKey != null && setUserKey !== '')
-		vals['setUserKey'] = setUserKey;
-	if(addUserKey != null && addUserKey !== '')
-		vals['addUserKey'] = addUserKey;
-	var removeUserKey = $formValues.find('.removeUserKey').val();
-	if(removeUserKey != null && removeUserKey !== '')
-		vals['removeUserKey'] = removeUserKey;
-
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-	var addObjectTitle = $formValues.find('.addObjectTitle').val();
-	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-		vals['setObjectTitle'] = setObjectTitle;
-	if(addObjectTitle != null && addObjectTitle !== '')
-		vals['addObjectTitle'] = addObjectTitle;
-	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-	if(removeObjectTitle != null && removeObjectTitle !== '')
-		vals['removeObjectTitle'] = removeObjectTitle;
-
-	var valueObjectText = $formValues.find('.valueObjectText').val();
-	var removeObjectText = $formValues.find('.removeObjectText').val() === 'true';
-	var setObjectText = removeObjectText ? null : $formValues.find('.setObjectText').val();
-	var addObjectText = $formValues.find('.addObjectText').val();
-	if(removeObjectText || setObjectText != null && setObjectText !== '')
-		vals['setObjectText'] = setObjectText;
-	if(addObjectText != null && addObjectText !== '')
-		vals['addObjectText'] = addObjectText;
-	var removeObjectText = $formValues.find('.removeObjectText').val();
-	if(removeObjectText != null && removeObjectText !== '')
-		vals['removeObjectText'] = removeObjectText;
-
 	patchSitePageVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -536,6 +596,14 @@ function patchSitePageFilters($formFilters) {
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
@@ -580,22 +648,6 @@ function patchSitePageFilters($formFilters) {
 		var filterPageImageUri = $formFilters.find('.valuePageImageUri').val();
 		if(filterPageImageUri != null && filterPageImageUri !== '')
 			filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
-
-		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-		if(filterCourseNum != null && filterCourseNum !== '')
-			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-		if(filterLessonNum != null && filterLessonNum !== '')
-			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-		var filterH1 = $formFilters.find('.valueH1').val();
-		if(filterH1 != null && filterH1 !== '')
-			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-		var filterH2 = $formFilters.find('.valueH2').val();
-		if(filterH2 != null && filterH2 !== '')
-			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -652,6 +704,26 @@ function patchSitePageFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+		if(filterCourseNum != null && filterCourseNum !== '')
+			filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+		var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+		if(filterLessonNum != null && filterLessonNum !== '')
+			filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
+		var filterH1 = $formFilters.find('.valueH1').val();
+		if(filterH1 != null && filterH1 !== '')
+			filters.push({ name: 'fq', value: 'h1:' + filterH1 });
+
+		var filterH2 = $formFilters.find('.valueH2').val();
+		if(filterH2 != null && filterH2 !== '')
+			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
+
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 	}
 	return filters;
 }
@@ -765,6 +837,30 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				addGlow($('.inputSitePage' + pk + 'Created'));
 			}
+			var val = o['created'];
+			if(vars.includes('created')) {
+				$('.inputSitePage' + pk + 'Created').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'Created').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'Created'));
+			}
+			var val = o['modified'];
+			if(vars.includes('modified')) {
+				$('.inputSitePage' + pk + 'Modified').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'Modified').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'Modified'));
+			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputSitePage' + pk + 'Modified').each(function() {
@@ -860,54 +956,6 @@ async function websocketSitePageInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageImageUri'));
-			}
-			var val = o['courseNum'];
-			if(vars.includes('courseNum')) {
-				$('.inputSitePage' + pk + 'CourseNum').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'CourseNum').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'CourseNum'));
-			}
-			var val = o['lessonNum'];
-			if(vars.includes('lessonNum')) {
-				$('.inputSitePage' + pk + 'LessonNum').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'LessonNum').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'LessonNum'));
-			}
-			var val = o['h1'];
-			if(vars.includes('h1')) {
-				$('.inputSitePage' + pk + 'H1').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'H1').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'H1'));
-			}
-			var val = o['h2'];
-			if(vars.includes('h2')) {
-				$('.inputSitePage' + pk + 'H2').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'H2').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'H2'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
@@ -1077,6 +1125,66 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				addGlow($('.inputSitePage' + pk + 'Id'));
 			}
+			var val = o['courseNum'];
+			if(vars.includes('courseNum')) {
+				$('.inputSitePage' + pk + 'CourseNum').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'CourseNum').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'CourseNum'));
+			}
+			var val = o['lessonNum'];
+			if(vars.includes('lessonNum')) {
+				$('.inputSitePage' + pk + 'LessonNum').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'LessonNum').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'LessonNum'));
+			}
+			var val = o['h1'];
+			if(vars.includes('h1')) {
+				$('.inputSitePage' + pk + 'H1').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'H1').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'H1'));
+			}
+			var val = o['h2'];
+			if(vars.includes('h2')) {
+				$('.inputSitePage' + pk + 'H2').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'H2').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'H2'));
+			}
+			var val = o['inheritPk'];
+			if(vars.includes('inheritPk')) {
+				$('.inputSitePage' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'InheritPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'InheritPk'));
+			}
 		});
 	}
 }
@@ -1177,20 +1285,23 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'lines+markers';
+							trace['mode'] = 'markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
+								var xs = [];
 								var ys = [];
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										xs.push(key);
 										ys.push(parseFloat(pivot2Val));
 									});
 								});
 								trace['y'] = ys;
+								trace['x'] = xs;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -1216,7 +1327,7 @@ function pageGraph(apiRequest) {
 						data.push(trace);
 					}
 				}
-				Plotly.react('htmBodyGraphPageLayout', data, layout);
+				Plotly.react('htmBodyGraphBaseResultPage', data, layout);
 			}
 		}
 	}

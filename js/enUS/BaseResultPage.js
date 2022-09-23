@@ -315,13 +315,13 @@ function pageGraph(apiRequest) {
 				var pivot1VarIndexed = pivot1Name;
 				if(pivot1VarIndexed.includes(','))
 					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
-				var pivot1Var = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf('_'));
-				var pivot1VarFq = window.varsFq[pivot1Var] ? window.varsFq[pivot1Var] : 'classSimpleName';
+				var pivot1VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot1VarIndexed);
+				var pivot1VarFq = pivot1VarObj ? pivot1VarObj.var : 'classSimpleName';
 				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarFq.classSimpleName === 'Point') {
+				if(pivot1VarObj.classSimpleName === 'Point') {
 					layout['showlegend'] = true;
 					layout['dragmode'] = 'zoom';
 					layout['uirevision'] = 'true';
@@ -372,10 +372,13 @@ function pageGraph(apiRequest) {
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
-					layout['yaxis'] = {
-						title: pivot1VarFq.displayName
-					}
 					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
+						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
+						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
+						layout['yaxis'] = {
+							title: pivot2VarObj.displayName
+						}
 						pivot1Vals.forEach((pivot1Val) => {
 							var pivot1 = pivot1Map[pivot1Val];
 							var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -383,20 +386,23 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'lines+markers';
+							trace['mode'] = 'markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
-							if(facetField) {
+							if(pivot2Map) {
+								var xs = [];
 								var ys = [];
-								var pivot2Map = pivot1.pivotMap;
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
-										ys.push(parseInt(count) > 0 ? parseFloat(pivot2Val) : 0);
+										xs.push(key);
+										ys.push(parseFloat(pivot2Val));
 									});
 								});
+								trace['y'] = ys;
+								trace['x'] = xs;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -406,6 +412,9 @@ function pageGraph(apiRequest) {
 							data.push(trace);
 						});
 					} else {
+						layout['yaxis'] = {
+							title: pivot1VarObj.displayName
+						}
 						var trace = {};
 						trace['showlegend'] = true;
 						trace['mode'] = 'lines+markers';
@@ -437,8 +446,8 @@ function animateStats() {
 	if (x > xMax || x < 0) {
 		clearInterval(animateInterval);
 	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
+	$('#fqBaseResult_time').val(x);
+	$('#fqBaseResult_time').change();
 	searchPage();
 	}, speedRate);
 }

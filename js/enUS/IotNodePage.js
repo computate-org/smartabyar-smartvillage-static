@@ -2392,20 +2392,23 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'lines+markers';
+							trace['mode'] = 'markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
+								var xs = [];
 								var ys = [];
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										xs.push(key);
 										ys.push(parseFloat(pivot2Val));
 									});
 								});
 								trace['y'] = ys;
+								trace['x'] = xs;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;

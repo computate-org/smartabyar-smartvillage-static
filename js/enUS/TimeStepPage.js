@@ -318,6 +318,18 @@ async function patchTimeStep($formFilters, $formValues, id, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
 	patchTimeStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -512,6 +524,10 @@ async function postTimeStep($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
 
 	$.ajax({
 		url: '/api/time-step'
@@ -979,20 +995,23 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'lines+markers';
+							trace['mode'] = 'markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
+								var xs = [];
 								var ys = [];
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										xs.push(key);
 										ys.push(parseFloat(pivot2Val));
 									});
 								});
 								trace['y'] = ys;
+								trace['x'] = xs;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -1018,7 +1037,7 @@ function pageGraph(apiRequest) {
 						data.push(trace);
 					}
 				}
-				Plotly.react('htmBodyGraphPageLayout', data, layout);
+				Plotly.react('htmBodyGraphBaseResultPage', data, layout);
 			}
 		}
 	}

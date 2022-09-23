@@ -382,30 +382,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeSlope != null && removeSlope !== '')
 		vals['removeSlope'] = removeSlope;
 
-	var valueX = $formValues.find('.valueX').val();
-	var removeX = $formValues.find('.removeX').val() === 'true';
-	var setX = removeX ? null : $formValues.find('.setX').val();
-	var addX = $formValues.find('.addX').val();
-	if(removeX || setX != null && setX !== '')
-		vals['setX'] = setX;
-	if(addX != null && addX !== '')
-		vals['addX'] = addX;
-	var removeX = $formValues.find('.removeX').val();
-	if(removeX != null && removeX !== '')
-		vals['removeX'] = removeX;
-
-	var valueY = $formValues.find('.valueY').val();
-	var removeY = $formValues.find('.removeY').val() === 'true';
-	var setY = removeY ? null : $formValues.find('.setY').val();
-	var addY = $formValues.find('.addY').val();
-	if(removeY || setY != null && setY !== '')
-		vals['setY'] = setY;
-	if(addY != null && addY !== '')
-		vals['addY'] = addY;
-	var removeY = $formValues.find('.removeY').val();
-	if(removeY != null && removeY !== '')
-		vals['removeY'] = removeY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -453,6 +429,42 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
+	var valueX = $formValues.find('.valueX').val();
+	var removeX = $formValues.find('.removeX').val() === 'true';
+	var setX = removeX ? null : $formValues.find('.setX').val();
+	var addX = $formValues.find('.addX').val();
+	if(removeX || setX != null && setX !== '')
+		vals['setX'] = setX;
+	if(addX != null && addX !== '')
+		vals['addX'] = addX;
+	var removeX = $formValues.find('.removeX').val();
+	if(removeX != null && removeX !== '')
+		vals['removeX'] = removeX;
+
+	var valueY = $formValues.find('.valueY').val();
+	var removeY = $formValues.find('.removeY').val() === 'true';
+	var setY = removeY ? null : $formValues.find('.setY').val();
+	var addY = $formValues.find('.addY').val();
+	if(removeY || setY != null && setY !== '')
+		vals['setY'] = setY;
+	if(addY != null && addY !== '')
+		vals['addY'] = addY;
+	var removeY = $formValues.find('.removeY').val();
+	if(removeY != null && removeY !== '')
+		vals['removeY'] = removeY;
 
 	patchPersonStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -689,14 +701,6 @@ async function postPersonStep($formValues, success, error) {
 	if(valueSlope != null && valueSlope !== '')
 		vals['slope'] = valueSlope;
 
-	var valueX = $formValues.find('.valueX').val();
-	if(valueX != null && valueX !== '')
-		vals['x'] = valueX;
-
-	var valueY = $formValues.find('.valueY').val();
-	if(valueY != null && valueY !== '')
-		vals['y'] = valueY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -712,6 +716,18 @@ async function postPersonStep($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
+
+	var valueX = $formValues.find('.valueX').val();
+	if(valueX != null && valueX !== '')
+		vals['x'] = valueX;
+
+	var valueY = $formValues.find('.valueY').val();
+	if(valueY != null && valueY !== '')
+		vals['y'] = valueY;
 
 	$.ajax({
 		url: '/api/person-step'
@@ -995,30 +1011,6 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				addGlow($('.inputPersonStep' + pk + 'Slope'));
 			}
-			var val = o['x'];
-			if(vars.includes('x')) {
-				$('.inputPersonStep' + pk + 'X').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varPersonStep' + pk + 'X').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputPersonStep' + pk + 'X'));
-			}
-			var val = o['y'];
-			if(vars.includes('y')) {
-				$('.inputPersonStep' + pk + 'Y').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varPersonStep' + pk + 'Y').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputPersonStep' + pk + 'Y'));
-			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputPersonStep' + pk + 'InheritPk').each(function() {
@@ -1187,6 +1179,30 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				addGlow($('.inputPersonStep' + pk + 'Id'));
 			}
+			var val = o['x'];
+			if(vars.includes('x')) {
+				$('.inputPersonStep' + pk + 'X').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'X').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'X'));
+			}
+			var val = o['y'];
+			if(vars.includes('y')) {
+				$('.inputPersonStep' + pk + 'Y').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'Y').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'Y'));
+			}
 		});
 	}
 }
@@ -1222,7 +1238,7 @@ function pageGraph(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarFq.classSimpleName === 'Point') {
+				if(pivot1VarObj.classSimpleName === 'Point') {
 					layout['showlegend'] = true;
 					layout['dragmode'] = 'zoom';
 					layout['uirevision'] = 'true';
@@ -1287,20 +1303,23 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'lines+markers';
+							trace['mode'] = 'markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
+								var xs = [];
 								var ys = [];
 								var pivot2Vals = Object.keys(pivot2Map);
 								pivot2Vals.forEach((pivot2Val) => {
 									var pivot2 = pivot2Map[pivot2Val];
 									var pivot2Counts = pivot2.ranges[rangeName].counts;
 									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										xs.push(key);
 										ys.push(parseFloat(pivot2Val));
 									});
 								});
 								trace['y'] = ys;
+								trace['x'] = xs;
 							} else {
 									var pivot1 = pivot1Map[pivot1Val];
 									var pivot1Counts = pivot1.ranges[rangeName].counts;
@@ -1311,7 +1330,7 @@ function pageGraph(apiRequest) {
 						});
 					} else {
 						layout['yaxis'] = {
-							title: pivot1VarFq.displayName
+							title: pivot1VarObj.displayName
 						}
 						var trace = {};
 						trace['showlegend'] = true;
@@ -1326,7 +1345,7 @@ function pageGraph(apiRequest) {
 						data.push(trace);
 					}
 				}
-				Plotly.react('htmBodyGraphPageLayout', data, layout);
+				Plotly.react('htmBodyGraphMapResultPage', data, layout);
 			}
 		}
 	}
@@ -1344,8 +1363,8 @@ function animateStats() {
 	if (x > xMax || x < 0) {
 		clearInterval(animateInterval);
 	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
+	$('#fqPersonStep_time').val(x);
+	$('#fqPersonStep_time').change();
 	searchPage();
 	}, speedRate);
 }
