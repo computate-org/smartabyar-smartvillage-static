@@ -930,7 +930,7 @@ function pageGraph(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarFq.classSimpleName === 'Point') {
+				if(pivot1VarObj.classSimpleName === 'Point') {
 					layout['showlegend'] = true;
 					layout['dragmode'] = 'zoom';
 					layout['uirevision'] = 'true';
@@ -946,7 +946,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -962,6 +962,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push('fuchsia');
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -975,6 +976,7 @@ function pageGraph(apiRequest) {
 							trace['hovertemplate'] = hovertemplate;
 						}
 					});
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'TimeStep';
@@ -1022,7 +1024,7 @@ function pageGraph(apiRequest) {
 						});
 					} else {
 						layout['yaxis'] = {
-							title: pivot1VarFq.displayName
+							title: pivot1VarObj.displayName
 						}
 						var trace = {};
 						trace['showlegend'] = true;
@@ -1055,8 +1057,8 @@ function animateStats() {
 	if (x > xMax || x < 0) {
 		clearInterval(animateInterval);
 	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
+	$('#fqTimeStep_time').val(x);
+	$('#fqTimeStep_time').change();
 	searchPage();
 	}, speedRate);
 }

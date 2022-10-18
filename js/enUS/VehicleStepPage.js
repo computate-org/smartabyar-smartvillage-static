@@ -47,6 +47,44 @@ function searchVehicleStepFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
+
+		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
+		var $filterStepSelect = $formFilters.find('select.valueStep');
+		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
+		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
+		var filterStep = null;
+		if(filterStepSelectVal !== '')
+			filterStep = filterStepSelectVal == 'true';
+		if(filterStep != null && filterStep === true)
+			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterLocation = $formFilters.find('.valueLocation').val();
+		if(filterLocation != null && filterLocation !== '')
+			filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
+
 		var filterVehicleId = $formFilters.find('.valueVehicleId').val();
 		if(filterVehicleId != null && filterVehicleId !== '')
 			filters.push({ name: 'fq', value: 'vehicleId:' + filterVehicleId });
@@ -246,6 +284,105 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
+	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
+	var addSimulationName = $formValues.find('.addSimulationName').val();
+	if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
+		vals['setSimulationName'] = setSimulationName;
+	if(addSimulationName != null && addSimulationName !== '')
+		vals['addSimulationName'] = addSimulationName;
+	var removeSimulationName = $formValues.find('.removeSimulationName').val();
+	if(removeSimulationName != null && removeSimulationName !== '')
+		vals['removeSimulationName'] = removeSimulationName;
+
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
+	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
+	var addSimulationKey = $formValues.find('.addSimulationKey').val();
+	if(removeSimulationKey || setSimulationKey != null && setSimulationKey !== '')
+		vals['setSimulationKey'] = setSimulationKey;
+	if(addSimulationKey != null && addSimulationKey !== '')
+		vals['addSimulationKey'] = addSimulationKey;
+	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
+	if(removeSimulationKey != null && removeSimulationKey !== '')
+		vals['removeSimulationKey'] = removeSimulationKey;
+
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
+	var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
+	var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
+	if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
+		vals['setSumocfgPath'] = setSumocfgPath;
+	if(addSumocfgPath != null && addSumocfgPath !== '')
+		vals['addSumocfgPath'] = addSumocfgPath;
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
+	if(removeSumocfgPath != null && removeSumocfgPath !== '')
+		vals['removeSumocfgPath'] = removeSumocfgPath;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
+
+	var valueTime = $formValues.find('.valueTime').val();
+	var removeTime = $formValues.find('.removeTime').val() === 'true';
+	var setTime = removeTime ? null : $formValues.find('.setTime').val();
+	var addTime = $formValues.find('.addTime').val();
+	if(removeTime || setTime != null && setTime !== '')
+		vals['setTime'] = setTime;
+	if(addTime != null && addTime !== '')
+		vals['addTime'] = addTime;
+	var removeTime = $formValues.find('.removeTime').val();
+	if(removeTime != null && removeTime !== '')
+		vals['removeTime'] = removeTime;
+
+	var valueStep = $formValues.find('.valueStep').val();
+	var removeStep = $formValues.find('.removeStep').val() === 'true';
+	var valueStepSelectVal = $formValues.find('select.setStep').val();
+	if(valueStepSelectVal != null && valueStepSelectVal !== '')
+		valueStep = valueStepSelectVal == 'true';
+	var setStep = removeStep ? null : valueStep;
+	var addStep = $formValues.find('.addStep').prop('checked');
+	if(removeStep || setStep != null && setStep !== '')
+		vals['setStep'] = setStep;
+	if(addStep != null && addStep !== '')
+		vals['addStep'] = addStep;
+	var removeStep = $formValues.find('.removeStep').prop('checked');
+	if(removeStep != null && removeStep !== '')
+		vals['removeStep'] = removeStep;
+
+	var valueLocation = $formValues.find('.valueLocation').val();
+	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
+	var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
+	var addLocation = $formValues.find('.addLocation').val();
+	if(removeLocation || setLocation != null && setLocation !== '')
+		vals['setLocation'] = setLocation;
+	if(addLocation != null && addLocation !== '')
+		vals['addLocation'] = addLocation;
+	var removeLocation = $formValues.find('.removeLocation').val();
+	if(removeLocation != null && removeLocation !== '')
+		vals['removeLocation'] = removeLocation;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	var removeColor = $formValues.find('.removeColor').val() === 'true';
+	var setColor = removeColor ? null : $formValues.find('.setColor').val();
+	var addColor = $formValues.find('.addColor').val();
+	if(removeColor || setColor != null && setColor !== '')
+		vals['setColor'] = setColor;
+	if(addColor != null && addColor !== '')
+		vals['addColor'] = addColor;
+	var removeColor = $formValues.find('.removeColor').val();
+	if(removeColor != null && removeColor !== '')
+		vals['removeColor'] = removeColor;
+
 	var valueVehicleId = $formValues.find('.valueVehicleId').val();
 	var removeVehicleId = $formValues.find('.removeVehicleId').val() === 'true';
 	var setVehicleId = removeVehicleId ? null : $formValues.find('.setVehicleId').val();
@@ -378,6 +515,30 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	if(removeId != null && removeId !== '')
 		vals['removeId'] = removeId;
 
+	var valueX = $formValues.find('.valueX').val();
+	var removeX = $formValues.find('.removeX').val() === 'true';
+	var setX = removeX ? null : $formValues.find('.setX').val();
+	var addX = $formValues.find('.addX').val();
+	if(removeX || setX != null && setX !== '')
+		vals['setX'] = setX;
+	if(addX != null && addX !== '')
+		vals['addX'] = addX;
+	var removeX = $formValues.find('.removeX').val();
+	if(removeX != null && removeX !== '')
+		vals['removeX'] = removeX;
+
+	var valueY = $formValues.find('.valueY').val();
+	var removeY = $formValues.find('.removeY').val() === 'true';
+	var setY = removeY ? null : $formValues.find('.setY').val();
+	var addY = $formValues.find('.addY').val();
+	if(removeY || setY != null && setY !== '')
+		vals['setY'] = setY;
+	if(addY != null && addY !== '')
+		vals['addY'] = addY;
+	var removeY = $formValues.find('.removeY').val();
+	if(removeY != null && removeY !== '')
+		vals['removeY'] = removeY;
+
 	patchVehicleStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -417,6 +578,44 @@ function patchVehicleStepFilters($formFilters) {
 			filterDeleted = filterDeletedSelectVal == 'true';
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
+		if(filterSimulationKey != null && filterSimulationKey !== '')
+			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
+
+		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
+		var $filterStepSelect = $formFilters.find('select.valueStep');
+		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
+		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
+		var filterStep = null;
+		if(filterStepSelectVal !== '')
+			filterStep = filterStepSelectVal == 'true';
+		if(filterStep != null && filterStep === true)
+			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterLocation = $formFilters.find('.valueLocation').val();
+		if(filterLocation != null && filterLocation !== '')
+			filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterVehicleId = $formFilters.find('.valueVehicleId').val();
 		if(filterVehicleId != null && filterVehicleId !== '')
@@ -557,6 +756,38 @@ async function postVehicleStep($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	if(valueSimulationName != null && valueSimulationName !== '')
+		vals['simulationName'] = valueSimulationName;
+
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	if(valueSimulationKey != null && valueSimulationKey !== '')
+		vals['simulationKey'] = valueSimulationKey;
+
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	if(valueSumocfgPath != null && valueSumocfgPath !== '')
+		vals['sumocfgPath'] = valueSumocfgPath;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
+
+	var valueTime = $formValues.find('.valueTime').val();
+	if(valueTime != null && valueTime !== '')
+		vals['time'] = valueTime;
+
+	var valueStep = $formValues.find('.valueStep').val();
+	if(valueStep != null && valueStep !== '')
+		vals['step'] = valueStep == 'true';
+
+	var valueLocation = $formValues.find('.valueLocation').val();
+	if(valueLocation != null && valueLocation !== '')
+		vals['location'] = valueLocation;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	if(valueColor != null && valueColor !== '')
+		vals['color'] = valueColor;
+
 	var valueVehicleId = $formValues.find('.valueVehicleId').val();
 	if(valueVehicleId != null && valueVehicleId !== '')
 		vals['vehicleId'] = valueVehicleId;
@@ -600,6 +831,14 @@ async function postVehicleStep($formValues, success, error) {
 	var valueId = $formValues.find('.valueId').val();
 	if(valueId != null && valueId !== '')
 		vals['id'] = valueId;
+
+	var valueX = $formValues.find('.valueX').val();
+	if(valueX != null && valueX !== '')
+		vals['x'] = valueX;
+
+	var valueY = $formValues.find('.valueY').val();
+	if(valueY != null && valueY !== '')
+		vals['y'] = valueY;
 
 	$.ajax({
 		url: '/api/vehicle-step'
@@ -762,6 +1001,102 @@ async function websocketVehicleStepInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputVehicleStep' + pk + 'Deleted'));
+			}
+			var val = o['simulationName'];
+			if(vars.includes('simulationName')) {
+				$('.inputVehicleStep' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'SimulationName'));
+			}
+			var val = o['simulationKey'];
+			if(vars.includes('simulationKey')) {
+				$('.inputVehicleStep' + pk + 'SimulationKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'SimulationKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'SimulationKey'));
+			}
+			var val = o['sumocfgPath'];
+			if(vars.includes('sumocfgPath')) {
+				$('.inputVehicleStep' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'SumocfgPath'));
+			}
+			var val = o['timeStepId'];
+			if(vars.includes('timeStepId')) {
+				$('.inputVehicleStep' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'TimeStepId'));
+			}
+			var val = o['time'];
+			if(vars.includes('time')) {
+				$('.inputVehicleStep' + pk + 'Time').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'Time').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'Time'));
+			}
+			var val = o['step'];
+			if(vars.includes('step')) {
+				$('.inputVehicleStep' + pk + 'Step').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'Step').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'Step'));
+			}
+			var val = o['location'];
+			if(vars.includes('location')) {
+				$('.inputVehicleStep' + pk + 'Location').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'Location').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'Location'));
+			}
+			var val = o['color'];
+			if(vars.includes('color')) {
+				$('.inputVehicleStep' + pk + 'Color').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'Color').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'Color'));
 			}
 			var val = o['vehicleId'];
 			if(vars.includes('vehicleId')) {
@@ -1003,6 +1338,30 @@ async function websocketVehicleStepInner(apiRequest) {
 				});
 				addGlow($('.inputVehicleStep' + pk + 'Id'));
 			}
+			var val = o['x'];
+			if(vars.includes('x')) {
+				$('.inputVehicleStep' + pk + 'X').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'X').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'X'));
+			}
+			var val = o['y'];
+			if(vars.includes('y')) {
+				$('.inputVehicleStep' + pk + 'Y').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varVehicleStep' + pk + 'Y').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputVehicleStep' + pk + 'Y'));
+			}
 		});
 	}
 }
@@ -1054,7 +1413,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -1070,6 +1429,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push('fuchsia');
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -1083,6 +1443,7 @@ function pageGraph(apiRequest) {
 							trace['hovertemplate'] = hovertemplate;
 						}
 					});
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'VehicleStep';

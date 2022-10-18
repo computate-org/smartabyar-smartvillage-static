@@ -1,0 +1,510 @@
+
+// Search //
+
+async function searchTrafficLight($formFilters, success, error) {
+	var filters = searchTrafficLightFilters($formFilters);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	searchTrafficLightVals(filters, success, error);
+}
+
+function searchTrafficLightFilters($formFilters) {
+	var filters = [];
+	if($formFilters) {
+
+		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
+		if(filterTrafficLightId != null && filterTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
+
+		var filterTrafficLightType = $formFilters.find('.valueTrafficLightType').val();
+		if(filterTrafficLightType != null && filterTrafficLightType !== '')
+			filters.push({ name: 'fq', value: 'trafficLightType:' + filterTrafficLightType });
+
+		var filterAngle = $formFilters.find('.valueAngle').val();
+		if(filterAngle != null && filterAngle !== '')
+			filters.push({ name: 'fq', value: 'angle:' + filterAngle });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
+	}
+	return filters;
+}
+
+function searchTrafficLightVals(filters, success, error) {
+
+	$.ajax({
+		url: '/api/traffic-light?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+// GET //
+
+async function getTrafficLight() {
+	$.ajax({
+		url: '/api/traffic-light/' + id
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+// PATCH //
+
+async function patchTrafficLight($formFilters, $formValues, id, success, error) {
+	var filters = patchTrafficLightFilters($formFilters);
+
+	var vals = {};
+
+	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
+	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val() === 'true';
+	var setTrafficLightId = removeTrafficLightId ? null : $formValues.find('.setTrafficLightId').val();
+	var addTrafficLightId = $formValues.find('.addTrafficLightId').val();
+	if(removeTrafficLightId || setTrafficLightId != null && setTrafficLightId !== '')
+		vals['setTrafficLightId'] = setTrafficLightId;
+	if(addTrafficLightId != null && addTrafficLightId !== '')
+		vals['addTrafficLightId'] = addTrafficLightId;
+	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val();
+	if(removeTrafficLightId != null && removeTrafficLightId !== '')
+		vals['removeTrafficLightId'] = removeTrafficLightId;
+
+	var valueTrafficLightType = $formValues.find('.valueTrafficLightType').val();
+	var removeTrafficLightType = $formValues.find('.removeTrafficLightType').val() === 'true';
+	var setTrafficLightType = removeTrafficLightType ? null : $formValues.find('.setTrafficLightType').val();
+	var addTrafficLightType = $formValues.find('.addTrafficLightType').val();
+	if(removeTrafficLightType || setTrafficLightType != null && setTrafficLightType !== '')
+		vals['setTrafficLightType'] = setTrafficLightType;
+	if(addTrafficLightType != null && addTrafficLightType !== '')
+		vals['addTrafficLightType'] = addTrafficLightType;
+	var removeTrafficLightType = $formValues.find('.removeTrafficLightType').val();
+	if(removeTrafficLightType != null && removeTrafficLightType !== '')
+		vals['removeTrafficLightType'] = removeTrafficLightType;
+
+	var valueAngle = $formValues.find('.valueAngle').val();
+	var removeAngle = $formValues.find('.removeAngle').val() === 'true';
+	var setAngle = removeAngle ? null : $formValues.find('.setAngle').val();
+	var addAngle = $formValues.find('.addAngle').val();
+	if(removeAngle || setAngle != null && setAngle !== '')
+		vals['setAngle'] = setAngle;
+	if(addAngle != null && addAngle !== '')
+		vals['addAngle'] = addAngle;
+	var removeAngle = $formValues.find('.removeAngle').val();
+	if(removeAngle != null && removeAngle !== '')
+		vals['removeAngle'] = removeAngle;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	var removeColor = $formValues.find('.removeColor').val() === 'true';
+	var setColor = removeColor ? null : $formValues.find('.setColor').val();
+	var addColor = $formValues.find('.addColor').val();
+	if(removeColor || setColor != null && setColor !== '')
+		vals['setColor'] = setColor;
+	if(addColor != null && addColor !== '')
+		vals['addColor'] = addColor;
+	var removeColor = $formValues.find('.removeColor').val();
+	if(removeColor != null && removeColor !== '')
+		vals['removeColor'] = removeColor;
+
+	patchTrafficLightVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
+}
+
+function patchTrafficLightFilters($formFilters) {
+	var filters = [];
+	if($formFilters) {
+		filters.push({ name: 'softCommit', value: 'true' });
+
+		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
+		if(filterTrafficLightId != null && filterTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
+
+		var filterTrafficLightType = $formFilters.find('.valueTrafficLightType').val();
+		if(filterTrafficLightType != null && filterTrafficLightType !== '')
+			filters.push({ name: 'fq', value: 'trafficLightType:' + filterTrafficLightType });
+
+		var filterAngle = $formFilters.find('.valueAngle').val();
+		if(filterAngle != null && filterAngle !== '')
+			filters.push({ name: 'fq', value: 'angle:' + filterAngle });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
+	}
+	return filters;
+}
+
+function patchTrafficLightVal(filters, v, val, success, error) {
+	var vals = {};
+	vals[v] = val;
+	patchTrafficLightVals(filters, vals, success, error);
+}
+
+function patchTrafficLightVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/traffic-light?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PATCH'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// POST //
+
+async function postTrafficLight($formValues, success, error) {
+	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			addGlow($formValues.next('button'));
+			var url = data['pageUrlPk'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			addError($formValues.next('button'));
+		};
+	}
+
+	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
+	if(valueTrafficLightId != null && valueTrafficLightId !== '')
+		vals['trafficLightId'] = valueTrafficLightId;
+
+	var valueTrafficLightType = $formValues.find('.valueTrafficLightType').val();
+	if(valueTrafficLightType != null && valueTrafficLightType !== '')
+		vals['trafficLightType'] = valueTrafficLightType;
+
+	var valueAngle = $formValues.find('.valueAngle').val();
+	if(valueAngle != null && valueAngle !== '')
+		vals['angle'] = valueAngle;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	if(valueColor != null && valueColor !== '')
+		vals['color'] = valueColor;
+
+	$.ajax({
+		url: '/api/traffic-light'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+function postTrafficLightVals(vals, success, error) {
+	$.ajax({
+		url: '/api/traffic-light'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTImport //
+
+async function putimportTrafficLight($formValues, id, success, error) {
+	var json = $formValues.find('.PUTImport_searchList').val();
+	if(json != null && json !== '')
+		putimportTrafficLightVals(JSON.parse(json), success, error);
+}
+
+function putimportTrafficLightVals(json, success, error) {
+	$.ajax({
+		url: '/api/traffic-light-import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+async function websocketTrafficLight(success) {
+	window.eventBus.onopen = function () {
+
+		window.eventBus.registerHandler('websocketTrafficLight', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var pk = json['pk'];
+			var pkPage = $('#TrafficLightForm :input[name=id]').val();
+			var pks = json['pks'];
+			var empty = json['empty'];
+			var numFound = parseInt(json['numFound']);
+			var numPATCH = parseInt(json['numPATCH']);
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fad fa-map-location-dot w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify traffic lights in ' + json.timeRemaining);
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			if(numPATCH < numFound) {
+				var $old_box = $('.box-' + id);
+				if(!$old_box.size()) {
+					$('.top-box').append($box);
+				} else if($old_box && $old_box.attr('data-numPATCH') < numFound) {
+					$('.box-' + id).html($margin);
+				}
+			} else {
+				$('.box-' + id).remove();
+			}
+			if(pk && pkPage && pk == pkPage) {
+				if(success)
+					success(json);
+			}
+		});
+	}
+}
+async function websocketTrafficLightInner(apiRequest) {
+	var pk = apiRequest['pk'];
+	var pks = apiRequest['pks'];
+	var classes = apiRequest['classes'];
+	var vars = apiRequest['vars'];
+	var empty = apiRequest['empty'];
+
+	if(pk != null) {
+		searchTrafficLightVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			var val = o['trafficLightId'];
+			if(vars.includes('trafficLightId')) {
+				$('.inputTrafficLight' + pk + 'TrafficLightId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'TrafficLightId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'TrafficLightId'));
+			}
+			var val = o['trafficLightType'];
+			if(vars.includes('trafficLightType')) {
+				$('.inputTrafficLight' + pk + 'TrafficLightType').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'TrafficLightType').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'TrafficLightType'));
+			}
+			var val = o['angle'];
+			if(vars.includes('angle')) {
+				$('.inputTrafficLight' + pk + 'Angle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'Angle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'Angle'));
+			}
+			var val = o['color'];
+			if(vars.includes('color')) {
+				$('.inputTrafficLight' + pk + 'Color').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'Color').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'Color'));
+			}
+		});
+	}
+}
+
+function pageGraph(apiRequest) {
+	var r = $('.pageForm .pageResponse').val();
+	if(r) {
+	var json = JSON.parse(r);
+		if(json['facetCounts']) {
+			var facetCounts = json.facetCounts;
+			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
+				var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
+				var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
+				var rangeName;
+				var rangeVar;
+				var rangeVarFq;
+				var rangeCounts;
+				var rangeVals;
+				if(range) {
+					rangeName = range.name;
+					rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+					rangeVarFq = window.varsFq[rangeVar];
+					rangeCounts = range.counts;
+					rangeVals = Object.keys(rangeCounts).map(key => key);
+				}
+				var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
+				var pivot1VarIndexed = pivot1Name;
+				if(pivot1VarIndexed.includes(','))
+					pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
+				var pivot1VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot1VarIndexed);
+				var pivot1VarFq = pivot1VarObj ? pivot1VarObj.var : 'classSimpleName';
+				var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
+				var pivot1Vals = Object.keys(pivot1Map);
+				var data = [];
+				var layout = {};
+				if(pivot1VarObj.classSimpleName === 'Point') {
+					layout['showlegend'] = true;
+					layout['dragmode'] = 'zoom';
+					layout['uirevision'] = 'true';
+					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_ZOOM'])
+						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+					else if(window['DEFAULT_MAP_LOCATION'])
+						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+					else
+						layout['mapbox'] = { style: 'open-street-map' };
+					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+					var trace = {};
+					trace['showlegend'] = true;
+					trace['type'] = 'scattermapbox';
+					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var lat = [];
+					var lon = [];
+					var text = [];
+					var customdata = [];
+					trace['lat'] = lat;
+					trace['lon'] = lon;
+					trace['text'] = text;
+					trace['customdata'] = customdata;
+					json.response.docs.forEach((record) => {
+						var location = record.fields[pivot1VarIndexed];
+						if(location) {
+							var locationParts = location.split(',');
+							text.push('pivot1Val');
+							lat.push(parseFloat(locationParts[0]));
+							lon.push(parseFloat(locationParts[1]));
+							var vals = {};
+							var hovertemplate = '';
+							Object.entries(window.varsFq).forEach(([key, data]) => {
+								if(data.displayName) {
+									vals[data.var] = record.fields[data.varStored];
+									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
+								}
+								customdata.push(vals);
+							});
+							customdata.push(vals);
+							trace['hovertemplate'] = hovertemplate;
+						}
+					});
+					data.push(trace);
+				} else if(range) {
+					layout['title'] = 'TrafficLight';
+					layout['xaxis'] = {
+						title: rangeVarFq.displayName
+					}
+					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
+						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
+						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
+						layout['yaxis'] = {
+							title: pivot2VarObj.displayName
+						}
+						pivot1Vals.forEach((pivot1Val) => {
+							var pivot1 = pivot1Map[pivot1Val];
+							var pivot1Counts = pivot1.ranges[rangeName].counts;
+							var pivot2Map = pivot1.pivotMap;
+							var trace = {};
+							var facetField;
+							trace['showlegend'] = true;
+							trace['mode'] = 'markers';
+							trace['name'] = pivot1Val;
+							trace['x'] = Object.keys(pivot1Counts).map(key => key);
+							if(pivot2Map) {
+								var xs = [];
+								var ys = [];
+								var pivot2Vals = Object.keys(pivot2Map);
+								pivot2Vals.forEach((pivot2Val) => {
+									var pivot2 = pivot2Map[pivot2Val];
+									var pivot2Counts = pivot2.ranges[rangeName].counts;
+									Object.entries(pivot2Counts).forEach(([key, count]) => {
+										xs.push(key);
+										ys.push(parseFloat(pivot2Val));
+									});
+								});
+								trace['y'] = ys;
+								trace['x'] = xs;
+							} else {
+									var pivot1 = pivot1Map[pivot1Val];
+									var pivot1Counts = pivot1.ranges[rangeName].counts;
+									trace['x'] = Object.keys(pivot1Counts).map(key => key);
+									trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							data.push(trace);
+						});
+					} else {
+						layout['yaxis'] = {
+							title: pivot1VarObj.displayName
+						}
+						var trace = {};
+						trace['showlegend'] = true;
+						trace['mode'] = 'lines+markers';
+						trace['name'] = 'TrafficLight';
+						var ys = [];
+						trace['x'] = Object.keys(pivot1Counts).map(key => key);
+						pivot1Vals.forEach((pivot1Val) => {
+							ys.push(parseFloat(pivot1Val));
+						});
+						trace['y'] = ys;
+						data.push(trace);
+					}
+				}
+				Plotly.react('htmBodyGraphMapResultPage', data, layout);
+			}
+		}
+	}
+}
+
+function animateStats() {
+	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+	let xStep = parseFloat($('#animateStatsStep').val());
+	let xMin = parseFloat($('#animateStatsMin').val());
+	let xMax = parseFloat($('#animateStatsMax').val());
+	let x = xMin;
+
+	let animateInterval = window.setInterval(() => {
+	x = x + xStep;
+	if (x > xMax || x < 0) {
+		clearInterval(animateInterval);
+	}
+	$('#fqTrafficLight_time').val(x);
+	$('#fqTrafficLight_time').change();
+	searchPage();
+	}, speedRate);
+}

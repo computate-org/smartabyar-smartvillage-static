@@ -47,9 +47,17 @@ function searchMapResultFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
 		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
 		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
 		if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -59,9 +67,23 @@ function searchMapResultFilters($formFilters) {
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
+		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
+		var $filterStepSelect = $formFilters.find('select.valueStep');
+		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
+		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
+		var filterStep = null;
+		if(filterStepSelectVal !== '')
+			filterStep = filterStepSelectVal == 'true';
+		if(filterStep != null && filterStep === true)
+			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -284,6 +306,18 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				addGlow($('.inputMapResult' + pk + 'Deleted'));
 			}
+			var val = o['simulationName'];
+			if(vars.includes('simulationName')) {
+				$('.inputMapResult' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varMapResult' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputMapResult' + pk + 'SimulationName'));
+			}
 			var val = o['simulationKey'];
 			if(vars.includes('simulationKey')) {
 				$('.inputMapResult' + pk + 'SimulationKey').each(function() {
@@ -295,6 +329,18 @@ async function websocketMapResultInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'SimulationKey'));
+			}
+			var val = o['sumocfgPath'];
+			if(vars.includes('sumocfgPath')) {
+				$('.inputMapResult' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varMapResult' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputMapResult' + pk + 'SumocfgPath'));
 			}
 			var val = o['timeStepId'];
 			if(vars.includes('timeStepId')) {
@@ -320,6 +366,18 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				addGlow($('.inputMapResult' + pk + 'Time'));
 			}
+			var val = o['step'];
+			if(vars.includes('step')) {
+				$('.inputMapResult' + pk + 'Step').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varMapResult' + pk + 'Step').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputMapResult' + pk + 'Step'));
+			}
 			var val = o['location'];
 			if(vars.includes('location')) {
 				$('.inputMapResult' + pk + 'Location').each(function() {
@@ -331,6 +389,18 @@ async function websocketMapResultInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Location'));
+			}
+			var val = o['color'];
+			if(vars.includes('color')) {
+				$('.inputMapResult' + pk + 'Color').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varMapResult' + pk + 'Color').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputMapResult' + pk + 'Color'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
@@ -575,9 +645,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					//trace['marker'] = { color: 'fuchsia', size: [2, 3, 4, 5, 6, 7, 8, 9, 10], sizemin: 2, sizemax: 20, sizemode: 'area', sizeref: 1.5, shape: { type: 'rect' } };
-					trace['marker'] = { color: 'fuchsia', size: 10, symbol: 'circle' };
-					var shapes = [];
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -593,6 +661,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push(record.fields[window.varsFq['color'].varIndexed]);
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -604,17 +673,9 @@ function pageGraph(apiRequest) {
 							});
 							customdata.push(vals);
 							trace['hovertemplate'] = hovertemplate;
-
-							//shapes.push({ xref: 'x', x0: lon, x1: lon + 10, yref: 'y', y0: lat, y1: lat + 1, name: 'car', fillcolor: 'fuchsia', size: 10, type: 'path', path: 'M 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1e-4,8.6e-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 z m -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 z m 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 z m -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 z m 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 z m -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 z m 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1e-4,9e-4 19.00221,-0.18549 z' });
-							//shapes.push({ name: 'car', fillcolor: 'fuchsia', type: 'path', path: 'M 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1e-4,8.6e-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 z m -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 z m 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 z m -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 z m 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 z m -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 z m 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1e-4,9e-4 19.00221,-0.18549 z' });
-							//shapes.push({ xref: 'x', x0: lon, x1: lon + 10, yref: 'y', y0: lat, y1: lat + 1, name: 'car', fillcolor: 'fuchsia', size: 20, type: 'path', path: 'm 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1e-4,8.6e-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 z m -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 z m 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 z m -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 z m 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 z m -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 z m 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1e-4,9e-4 19.00221,-0.18549 z' });
-							//shapes.push({ xref: 'x', x0: parseFloat(locationParts[1]), x1: parseFloat(locationParts[1]) + 10, yref: 'y', y0: parseFloat(locationParts[0]), y1: parseFloat(locationParts[0]) + 10, name: 'car', fillcolor: 'fuchsia', type: 'path', path: 'm 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1e-4,8.6e-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 z m -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 z m 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 z m -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 z m 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 z m -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 z m 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1e-4,9e-4 19.00221,-0.18549 z' });
-							//shapes.push({ xref: 'page', x0: 0, x1: 0.5, yref: 'page', y0: 0, y1: 0.5, name: 'car', fillcolor: 'fuchsia', type: 'path', path: 'M 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1E-4,8.6E-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 Z M -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 Z M 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 Z M -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 Z M 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 Z M -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 Z M 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1E-4,9E-4 19.00221,-0.18549 Z' });
-							//shapes.push({ xref: 'x', x0: parseFloat(locationParts[1]), x1: parseFloat(locationParts[1]) + 1, yref: 'y', y0: parseFloat(locationParts[0]), y1: parseFloat(locationParts[0]) + 1, name: 'car', fillcolor: 'green', type: 'square'});
-							shapes.push({ name: 'car', fillcolor: 'fuchsia', size: 10, type: 'path', path: 'm 60.182905,5.7615146 -6.38018,-2.40998 -8.50072,-2.74350996 -11.89991,-0.59076 -5.1e-4,8.6e-4 -11.88581,0.82049 -8.44839,2.90710996 -6.3304704,2.53318 -2.77659,4.9716704 -0.65241,42.02705 0.93241,23.29802 -4.22342,1.45388 0.0249,2.47158 2.48075,1.03481 2.47313,-0.0242 0.97348,27.534885 2.56378,9.51082 4.2779604,4.19581 5.67022,2.06391 32.26015,-0.3134 5.6298,-2.17455 4.19582,-4.27795 2.37964,-9.55673 0.43777,-27.548995 2.47315,-0.0242 2.46021,-1.08361 -0.0233,-2.47092 -4.25036,-1.37176 0.47975,-23.30991 -1.46694,-42.00876 z m -9.5326,-2.86378 -1.7313,3.54748 -30.79872,0.27974 -1.79996,-3.51348 z m 8.87445,8.1607704 0.59769,25.06671 -5.6837,-3.47671 -0.90978,-20.82552 z m -45.97474,1.15318 -0.50305,20.83898 -5.6157004,3.5858 0.1095,-25.07313 z m 41.00148,27.14264 6.74952,4.17098 -0.0549,30.72282 -6.51253,-16.18031 z m -41.39185,0.38018 0.1814,18.71505 -6.1981304,16.30351 -0.65068,-30.71577 z m 39.52219,21.24713 8.34374,22.87255 -7.73139,3.95882 -7.04107,2.18867 -23.94407,0.23206 -7.08305,-2.05043 -7.8048904,-3.80868 7.8981604,-23.02975 9.19782,1.67519 -5.1e-4,9e-4 19.00221,-0.18549 z' });
 						}
 					});
-					layout['shapes'] = shapes;
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'MapResult';

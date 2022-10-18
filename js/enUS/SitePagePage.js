@@ -19,14 +19,6 @@ function searchSitePageFilters($formFilters) {
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-		var filterCreated = $formFilters.find('.valueCreated').val();
-		if(filterCreated != null && filterCreated !== '')
-			filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-		var filterModified = $formFilters.find('.valueModified').val();
-		if(filterModified != null && filterModified !== '')
-			filters.push({ name: 'fq', value: 'modified:' + filterModified });
-
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
 			filters.push({ name: 'fq', value: 'modified:' + filterModified });
@@ -142,10 +134,6 @@ function searchSitePageFilters($formFilters) {
 		var filterH2 = $formFilters.find('.valueH2').val();
 		if(filterH2 != null && filterH2 !== '')
 			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
-
-		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-		if(filterInheritPk != null && filterInheritPk !== '')
-			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 	}
 	return filters;
 }
@@ -217,14 +205,6 @@ async function postSitePage($formValues, success, error) {
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueCreated = $formValues.find('.valueCreated').val();
-	if(valueCreated != null && valueCreated !== '')
-		vals['created'] = valueCreated;
-
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
-
 	var valueModified = $formValues.find('.valueModified').val();
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
@@ -293,10 +273,6 @@ async function postSitePage($formValues, success, error) {
 	if(valueH2 != null && valueH2 !== '')
 		vals['h2'] = valueH2;
 
-	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	if(valueInheritPk != null && valueInheritPk !== '')
-		vals['inheritPk'] = valueInheritPk;
-
 	$.ajax({
 		url: '/api/page'
 		, dataType: 'json'
@@ -338,30 +314,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeCreated = $formValues.find('.removeCreated').val();
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
-
-	var valueCreated = $formValues.find('.valueCreated').val();
-	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
-	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
-	var addCreated = $formValues.find('.addCreated').val();
-	if(removeCreated || setCreated != null && setCreated !== '')
-		vals['setCreated'] = setCreated;
-	if(addCreated != null && addCreated !== '')
-		vals['addCreated'] = addCreated;
-	var removeCreated = $formValues.find('.removeCreated').val();
-	if(removeCreated != null && removeCreated !== '')
-		vals['removeCreated'] = removeCreated;
-
-	var valueModified = $formValues.find('.valueModified').val();
-	var removeModified = $formValues.find('.removeModified').val() === 'true';
-	var setModified = removeModified ? null : $formValues.find('.setModified').val();
-	var addModified = $formValues.find('.addModified').val();
-	if(removeModified || setModified != null && setModified !== '')
-		vals['setModified'] = setModified;
-	if(addModified != null && addModified !== '')
-		vals['addModified'] = addModified;
-	var removeModified = $formValues.find('.removeModified').val();
-	if(removeModified != null && removeModified !== '')
-		vals['removeModified'] = removeModified;
 
 	var valueModified = $formValues.find('.valueModified').val();
 	var removeModified = $formValues.find('.removeModified').val() === 'true';
@@ -573,18 +525,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	if(removeH2 != null && removeH2 !== '')
 		vals['removeH2'] = removeH2;
 
-	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-	var addInheritPk = $formValues.find('.addInheritPk').val();
-	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-		vals['setInheritPk'] = setInheritPk;
-	if(addInheritPk != null && addInheritPk !== '')
-		vals['addInheritPk'] = addInheritPk;
-	var removeInheritPk = $formValues.find('.removeInheritPk').val();
-	if(removeInheritPk != null && removeInheritPk !== '')
-		vals['removeInheritPk'] = removeInheritPk;
-
 	patchSitePageVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -596,14 +536,6 @@ function patchSitePageFilters($formFilters) {
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-		var filterCreated = $formFilters.find('.valueCreated').val();
-		if(filterCreated != null && filterCreated !== '')
-			filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-		var filterModified = $formFilters.find('.valueModified').val();
-		if(filterModified != null && filterModified !== '')
-			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 		var filterModified = $formFilters.find('.valueModified').val();
 		if(filterModified != null && filterModified !== '')
@@ -720,10 +652,6 @@ function patchSitePageFilters($formFilters) {
 		var filterH2 = $formFilters.find('.valueH2').val();
 		if(filterH2 != null && filterH2 !== '')
 			filters.push({ name: 'fq', value: 'h2:' + filterH2 });
-
-		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-		if(filterInheritPk != null && filterInheritPk !== '')
-			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 	}
 	return filters;
 }
@@ -836,30 +764,6 @@ async function websocketSitePageInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Created'));
-			}
-			var val = o['created'];
-			if(vars.includes('created')) {
-				$('.inputSitePage' + pk + 'Created').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'Created').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'Created'));
-			}
-			var val = o['modified'];
-			if(vars.includes('modified')) {
-				$('.inputSitePage' + pk + 'Modified').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'Modified').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'Modified'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
@@ -1173,18 +1077,6 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				addGlow($('.inputSitePage' + pk + 'H2'));
 			}
-			var val = o['inheritPk'];
-			if(vars.includes('inheritPk')) {
-				$('.inputSitePage' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSitePage' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSitePage' + pk + 'InheritPk'));
-			}
 		});
 	}
 }
@@ -1220,7 +1112,7 @@ function pageGraph(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarFq.classSimpleName === 'Point') {
+				if(pivot1VarObj.classSimpleName === 'Point') {
 					layout['showlegend'] = true;
 					layout['dragmode'] = 'zoom';
 					layout['uirevision'] = 'true';
@@ -1236,7 +1128,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -1252,6 +1144,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push('fuchsia');
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -1265,6 +1158,7 @@ function pageGraph(apiRequest) {
 							trace['hovertemplate'] = hovertemplate;
 						}
 					});
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'SitePage';
@@ -1312,7 +1206,7 @@ function pageGraph(apiRequest) {
 						});
 					} else {
 						layout['yaxis'] = {
-							title: pivot1VarFq.displayName
+							title: pivot1VarObj.displayName
 						}
 						var trace = {};
 						trace['showlegend'] = true;
@@ -1345,8 +1239,8 @@ function animateStats() {
 	if (x > xMax || x < 0) {
 		clearInterval(animateInterval);
 	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
+	$('#fqSitePage_time').val(x);
+	$('#fqSitePage_time').change();
 	searchPage();
 	}, speedRate);
 }

@@ -47,9 +47,17 @@ function searchPersonStepFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
 		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
 		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
 		if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -59,9 +67,23 @@ function searchPersonStepFilters($formFilters) {
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
+		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
+		var $filterStepSelect = $formFilters.find('select.valueStep');
+		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
+		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
+		var filterStep = null;
+		if(filterStepSelectVal !== '')
+			filterStep = filterStepSelectVal == 'true';
+		if(filterStep != null && filterStep === true)
+			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterPersonId = $formFilters.find('.valuePersonId').val();
 		if(filterPersonId != null && filterPersonId !== '')
@@ -262,6 +284,18 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
+	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
+	var addSimulationName = $formValues.find('.addSimulationName').val();
+	if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
+		vals['setSimulationName'] = setSimulationName;
+	if(addSimulationName != null && addSimulationName !== '')
+		vals['addSimulationName'] = addSimulationName;
+	var removeSimulationName = $formValues.find('.removeSimulationName').val();
+	if(removeSimulationName != null && removeSimulationName !== '')
+		vals['removeSimulationName'] = removeSimulationName;
+
 	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
 	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
 	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
@@ -273,6 +307,18 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
 	if(removeSimulationKey != null && removeSimulationKey !== '')
 		vals['removeSimulationKey'] = removeSimulationKey;
+
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
+	var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
+	var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
+	if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
+		vals['setSumocfgPath'] = setSumocfgPath;
+	if(addSumocfgPath != null && addSumocfgPath !== '')
+		vals['addSumocfgPath'] = addSumocfgPath;
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
+	if(removeSumocfgPath != null && removeSumocfgPath !== '')
+		vals['removeSumocfgPath'] = removeSumocfgPath;
 
 	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
 	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
@@ -298,6 +344,21 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeTime != null && removeTime !== '')
 		vals['removeTime'] = removeTime;
 
+	var valueStep = $formValues.find('.valueStep').val();
+	var removeStep = $formValues.find('.removeStep').val() === 'true';
+	var valueStepSelectVal = $formValues.find('select.setStep').val();
+	if(valueStepSelectVal != null && valueStepSelectVal !== '')
+		valueStep = valueStepSelectVal == 'true';
+	var setStep = removeStep ? null : valueStep;
+	var addStep = $formValues.find('.addStep').prop('checked');
+	if(removeStep || setStep != null && setStep !== '')
+		vals['setStep'] = setStep;
+	if(addStep != null && addStep !== '')
+		vals['addStep'] = addStep;
+	var removeStep = $formValues.find('.removeStep').prop('checked');
+	if(removeStep != null && removeStep !== '')
+		vals['removeStep'] = removeStep;
+
 	var valueLocation = $formValues.find('.valueLocation').val();
 	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
 	var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
@@ -309,6 +370,18 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	var removeLocation = $formValues.find('.removeLocation').val();
 	if(removeLocation != null && removeLocation !== '')
 		vals['removeLocation'] = removeLocation;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	var removeColor = $formValues.find('.removeColor').val() === 'true';
+	var setColor = removeColor ? null : $formValues.find('.setColor').val();
+	var addColor = $formValues.find('.addColor').val();
+	if(removeColor || setColor != null && setColor !== '')
+		vals['setColor'] = setColor;
+	if(addColor != null && addColor !== '')
+		vals['addColor'] = addColor;
+	var removeColor = $formValues.find('.removeColor').val();
+	if(removeColor != null && removeColor !== '')
+		vals['removeColor'] = removeColor;
 
 	var valuePersonId = $formValues.find('.valuePersonId').val();
 	var removePersonId = $formValues.find('.removePersonId').val() === 'true';
@@ -506,9 +579,17 @@ function patchPersonStepFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
 		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
 		if(filterSimulationKey != null && filterSimulationKey !== '')
 			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
 		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
 		if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -518,9 +599,23 @@ function patchPersonStepFilters($formFilters) {
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
+		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
+		var $filterStepSelect = $formFilters.find('select.valueStep');
+		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
+		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
+		var filterStep = null;
+		if(filterStepSelectVal !== '')
+			filterStep = filterStepSelectVal == 'true';
+		if(filterStep != null && filterStep === true)
+			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterPersonId = $formFilters.find('.valuePersonId').val();
 		if(filterPersonId != null && filterPersonId !== '')
@@ -661,9 +756,17 @@ async function postPersonStep($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	if(valueSimulationName != null && valueSimulationName !== '')
+		vals['simulationName'] = valueSimulationName;
+
 	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
 	if(valueSimulationKey != null && valueSimulationKey !== '')
 		vals['simulationKey'] = valueSimulationKey;
+
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	if(valueSumocfgPath != null && valueSumocfgPath !== '')
+		vals['sumocfgPath'] = valueSumocfgPath;
 
 	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
 	if(valueTimeStepId != null && valueTimeStepId !== '')
@@ -673,9 +776,17 @@ async function postPersonStep($formValues, success, error) {
 	if(valueTime != null && valueTime !== '')
 		vals['time'] = valueTime;
 
+	var valueStep = $formValues.find('.valueStep').val();
+	if(valueStep != null && valueStep !== '')
+		vals['step'] = valueStep == 'true';
+
 	var valueLocation = $formValues.find('.valueLocation').val();
 	if(valueLocation != null && valueLocation !== '')
 		vals['location'] = valueLocation;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	if(valueColor != null && valueColor !== '')
+		vals['color'] = valueColor;
 
 	var valuePersonId = $formValues.find('.valuePersonId').val();
 	if(valuePersonId != null && valuePersonId !== '')
@@ -891,6 +1002,18 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				addGlow($('.inputPersonStep' + pk + 'Deleted'));
 			}
+			var val = o['simulationName'];
+			if(vars.includes('simulationName')) {
+				$('.inputPersonStep' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'SimulationName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'SimulationName'));
+			}
 			var val = o['simulationKey'];
 			if(vars.includes('simulationKey')) {
 				$('.inputPersonStep' + pk + 'SimulationKey').each(function() {
@@ -902,6 +1025,18 @@ async function websocketPersonStepInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'SimulationKey'));
+			}
+			var val = o['sumocfgPath'];
+			if(vars.includes('sumocfgPath')) {
+				$('.inputPersonStep' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'SumocfgPath').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'SumocfgPath'));
 			}
 			var val = o['timeStepId'];
 			if(vars.includes('timeStepId')) {
@@ -927,6 +1062,18 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				addGlow($('.inputPersonStep' + pk + 'Time'));
 			}
+			var val = o['step'];
+			if(vars.includes('step')) {
+				$('.inputPersonStep' + pk + 'Step').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'Step').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'Step'));
+			}
 			var val = o['location'];
 			if(vars.includes('location')) {
 				$('.inputPersonStep' + pk + 'Location').each(function() {
@@ -938,6 +1085,18 @@ async function websocketPersonStepInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Location'));
+			}
+			var val = o['color'];
+			if(vars.includes('color')) {
+				$('.inputPersonStep' + pk + 'Color').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPersonStep' + pk + 'Color').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputPersonStep' + pk + 'Color'));
 			}
 			var val = o['personId'];
 			if(vars.includes('personId')) {
@@ -1254,7 +1413,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -1270,6 +1429,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push('fuchsia');
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -1283,6 +1443,7 @@ function pageGraph(apiRequest) {
 							trace['hovertemplate'] = hovertemplate;
 						}
 					});
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'PersonStep';
