@@ -661,7 +661,7 @@ function postTrafficSimulationVals(vals, success, error) {
 async function putimportTrafficSimulation($formValues, pk, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
-		putimportTrafficSimulationVals(json, success, error);
+		putimportTrafficSimulationVals(JSON.parse(json), success, error);
 }
 
 function putimportTrafficSimulationVals(json, success, error) {

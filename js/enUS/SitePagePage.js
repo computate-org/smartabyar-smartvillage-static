@@ -253,10 +253,6 @@ async function postSitePage($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueId = $formValues.find('.valueId').val();
-	if(valueId != null && valueId !== '')
-		vals['id'] = valueId;
-
 	var valueCourseNum = $formValues.find('.valueCourseNum').val();
 	if(valueCourseNum != null && valueCourseNum !== '')
 		vals['courseNum'] = valueCourseNum;
@@ -464,18 +460,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
-
-	var valueId = $formValues.find('.valueId').val();
-	var removeId = $formValues.find('.removeId').val() === 'true';
-	var setId = removeId ? null : $formValues.find('.setId').val();
-	var addId = $formValues.find('.addId').val();
-	if(removeId || setId != null && setId !== '')
-		vals['setId'] = setId;
-	if(addId != null && addId !== '')
-		vals['addId'] = addId;
-	var removeId = $formValues.find('.removeId').val();
-	if(removeId != null && removeId !== '')
-		vals['removeId'] = removeId;
 
 	var valueCourseNum = $formValues.find('.valueCourseNum').val();
 	var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';

@@ -925,18 +925,6 @@ async function patchIotNodeStep($formFilters, $formValues, id, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var valueId = $formValues.find('.valueId').val();
-	var removeId = $formValues.find('.removeId').val() === 'true';
-	var setId = removeId ? null : $formValues.find('.setId').val();
-	var addId = $formValues.find('.addId').val();
-	if(removeId || setId != null && setId !== '')
-		vals['setId'] = setId;
-	if(addId != null && addId !== '')
-		vals['addId'] = addId;
-	var removeId = $formValues.find('.removeId').val();
-	if(removeId != null && removeId !== '')
-		vals['removeId'] = removeId;
-
 	var valueJson = $formValues.find('.valueJson').val();
 	var removeJson = $formValues.find('.removeJson').val() === 'true';
 	var setJson = removeJson ? null : $formValues.find('.setJson').val();
@@ -1453,10 +1441,6 @@ async function postIotNodeStep($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
-
-	var valueId = $formValues.find('.valueId').val();
-	if(valueId != null && valueId !== '')
-		vals['id'] = valueId;
 
 	var valueJson = $formValues.find('.valueJson').val();
 	if(valueJson != null && valueJson !== '')
@@ -2307,7 +2291,7 @@ function pageGraph(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarFq.classSimpleName === 'Point') {
+				if(pivot1VarObj.classSimpleName === 'Point') {
 					layout['showlegend'] = true;
 					layout['dragmode'] = 'zoom';
 					layout['uirevision'] = 'true';
@@ -2323,7 +2307,7 @@ function pageGraph(apiRequest) {
 					var trace = {};
 					trace['showlegend'] = true;
 					trace['type'] = 'scattermapbox';
-					trace['marker'] = { color: 'fuchsia', size: 6 };
+					var colors = [];
 					var lat = [];
 					var lon = [];
 					var text = [];
@@ -2339,6 +2323,7 @@ function pageGraph(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
+							colors.push('fuchsia');
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -2352,6 +2337,7 @@ function pageGraph(apiRequest) {
 							trace['hovertemplate'] = hovertemplate;
 						}
 					});
+					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
 					layout['title'] = 'IotNodeStep';
@@ -2399,7 +2385,7 @@ function pageGraph(apiRequest) {
 						});
 					} else {
 						layout['yaxis'] = {
-							title: pivot1VarFq.displayName
+							title: pivot1VarObj.displayName
 						}
 						var trace = {};
 						trace['showlegend'] = true;
@@ -2432,8 +2418,8 @@ function animateStats() {
 	if (x > xMax || x < 0) {
 		clearInterval(animateInterval);
 	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
+	$('#fqIotNodeStep_time').val(x);
+	$('#fqIotNodeStep_time').change();
 	searchPage();
 	}, speedRate);
 }

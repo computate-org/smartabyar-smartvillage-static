@@ -15,10 +15,6 @@ function searchIotNodeFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
@@ -320,7 +316,7 @@ function suggestIotNodeObjectSuggest($formFilters, $list) {
 
 // GET //
 
-async function getIotNode(pk) {
+async function getIotNode() {
 	$.ajax({
 		url: '/api/iot-node/' + id
 		, dataType: 'json'
@@ -333,22 +329,10 @@ async function getIotNode(pk) {
 
 // PATCH //
 
-async function patchIotNode($formFilters, $formValues, pk, success, error) {
+async function patchIotNode($formFilters, $formValues, id, success, error) {
 	var filters = patchIotNodeFilters($formFilters);
 
 	var vals = {};
-
-	var valuePk = $formValues.find('.valuePk').val();
-	var removePk = $formValues.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	var addPk = $formValues.find('.addPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
@@ -953,17 +937,13 @@ async function patchIotNode($formFilters, $formValues, pk, success, error) {
 	if(removeJson != null && removeJson !== '')
 		vals['removeJson'] = removeJson;
 
-	patchIotNodeVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	patchIotNodeVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
 function patchIotNodeFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
-
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
@@ -1270,10 +1250,6 @@ async function postIotNode($formValues, success, error) {
 		};
 	}
 
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
-
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
@@ -1495,7 +1471,7 @@ function postIotNodeVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportIotNode($formValues, pk, success, error) {
+async function putimportIotNode($formValues, id, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
 		putimportIotNodeVals(JSON.parse(json), success, error);
@@ -1520,7 +1496,7 @@ async function websocketIotNode(success) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#IotNodeForm :input[name=pk]').val();
+			var pkPage = $('#IotNodeForm :input[name=id]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -1570,20 +1546,8 @@ async function websocketIotNodeInner(apiRequest) {
 	var empty = apiRequest['empty'];
 
 	if(pk != null) {
-		searchIotNodeVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		searchIotNodeVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['pk'];
-			if(vars.includes('pk')) {
-				$('.inputIotNode' + pk + 'Pk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varIotNode' + pk + 'Pk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputIotNode' + pk + 'Pk'));
-			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputIotNode' + pk + 'Created').each(function() {
@@ -2436,7 +2400,7 @@ function pageGraph(apiRequest) {
 						data.push(trace);
 					}
 				}
-				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
+				Plotly.react('htmBodyGraphMapResultPage', data, layout);
 			}
 		}
 	}
