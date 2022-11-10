@@ -59,13 +59,13 @@ function searchTrafficLightFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
+
+		var filterDateTime = $formFilters.find('.valueDateTime').val();
+		if(filterDateTime != null && filterDateTime !== '')
+			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
 		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
 		var $filterStepSelect = $formFilters.find('select.valueStep');
@@ -156,11 +156,16 @@ function searchTrafficLightFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
 
 function searchTrafficLightVals(filters, success, error) {
+
 
 	$.ajax({
 		url: '/api/traffic-light?' + $.param(filters)
@@ -312,18 +317,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	if(removeSumocfgPath != null && removeSumocfgPath !== '')
 		vals['removeSumocfgPath'] = removeSumocfgPath;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
 	var valueTime = $formValues.find('.valueTime').val();
 	var removeTime = $formValues.find('.removeTime').val() === 'true';
 	var setTime = removeTime ? null : $formValues.find('.setTime').val();
@@ -335,6 +328,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	var removeTime = $formValues.find('.removeTime').val();
 	if(removeTime != null && removeTime !== '')
 		vals['removeTime'] = removeTime;
+
+	var valueDateTime = $formValues.find('.valueDateTime').val();
+	var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
+	var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
+	var addDateTime = $formValues.find('.addDateTime').val();
+	if(removeDateTime || setDateTime != null && setDateTime !== '')
+		vals['setDateTime'] = setDateTime;
+	if(addDateTime != null && addDateTime !== '')
+		vals['addDateTime'] = addDateTime;
+	var removeDateTime = $formValues.find('.removeDateTime').val();
+	if(removeDateTime != null && removeDateTime !== '')
+		vals['removeDateTime'] = removeDateTime;
 
 	var valueStep = $formValues.find('.valueStep').val();
 	var removeStep = $formValues.find('.removeStep').val() === 'true';
@@ -471,6 +476,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
+
 	var valueX = $formValues.find('.valueX').val();
 	var removeX = $formValues.find('.removeX').val() === 'true';
 	var setX = removeX ? null : $formValues.find('.setX').val();
@@ -547,13 +564,13 @@ function patchTrafficLightFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
+
+		var filterDateTime = $formFilters.find('.valueDateTime').val();
+		if(filterDateTime != null && filterDateTime !== '')
+			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
 		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
 		var $filterStepSelect = $formFilters.find('select.valueStep');
@@ -644,6 +661,10 @@ function patchTrafficLightFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
@@ -716,13 +737,13 @@ async function postTrafficLight($formValues, success, error) {
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
 		vals['sumocfgPath'] = valueSumocfgPath;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
 	var valueTime = $formValues.find('.valueTime').val();
 	if(valueTime != null && valueTime !== '')
 		vals['time'] = valueTime;
+
+	var valueDateTime = $formValues.find('.valueDateTime').val();
+	if(valueDateTime != null && valueDateTime !== '')
+		vals['dateTime'] = valueDateTime;
 
 	var valueStep = $formValues.find('.valueStep').val();
 	if(valueStep != null && valueStep !== '')
@@ -767,6 +788,10 @@ async function postTrafficLight($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
 
 	var valueX = $formValues.find('.valueX').val();
 	if(valueX != null && valueX !== '')
@@ -974,18 +999,6 @@ async function websocketTrafficLightInner(apiRequest) {
 				});
 				addGlow($('.inputTrafficLight' + pk + 'SumocfgPath'));
 			}
-			var val = o['timeStepId'];
-			if(vars.includes('timeStepId')) {
-				$('.inputTrafficLight' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficLight' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficLight' + pk + 'TimeStepId'));
-			}
 			var val = o['time'];
 			if(vars.includes('time')) {
 				$('.inputTrafficLight' + pk + 'Time').each(function() {
@@ -997,6 +1010,18 @@ async function websocketTrafficLightInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputTrafficLight' + pk + 'Time'));
+			}
+			var val = o['dateTime'];
+			if(vars.includes('dateTime')) {
+				$('.inputTrafficLight' + pk + 'DateTime').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'DateTime').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'DateTime'));
 			}
 			var val = o['step'];
 			if(vars.includes('step')) {
@@ -1250,6 +1275,18 @@ async function websocketTrafficLightInner(apiRequest) {
 				});
 				addGlow($('.inputTrafficLight' + pk + 'Id'));
 			}
+			var val = o['timeStepId'];
+			if(vars.includes('timeStepId')) {
+				$('.inputTrafficLight' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'TimeStepId'));
+			}
 			var val = o['x'];
 			if(vars.includes('x')) {
 				$('.inputTrafficLight' + pk + 'X').each(function() {
@@ -1362,7 +1399,7 @@ function pageGraph(apiRequest) {
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
-					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap && Object.keys(pivot1Map[pivot1Vals[0]].pivotMap).length > 0) {
 						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
 						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
 						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
@@ -1376,7 +1413,7 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'markers';
+							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
@@ -1394,10 +1431,8 @@ function pageGraph(apiRequest) {
 								trace['y'] = ys;
 								trace['x'] = xs;
 							} else {
-									var pivot1 = pivot1Map[pivot1Val];
-									var pivot1Counts = pivot1.ranges[rangeName].counts;
-									trace['x'] = Object.keys(pivot1Counts).map(key => key);
-									trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							}
 							data.push(trace);
 						});
@@ -1405,17 +1440,19 @@ function pageGraph(apiRequest) {
 						layout['yaxis'] = {
 							title: pivot1VarObj.displayName
 						}
-						var trace = {};
-						trace['showlegend'] = true;
-						trace['mode'] = 'lines+markers';
-						trace['name'] = 'TrafficLight';
-						var ys = [];
-						trace['x'] = Object.keys(pivot1Counts).map(key => key);
 						pivot1Vals.forEach((pivot1Val) => {
-							ys.push(parseFloat(pivot1Val));
+							var pivot1 = pivot1Map[pivot1Val];
+							var pivot1Counts = pivot1.ranges[rangeName].counts;
+							var pivot2Map = pivot1.pivotMap;
+							var trace = {};
+							var facetField;
+							trace['showlegend'] = true;
+							trace['mode'] = 'lines+markers';
+							trace['name'] = pivot1Val;
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							data.push(trace);
 						});
-						trace['y'] = ys;
-						data.push(trace);
 					}
 				}
 				Plotly.react('htmBodyGraphMapResultPage', data, layout);

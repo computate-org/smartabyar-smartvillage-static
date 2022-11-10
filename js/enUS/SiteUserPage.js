@@ -159,6 +159,7 @@ function searchSiteUserFilters($formFilters) {
 }
 
 function searchSiteUserVals(filters, success, error) {
+
 	$.ajax({
 		url: '/api/user?' + $.param(filters)
 		, dataType: 'json'
@@ -740,13 +741,13 @@ async function websocketSiteUser(success) {
 			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-2017-shaded-spruce ').attr('id', 'header-' + id);
 			var $i = $('<i>').attr('class', 'far fa-user-cog w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modify site users in ' + json.timeRemaining);
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-2017-shaded-spruce ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);
@@ -1219,7 +1220,7 @@ function pageGraph(apiRequest) {
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
-					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap && Object.keys(pivot1Map[pivot1Vals[0]].pivotMap).length > 0) {
 						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
 						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
 						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
@@ -1233,7 +1234,7 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'markers';
+							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
@@ -1251,10 +1252,8 @@ function pageGraph(apiRequest) {
 								trace['y'] = ys;
 								trace['x'] = xs;
 							} else {
-									var pivot1 = pivot1Map[pivot1Val];
-									var pivot1Counts = pivot1.ranges[rangeName].counts;
-									trace['x'] = Object.keys(pivot1Counts).map(key => key);
-									trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							}
 							data.push(trace);
 						});
@@ -1262,17 +1261,19 @@ function pageGraph(apiRequest) {
 						layout['yaxis'] = {
 							title: pivot1VarObj.displayName
 						}
-						var trace = {};
-						trace['showlegend'] = true;
-						trace['mode'] = 'lines+markers';
-						trace['name'] = 'SiteUser';
-						var ys = [];
-						trace['x'] = Object.keys(pivot1Counts).map(key => key);
 						pivot1Vals.forEach((pivot1Val) => {
-							ys.push(parseFloat(pivot1Val));
+							var pivot1 = pivot1Map[pivot1Val];
+							var pivot1Counts = pivot1.ranges[rangeName].counts;
+							var pivot2Map = pivot1.pivotMap;
+							var trace = {};
+							var facetField;
+							trace['showlegend'] = true;
+							trace['mode'] = 'lines+markers';
+							trace['name'] = pivot1Val;
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							data.push(trace);
 						});
-						trace['y'] = ys;
-						data.push(trace);
 					}
 				}
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);

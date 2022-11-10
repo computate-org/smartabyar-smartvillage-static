@@ -10,6 +10,98 @@ $(window).on('load', function() {
                     $target.hide();
             }
     });
+
+	$('.datetimepicker').datePicker({
+		weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+		, months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		, closeOnSelect: false
+		, readValue: function(element) {
+			var userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			if (!element.value) {
+				var d = new Date();
+				var s = moment(d).format('YYYY-MM-DD h:mm a'); 
+				return s; // initial time if empty
+			}
+			var timeZone = element.value.split('[').pop().split(']')[0];
+			var t1 = moment(element.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a');
+			var t2 = moment.tz(element.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a', timeZone);
+			var t3 = new Date(t1._d); t3.setTime(t1.toDate().getTime() + t2.toDate().getTime() - t1.toDate().getTime());
+			var m = moment(t3);
+			var s = m.format('YYYY-MM-DD h:mm a');
+			return s; // triggers default behavior
+		}
+		, renderValue: function(container, element, value) {
+			var userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			element.value = moment(value, 'YYYY-MM-DD h:mm a').format('MM/DD/YYYY h:mm A') + ' [' + userTimeZone + ']';
+			$(element).change();
+		}
+		, header:
+			'<div class="w3-small ">Press [ Tab ] to close</div>' +
+			'<div class="dp-title">' +
+				'<button class="dp-prev" type="button"{{disable-prev}}>{{prev}}</button>' +
+				'<button class="dp-next" type="button"{{disable-next}}>{{next}}</button>' +
+				'<div class="dp-label dp-label-month">{{month}}' +
+					'<select class="dp-select dp-select-month" tabindex="-1">' +
+						'{{months}}' +
+					'</select>' +
+				'</div>' +
+				'<div class="dp-label dp-label-year">{{year}}' +
+					'<select class="dp-select dp-select-year" tabindex="-1">' +
+						'{{years}}' +
+					'</select>' +
+				'</div>' +
+			'</div>'
+		, footer:
+			'<div class="dp-footer">' +
+				'<div class="dp-label">{{hour}}' +
+					'<select class="dp-select dp-select-hour" tabindex="-1">' +
+						'{{hours}}' +
+					'</select>' +
+				'</div>' +
+				'<div class="dp-label">{{minute}}' +
+					'<select class="dp-select dp-select-minute" tabindex="-1">' +
+						'{{minutes}}' +
+					'</select>' +
+				'</div>' +
+				'<div class="dp-label">{{second}}' +
+					'<select class="dp-select dp-select-second" tabindex="-1">' +
+						'{{seconds}}' +
+					'</select>' +
+				'</div>' +
+				'<div class="dp-label">{{am-pm}} [' + Intl.DateTimeFormat().resolvedOptions().timeZone + ']' +
+					'<select class="dp-select dp-select-am-pm" tabindex="-1">' +
+						'{{am-pms}}' +
+					'</select>' +
+				'</div>' +
+			'</div>'
+	});
+	$('.datepicker').datePicker({
+		weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+		, months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		, timeFormat: 'HH:MM AM'
+		, readValue: function(element) {
+			if (!element.value) {
+				var d = new Date();
+				var s = moment(d).format('YYYY-MM-DD'); 
+				return s; // initial time if empty
+			}
+			var result = moment(element.value, 'MM/DD/YYYY').format('YYYY-MM-DD');
+			return result; // triggers default behavior
+		}
+		, renderValue: function(container, element, value) {
+			element.value = moment(value, 'YYYY-MM-DD').format('MM/DD/YYYY');
+			$(element).change();
+		}
+	});
+	$('.timepicker').datePicker({
+		timeFormat: "HH:mm a"
+		, readValue: function(element) {
+			if (!element.value) {
+				return moment().format('h:mm a'); // initial time if empty
+			}
+			return element.value; // triggers default behavior
+		}
+	});
 });
 
 function paramChange(elem) {

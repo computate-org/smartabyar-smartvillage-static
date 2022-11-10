@@ -63,9 +63,9 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterFcdFilePath != null && filterFcdFilePath !== '')
 			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
 
-		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-		if(filterNetFilePath != null && filterNetFilePath !== '')
-			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+		if(filterStartDateTime != null && filterStartDateTime !== '')
+			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
 
 		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
 		if(filterStartSeconds != null && filterStartSeconds !== '')
@@ -134,11 +134,16 @@ function searchTrafficSimulationFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+		if(filterNetFilePath != null && filterNetFilePath !== '')
+			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 	}
 	return filters;
 }
 
 function searchTrafficSimulationVals(filters, success, error) {
+
 
 	$.ajax({
 		url: '/api/traffic-simulation?' + $.param(filters)
@@ -302,17 +307,17 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeFcdFilePath != null && removeFcdFilePath !== '')
 		vals['removeFcdFilePath'] = removeFcdFilePath;
 
-	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-	var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
-	var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
-	var addNetFilePath = $formValues.find('.addNetFilePath').val();
-	if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
-		vals['setNetFilePath'] = setNetFilePath;
-	if(addNetFilePath != null && addNetFilePath !== '')
-		vals['addNetFilePath'] = addNetFilePath;
-	var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
-	if(removeNetFilePath != null && removeNetFilePath !== '')
-		vals['removeNetFilePath'] = removeNetFilePath;
+	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+	var removeStartDateTime = $formValues.find('.removeStartDateTime').val() === 'true';
+	var setStartDateTime = removeStartDateTime ? null : $formValues.find('.setStartDateTime').val();
+	var addStartDateTime = $formValues.find('.addStartDateTime').val();
+	if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
+		vals['setStartDateTime'] = setStartDateTime;
+	if(addStartDateTime != null && addStartDateTime !== '')
+		vals['addStartDateTime'] = addStartDateTime;
+	var removeStartDateTime = $formValues.find('.removeStartDateTime').val();
+	if(removeStartDateTime != null && removeStartDateTime !== '')
+		vals['removeStartDateTime'] = removeStartDateTime;
 
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
@@ -398,6 +403,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+	var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
+	var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
+	var addNetFilePath = $formValues.find('.addNetFilePath').val();
+	if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
+		vals['setNetFilePath'] = setNetFilePath;
+	if(addNetFilePath != null && addNetFilePath !== '')
+		vals['addNetFilePath'] = addNetFilePath;
+	var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
+	if(removeNetFilePath != null && removeNetFilePath !== '')
+		vals['removeNetFilePath'] = removeNetFilePath;
+
 	patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -454,9 +471,9 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterFcdFilePath != null && filterFcdFilePath !== '')
 			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
 
-		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-		if(filterNetFilePath != null && filterNetFilePath !== '')
-			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+		if(filterStartDateTime != null && filterStartDateTime !== '')
+			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
 
 		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
 		if(filterStartSeconds != null && filterStartSeconds !== '')
@@ -525,6 +542,10 @@ function patchTrafficSimulationFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+		if(filterNetFilePath != null && filterNetFilePath !== '')
+			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 	}
 	return filters;
 }
@@ -601,9 +622,9 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueFcdFilePath != null && valueFcdFilePath !== '')
 		vals['fcdFilePath'] = valueFcdFilePath;
 
-	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-	if(valueNetFilePath != null && valueNetFilePath !== '')
-		vals['netFilePath'] = valueNetFilePath;
+	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+	if(valueStartDateTime != null && valueStartDateTime !== '')
+		vals['startDateTime'] = valueStartDateTime;
 
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	if(valueStartSeconds != null && valueStartSeconds !== '')
@@ -632,6 +653,10 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+	if(valueNetFilePath != null && valueNetFilePath !== '')
+		vals['netFilePath'] = valueNetFilePath;
 
 	$.ajax({
 		url: '/api/traffic-simulation'
@@ -843,17 +868,17 @@ async function websocketTrafficSimulationInner(apiRequest) {
 				});
 				addGlow($('.inputTrafficSimulation' + pk + 'FcdFilePath'));
 			}
-			var val = o['netFilePath'];
-			if(vars.includes('netFilePath')) {
-				$('.inputTrafficSimulation' + pk + 'NetFilePath').each(function() {
+			var val = o['startDateTime'];
+			if(vars.includes('startDateTime')) {
+				$('.inputTrafficSimulation' + pk + 'StartDateTime').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varTrafficSimulation' + pk + 'NetFilePath').each(function() {
+				$('.varTrafficSimulation' + pk + 'StartDateTime').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputTrafficSimulation' + pk + 'NetFilePath'));
+				addGlow($('.inputTrafficSimulation' + pk + 'StartDateTime'));
 			}
 			var val = o['startSeconds'];
 			if(vars.includes('startSeconds')) {
@@ -1059,6 +1084,18 @@ async function websocketTrafficSimulationInner(apiRequest) {
 				});
 				addGlow($('.inputTrafficSimulation' + pk + 'Id'));
 			}
+			var val = o['netFilePath'];
+			if(vars.includes('netFilePath')) {
+				$('.inputTrafficSimulation' + pk + 'NetFilePath').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficSimulation' + pk + 'NetFilePath').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficSimulation' + pk + 'NetFilePath'));
+			}
 		});
 	}
 }
@@ -1147,7 +1184,7 @@ function pageGraph(apiRequest) {
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
-					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap) {
+					if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap && Object.keys(pivot1Map[pivot1Vals[0]].pivotMap).length > 0) {
 						var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
 						var pivot2VarObj = Object.values(window.varsFq).find(o => o.varIndexed === pivot2VarIndexed);
 						var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
@@ -1161,7 +1198,7 @@ function pageGraph(apiRequest) {
 							var trace = {};
 							var facetField;
 							trace['showlegend'] = true;
-							trace['mode'] = 'markers';
+							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
 							trace['x'] = Object.keys(pivot1Counts).map(key => key);
 							if(pivot2Map) {
@@ -1179,10 +1216,8 @@ function pageGraph(apiRequest) {
 								trace['y'] = ys;
 								trace['x'] = xs;
 							} else {
-									var pivot1 = pivot1Map[pivot1Val];
-									var pivot1Counts = pivot1.ranges[rangeName].counts;
-									trace['x'] = Object.keys(pivot1Counts).map(key => key);
-									trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							}
 							data.push(trace);
 						});
@@ -1190,17 +1225,19 @@ function pageGraph(apiRequest) {
 						layout['yaxis'] = {
 							title: pivot1VarObj.displayName
 						}
-						var trace = {};
-						trace['showlegend'] = true;
-						trace['mode'] = 'lines+markers';
-						trace['name'] = 'TrafficSimulation';
-						var ys = [];
-						trace['x'] = Object.keys(pivot1Counts).map(key => key);
 						pivot1Vals.forEach((pivot1Val) => {
-							ys.push(parseFloat(pivot1Val));
+							var pivot1 = pivot1Map[pivot1Val];
+							var pivot1Counts = pivot1.ranges[rangeName].counts;
+							var pivot2Map = pivot1.pivotMap;
+							var trace = {};
+							var facetField;
+							trace['showlegend'] = true;
+							trace['mode'] = 'lines+markers';
+							trace['name'] = pivot1Val;
+								trace['x'] = Object.keys(pivot1Counts).map(key => key);
+								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							data.push(trace);
 						});
-						trace['y'] = ys;
-						data.push(trace);
 					}
 				}
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
