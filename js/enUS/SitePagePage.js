@@ -51,6 +51,10 @@ function searchSitePageFilters($formFilters) {
 		if(filterPageId != null && filterPageId !== '')
 			filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
 
+		var filterUrl = $formFilters.find('.valueUrl').val();
+		if(filterUrl != null && filterUrl !== '')
+			filters.push({ name: 'fq', value: 'url:' + filterUrl });
+
 		var filterUri = $formFilters.find('.valueUri').val();
 		if(filterUri != null && filterUri !== '')
 			filters.push({ name: 'fq', value: 'uri:' + filterUri });
@@ -223,6 +227,10 @@ async function postSitePage($formValues, success, error) {
 	if(valuePageId != null && valuePageId !== '')
 		vals['pageId'] = valuePageId;
 
+	var valueUrl = $formValues.find('.valueUrl').val();
+	if(valueUrl != null && valueUrl !== '')
+		vals['url'] = valueUrl;
+
 	var valueUri = $formValues.find('.valueUri').val();
 	if(valueUri != null && valueUri !== '')
 		vals['uri'] = valueUri;
@@ -374,6 +382,18 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
 	var removePageId = $formValues.find('.removePageId').val();
 	if(removePageId != null && removePageId !== '')
 		vals['removePageId'] = removePageId;
+
+	var valueUrl = $formValues.find('.valueUrl').val();
+	var removeUrl = $formValues.find('.removeUrl').val() === 'true';
+	var setUrl = removeUrl ? null : $formValues.find('.setUrl').val();
+	var addUrl = $formValues.find('.addUrl').val();
+	if(removeUrl || setUrl != null && setUrl !== '')
+		vals['setUrl'] = setUrl;
+	if(addUrl != null && addUrl !== '')
+		vals['addUrl'] = addUrl;
+	var removeUrl = $formValues.find('.removeUrl').val();
+	if(removeUrl != null && removeUrl !== '')
+		vals['removeUrl'] = removeUrl;
 
 	var valueUri = $formValues.find('.valueUri').val();
 	var removeUri = $formValues.find('.removeUri').val() === 'true';
@@ -550,6 +570,10 @@ function patchSitePageFilters($formFilters) {
 		var filterPageId = $formFilters.find('.valuePageId').val();
 		if(filterPageId != null && filterPageId !== '')
 			filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+
+		var filterUrl = $formFilters.find('.valueUrl').val();
+		if(filterUrl != null && filterUrl !== '')
+			filters.push({ name: 'fq', value: 'url:' + filterUrl });
 
 		var filterUri = $formFilters.find('.valueUri').val();
 		if(filterUri != null && filterUri !== '')
@@ -806,6 +830,18 @@ async function websocketSitePageInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageId'));
+			}
+			var val = o['url'];
+			if(vars.includes('url')) {
+				$('.inputSitePage' + pk + 'Url').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSitePage' + pk + 'Url').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSitePage' + pk + 'Url'));
 			}
 			var val = o['uri'];
 			if(vars.includes('uri')) {
