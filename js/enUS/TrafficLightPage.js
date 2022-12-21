@@ -81,13 +81,13 @@ function searchTrafficLightFilters($formFilters) {
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
-		if(filterTrafficLightId != null && filterTrafficLightId !== '')
-			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
-
 		var filterColor = $formFilters.find('.valueColor').val();
 		if(filterColor != null && filterColor !== '')
 			filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
+		if(filterTrafficLightId != null && filterTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
 
 		var filterTrafficLightType = $formFilters.find('.valueTrafficLightType').val();
 		if(filterTrafficLightType != null && filterTrafficLightType !== '')
@@ -368,18 +368,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	if(removeLocation != null && removeLocation !== '')
 		vals['removeLocation'] = removeLocation;
 
-	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
-	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val() === 'true';
-	var setTrafficLightId = removeTrafficLightId ? null : $formValues.find('.setTrafficLightId').val();
-	var addTrafficLightId = $formValues.find('.addTrafficLightId').val();
-	if(removeTrafficLightId || setTrafficLightId != null && setTrafficLightId !== '')
-		vals['setTrafficLightId'] = setTrafficLightId;
-	if(addTrafficLightId != null && addTrafficLightId !== '')
-		vals['addTrafficLightId'] = addTrafficLightId;
-	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val();
-	if(removeTrafficLightId != null && removeTrafficLightId !== '')
-		vals['removeTrafficLightId'] = removeTrafficLightId;
-
 	var valueColor = $formValues.find('.valueColor').val();
 	var removeColor = $formValues.find('.removeColor').val() === 'true';
 	var setColor = removeColor ? null : $formValues.find('.setColor').val();
@@ -391,6 +379,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	var removeColor = $formValues.find('.removeColor').val();
 	if(removeColor != null && removeColor !== '')
 		vals['removeColor'] = removeColor;
+
+	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
+	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val() === 'true';
+	var setTrafficLightId = removeTrafficLightId ? null : $formValues.find('.setTrafficLightId').val();
+	var addTrafficLightId = $formValues.find('.addTrafficLightId').val();
+	if(removeTrafficLightId || setTrafficLightId != null && setTrafficLightId !== '')
+		vals['setTrafficLightId'] = setTrafficLightId;
+	if(addTrafficLightId != null && addTrafficLightId !== '')
+		vals['addTrafficLightId'] = addTrafficLightId;
+	var removeTrafficLightId = $formValues.find('.removeTrafficLightId').val();
+	if(removeTrafficLightId != null && removeTrafficLightId !== '')
+		vals['removeTrafficLightId'] = removeTrafficLightId;
 
 	var valueTrafficLightType = $formValues.find('.valueTrafficLightType').val();
 	var removeTrafficLightType = $formValues.find('.removeTrafficLightType').val() === 'true';
@@ -586,13 +586,13 @@ function patchTrafficLightFilters($formFilters) {
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
-		if(filterTrafficLightId != null && filterTrafficLightId !== '')
-			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
-
 		var filterColor = $formFilters.find('.valueColor').val();
 		if(filterColor != null && filterColor !== '')
 			filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+		var filterTrafficLightId = $formFilters.find('.valueTrafficLightId').val();
+		if(filterTrafficLightId != null && filterTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'trafficLightId:' + filterTrafficLightId });
 
 		var filterTrafficLightType = $formFilters.find('.valueTrafficLightType').val();
 		if(filterTrafficLightType != null && filterTrafficLightType !== '')
@@ -753,13 +753,13 @@ async function postTrafficLight($formValues, success, error) {
 	if(valueLocation != null && valueLocation !== '')
 		vals['location'] = valueLocation;
 
-	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
-	if(valueTrafficLightId != null && valueTrafficLightId !== '')
-		vals['trafficLightId'] = valueTrafficLightId;
-
 	var valueColor = $formValues.find('.valueColor').val();
 	if(valueColor != null && valueColor !== '')
 		vals['color'] = valueColor;
+
+	var valueTrafficLightId = $formValues.find('.valueTrafficLightId').val();
+	if(valueTrafficLightId != null && valueTrafficLightId !== '')
+		vals['trafficLightId'] = valueTrafficLightId;
 
 	var valueTrafficLightType = $formValues.find('.valueTrafficLightType').val();
 	if(valueTrafficLightType != null && valueTrafficLightType !== '')
@@ -1047,18 +1047,6 @@ async function websocketTrafficLightInner(apiRequest) {
 				});
 				addGlow($('.inputTrafficLight' + pk + 'Location'));
 			}
-			var val = o['trafficLightId'];
-			if(vars.includes('trafficLightId')) {
-				$('.inputTrafficLight' + pk + 'TrafficLightId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficLight' + pk + 'TrafficLightId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputTrafficLight' + pk + 'TrafficLightId'));
-			}
 			var val = o['color'];
 			if(vars.includes('color')) {
 				$('.inputTrafficLight' + pk + 'Color').each(function() {
@@ -1070,6 +1058,18 @@ async function websocketTrafficLightInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputTrafficLight' + pk + 'Color'));
+			}
+			var val = o['trafficLightId'];
+			if(vars.includes('trafficLightId')) {
+				$('.inputTrafficLight' + pk + 'TrafficLightId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varTrafficLight' + pk + 'TrafficLightId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputTrafficLight' + pk + 'TrafficLightId'));
 			}
 			var val = o['trafficLightType'];
 			if(vars.includes('trafficLightType')) {
