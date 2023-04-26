@@ -259,7 +259,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Created'));
 			}
@@ -271,7 +271,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Modified'));
 			}
@@ -283,7 +283,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ObjectId'));
 			}
@@ -295,7 +295,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Archived'));
 			}
@@ -307,7 +307,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Deleted'));
 			}
@@ -319,7 +319,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'SimulationName'));
 			}
@@ -331,7 +331,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'SimulationKey'));
 			}
@@ -343,7 +343,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'SumocfgPath'));
 			}
@@ -355,7 +355,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Time'));
 			}
@@ -367,7 +367,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'DateTime'));
 			}
@@ -379,7 +379,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Step'));
 			}
@@ -391,7 +391,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Location'));
 			}
@@ -403,7 +403,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Color'));
 			}
@@ -415,7 +415,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'InheritPk'));
 			}
@@ -427,7 +427,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ClassCanonicalName'));
 			}
@@ -439,7 +439,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ClassSimpleName'));
 			}
@@ -451,7 +451,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ClassCanonicalNames'));
 			}
@@ -463,7 +463,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'SessionId'));
 			}
@@ -475,7 +475,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'UserKey'));
 			}
@@ -487,7 +487,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Saves'));
 			}
@@ -499,7 +499,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ObjectTitle'));
 			}
@@ -511,7 +511,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ObjectSuggest'));
 			}
@@ -523,7 +523,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'ObjectText'));
 			}
@@ -535,7 +535,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'PageUrlId'));
 			}
@@ -547,7 +547,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'PageUrlPk'));
 			}
@@ -559,7 +559,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'PageUrlApi'));
 			}
@@ -571,7 +571,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Id'));
 			}
@@ -583,7 +583,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'TimeStepId'));
 			}
@@ -595,7 +595,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'X').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'X'));
 			}
@@ -607,7 +607,7 @@ async function websocketMapResultInner(apiRequest) {
 				});
 				$('.varMapResult' + pk + 'Y').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputMapResult' + pk + 'Y'));
 			}
@@ -749,8 +749,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

@@ -66,7 +66,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Created'));
 			}
@@ -78,7 +78,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Modified'));
 			}
@@ -90,7 +90,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ObjectId'));
 			}
@@ -102,7 +102,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Archived'));
 			}
@@ -114,7 +114,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Deleted'));
 			}
@@ -126,7 +126,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'InheritPk'));
 			}
@@ -138,7 +138,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ClassCanonicalName'));
 			}
@@ -150,7 +150,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ClassSimpleName'));
 			}
@@ -162,7 +162,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ClassCanonicalNames'));
 			}
@@ -174,7 +174,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'SessionId'));
 			}
@@ -186,7 +186,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'UserKey'));
 			}
@@ -198,7 +198,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Saves'));
 			}
@@ -210,7 +210,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ObjectTitle'));
 			}
@@ -222,7 +222,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ObjectSuggest'));
 			}
@@ -234,7 +234,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'ObjectText'));
 			}
@@ -246,7 +246,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'PageUrlId'));
 			}
@@ -258,7 +258,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'PageUrlPk'));
 			}
@@ -270,7 +270,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'PageUrlApi'));
 			}
@@ -282,7 +282,7 @@ async function websocketBaseResultInner(apiRequest) {
 				});
 				$('.varBaseResult' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseResult' + pk + 'Id'));
 			}
@@ -424,8 +424,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

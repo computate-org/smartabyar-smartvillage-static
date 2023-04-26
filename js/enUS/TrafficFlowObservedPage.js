@@ -1517,7 +1517,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Created'));
 			}
@@ -1529,7 +1529,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Modified'));
 			}
@@ -1541,7 +1541,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ObjectId'));
 			}
@@ -1553,7 +1553,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Archived'));
 			}
@@ -1565,7 +1565,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Deleted'));
 			}
@@ -1577,7 +1577,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'SimulationName'));
 			}
@@ -1589,7 +1589,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'SimulationKey'));
 			}
@@ -1597,11 +1597,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 			if(vars.includes('address')) {
 				$('.inputTrafficFlowObserved' + pk + 'Address').each(function() {
 					if(val !== $(this).val())
-						$(this).val(val);
+						$(this).val(JSON.stringify(val));
 				});
 				$('.varTrafficFlowObserved' + pk + 'Address').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(JSON.stringify(val));
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Address'));
 			}
@@ -1613,7 +1613,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'SumocfgPath'));
 			}
@@ -1625,7 +1625,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AlternateName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AlternateName'));
 			}
@@ -1637,7 +1637,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AreaServed').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AreaServed'));
 			}
@@ -1649,7 +1649,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Time'));
 			}
@@ -1661,7 +1661,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateTime'));
 			}
@@ -1673,7 +1673,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Step'));
 			}
@@ -1685,7 +1685,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AverageGapDistance').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AverageGapDistance'));
 			}
@@ -1697,7 +1697,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Location'));
 			}
@@ -1709,7 +1709,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AverageHeadwayTime').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AverageHeadwayTime'));
 			}
@@ -1721,7 +1721,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Color'));
 			}
@@ -1733,7 +1733,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AverageVehicleLength').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AverageVehicleLength'));
 			}
@@ -1745,7 +1745,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'AverageVehicleSpeed').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'AverageVehicleSpeed'));
 			}
@@ -1757,7 +1757,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Congested').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Congested'));
 			}
@@ -1769,7 +1769,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DataProvider').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DataProvider'));
 			}
@@ -1781,7 +1781,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateCreated').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateCreated'));
 			}
@@ -1793,7 +1793,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateModified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateModified'));
 			}
@@ -1805,7 +1805,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateObserved').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateObserved'));
 			}
@@ -1817,7 +1817,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateObservedFrom').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateObservedFrom'));
 			}
@@ -1829,7 +1829,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'DateObservedTo').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'DateObservedTo'));
 			}
@@ -1841,7 +1841,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Description').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Description'));
 			}
@@ -1853,7 +1853,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Intensity').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Intensity'));
 			}
@@ -1865,7 +1865,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'LaneDirection').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'LaneDirection'));
 			}
@@ -1877,7 +1877,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'LaneId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'LaneId'));
 			}
@@ -1889,7 +1889,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Name').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Name'));
 			}
@@ -1901,7 +1901,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Occupancy').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Occupancy'));
 			}
@@ -1909,11 +1909,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 			if(vars.includes('owner')) {
 				$('.inputTrafficFlowObserved' + pk + 'Owner').each(function() {
 					if(val !== $(this).val())
-						$(this).val(val);
+						$(this).val(JSON.stringify(val));
 				});
 				$('.varTrafficFlowObserved' + pk + 'Owner').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(JSON.stringify(val));
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Owner'));
 			}
@@ -1925,7 +1925,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'RefRoadSegment').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'RefRoadSegment'));
 			}
@@ -1937,7 +1937,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ReversedLane').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ReversedLane'));
 			}
@@ -1945,11 +1945,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 			if(vars.includes('seeAlso')) {
 				$('.inputTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
 					if(val !== $(this).val())
-						$(this).val(val);
+						$(this).val(JSON.stringify(val));
 				});
 				$('.varTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(JSON.stringify(val));
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'SeeAlso'));
 			}
@@ -1961,7 +1961,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Source').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Source'));
 			}
@@ -1973,7 +1973,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Type').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Type'));
 			}
@@ -1985,7 +1985,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'VehicleSubType').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'VehicleSubType'));
 			}
@@ -1997,7 +1997,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'VehicleType').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'VehicleType'));
 			}
@@ -2009,7 +2009,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'TimeStepId'));
 			}
@@ -2021,7 +2021,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'X').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'X'));
 			}
@@ -2033,7 +2033,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Y').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Y'));
 			}
@@ -2045,7 +2045,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'InheritPk'));
 			}
@@ -2057,7 +2057,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ClassCanonicalName'));
 			}
@@ -2069,7 +2069,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ClassSimpleName'));
 			}
@@ -2081,7 +2081,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ClassCanonicalNames'));
 			}
@@ -2093,7 +2093,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'SessionId'));
 			}
@@ -2105,7 +2105,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'UserKey'));
 			}
@@ -2117,7 +2117,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Saves'));
 			}
@@ -2129,7 +2129,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ObjectTitle'));
 			}
@@ -2141,7 +2141,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ObjectSuggest'));
 			}
@@ -2153,7 +2153,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'ObjectText'));
 			}
@@ -2165,7 +2165,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'PageUrlId'));
 			}
@@ -2177,7 +2177,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'PageUrlPk'));
 			}
@@ -2189,7 +2189,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'PageUrlApi'));
 			}
@@ -2201,7 +2201,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				});
 				$('.varTrafficFlowObserved' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputTrafficFlowObserved' + pk + 'Id'));
 			}
@@ -2343,8 +2343,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

@@ -66,7 +66,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Pk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Pk'));
 			}
@@ -78,7 +78,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Created'));
 			}
@@ -90,7 +90,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Modified'));
 			}
@@ -102,7 +102,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectId'));
 			}
@@ -114,7 +114,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Archived'));
 			}
@@ -126,7 +126,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Deleted'));
 			}
@@ -138,7 +138,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'InheritPk'));
 			}
@@ -150,7 +150,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ClassCanonicalName'));
 			}
@@ -162,7 +162,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ClassSimpleName'));
 			}
@@ -174,7 +174,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ClassCanonicalNames'));
 			}
@@ -186,7 +186,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'SessionId'));
 			}
@@ -198,7 +198,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'UserKey'));
 			}
@@ -210,7 +210,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Saves'));
 			}
@@ -222,7 +222,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectTitle'));
 			}
@@ -234,7 +234,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectSuggest'));
 			}
@@ -246,7 +246,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'ObjectText'));
 			}
@@ -258,7 +258,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'PageUrlId'));
 			}
@@ -270,7 +270,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'PageUrlPk'));
 			}
@@ -282,7 +282,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'PageUrlApi'));
 			}
@@ -294,7 +294,7 @@ async function websocketBaseModelInner(apiRequest) {
 				});
 				$('.varBaseModel' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBaseModel' + pk + 'Id'));
 			}
@@ -436,8 +436,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

@@ -839,7 +839,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Created'));
 			}
@@ -851,7 +851,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Modified'));
 			}
@@ -863,7 +863,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ObjectId'));
 			}
@@ -875,7 +875,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Archived'));
 			}
@@ -887,7 +887,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Deleted'));
 			}
@@ -899,7 +899,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'SimulationName'));
 			}
@@ -911,7 +911,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'SimulationKey'));
 			}
@@ -923,7 +923,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'SumocfgPath'));
 			}
@@ -935,7 +935,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Time'));
 			}
@@ -947,7 +947,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'DateTime'));
 			}
@@ -959,7 +959,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Step'));
 			}
@@ -971,7 +971,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Location'));
 			}
@@ -983,7 +983,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Color'));
 			}
@@ -995,7 +995,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'BicycleId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'BicycleId'));
 			}
@@ -1007,7 +1007,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'TimeStepId'));
 			}
@@ -1019,7 +1019,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'X').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'X'));
 			}
@@ -1031,7 +1031,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Y').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Y'));
 			}
@@ -1043,7 +1043,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'InheritPk'));
 			}
@@ -1055,7 +1055,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ClassCanonicalName'));
 			}
@@ -1067,7 +1067,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ClassSimpleName'));
 			}
@@ -1079,7 +1079,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ClassCanonicalNames'));
 			}
@@ -1091,7 +1091,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'SessionId'));
 			}
@@ -1103,7 +1103,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'UserKey'));
 			}
@@ -1115,7 +1115,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Saves'));
 			}
@@ -1127,7 +1127,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ObjectTitle'));
 			}
@@ -1139,7 +1139,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ObjectSuggest'));
 			}
@@ -1151,7 +1151,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'ObjectText'));
 			}
@@ -1163,7 +1163,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'PageUrlId'));
 			}
@@ -1175,7 +1175,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'PageUrlPk'));
 			}
@@ -1187,7 +1187,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'PageUrlApi'));
 			}
@@ -1199,7 +1199,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				});
 				$('.varBicycleStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputBicycleStep' + pk + 'Id'));
 			}
@@ -1341,8 +1341,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

@@ -792,7 +792,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Pk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Pk'));
 			}
@@ -804,7 +804,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Created'));
 			}
@@ -816,7 +816,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Modified'));
 			}
@@ -828,7 +828,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ObjectId'));
 			}
@@ -840,7 +840,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Archived'));
 			}
@@ -852,7 +852,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Deleted'));
 			}
@@ -864,7 +864,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'SeeArchived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'SeeArchived'));
 			}
@@ -876,7 +876,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'SeeDeleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'SeeDeleted'));
 			}
@@ -888,7 +888,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
 			}
@@ -900,7 +900,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ClassCanonicalName'));
 			}
@@ -912,7 +912,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ClassSimpleName'));
 			}
@@ -924,7 +924,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ClassCanonicalNames'));
 			}
@@ -936,7 +936,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'SessionId'));
 			}
@@ -948,7 +948,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserKey'));
 			}
@@ -960,7 +960,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Saves'));
 			}
@@ -972,7 +972,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ObjectTitle'));
 			}
@@ -984,7 +984,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ObjectSuggest'));
 			}
@@ -996,7 +996,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'ObjectText'));
 			}
@@ -1008,7 +1008,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'PageUrlId'));
 			}
@@ -1020,7 +1020,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'PageUrlPk'));
 			}
@@ -1032,7 +1032,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'PageUrlApi'));
 			}
@@ -1044,7 +1044,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Id'));
 			}
@@ -1056,7 +1056,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserKeys').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserKeys'));
 			}
@@ -1068,7 +1068,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserId'));
 			}
@@ -1080,7 +1080,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserName'));
 			}
@@ -1092,7 +1092,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserEmail').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserEmail'));
 			}
@@ -1104,7 +1104,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserFirstName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserFirstName'));
 			}
@@ -1116,7 +1116,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserLastName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserLastName'));
 			}
@@ -1128,7 +1128,7 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				$('.varSiteUser' + pk + 'UserFullName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserFullName'));
 			}
@@ -1270,8 +1270,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

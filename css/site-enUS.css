@@ -21,6 +21,7 @@ dd { display: inline; margin: 0; padding: 0; font-style: italic; }
 i { font-weight: normal; }
 body {  }
 .padding-right-quarter-em { padding-right: 0.25em; }
+.w3-input { padding: 2px; }
 ul.w3-bar { padding-left: 0; }
 .display-none { display: none; }
 .min-width-300px { min-width: 300px; }

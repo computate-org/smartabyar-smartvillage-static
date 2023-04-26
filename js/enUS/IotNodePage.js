@@ -1557,7 +1557,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Created'));
 			}
@@ -1569,7 +1569,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Modified'));
 			}
@@ -1581,7 +1581,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ObjectId'));
 			}
@@ -1593,7 +1593,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Archived'));
 			}
@@ -1605,7 +1605,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Deleted'));
 			}
@@ -1617,7 +1617,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'NodeName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'NodeName'));
 			}
@@ -1629,7 +1629,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'NodeType').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'NodeType'));
 			}
@@ -1641,7 +1641,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'NodeId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'NodeId'));
 			}
@@ -1653,7 +1653,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Location'));
 			}
@@ -1665,7 +1665,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_moisture').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_moisture'));
 			}
@@ -1677,7 +1677,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_moisture0').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_moisture0'));
 			}
@@ -1689,7 +1689,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_moisture1').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_moisture1'));
 			}
@@ -1701,7 +1701,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_temperature').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_temperature'));
 			}
@@ -1713,7 +1713,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_temperature0').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_temperature0'));
 			}
@@ -1725,7 +1725,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_temperatureAverage').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_temperatureAverage'));
 			}
@@ -1737,7 +1737,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_badConditionsCounter').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_badConditionsCounter'));
 			}
@@ -1749,7 +1749,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_door').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_door'));
 			}
@@ -1761,7 +1761,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_alarmDoor').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_alarmDoor'));
 			}
@@ -1773,7 +1773,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_flood').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_flood'));
 			}
@@ -1785,7 +1785,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_alarmFlood').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_alarmFlood'));
 			}
@@ -1797,7 +1797,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_lux2').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_lux2'));
 			}
@@ -1809,7 +1809,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_illuminance').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_illuminance'));
 			}
@@ -1821,7 +1821,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_resistance0').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_resistance0'));
 			}
@@ -1833,7 +1833,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_resistance1').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_resistance1'));
 			}
@@ -1845,7 +1845,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_frequency').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_frequency'));
 			}
@@ -1857,7 +1857,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_devEui').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_devEui'));
 			}
@@ -1869,7 +1869,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_bandwidth').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_bandwidth'));
 			}
@@ -1881,7 +1881,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_dataRate').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_dataRate'));
 			}
@@ -1893,7 +1893,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_frameCount').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_frameCount'));
 			}
@@ -1905,7 +1905,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_maxPayload').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_maxPayload'));
 			}
@@ -1917,7 +1917,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_bitsPerSecond').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_bitsPerSecond'));
 			}
@@ -1929,7 +1929,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_batteryVoltage').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_batteryVoltage'));
 			}
@@ -1941,7 +1941,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_spreadingFactor').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_spreadingFactor'));
 			}
@@ -1953,7 +1953,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_dataRateAdaptive').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_dataRateAdaptive'));
 			}
@@ -1965,7 +1965,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_swversion').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_swversion'));
 			}
@@ -1977,7 +1977,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_batteryLevel').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_batteryLevel'));
 			}
@@ -1989,7 +1989,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_startUpCount').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_startUpCount'));
 			}
@@ -2001,7 +2001,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_watchdogCount').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_watchdogCount'));
 			}
@@ -2013,7 +2013,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_historySequence').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_historySequence'));
 			}
@@ -2025,7 +2025,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_versionFirmware').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_versionFirmware'));
 			}
@@ -2037,7 +2037,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_stackTxFailRebootCount').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_stackTxFailRebootCount'));
 			}
@@ -2049,7 +2049,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_historySequencePrevious').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_historySequencePrevious'));
 			}
@@ -2061,7 +2061,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_snr').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_snr'));
 			}
@@ -2073,7 +2073,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Json_rssi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Json_rssi'));
 			}
@@ -2085,7 +2085,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'InheritPk'));
 			}
@@ -2097,7 +2097,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ClassCanonicalName'));
 			}
@@ -2109,7 +2109,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ClassSimpleName'));
 			}
@@ -2121,7 +2121,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ClassCanonicalNames'));
 			}
@@ -2133,7 +2133,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'SessionId'));
 			}
@@ -2145,7 +2145,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'UserKey'));
 			}
@@ -2157,7 +2157,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Saves'));
 			}
@@ -2169,7 +2169,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ObjectTitle'));
 			}
@@ -2181,7 +2181,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ObjectSuggest'));
 			}
@@ -2193,7 +2193,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'ObjectText'));
 			}
@@ -2205,7 +2205,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'PageUrlId'));
 			}
@@ -2217,7 +2217,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'PageUrlPk'));
 			}
@@ -2229,7 +2229,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'PageUrlApi'));
 			}
@@ -2241,7 +2241,7 @@ async function websocketIotNodeInner(apiRequest) {
 				});
 				$('.varIotNode' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputIotNode' + pk + 'Id'));
 			}
@@ -2249,11 +2249,11 @@ async function websocketIotNodeInner(apiRequest) {
 			if(vars.includes('json')) {
 				$('.inputIotNode' + pk + 'Json').each(function() {
 					if(val !== $(this).val())
-						$(this).val(val);
+						$(this).val(JSON.stringify(val));
 				});
 				$('.varIotNode' + pk + 'Json').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(JSON.stringify(val));
 				});
 				addGlow($('.inputIotNode' + pk + 'Json'));
 			}
@@ -2395,8 +2395,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

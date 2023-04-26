@@ -959,7 +959,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Created'));
 			}
@@ -971,7 +971,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Modified'));
 			}
@@ -983,7 +983,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ObjectId'));
 			}
@@ -995,7 +995,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Archived'));
 			}
@@ -1007,7 +1007,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Deleted'));
 			}
@@ -1019,7 +1019,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'SimulationName'));
 			}
@@ -1031,7 +1031,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'SimulationKey'));
 			}
@@ -1043,7 +1043,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'SumocfgPath'));
 			}
@@ -1055,7 +1055,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Time'));
 			}
@@ -1067,7 +1067,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'DateTime'));
 			}
@@ -1079,7 +1079,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Step'));
 			}
@@ -1091,7 +1091,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Location'));
 			}
@@ -1103,7 +1103,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Color'));
 			}
@@ -1115,7 +1115,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'PersonId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'PersonId'));
 			}
@@ -1127,7 +1127,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'PersonType').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'PersonType'));
 			}
@@ -1139,7 +1139,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Angle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Angle'));
 			}
@@ -1151,7 +1151,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Speed').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Speed'));
 			}
@@ -1163,7 +1163,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Pos').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Pos'));
 			}
@@ -1175,7 +1175,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Slope').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Slope'));
 			}
@@ -1187,7 +1187,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'TimeStepId'));
 			}
@@ -1199,7 +1199,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'X').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'X'));
 			}
@@ -1211,7 +1211,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Y').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Y'));
 			}
@@ -1223,7 +1223,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'InheritPk'));
 			}
@@ -1235,7 +1235,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ClassCanonicalName'));
 			}
@@ -1247,7 +1247,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ClassSimpleName'));
 			}
@@ -1259,7 +1259,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ClassCanonicalNames'));
 			}
@@ -1271,7 +1271,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'SessionId'));
 			}
@@ -1283,7 +1283,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'UserKey'));
 			}
@@ -1295,7 +1295,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Saves'));
 			}
@@ -1307,7 +1307,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ObjectTitle'));
 			}
@@ -1319,7 +1319,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ObjectSuggest'));
 			}
@@ -1331,7 +1331,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'ObjectText'));
 			}
@@ -1343,7 +1343,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'PageUrlId'));
 			}
@@ -1355,7 +1355,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'PageUrlPk'));
 			}
@@ -1367,7 +1367,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'PageUrlApi'));
 			}
@@ -1379,7 +1379,7 @@ async function websocketPersonStepInner(apiRequest) {
 				});
 				$('.varPersonStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputPersonStep' + pk + 'Id'));
 			}
@@ -1521,8 +1521,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

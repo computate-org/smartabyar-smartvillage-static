@@ -767,7 +767,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Created'));
 			}
@@ -779,7 +779,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Modified'));
 			}
@@ -791,7 +791,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ObjectId'));
 			}
@@ -803,7 +803,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Archived'));
 			}
@@ -815,7 +815,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Deleted'));
 			}
@@ -827,7 +827,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'PageId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageId'));
 			}
@@ -839,7 +839,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Url').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Url'));
 			}
@@ -851,7 +851,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Uri').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Uri'));
 			}
@@ -863,7 +863,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Author').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Author'));
 			}
@@ -875,7 +875,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'PageImageUri').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageImageUri'));
 			}
@@ -887,7 +887,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'InheritPk'));
 			}
@@ -899,7 +899,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ClassCanonicalName'));
 			}
@@ -911,7 +911,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ClassSimpleName'));
 			}
@@ -923,7 +923,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ClassCanonicalNames'));
 			}
@@ -935,7 +935,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'SessionId'));
 			}
@@ -947,7 +947,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'UserKey'));
 			}
@@ -959,7 +959,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Saves'));
 			}
@@ -971,7 +971,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ObjectTitle'));
 			}
@@ -983,7 +983,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ObjectSuggest'));
 			}
@@ -995,7 +995,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'ObjectText'));
 			}
@@ -1007,7 +1007,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageUrlId'));
 			}
@@ -1019,7 +1019,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageUrlPk'));
 			}
@@ -1031,7 +1031,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'PageUrlApi'));
 			}
@@ -1043,7 +1043,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'Id'));
 			}
@@ -1055,7 +1055,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'CourseNum').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'CourseNum'));
 			}
@@ -1067,7 +1067,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'LessonNum').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'LessonNum'));
 			}
@@ -1079,7 +1079,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'H1').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'H1'));
 			}
@@ -1091,7 +1091,7 @@ async function websocketSitePageInner(apiRequest) {
 				});
 				$('.varSitePage' + pk + 'H2').each(function() {
 					if(val !== $(this).text())
-						$(this).text(val);
+						$(this).val(val);
 				});
 				addGlow($('.inputSitePage' + pk + 'H2'));
 			}
@@ -1233,8 +1233,12 @@ function pageGraph(apiRequest) {
 							trace['showlegend'] = true;
 							trace['mode'] = 'lines+markers';
 							trace['name'] = pivot1Val;
+							if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+								trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+							} else {
 								trace['x'] = Object.keys(pivot1Counts).map(key => key);
-								trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+							}
+							trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
 							data.push(trace);
 						});
 					}

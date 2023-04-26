@@ -149,18 +149,45 @@ function facetFieldChange(elem) {
 	searchPage();
 }
 
-function facetRangeChange(elem, classSimpleName) {
+function facetRangeGapChange(elem, classSimpleName) {
 	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
 	if(facetRangeVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 		$("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).text("facet.range.gap=" + encodeURIComponent($("#pageFacetRangeGap-" + classSimpleName).val()));
-		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("facet.range.start=" + encodeURIComponent($("#pageFacetRangeStart-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
-		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("facet.range.end=" + encodeURIComponent($("#pageFacetRangeEnd-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
-		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("facet.range={!tag=r1}" + encodeURIComponent(facetRangeVal));
 	} else {
 		$("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).text("");
+	}
+	searchPage();
+}
+
+function facetRangeStartChange(elem, classSimpleName) {
+	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
+	if(facetRangeVal) {
+		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("facet.range.start=" + encodeURIComponent($("#pageFacetRangeStart-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
+	} else {
 		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("");
+	}
+	searchPage();
+}
+
+function facetRangeEndChange(elem, classSimpleName) {
+	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
+	if(facetRangeVal) {
+		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("facet.range.end=" + encodeURIComponent($("#pageFacetRangeEnd-" + classSimpleName).val() + ":00.000[" + timeZone + "]"));
+	} else {
 		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("");
+	}
+	searchPage();
+}
+
+function facetRangeChange(elem, classSimpleName) {
+	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
+	if(facetRangeVal) {
+		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("facet.range={!tag=r1}" + encodeURIComponent(facetRangeVal));
+	} else {
 		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("");
 	}
 	searchPage();
