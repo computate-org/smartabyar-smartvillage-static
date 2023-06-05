@@ -544,6 +544,18 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
 	patchPersonStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -849,6 +861,10 @@ async function postPersonStep($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
+
 	$.ajax({
 		url: '/api/person-step'
 		, dataType: 'json'
@@ -956,432 +972,468 @@ async function websocketPersonStepInner(apiRequest) {
 				$('.inputPersonStep' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputPersonStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
 				$('.inputPersonStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputPersonStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputPersonStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Deleted'));
 			}
 			var val = o['simulationName'];
 			if(vars.includes('simulationName')) {
 				$('.inputPersonStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'SimulationName'));
 			}
 			var val = o['simulationKey'];
 			if(vars.includes('simulationKey')) {
 				$('.inputPersonStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'SimulationKey'));
 			}
 			var val = o['sumocfgPath'];
 			if(vars.includes('sumocfgPath')) {
 				$('.inputPersonStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'SumocfgPath'));
 			}
 			var val = o['time'];
 			if(vars.includes('time')) {
 				$('.inputPersonStep' + pk + 'Time').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Time'));
 			}
 			var val = o['dateTime'];
 			if(vars.includes('dateTime')) {
 				$('.inputPersonStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'DateTime'));
 			}
 			var val = o['step'];
 			if(vars.includes('step')) {
 				$('.inputPersonStep' + pk + 'Step').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Step'));
 			}
 			var val = o['location'];
 			if(vars.includes('location')) {
 				$('.inputPersonStep' + pk + 'Location').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Location'));
 			}
 			var val = o['color'];
 			if(vars.includes('color')) {
 				$('.inputPersonStep' + pk + 'Color').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Color'));
 			}
 			var val = o['personId'];
 			if(vars.includes('personId')) {
 				$('.inputPersonStep' + pk + 'PersonId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'PersonId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'PersonId'));
 			}
 			var val = o['personType'];
 			if(vars.includes('personType')) {
 				$('.inputPersonStep' + pk + 'PersonType').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'PersonType').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'PersonType'));
 			}
 			var val = o['angle'];
 			if(vars.includes('angle')) {
 				$('.inputPersonStep' + pk + 'Angle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Angle').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Angle'));
 			}
 			var val = o['speed'];
 			if(vars.includes('speed')) {
 				$('.inputPersonStep' + pk + 'Speed').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Speed').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Speed'));
 			}
 			var val = o['pos'];
 			if(vars.includes('pos')) {
 				$('.inputPersonStep' + pk + 'Pos').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Pos').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Pos'));
 			}
 			var val = o['slope'];
 			if(vars.includes('slope')) {
 				$('.inputPersonStep' + pk + 'Slope').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Slope').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Slope'));
 			}
 			var val = o['timeStepId'];
 			if(vars.includes('timeStepId')) {
 				$('.inputPersonStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'TimeStepId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'TimeStepId'));
 			}
 			var val = o['x'];
 			if(vars.includes('x')) {
 				$('.inputPersonStep' + pk + 'X').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'X').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'X'));
 			}
 			var val = o['y'];
 			if(vars.includes('y')) {
 				$('.inputPersonStep' + pk + 'Y').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Y').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Y'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputPersonStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
 				$('.inputPersonStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
 				$('.inputPersonStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
 				$('.inputPersonStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputPersonStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputPersonStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
 				$('.inputPersonStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
 				$('.inputPersonStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
 				$('.inputPersonStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
 				$('.inputPersonStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
 				$('.inputPersonStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
 				$('.inputPersonStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
 				$('.inputPersonStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
 				$('.inputPersonStep' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varPersonStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputPersonStep' + pk + 'Id'));
 			}
 		});
 	}

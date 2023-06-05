@@ -109,10 +109,6 @@ function searchTrafficLightStepFilters($formFilters) {
 		if(filterPhase != null && filterPhase !== '')
 			filters.push({ name: 'fq', value: 'phase:' + filterPhase });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -168,6 +164,10 @@ function searchTrafficLightStepFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
@@ -460,42 +460,6 @@ async function patchTrafficLightStep($formFilters, $formValues, id, success, err
 	if(removePhase != null && removePhase !== '')
 		vals['removePhase'] = removePhase;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	var removeX = $formValues.find('.removeX').val() === 'true';
-	var setX = removeX ? null : $formValues.find('.setX').val();
-	var addX = $formValues.find('.addX').val();
-	if(removeX || setX != null && setX !== '')
-		vals['setX'] = setX;
-	if(addX != null && addX !== '')
-		vals['addX'] = addX;
-	var removeX = $formValues.find('.removeX').val();
-	if(removeX != null && removeX !== '')
-		vals['removeX'] = removeX;
-
-	var valueY = $formValues.find('.valueY').val();
-	var removeY = $formValues.find('.removeY').val() === 'true';
-	var setY = removeY ? null : $formValues.find('.setY').val();
-	var addY = $formValues.find('.addY').val();
-	if(removeY || setY != null && setY !== '')
-		vals['setY'] = setY;
-	if(addY != null && addY !== '')
-		vals['addY'] = addY;
-	var removeY = $formValues.find('.removeY').val();
-	if(removeY != null && removeY !== '')
-		vals['removeY'] = removeY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -543,6 +507,54 @@ async function patchTrafficLightStep($formFilters, $formValues, id, success, err
 	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	var removeId = $formValues.find('.removeId').val() === 'true';
+	var setId = removeId ? null : $formValues.find('.setId').val();
+	var addId = $formValues.find('.addId').val();
+	if(removeId || setId != null && setId !== '')
+		vals['setId'] = setId;
+	if(addId != null && addId !== '')
+		vals['addId'] = addId;
+	var removeId = $formValues.find('.removeId').val();
+	if(removeId != null && removeId !== '')
+		vals['removeId'] = removeId;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
+
+	var valueX = $formValues.find('.valueX').val();
+	var removeX = $formValues.find('.removeX').val() === 'true';
+	var setX = removeX ? null : $formValues.find('.setX').val();
+	var addX = $formValues.find('.addX').val();
+	if(removeX || setX != null && setX !== '')
+		vals['setX'] = setX;
+	if(addX != null && addX !== '')
+		vals['addX'] = addX;
+	var removeX = $formValues.find('.removeX').val();
+	if(removeX != null && removeX !== '')
+		vals['removeX'] = removeX;
+
+	var valueY = $formValues.find('.valueY').val();
+	var removeY = $formValues.find('.removeY').val() === 'true';
+	var setY = removeY ? null : $formValues.find('.setY').val();
+	var addY = $formValues.find('.addY').val();
+	if(removeY || setY != null && setY !== '')
+		vals['setY'] = setY;
+	if(addY != null && addY !== '')
+		vals['addY'] = addY;
+	var removeY = $formValues.find('.removeY').val();
+	if(removeY != null && removeY !== '')
+		vals['removeY'] = removeY;
 
 	patchTrafficLightStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -646,10 +658,6 @@ function patchTrafficLightStepFilters($formFilters) {
 		if(filterPhase != null && filterPhase !== '')
 			filters.push({ name: 'fq', value: 'phase:' + filterPhase });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -705,6 +713,10 @@ function patchTrafficLightStepFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
@@ -821,18 +833,6 @@ async function postTrafficLightStep($formValues, success, error) {
 	if(valuePhase != null && valuePhase !== '')
 		vals['phase'] = valuePhase;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	if(valueX != null && valueX !== '')
-		vals['x'] = valueX;
-
-	var valueY = $formValues.find('.valueY').val();
-	if(valueY != null && valueY !== '')
-		vals['y'] = valueY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -848,6 +848,22 @@ async function postTrafficLightStep($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueId = $formValues.find('.valueId').val();
+	if(valueId != null && valueId !== '')
+		vals['id'] = valueId;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
+
+	var valueX = $formValues.find('.valueX').val();
+	if(valueX != null && valueX !== '')
+		vals['x'] = valueX;
+
+	var valueY = $formValues.find('.valueY').val();
+	if(valueY != null && valueY !== '')
+		vals['y'] = valueY;
 
 	$.ajax({
 		url: '/api/traffic-light-step'
@@ -956,432 +972,468 @@ async function websocketTrafficLightStepInner(apiRequest) {
 				$('.inputTrafficLightStep' + pk + 'Created').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Created').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Created'));
 			}
 			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputTrafficLightStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Modified').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Modified'));
 			}
 			var val = o['objectId'];
 			if(vars.includes('objectId')) {
 				$('.inputTrafficLightStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ObjectId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputTrafficLightStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Archived').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Archived'));
 			}
 			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputTrafficLightStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Deleted').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Deleted'));
 			}
 			var val = o['simulationName'];
 			if(vars.includes('simulationName')) {
 				$('.inputTrafficLightStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'SimulationName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'SimulationName'));
 			}
 			var val = o['simulationKey'];
 			if(vars.includes('simulationKey')) {
 				$('.inputTrafficLightStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'SimulationKey').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'SimulationKey'));
 			}
 			var val = o['sumocfgPath'];
 			if(vars.includes('sumocfgPath')) {
 				$('.inputTrafficLightStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'SumocfgPath').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'SumocfgPath'));
 			}
 			var val = o['time'];
 			if(vars.includes('time')) {
 				$('.inputTrafficLightStep' + pk + 'Time').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Time').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Time'));
 			}
 			var val = o['dateTime'];
 			if(vars.includes('dateTime')) {
 				$('.inputTrafficLightStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'DateTime').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'DateTime'));
 			}
 			var val = o['step'];
 			if(vars.includes('step')) {
 				$('.inputTrafficLightStep' + pk + 'Step').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Step').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Step'));
 			}
 			var val = o['location'];
 			if(vars.includes('location')) {
 				$('.inputTrafficLightStep' + pk + 'Location').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Location').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Location'));
 			}
 			var val = o['color'];
 			if(vars.includes('color')) {
 				$('.inputTrafficLightStep' + pk + 'Color').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Color').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Color'));
 			}
 			var val = o['trafficLightId'];
 			if(vars.includes('trafficLightId')) {
 				$('.inputTrafficLightStep' + pk + 'TrafficLightId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'TrafficLightId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'TrafficLightId'));
 			}
 			var val = o['trafficLightType'];
 			if(vars.includes('trafficLightType')) {
 				$('.inputTrafficLightStep' + pk + 'TrafficLightType').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'TrafficLightType').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'TrafficLightType'));
 			}
 			var val = o['angle'];
 			if(vars.includes('angle')) {
 				$('.inputTrafficLightStep' + pk + 'Angle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Angle').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Angle'));
 			}
 			var val = o['state'];
 			if(vars.includes('state')) {
 				$('.inputTrafficLightStep' + pk + 'State').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'State').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'State'));
 			}
 			var val = o['programId'];
 			if(vars.includes('programId')) {
 				$('.inputTrafficLightStep' + pk + 'ProgramId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ProgramId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ProgramId'));
 			}
 			var val = o['phase'];
 			if(vars.includes('phase')) {
 				$('.inputTrafficLightStep' + pk + 'Phase').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Phase').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Phase'));
-			}
-			var val = o['timeStepId'];
-			if(vars.includes('timeStepId')) {
-				$('.inputTrafficLightStep' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficLightStep' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).text())
-						$(this).val(val);
-				});
-				addGlow($('.inputTrafficLightStep' + pk + 'TimeStepId'));
-			}
-			var val = o['x'];
-			if(vars.includes('x')) {
-				$('.inputTrafficLightStep' + pk + 'X').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficLightStep' + pk + 'X').each(function() {
-					if(val !== $(this).text())
-						$(this).val(val);
-				});
-				addGlow($('.inputTrafficLightStep' + pk + 'X'));
-			}
-			var val = o['y'];
-			if(vars.includes('y')) {
-				$('.inputTrafficLightStep' + pk + 'Y').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varTrafficLightStep' + pk + 'Y').each(function() {
-					if(val !== $(this).text())
-						$(this).val(val);
-				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Y'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputTrafficLightStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'InheritPk'));
 			}
 			var val = o['classCanonicalName'];
 			if(vars.includes('classCanonicalName')) {
 				$('.inputTrafficLightStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ClassCanonicalName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ClassCanonicalName'));
 			}
 			var val = o['classSimpleName'];
 			if(vars.includes('classSimpleName')) {
 				$('.inputTrafficLightStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ClassSimpleName').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ClassSimpleName'));
 			}
 			var val = o['classCanonicalNames'];
 			if(vars.includes('classCanonicalNames')) {
 				$('.inputTrafficLightStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ClassCanonicalNames').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ClassCanonicalNames'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputTrafficLightStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'SessionId'));
 			}
 			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputTrafficLightStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'UserKey').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'UserKey'));
 			}
 			var val = o['saves'];
 			if(vars.includes('saves')) {
 				$('.inputTrafficLightStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Saves').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Saves'));
 			}
 			var val = o['objectTitle'];
 			if(vars.includes('objectTitle')) {
 				$('.inputTrafficLightStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ObjectTitle').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ObjectTitle'));
 			}
 			var val = o['objectSuggest'];
 			if(vars.includes('objectSuggest')) {
 				$('.inputTrafficLightStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ObjectSuggest').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ObjectSuggest'));
 			}
 			var val = o['objectText'];
 			if(vars.includes('objectText')) {
 				$('.inputTrafficLightStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'ObjectText').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'ObjectText'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
 				$('.inputTrafficLightStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
 				$('.inputTrafficLightStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
 				$('.inputTrafficLightStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'PageUrlApi'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
 				$('.inputTrafficLightStep' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
+						addGlow($(this));
 				});
 				$('.varTrafficLightStep' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
-						$(this).val(val);
+						$(this).text(val);
+						addGlow($(this));
 				});
-				addGlow($('.inputTrafficLightStep' + pk + 'Id'));
+			}
+			var val = o['timeStepId'];
+			if(vars.includes('timeStepId')) {
+				$('.inputTrafficLightStep' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varTrafficLightStep' + pk + 'TimeStepId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['x'];
+			if(vars.includes('x')) {
+				$('.inputTrafficLightStep' + pk + 'X').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varTrafficLightStep' + pk + 'X').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['y'];
+			if(vars.includes('y')) {
+				$('.inputTrafficLightStep' + pk + 'Y').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varTrafficLightStep' + pk + 'Y').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
 			}
 		});
 	}
