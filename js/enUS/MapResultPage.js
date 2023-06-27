@@ -85,6 +85,30 @@ function searchMapResultFilters($formFilters) {
 		if(filterColor != null && filterColor !== '')
 			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -116,30 +140,6 @@ function searchMapResultFilters($formFilters) {
 		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 		if(filterObjectTitle != null && filterObjectTitle !== '')
 			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-		if(filterObjectSuggest != null && filterObjectSuggest !== '')
-			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-		var filterObjectText = $formFilters.find('.valueObjectText').val();
-		if(filterObjectText != null && filterObjectText !== '')
-			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-		if(filterPageUrlId != null && filterPageUrlId !== '')
-			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-		if(filterPageUrlPk != null && filterPageUrlPk !== '')
-			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
-		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-		if(filterPageUrlApi != null && filterPageUrlApi !== '')
-			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-		var filterId = $formFilters.find('.valueId').val();
-		if(filterId != null && filterId !== '')
-			filters.push({ name: 'fq', value: 'id:' + filterId });
 
 		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
 		if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -420,6 +420,84 @@ async function websocketMapResultInner(apiRequest) {
 						addGlow($(this));
 				});
 			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputMapResult' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputMapResult' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputMapResult' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputMapResult' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputMapResult' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputMapResult' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+						addGlow($(this));
+				});
+				$('.varMapResult' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+						addGlow($(this));
+				});
+			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputMapResult' + pk + 'InheritPk').each(function() {
@@ -519,84 +597,6 @@ async function websocketMapResultInner(apiRequest) {
 						addGlow($(this));
 				});
 				$('.varMapResult' + pk + 'ObjectTitle').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectSuggest'];
-			if(vars.includes('objectSuggest')) {
-				$('.inputMapResult' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectText'];
-			if(vars.includes('objectText')) {
-				$('.inputMapResult' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlId'];
-			if(vars.includes('pageUrlId')) {
-				$('.inputMapResult' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlPk'];
-			if(vars.includes('pageUrlPk')) {
-				$('.inputMapResult' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlApi'];
-			if(vars.includes('pageUrlApi')) {
-				$('.inputMapResult' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['id'];
-			if(vars.includes('id')) {
-				$('.inputMapResult' + pk + 'Id').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varMapResult' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 						addGlow($(this));

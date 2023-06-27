@@ -175,6 +175,22 @@ function searchSimulationReportFilters($formFilters) {
 		if(filterUpdatedPerformanceWaitAllVehiclePedestrianSec != null && filterUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 			filters.push({ name: 'fq', value: 'updatedPerformanceWaitAllVehiclePedestrianSec:' + filterUpdatedPerformanceWaitAllVehiclePedestrianSec });
 
+		var filterAvgQueueLengthWestEastVehicle = $formFilters.find('.valueAvgQueueLengthWestEastVehicle').val();
+		if(filterAvgQueueLengthWestEastVehicle != null && filterAvgQueueLengthWestEastVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastVehicle:' + filterAvgQueueLengthWestEastVehicle });
+
+		var filterAvgQueueLengthSouthNorthVehicle = $formFilters.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+		if(filterAvgQueueLengthSouthNorthVehicle != null && filterAvgQueueLengthSouthNorthVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthSouthNorthVehicle:' + filterAvgQueueLengthSouthNorthVehicle });
+
+		var filterAvgQueueLengthNorthSouthPedestrian = $formFilters.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+		if(filterAvgQueueLengthNorthSouthPedestrian != null && filterAvgQueueLengthNorthSouthPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthNorthSouthPedestrian:' + filterAvgQueueLengthNorthSouthPedestrian });
+
+		var filterAvgQueueLengthWestEastPedestrian = $formFilters.find('.valueAvgQueueLengthWestEastPedestrian').val();
+		if(filterAvgQueueLengthWestEastPedestrian != null && filterAvgQueueLengthWestEastPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastPedestrian:' + filterAvgQueueLengthWestEastPedestrian });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -815,6 +831,54 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	if(removeUpdatedPerformanceWaitAllVehiclePedestrianSec != null && removeUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 		vals['removeUpdatedPerformanceWaitAllVehiclePedestrianSec'] = removeUpdatedPerformanceWaitAllVehiclePedestrianSec;
 
+	var valueAvgQueueLengthWestEastVehicle = $formValues.find('.valueAvgQueueLengthWestEastVehicle').val();
+	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val() === 'true';
+	var setAvgQueueLengthWestEastVehicle = removeAvgQueueLengthWestEastVehicle ? null : $formValues.find('.setAvgQueueLengthWestEastVehicle').val();
+	var addAvgQueueLengthWestEastVehicle = $formValues.find('.addAvgQueueLengthWestEastVehicle').val();
+	if(removeAvgQueueLengthWestEastVehicle || setAvgQueueLengthWestEastVehicle != null && setAvgQueueLengthWestEastVehicle !== '')
+		vals['setAvgQueueLengthWestEastVehicle'] = setAvgQueueLengthWestEastVehicle;
+	if(addAvgQueueLengthWestEastVehicle != null && addAvgQueueLengthWestEastVehicle !== '')
+		vals['addAvgQueueLengthWestEastVehicle'] = addAvgQueueLengthWestEastVehicle;
+	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val();
+	if(removeAvgQueueLengthWestEastVehicle != null && removeAvgQueueLengthWestEastVehicle !== '')
+		vals['removeAvgQueueLengthWestEastVehicle'] = removeAvgQueueLengthWestEastVehicle;
+
+	var valueAvgQueueLengthSouthNorthVehicle = $formValues.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val() === 'true';
+	var setAvgQueueLengthSouthNorthVehicle = removeAvgQueueLengthSouthNorthVehicle ? null : $formValues.find('.setAvgQueueLengthSouthNorthVehicle').val();
+	var addAvgQueueLengthSouthNorthVehicle = $formValues.find('.addAvgQueueLengthSouthNorthVehicle').val();
+	if(removeAvgQueueLengthSouthNorthVehicle || setAvgQueueLengthSouthNorthVehicle != null && setAvgQueueLengthSouthNorthVehicle !== '')
+		vals['setAvgQueueLengthSouthNorthVehicle'] = setAvgQueueLengthSouthNorthVehicle;
+	if(addAvgQueueLengthSouthNorthVehicle != null && addAvgQueueLengthSouthNorthVehicle !== '')
+		vals['addAvgQueueLengthSouthNorthVehicle'] = addAvgQueueLengthSouthNorthVehicle;
+	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val();
+	if(removeAvgQueueLengthSouthNorthVehicle != null && removeAvgQueueLengthSouthNorthVehicle !== '')
+		vals['removeAvgQueueLengthSouthNorthVehicle'] = removeAvgQueueLengthSouthNorthVehicle;
+
+	var valueAvgQueueLengthNorthSouthPedestrian = $formValues.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val() === 'true';
+	var setAvgQueueLengthNorthSouthPedestrian = removeAvgQueueLengthNorthSouthPedestrian ? null : $formValues.find('.setAvgQueueLengthNorthSouthPedestrian').val();
+	var addAvgQueueLengthNorthSouthPedestrian = $formValues.find('.addAvgQueueLengthNorthSouthPedestrian').val();
+	if(removeAvgQueueLengthNorthSouthPedestrian || setAvgQueueLengthNorthSouthPedestrian != null && setAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['setAvgQueueLengthNorthSouthPedestrian'] = setAvgQueueLengthNorthSouthPedestrian;
+	if(addAvgQueueLengthNorthSouthPedestrian != null && addAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['addAvgQueueLengthNorthSouthPedestrian'] = addAvgQueueLengthNorthSouthPedestrian;
+	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val();
+	if(removeAvgQueueLengthNorthSouthPedestrian != null && removeAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['removeAvgQueueLengthNorthSouthPedestrian'] = removeAvgQueueLengthNorthSouthPedestrian;
+
+	var valueAvgQueueLengthWestEastPedestrian = $formValues.find('.valueAvgQueueLengthWestEastPedestrian').val();
+	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val() === 'true';
+	var setAvgQueueLengthWestEastPedestrian = removeAvgQueueLengthWestEastPedestrian ? null : $formValues.find('.setAvgQueueLengthWestEastPedestrian').val();
+	var addAvgQueueLengthWestEastPedestrian = $formValues.find('.addAvgQueueLengthWestEastPedestrian').val();
+	if(removeAvgQueueLengthWestEastPedestrian || setAvgQueueLengthWestEastPedestrian != null && setAvgQueueLengthWestEastPedestrian !== '')
+		vals['setAvgQueueLengthWestEastPedestrian'] = setAvgQueueLengthWestEastPedestrian;
+	if(addAvgQueueLengthWestEastPedestrian != null && addAvgQueueLengthWestEastPedestrian !== '')
+		vals['addAvgQueueLengthWestEastPedestrian'] = addAvgQueueLengthWestEastPedestrian;
+	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val();
+	if(removeAvgQueueLengthWestEastPedestrian != null && removeAvgQueueLengthWestEastPedestrian !== '')
+		vals['removeAvgQueueLengthWestEastPedestrian'] = removeAvgQueueLengthWestEastPedestrian;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -1078,6 +1142,22 @@ function patchSimulationReportFilters($formFilters) {
 		var filterUpdatedPerformanceWaitAllVehiclePedestrianSec = $formFilters.find('.valueUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 		if(filterUpdatedPerformanceWaitAllVehiclePedestrianSec != null && filterUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 			filters.push({ name: 'fq', value: 'updatedPerformanceWaitAllVehiclePedestrianSec:' + filterUpdatedPerformanceWaitAllVehiclePedestrianSec });
+
+		var filterAvgQueueLengthWestEastVehicle = $formFilters.find('.valueAvgQueueLengthWestEastVehicle').val();
+		if(filterAvgQueueLengthWestEastVehicle != null && filterAvgQueueLengthWestEastVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastVehicle:' + filterAvgQueueLengthWestEastVehicle });
+
+		var filterAvgQueueLengthSouthNorthVehicle = $formFilters.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+		if(filterAvgQueueLengthSouthNorthVehicle != null && filterAvgQueueLengthSouthNorthVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthSouthNorthVehicle:' + filterAvgQueueLengthSouthNorthVehicle });
+
+		var filterAvgQueueLengthNorthSouthPedestrian = $formFilters.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+		if(filterAvgQueueLengthNorthSouthPedestrian != null && filterAvgQueueLengthNorthSouthPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthNorthSouthPedestrian:' + filterAvgQueueLengthNorthSouthPedestrian });
+
+		var filterAvgQueueLengthWestEastPedestrian = $formFilters.find('.valueAvgQueueLengthWestEastPedestrian').val();
+		if(filterAvgQueueLengthWestEastPedestrian != null && filterAvgQueueLengthWestEastPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastPedestrian:' + filterAvgQueueLengthWestEastPedestrian });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -1345,6 +1425,22 @@ async function postSimulationReport($formValues, success, error) {
 	var valueUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.valueUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	if(valueUpdatedPerformanceWaitAllVehiclePedestrianSec != null && valueUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 		vals['updatedPerformanceWaitAllVehiclePedestrianSec'] = valueUpdatedPerformanceWaitAllVehiclePedestrianSec;
+
+	var valueAvgQueueLengthWestEastVehicle = $formValues.find('.valueAvgQueueLengthWestEastVehicle').val();
+	if(valueAvgQueueLengthWestEastVehicle != null && valueAvgQueueLengthWestEastVehicle !== '')
+		vals['avgQueueLengthWestEastVehicle'] = valueAvgQueueLengthWestEastVehicle;
+
+	var valueAvgQueueLengthSouthNorthVehicle = $formValues.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+	if(valueAvgQueueLengthSouthNorthVehicle != null && valueAvgQueueLengthSouthNorthVehicle !== '')
+		vals['avgQueueLengthSouthNorthVehicle'] = valueAvgQueueLengthSouthNorthVehicle;
+
+	var valueAvgQueueLengthNorthSouthPedestrian = $formValues.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+	if(valueAvgQueueLengthNorthSouthPedestrian != null && valueAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['avgQueueLengthNorthSouthPedestrian'] = valueAvgQueueLengthNorthSouthPedestrian;
+
+	var valueAvgQueueLengthWestEastPedestrian = $formValues.find('.valueAvgQueueLengthWestEastPedestrian').val();
+	if(valueAvgQueueLengthWestEastPedestrian != null && valueAvgQueueLengthWestEastPedestrian !== '')
+		vals['avgQueueLengthWestEastPedestrian'] = valueAvgQueueLengthWestEastPedestrian;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -1862,6 +1958,54 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	if(removeUpdatedPerformanceWaitAllVehiclePedestrianSec != null && removeUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 		vals['removeUpdatedPerformanceWaitAllVehiclePedestrianSec'] = removeUpdatedPerformanceWaitAllVehiclePedestrianSec;
 
+	var valueAvgQueueLengthWestEastVehicle = $formValues.find('.valueAvgQueueLengthWestEastVehicle').val();
+	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val() === 'true';
+	var setAvgQueueLengthWestEastVehicle = removeAvgQueueLengthWestEastVehicle ? null : $formValues.find('.setAvgQueueLengthWestEastVehicle').val();
+	var addAvgQueueLengthWestEastVehicle = $formValues.find('.addAvgQueueLengthWestEastVehicle').val();
+	if(removeAvgQueueLengthWestEastVehicle || setAvgQueueLengthWestEastVehicle != null && setAvgQueueLengthWestEastVehicle !== '')
+		vals['setAvgQueueLengthWestEastVehicle'] = setAvgQueueLengthWestEastVehicle;
+	if(addAvgQueueLengthWestEastVehicle != null && addAvgQueueLengthWestEastVehicle !== '')
+		vals['addAvgQueueLengthWestEastVehicle'] = addAvgQueueLengthWestEastVehicle;
+	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val();
+	if(removeAvgQueueLengthWestEastVehicle != null && removeAvgQueueLengthWestEastVehicle !== '')
+		vals['removeAvgQueueLengthWestEastVehicle'] = removeAvgQueueLengthWestEastVehicle;
+
+	var valueAvgQueueLengthSouthNorthVehicle = $formValues.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val() === 'true';
+	var setAvgQueueLengthSouthNorthVehicle = removeAvgQueueLengthSouthNorthVehicle ? null : $formValues.find('.setAvgQueueLengthSouthNorthVehicle').val();
+	var addAvgQueueLengthSouthNorthVehicle = $formValues.find('.addAvgQueueLengthSouthNorthVehicle').val();
+	if(removeAvgQueueLengthSouthNorthVehicle || setAvgQueueLengthSouthNorthVehicle != null && setAvgQueueLengthSouthNorthVehicle !== '')
+		vals['setAvgQueueLengthSouthNorthVehicle'] = setAvgQueueLengthSouthNorthVehicle;
+	if(addAvgQueueLengthSouthNorthVehicle != null && addAvgQueueLengthSouthNorthVehicle !== '')
+		vals['addAvgQueueLengthSouthNorthVehicle'] = addAvgQueueLengthSouthNorthVehicle;
+	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val();
+	if(removeAvgQueueLengthSouthNorthVehicle != null && removeAvgQueueLengthSouthNorthVehicle !== '')
+		vals['removeAvgQueueLengthSouthNorthVehicle'] = removeAvgQueueLengthSouthNorthVehicle;
+
+	var valueAvgQueueLengthNorthSouthPedestrian = $formValues.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val() === 'true';
+	var setAvgQueueLengthNorthSouthPedestrian = removeAvgQueueLengthNorthSouthPedestrian ? null : $formValues.find('.setAvgQueueLengthNorthSouthPedestrian').val();
+	var addAvgQueueLengthNorthSouthPedestrian = $formValues.find('.addAvgQueueLengthNorthSouthPedestrian').val();
+	if(removeAvgQueueLengthNorthSouthPedestrian || setAvgQueueLengthNorthSouthPedestrian != null && setAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['setAvgQueueLengthNorthSouthPedestrian'] = setAvgQueueLengthNorthSouthPedestrian;
+	if(addAvgQueueLengthNorthSouthPedestrian != null && addAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['addAvgQueueLengthNorthSouthPedestrian'] = addAvgQueueLengthNorthSouthPedestrian;
+	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val();
+	if(removeAvgQueueLengthNorthSouthPedestrian != null && removeAvgQueueLengthNorthSouthPedestrian !== '')
+		vals['removeAvgQueueLengthNorthSouthPedestrian'] = removeAvgQueueLengthNorthSouthPedestrian;
+
+	var valueAvgQueueLengthWestEastPedestrian = $formValues.find('.valueAvgQueueLengthWestEastPedestrian').val();
+	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val() === 'true';
+	var setAvgQueueLengthWestEastPedestrian = removeAvgQueueLengthWestEastPedestrian ? null : $formValues.find('.setAvgQueueLengthWestEastPedestrian').val();
+	var addAvgQueueLengthWestEastPedestrian = $formValues.find('.addAvgQueueLengthWestEastPedestrian').val();
+	if(removeAvgQueueLengthWestEastPedestrian || setAvgQueueLengthWestEastPedestrian != null && setAvgQueueLengthWestEastPedestrian !== '')
+		vals['setAvgQueueLengthWestEastPedestrian'] = setAvgQueueLengthWestEastPedestrian;
+	if(addAvgQueueLengthWestEastPedestrian != null && addAvgQueueLengthWestEastPedestrian !== '')
+		vals['addAvgQueueLengthWestEastPedestrian'] = addAvgQueueLengthWestEastPedestrian;
+	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val();
+	if(removeAvgQueueLengthWestEastPedestrian != null && removeAvgQueueLengthWestEastPedestrian !== '')
+		vals['removeAvgQueueLengthWestEastPedestrian'] = removeAvgQueueLengthWestEastPedestrian;
+
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -2125,6 +2269,22 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
 		var filterUpdatedPerformanceWaitAllVehiclePedestrianSec = $formFilters.find('.valueUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 		if(filterUpdatedPerformanceWaitAllVehiclePedestrianSec != null && filterUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 			filters.push({ name: 'fq', value: 'updatedPerformanceWaitAllVehiclePedestrianSec:' + filterUpdatedPerformanceWaitAllVehiclePedestrianSec });
+
+		var filterAvgQueueLengthWestEastVehicle = $formFilters.find('.valueAvgQueueLengthWestEastVehicle').val();
+		if(filterAvgQueueLengthWestEastVehicle != null && filterAvgQueueLengthWestEastVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastVehicle:' + filterAvgQueueLengthWestEastVehicle });
+
+		var filterAvgQueueLengthSouthNorthVehicle = $formFilters.find('.valueAvgQueueLengthSouthNorthVehicle').val();
+		if(filterAvgQueueLengthSouthNorthVehicle != null && filterAvgQueueLengthSouthNorthVehicle !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthSouthNorthVehicle:' + filterAvgQueueLengthSouthNorthVehicle });
+
+		var filterAvgQueueLengthNorthSouthPedestrian = $formFilters.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
+		if(filterAvgQueueLengthNorthSouthPedestrian != null && filterAvgQueueLengthNorthSouthPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthNorthSouthPedestrian:' + filterAvgQueueLengthNorthSouthPedestrian });
+
+		var filterAvgQueueLengthWestEastPedestrian = $formFilters.find('.valueAvgQueueLengthWestEastPedestrian').val();
+		if(filterAvgQueueLengthWestEastPedestrian != null && filterAvgQueueLengthWestEastPedestrian !== '')
+			filters.push({ name: 'fq', value: 'avgQueueLengthWestEastPedestrian:' + filterAvgQueueLengthWestEastPedestrian });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -2776,6 +2936,58 @@ async function websocketSimulationReportInner(apiRequest) {
 						addGlow($(this));
 				});
 				$('.varSimulationReport' + pk + 'UpdatedPerformanceWaitAllVehiclePedestrianSec').each(function() {
+					if(val !== $(this).text())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+			}
+			var val = o['avgQueueLengthWestEastVehicle'];
+			if(vars.includes('avgQueueLengthWestEastVehicle')) {
+				$('.inputSimulationReport' + pk + 'AvgQueueLengthWestEastVehicle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+				$('.varSimulationReport' + pk + 'AvgQueueLengthWestEastVehicle').each(function() {
+					if(val !== $(this).text())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+			}
+			var val = o['avgQueueLengthSouthNorthVehicle'];
+			if(vars.includes('avgQueueLengthSouthNorthVehicle')) {
+				$('.inputSimulationReport' + pk + 'AvgQueueLengthSouthNorthVehicle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+				$('.varSimulationReport' + pk + 'AvgQueueLengthSouthNorthVehicle').each(function() {
+					if(val !== $(this).text())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+			}
+			var val = o['avgQueueLengthNorthSouthPedestrian'];
+			if(vars.includes('avgQueueLengthNorthSouthPedestrian')) {
+				$('.inputSimulationReport' + pk + 'AvgQueueLengthNorthSouthPedestrian').each(function() {
+					if(val !== $(this).val())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+				$('.varSimulationReport' + pk + 'AvgQueueLengthNorthSouthPedestrian').each(function() {
+					if(val !== $(this).text())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+			}
+			var val = o['avgQueueLengthWestEastPedestrian'];
+			if(vars.includes('avgQueueLengthWestEastPedestrian')) {
+				$('.inputSimulationReport' + pk + 'AvgQueueLengthWestEastPedestrian').each(function() {
+					if(val !== $(this).val())
+						$(this).val(JSON.stringify(val));
+						addGlow($(this));
+				});
+				$('.varSimulationReport' + pk + 'AvgQueueLengthWestEastPedestrian').each(function() {
 					if(val !== $(this).text())
 						$(this).val(JSON.stringify(val));
 						addGlow($(this));
