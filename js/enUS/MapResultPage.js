@@ -645,7 +645,7 @@ async function websocketMapResultInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphMapResult(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -725,7 +725,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'MapResult';
+					layout['title'] = 'map results';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

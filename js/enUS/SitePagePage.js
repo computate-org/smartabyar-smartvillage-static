@@ -1143,7 +1143,7 @@ async function websocketSitePageInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphSitePage(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -1223,7 +1223,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'SitePage';
+					layout['title'] = 'articles';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

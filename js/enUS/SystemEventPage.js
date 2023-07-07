@@ -979,7 +979,7 @@ async function websocketSystemEventInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphSystemEvent(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -1059,7 +1059,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'SystemEvent';
+					layout['title'] = 'system events';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

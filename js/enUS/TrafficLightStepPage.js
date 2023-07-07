@@ -1439,7 +1439,7 @@ async function websocketTrafficLightStepInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphTrafficLightStep(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -1519,7 +1519,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'TrafficLightStep';
+					layout['title'] = 'traffic light steps';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

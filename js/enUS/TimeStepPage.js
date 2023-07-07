@@ -959,7 +959,7 @@ async function websocketTimeStepInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphTimeStep(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -1039,7 +1039,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'TimeStep';
+					layout['title'] = 'time steps';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

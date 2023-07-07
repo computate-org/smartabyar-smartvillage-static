@@ -2336,7 +2336,7 @@ async function websocketIotNodeInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphIotNode(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -2416,7 +2416,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'IotNode';
+					layout['title'] = 'IOT nodes';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}

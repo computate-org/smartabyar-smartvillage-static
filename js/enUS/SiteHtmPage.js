@@ -1401,7 +1401,7 @@ async function websocketSiteHtmInner(apiRequest) {
 	}
 }
 
-function pageGraph(apiRequest) {
+function pageGraphSiteHtm(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
 	var json = JSON.parse(r);
@@ -1481,7 +1481,7 @@ function pageGraph(apiRequest) {
 					trace['marker'] = { color: colors, size: 10 };
 					data.push(trace);
 				} else if(range) {
-					layout['title'] = 'SiteHtm';
+					layout['title'] = 'HTMLs';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
 					}
