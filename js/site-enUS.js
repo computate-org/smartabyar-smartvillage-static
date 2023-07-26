@@ -104,40 +104,40 @@ $(window).on('load', function() {
 	});
 });
 
-function paramChange(elem) {
+function paramChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	if($elem.val())
 		$elem.next().text($elem.attr('data-var') + "=" + encodeURIComponent($elem.val()));
 	else
 		$elem.next().text("");
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function qChange(elem) {
+function qChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	if($elem.val())
 		$elem.next().text("q=" + $elem.attr('data-var') + ":" + encodeURIComponent($elem.val()));
 	else
 		$elem.next().text("");
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function fqChange(elem) {
+function fqChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	if($elem.val())
 		$("#pageSearchVal-" + $(elem).attr("id")).text("fq=" + $elem.attr('data-var') + ":" + encodeURIComponent($elem.val()));
 	else
 		$("#pageSearchVal-" + $(elem).attr("id")).text("");
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function fqReplace(elem) {
+function fqReplace(classSimpleName, elem) {
 	var $fq = $('#fq' + elem.getAttribute('data-class') + '_' + elem.getAttribute('data-var'));
 	$fq.val(elem.getAttribute('data-val'));
-	fqChange($fq[0]);
+	fqChange(classSimpleName, $fq[0]);
 }
 
-function facetFieldChange(elem) {
+function facetFieldChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	if($elem.attr("data-clear") === "false") {
 		$("#pageSearchVal-" + $(elem).attr("id")).text("facet.field=" + $elem.attr('data-var'));
@@ -146,10 +146,10 @@ function facetFieldChange(elem) {
 		$("#pageSearchVal-" + $(elem).attr("id")).text("");
 		$elem.attr("data-clear", "false");
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetRangeGapChange(elem, classSimpleName) {
+function facetRangeChange(classSimpleName, elem) {
 	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
 	if(facetRangeVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -157,10 +157,10 @@ function facetRangeGapChange(elem, classSimpleName) {
 	} else {
 		$("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).text("");
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetRangeStartChange(elem, classSimpleName) {
+function facetRangeStartChange(classSimpleName, elem, classSimpleName) {
 	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
 	if(facetRangeVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -168,10 +168,10 @@ function facetRangeStartChange(elem, classSimpleName) {
 	} else {
 		$("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).text("");
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetRangeEndChange(elem, classSimpleName) {
+function facetRangeEndChange(classSimpleName, elem, classSimpleName) {
 	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
 	if(facetRangeVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -179,10 +179,10 @@ function facetRangeEndChange(elem, classSimpleName) {
 	} else {
 		$("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).text("");
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetRangeChange(elem, classSimpleName) {
+function facetRangeChange(classSimpleName, elem, classSimpleName) {
 	facetRangeVal = $("input[name='pageFacetRange']:checked").val();
 	if(facetRangeVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -190,10 +190,10 @@ function facetRangeChange(elem, classSimpleName) {
 	} else {
 		$("#pageSearchVal-pageFacetRangeVar-" + classSimpleName).text("");
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetPivotChange(elem, classSimpleName) {
+function facetPivotChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	var $listHidden = $("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
 	if($elem.is(":checked")) {
@@ -223,10 +223,10 @@ function facetPivotChange(elem, classSimpleName) {
 				)
 				;
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetFieldListChange(elem, classSimpleName) {
+function facetFieldListChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	var $listHidden = $("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
 	if($elem.is(":checked")) {
@@ -250,10 +250,10 @@ function facetFieldListChange(elem, classSimpleName) {
 				)
 				;
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function facetStatsChange(elem, classSimpleName) {
+function facetStatsChange(classSimpleName, elem) {
 	var $elem = $(elem);
 	var $list = $("#pageSearchVal-Stats" + classSimpleName);
 	if($elem.is(":checked")) {
@@ -266,10 +266,14 @@ function facetStatsChange(elem, classSimpleName) {
 	} else {
 		$("#pageSearchVal-Stats" + classSimpleName + "_" + $elem.val()).remove();
 	}
-	searchPage();
+	searchPage(classSimpleName);
 }
 
-function searchPage() {
+function searchPage(classSimpleName, success, error) {
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
 	var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
 	var uri = location.pathname + queryParams;
 	$.get(uri, {}, function(data) {
@@ -283,7 +287,8 @@ function searchPage() {
 			$statsField.replaceWith($response.find("." + $statsField.attr("id")));
 		});
 		$(".pageContent").replaceWith($response.find(".pageContent"));
-		pageGraph();
+		window['pageGraph' + classSimpleName](classSimpleName)
+		success(data);
 	}, 'html');
 	window.history.replaceState('', '', uri);
 }
