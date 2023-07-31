@@ -801,18 +801,13 @@ function pageGraphMapResult(apiRequest) {
 
 function animateStats() {
 	$('#pageSearchVal-fqMapResult_time').text('');
-	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
-	let xStep = parseFloat($('#animateStatsStep').val());
-	let xMin = parseFloat($('#animateStatsMin').val());
-	let xMax = parseFloat($('#animateStatsMax').val());
-	let x = xMin;
 	searchPage('MapResult', function() {
-		$('#animateStatsSpeed').val(speedRate / 1000);
-		$('#animateStatsStep').val(xStep);
-		$('#animateStatsMin').val(xMin);
-		$('#animateStatsMax').val(xMax);
+		let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+		let xStep = parseFloat($('#animateStatsStep').val());
+		let xMin = parseFloat($('#animateStatsMin').val());
+		let xMax = parseFloat($('#animateStatsMax').val());
+		let x = xMin;
 
-		$('.siteSidebarToggleStats').hide();
 		let animateInterval = window.setInterval(() => {
 			x = x + xStep;
 			if (x > xMax || x < 0) {

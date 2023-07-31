@@ -967,473 +967,477 @@ async function websocketVehicleStepInner(apiRequest) {
 	if(pk != null) {
 		searchVehicleStepVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['created'];
-			if(vars.includes('created')) {
-				$('.inputVehicleStep' + pk + 'Created').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Created').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['modified'];
-			if(vars.includes('modified')) {
-				$('.inputVehicleStep' + pk + 'Modified').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Modified').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectId'];
-			if(vars.includes('objectId')) {
-				$('.inputVehicleStep' + pk + 'ObjectId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ObjectId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['archived'];
-			if(vars.includes('archived')) {
-				$('.inputVehicleStep' + pk + 'Archived').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Archived').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['deleted'];
-			if(vars.includes('deleted')) {
-				$('.inputVehicleStep' + pk + 'Deleted').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Deleted').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['simulationName'];
-			if(vars.includes('simulationName')) {
-				$('.inputVehicleStep' + pk + 'SimulationName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'SimulationName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['simulationKey'];
-			if(vars.includes('simulationKey')) {
-				$('.inputVehicleStep' + pk + 'SimulationKey').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'SimulationKey').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['sumocfgPath'];
-			if(vars.includes('sumocfgPath')) {
-				$('.inputVehicleStep' + pk + 'SumocfgPath').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'SumocfgPath').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['time'];
-			if(vars.includes('time')) {
-				$('.inputVehicleStep' + pk + 'Time').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Time').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateTime'];
-			if(vars.includes('dateTime')) {
-				$('.inputVehicleStep' + pk + 'DateTime').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'DateTime').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['step'];
-			if(vars.includes('step')) {
-				$('.inputVehicleStep' + pk + 'Step').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Step').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['location'];
-			if(vars.includes('location')) {
-				$('.inputVehicleStep' + pk + 'Location').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Location').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['color'];
-			if(vars.includes('color')) {
-				$('.inputVehicleStep' + pk + 'Color').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Color').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['vehicleId'];
-			if(vars.includes('vehicleId')) {
-				$('.inputVehicleStep' + pk + 'VehicleId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'VehicleId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['vehicleType'];
-			if(vars.includes('vehicleType')) {
-				$('.inputVehicleStep' + pk + 'VehicleType').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'VehicleType').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['angle'];
-			if(vars.includes('angle')) {
-				$('.inputVehicleStep' + pk + 'Angle').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Angle').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['speed'];
-			if(vars.includes('speed')) {
-				$('.inputVehicleStep' + pk + 'Speed').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Speed').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pos'];
-			if(vars.includes('pos')) {
-				$('.inputVehicleStep' + pk + 'Pos').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Pos').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['slope'];
-			if(vars.includes('slope')) {
-				$('.inputVehicleStep' + pk + 'Slope').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Slope').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['inheritPk'];
-			if(vars.includes('inheritPk')) {
-				$('.inputVehicleStep' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classCanonicalName'];
-			if(vars.includes('classCanonicalName')) {
-				$('.inputVehicleStep' + pk + 'ClassCanonicalName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ClassCanonicalName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classSimpleName'];
-			if(vars.includes('classSimpleName')) {
-				$('.inputVehicleStep' + pk + 'ClassSimpleName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ClassSimpleName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classCanonicalNames'];
-			if(vars.includes('classCanonicalNames')) {
-				$('.inputVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['sessionId'];
-			if(vars.includes('sessionId')) {
-				$('.inputVehicleStep' + pk + 'SessionId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'SessionId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['userKey'];
-			if(vars.includes('userKey')) {
-				$('.inputVehicleStep' + pk + 'UserKey').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'UserKey').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['saves'];
-			if(vars.includes('saves')) {
-				$('.inputVehicleStep' + pk + 'Saves').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Saves').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectTitle'];
-			if(vars.includes('objectTitle')) {
-				$('.inputVehicleStep' + pk + 'ObjectTitle').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ObjectTitle').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectSuggest'];
-			if(vars.includes('objectSuggest')) {
-				$('.inputVehicleStep' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectText'];
-			if(vars.includes('objectText')) {
-				$('.inputVehicleStep' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlId'];
-			if(vars.includes('pageUrlId')) {
-				$('.inputVehicleStep' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlPk'];
-			if(vars.includes('pageUrlPk')) {
-				$('.inputVehicleStep' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlApi'];
-			if(vars.includes('pageUrlApi')) {
-				$('.inputVehicleStep' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['id'];
-			if(vars.includes('id')) {
-				$('.inputVehicleStep' + pk + 'Id').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Id').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['timeStepId'];
-			if(vars.includes('timeStepId')) {
-				$('.inputVehicleStep' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['x'];
-			if(vars.includes('x')) {
-				$('.inputVehicleStep' + pk + 'X').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'X').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['y'];
-			if(vars.includes('y')) {
-				$('.inputVehicleStep' + pk + 'Y').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varVehicleStep' + pk + 'Y').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
+			if(o != null) {
+				var val = o['created'];
+				if(vars.includes('created')) {
+					$('.inputVehicleStep' + pk + 'Created').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Created').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['modified'];
+				if(vars.includes('modified')) {
+					$('.inputVehicleStep' + pk + 'Modified').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Modified').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectId'];
+				if(vars.includes('objectId')) {
+					$('.inputVehicleStep' + pk + 'ObjectId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ObjectId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['archived'];
+				if(vars.includes('archived')) {
+					$('.inputVehicleStep' + pk + 'Archived').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Archived').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['deleted'];
+				if(vars.includes('deleted')) {
+					$('.inputVehicleStep' + pk + 'Deleted').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Deleted').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['simulationName'];
+				if(vars.includes('simulationName')) {
+					$('.inputVehicleStep' + pk + 'SimulationName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'SimulationName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['simulationKey'];
+				if(vars.includes('simulationKey')) {
+					$('.inputVehicleStep' + pk + 'SimulationKey').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'SimulationKey').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['sumocfgPath'];
+				if(vars.includes('sumocfgPath')) {
+					$('.inputVehicleStep' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['time'];
+				if(vars.includes('time')) {
+					$('.inputVehicleStep' + pk + 'Time').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Time').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateTime'];
+				if(vars.includes('dateTime')) {
+					$('.inputVehicleStep' + pk + 'DateTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'DateTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['step'];
+				if(vars.includes('step')) {
+					$('.inputVehicleStep' + pk + 'Step').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Step').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['location'];
+				if(vars.includes('location')) {
+					$('.inputVehicleStep' + pk + 'Location').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Location').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['color'];
+				if(vars.includes('color')) {
+					$('.inputVehicleStep' + pk + 'Color').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Color').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['vehicleId'];
+				if(vars.includes('vehicleId')) {
+					$('.inputVehicleStep' + pk + 'VehicleId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'VehicleId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['vehicleType'];
+				if(vars.includes('vehicleType')) {
+					$('.inputVehicleStep' + pk + 'VehicleType').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'VehicleType').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['angle'];
+				if(vars.includes('angle')) {
+					$('.inputVehicleStep' + pk + 'Angle').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Angle').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['speed'];
+				if(vars.includes('speed')) {
+					$('.inputVehicleStep' + pk + 'Speed').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Speed').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pos'];
+				if(vars.includes('pos')) {
+					$('.inputVehicleStep' + pk + 'Pos').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Pos').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['slope'];
+				if(vars.includes('slope')) {
+					$('.inputVehicleStep' + pk + 'Slope').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Slope').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['inheritPk'];
+				if(vars.includes('inheritPk')) {
+					$('.inputVehicleStep' + pk + 'InheritPk').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'InheritPk').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classCanonicalName'];
+				if(vars.includes('classCanonicalName')) {
+					$('.inputVehicleStep' + pk + 'ClassCanonicalName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ClassCanonicalName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classSimpleName'];
+				if(vars.includes('classSimpleName')) {
+					$('.inputVehicleStep' + pk + 'ClassSimpleName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ClassSimpleName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classCanonicalNames'];
+				if(vars.includes('classCanonicalNames')) {
+					$('.inputVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['sessionId'];
+				if(vars.includes('sessionId')) {
+					$('.inputVehicleStep' + pk + 'SessionId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'SessionId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['userKey'];
+				if(vars.includes('userKey')) {
+					$('.inputVehicleStep' + pk + 'UserKey').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'UserKey').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['saves'];
+				if(vars.includes('saves')) {
+					$('.inputVehicleStep' + pk + 'Saves').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Saves').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectTitle'];
+				if(vars.includes('objectTitle')) {
+					$('.inputVehicleStep' + pk + 'ObjectTitle').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ObjectTitle').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectSuggest'];
+				if(vars.includes('objectSuggest')) {
+					$('.inputVehicleStep' + pk + 'ObjectSuggest').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ObjectSuggest').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectText'];
+				if(vars.includes('objectText')) {
+					$('.inputVehicleStep' + pk + 'ObjectText').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'ObjectText').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlId'];
+				if(vars.includes('pageUrlId')) {
+					$('.inputVehicleStep' + pk + 'PageUrlId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'PageUrlId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlPk'];
+				if(vars.includes('pageUrlPk')) {
+					$('.inputVehicleStep' + pk + 'PageUrlPk').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'PageUrlPk').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlApi'];
+				if(vars.includes('pageUrlApi')) {
+					$('.inputVehicleStep' + pk + 'PageUrlApi').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'PageUrlApi').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['id'];
+				if(vars.includes('id')) {
+					$('.inputVehicleStep' + pk + 'Id').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Id').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['timeStepId'];
+				if(vars.includes('timeStepId')) {
+					$('.inputVehicleStep' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['x'];
+				if(vars.includes('x')) {
+					$('.inputVehicleStep' + pk + 'X').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'X').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['y'];
+				if(vars.includes('y')) {
+					$('.inputVehicleStep' + pk + 'Y').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varVehicleStep' + pk + 'Y').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+			} else {
+				window.location.href = '/vehicle-step';
 			}
 		});
 	}
@@ -1590,19 +1594,22 @@ function pageGraphVehicleStep(apiRequest) {
 }
 
 function animateStats() {
-	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
-	let xStep = parseFloat($('#animateStatsStep').val());
-	let xMin = parseFloat($('#animateStatsMin').val());
-	let xMax = parseFloat($('#animateStatsMax').val());
-	let x = xMin;
+	$('#pageSearchVal-fqVehicleStep_time').text('');
+	searchPage('VehicleStep', function() {
+		let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+		let xStep = parseFloat($('#animateStatsStep').val());
+		let xMin = parseFloat($('#animateStatsMin').val());
+		let xMax = parseFloat($('#animateStatsMax').val());
+		let x = xMin;
 
-	let animateInterval = window.setInterval(() => {
-	x = x + xStep;
-	if (x > xMax || x < 0) {
-		clearInterval(animateInterval);
-	}
-	$('#fqVehicleStep_time').val(x);
-	$('#fqVehicleStep_time').change();
-	searchPage();
-	}, speedRate);
+		let animateInterval = window.setInterval(() => {
+			x = x + xStep;
+			if (x > xMax || x < 0) {
+				clearInterval(animateInterval);
+			}
+			$('#fqVehicleStep_time').val(x);
+			$('#fqVehicleStep_time').change();
+			searchPage('VehicleStep');
+		}, speedRate);
+	});
 }

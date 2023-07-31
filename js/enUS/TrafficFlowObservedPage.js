@@ -1789,902 +1789,906 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 	if(pk != null) {
 		searchTrafficFlowObservedVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
-			var val = o['created'];
-			if(vars.includes('created')) {
-				$('.inputTrafficFlowObserved' + pk + 'Created').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Created').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['modified'];
-			if(vars.includes('modified')) {
-				$('.inputTrafficFlowObserved' + pk + 'Modified').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Modified').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectId'];
-			if(vars.includes('objectId')) {
-				$('.inputTrafficFlowObserved' + pk + 'ObjectId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ObjectId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['archived'];
-			if(vars.includes('archived')) {
-				$('.inputTrafficFlowObserved' + pk + 'Archived').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Archived').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['deleted'];
-			if(vars.includes('deleted')) {
-				$('.inputTrafficFlowObserved' + pk + 'Deleted').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Deleted').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['simulationName'];
-			if(vars.includes('simulationName')) {
-				$('.inputTrafficFlowObserved' + pk + 'SimulationName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'SimulationName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['simulationKey'];
-			if(vars.includes('simulationKey')) {
-				$('.inputTrafficFlowObserved' + pk + 'SimulationKey').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'SimulationKey').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['sumocfgPath'];
-			if(vars.includes('sumocfgPath')) {
-				$('.inputTrafficFlowObserved' + pk + 'SumocfgPath').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'SumocfgPath').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['time'];
-			if(vars.includes('time')) {
-				$('.inputTrafficFlowObserved' + pk + 'Time').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Time').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateTime'];
-			if(vars.includes('dateTime')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateTime').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateTime').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['step'];
-			if(vars.includes('step')) {
-				$('.inputTrafficFlowObserved' + pk + 'Step').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Step').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['location'];
-			if(vars.includes('location')) {
-				$('.inputTrafficFlowObserved' + pk + 'Location').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Location').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['color'];
-			if(vars.includes('color')) {
-				$('.inputTrafficFlowObserved' + pk + 'Color').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Color').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['entityId'];
-			if(vars.includes('entityId')) {
-				$('.inputTrafficFlowObserved' + pk + 'EntityId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'EntityId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['address'];
-			if(vars.includes('address')) {
-				$('.inputTrafficFlowObserved' + pk + 'Address').each(function() {
-					if(val !== $(this).val())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Address').each(function() {
-					if(val !== $(this).text())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-			}
-			var val = o['alternateName'];
-			if(vars.includes('alternateName')) {
-				$('.inputTrafficFlowObserved' + pk + 'AlternateName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AlternateName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['areaServed'];
-			if(vars.includes('areaServed')) {
-				$('.inputTrafficFlowObserved' + pk + 'AreaServed').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AreaServed').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['averageGapDistance'];
-			if(vars.includes('averageGapDistance')) {
-				$('.inputTrafficFlowObserved' + pk + 'AverageGapDistance').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AverageGapDistance').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['averageHeadwayTime'];
-			if(vars.includes('averageHeadwayTime')) {
-				$('.inputTrafficFlowObserved' + pk + 'AverageHeadwayTime').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AverageHeadwayTime').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['averageVehicleLength'];
-			if(vars.includes('averageVehicleLength')) {
-				$('.inputTrafficFlowObserved' + pk + 'AverageVehicleLength').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AverageVehicleLength').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['averageVehicleSpeed'];
-			if(vars.includes('averageVehicleSpeed')) {
-				$('.inputTrafficFlowObserved' + pk + 'AverageVehicleSpeed').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'AverageVehicleSpeed').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['congested'];
-			if(vars.includes('congested')) {
-				$('.inputTrafficFlowObserved' + pk + 'Congested').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Congested').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dataProvider'];
-			if(vars.includes('dataProvider')) {
-				$('.inputTrafficFlowObserved' + pk + 'DataProvider').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DataProvider').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateCreated'];
-			if(vars.includes('dateCreated')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateCreated').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateCreated').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateModified'];
-			if(vars.includes('dateModified')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateModified').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateModified').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateObserved'];
-			if(vars.includes('dateObserved')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateObserved').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateObserved').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateObservedFrom'];
-			if(vars.includes('dateObservedFrom')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateObservedFrom').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateObservedFrom').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['dateObservedTo'];
-			if(vars.includes('dateObservedTo')) {
-				$('.inputTrafficFlowObserved' + pk + 'DateObservedTo').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'DateObservedTo').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['description'];
-			if(vars.includes('description')) {
-				$('.inputTrafficFlowObserved' + pk + 'Description').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Description').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['intensity'];
-			if(vars.includes('intensity')) {
-				$('.inputTrafficFlowObserved' + pk + 'Intensity').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Intensity').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['laneDirection'];
-			if(vars.includes('laneDirection')) {
-				$('.inputTrafficFlowObserved' + pk + 'LaneDirection').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'LaneDirection').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['laneId'];
-			if(vars.includes('laneId')) {
-				$('.inputTrafficFlowObserved' + pk + 'LaneId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'LaneId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['name'];
-			if(vars.includes('name')) {
-				$('.inputTrafficFlowObserved' + pk + 'Name').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Name').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['occupancy'];
-			if(vars.includes('occupancy')) {
-				$('.inputTrafficFlowObserved' + pk + 'Occupancy').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Occupancy').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['owner'];
-			if(vars.includes('owner')) {
-				$('.inputTrafficFlowObserved' + pk + 'Owner').each(function() {
-					if(val !== $(this).val())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Owner').each(function() {
-					if(val !== $(this).text())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-			}
-			var val = o['refRoadSegment'];
-			if(vars.includes('refRoadSegment')) {
-				$('.inputTrafficFlowObserved' + pk + 'RefRoadSegment').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'RefRoadSegment').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['reversedLane'];
-			if(vars.includes('reversedLane')) {
-				$('.inputTrafficFlowObserved' + pk + 'ReversedLane').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ReversedLane').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['seeAlso'];
-			if(vars.includes('seeAlso')) {
-				$('.inputTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
-					if(val !== $(this).val())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
-					if(val !== $(this).text())
-						$(this).val(JSON.stringify(val));
-						addGlow($(this));
-				});
-			}
-			var val = o['source'];
-			if(vars.includes('source')) {
-				$('.inputTrafficFlowObserved' + pk + 'Source').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Source').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['type'];
-			if(vars.includes('type')) {
-				$('.inputTrafficFlowObserved' + pk + 'Type').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Type').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['vehicleSubType'];
-			if(vars.includes('vehicleSubType')) {
-				$('.inputTrafficFlowObserved' + pk + 'VehicleSubType').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'VehicleSubType').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['vehicleType'];
-			if(vars.includes('vehicleType')) {
-				$('.inputTrafficFlowObserved' + pk + 'VehicleType').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'VehicleType').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customRouteId'];
-			if(vars.includes('customRouteId')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomRouteId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomRouteId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customSigma'];
-			if(vars.includes('customSigma')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomSigma').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomSigma').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customAcceleration'];
-			if(vars.includes('customAcceleration')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomAcceleration').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomAcceleration').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customDeceleration'];
-			if(vars.includes('customDeceleration')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomDeceleration').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomDeceleration').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customMinGreenTime'];
-			if(vars.includes('customMinGreenTime')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomMinGreenTime').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomMinGreenTime').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customMaxGreenTime'];
-			if(vars.includes('customMaxGreenTime')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomMaxGreenTime').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomMaxGreenTime').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customAverageVehiclesPerMinute'];
-			if(vars.includes('customAverageVehiclesPerMinute')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomAverageVehiclesPerMinute').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomAverageVehiclesPerMinute').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customDemandScalingFactor'];
-			if(vars.includes('customDemandScalingFactor')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomDemandScalingFactor').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomDemandScalingFactor').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customQueueLengthThreshold'];
-			if(vars.includes('customQueueLengthThreshold')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomQueueLengthThreshold').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomQueueLengthThreshold').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['customTrafficLightId'];
-			if(vars.includes('customTrafficLightId')) {
-				$('.inputTrafficFlowObserved' + pk + 'CustomTrafficLightId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'CustomTrafficLightId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['inheritPk'];
-			if(vars.includes('inheritPk')) {
-				$('.inputTrafficFlowObserved' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'InheritPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classCanonicalName'];
-			if(vars.includes('classCanonicalName')) {
-				$('.inputTrafficFlowObserved' + pk + 'ClassCanonicalName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ClassCanonicalName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classSimpleName'];
-			if(vars.includes('classSimpleName')) {
-				$('.inputTrafficFlowObserved' + pk + 'ClassSimpleName').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ClassSimpleName').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['classCanonicalNames'];
-			if(vars.includes('classCanonicalNames')) {
-				$('.inputTrafficFlowObserved' + pk + 'ClassCanonicalNames').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ClassCanonicalNames').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['sessionId'];
-			if(vars.includes('sessionId')) {
-				$('.inputTrafficFlowObserved' + pk + 'SessionId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'SessionId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['userKey'];
-			if(vars.includes('userKey')) {
-				$('.inputTrafficFlowObserved' + pk + 'UserKey').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'UserKey').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['saves'];
-			if(vars.includes('saves')) {
-				$('.inputTrafficFlowObserved' + pk + 'Saves').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Saves').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectTitle'];
-			if(vars.includes('objectTitle')) {
-				$('.inputTrafficFlowObserved' + pk + 'ObjectTitle').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ObjectTitle').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectSuggest'];
-			if(vars.includes('objectSuggest')) {
-				$('.inputTrafficFlowObserved' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ObjectSuggest').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['objectText'];
-			if(vars.includes('objectText')) {
-				$('.inputTrafficFlowObserved' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'ObjectText').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlId'];
-			if(vars.includes('pageUrlId')) {
-				$('.inputTrafficFlowObserved' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'PageUrlId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlPk'];
-			if(vars.includes('pageUrlPk')) {
-				$('.inputTrafficFlowObserved' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'PageUrlPk').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['pageUrlApi'];
-			if(vars.includes('pageUrlApi')) {
-				$('.inputTrafficFlowObserved' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'PageUrlApi').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['id'];
-			if(vars.includes('id')) {
-				$('.inputTrafficFlowObserved' + pk + 'Id').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Id').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['timeStepId'];
-			if(vars.includes('timeStepId')) {
-				$('.inputTrafficFlowObserved' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'TimeStepId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['x'];
-			if(vars.includes('x')) {
-				$('.inputTrafficFlowObserved' + pk + 'X').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'X').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
-			}
-			var val = o['y'];
-			if(vars.includes('y')) {
-				$('.inputTrafficFlowObserved' + pk + 'Y').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-						addGlow($(this));
-				});
-				$('.varTrafficFlowObserved' + pk + 'Y').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-						addGlow($(this));
-				});
+			if(o != null) {
+				var val = o['created'];
+				if(vars.includes('created')) {
+					$('.inputTrafficFlowObserved' + pk + 'Created').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Created').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['modified'];
+				if(vars.includes('modified')) {
+					$('.inputTrafficFlowObserved' + pk + 'Modified').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Modified').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectId'];
+				if(vars.includes('objectId')) {
+					$('.inputTrafficFlowObserved' + pk + 'ObjectId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ObjectId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['archived'];
+				if(vars.includes('archived')) {
+					$('.inputTrafficFlowObserved' + pk + 'Archived').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Archived').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['deleted'];
+				if(vars.includes('deleted')) {
+					$('.inputTrafficFlowObserved' + pk + 'Deleted').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Deleted').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['simulationName'];
+				if(vars.includes('simulationName')) {
+					$('.inputTrafficFlowObserved' + pk + 'SimulationName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'SimulationName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['simulationKey'];
+				if(vars.includes('simulationKey')) {
+					$('.inputTrafficFlowObserved' + pk + 'SimulationKey').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'SimulationKey').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['sumocfgPath'];
+				if(vars.includes('sumocfgPath')) {
+					$('.inputTrafficFlowObserved' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['time'];
+				if(vars.includes('time')) {
+					$('.inputTrafficFlowObserved' + pk + 'Time').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Time').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateTime'];
+				if(vars.includes('dateTime')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['step'];
+				if(vars.includes('step')) {
+					$('.inputTrafficFlowObserved' + pk + 'Step').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Step').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['location'];
+				if(vars.includes('location')) {
+					$('.inputTrafficFlowObserved' + pk + 'Location').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Location').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['color'];
+				if(vars.includes('color')) {
+					$('.inputTrafficFlowObserved' + pk + 'Color').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Color').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['entityId'];
+				if(vars.includes('entityId')) {
+					$('.inputTrafficFlowObserved' + pk + 'EntityId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'EntityId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['address'];
+				if(vars.includes('address')) {
+					$('.inputTrafficFlowObserved' + pk + 'Address').each(function() {
+						if(val !== $(this).val())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Address').each(function() {
+						if(val !== $(this).text())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+				}
+				var val = o['alternateName'];
+				if(vars.includes('alternateName')) {
+					$('.inputTrafficFlowObserved' + pk + 'AlternateName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AlternateName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['areaServed'];
+				if(vars.includes('areaServed')) {
+					$('.inputTrafficFlowObserved' + pk + 'AreaServed').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AreaServed').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['averageGapDistance'];
+				if(vars.includes('averageGapDistance')) {
+					$('.inputTrafficFlowObserved' + pk + 'AverageGapDistance').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AverageGapDistance').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['averageHeadwayTime'];
+				if(vars.includes('averageHeadwayTime')) {
+					$('.inputTrafficFlowObserved' + pk + 'AverageHeadwayTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AverageHeadwayTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['averageVehicleLength'];
+				if(vars.includes('averageVehicleLength')) {
+					$('.inputTrafficFlowObserved' + pk + 'AverageVehicleLength').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AverageVehicleLength').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['averageVehicleSpeed'];
+				if(vars.includes('averageVehicleSpeed')) {
+					$('.inputTrafficFlowObserved' + pk + 'AverageVehicleSpeed').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'AverageVehicleSpeed').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['congested'];
+				if(vars.includes('congested')) {
+					$('.inputTrafficFlowObserved' + pk + 'Congested').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Congested').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dataProvider'];
+				if(vars.includes('dataProvider')) {
+					$('.inputTrafficFlowObserved' + pk + 'DataProvider').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DataProvider').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateCreated'];
+				if(vars.includes('dateCreated')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateCreated').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateCreated').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateModified'];
+				if(vars.includes('dateModified')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateModified').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateModified').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateObserved'];
+				if(vars.includes('dateObserved')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateObserved').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateObserved').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateObservedFrom'];
+				if(vars.includes('dateObservedFrom')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateObservedFrom').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateObservedFrom').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['dateObservedTo'];
+				if(vars.includes('dateObservedTo')) {
+					$('.inputTrafficFlowObserved' + pk + 'DateObservedTo').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'DateObservedTo').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['description'];
+				if(vars.includes('description')) {
+					$('.inputTrafficFlowObserved' + pk + 'Description').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Description').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['intensity'];
+				if(vars.includes('intensity')) {
+					$('.inputTrafficFlowObserved' + pk + 'Intensity').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Intensity').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['laneDirection'];
+				if(vars.includes('laneDirection')) {
+					$('.inputTrafficFlowObserved' + pk + 'LaneDirection').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'LaneDirection').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['laneId'];
+				if(vars.includes('laneId')) {
+					$('.inputTrafficFlowObserved' + pk + 'LaneId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'LaneId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['name'];
+				if(vars.includes('name')) {
+					$('.inputTrafficFlowObserved' + pk + 'Name').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Name').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['occupancy'];
+				if(vars.includes('occupancy')) {
+					$('.inputTrafficFlowObserved' + pk + 'Occupancy').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Occupancy').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['owner'];
+				if(vars.includes('owner')) {
+					$('.inputTrafficFlowObserved' + pk + 'Owner').each(function() {
+						if(val !== $(this).val())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Owner').each(function() {
+						if(val !== $(this).text())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+				}
+				var val = o['refRoadSegment'];
+				if(vars.includes('refRoadSegment')) {
+					$('.inputTrafficFlowObserved' + pk + 'RefRoadSegment').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'RefRoadSegment').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['reversedLane'];
+				if(vars.includes('reversedLane')) {
+					$('.inputTrafficFlowObserved' + pk + 'ReversedLane').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ReversedLane').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['seeAlso'];
+				if(vars.includes('seeAlso')) {
+					$('.inputTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
+						if(val !== $(this).val())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'SeeAlso').each(function() {
+						if(val !== $(this).text())
+							$(this).val(JSON.stringify(val));
+							addGlow($(this));
+					});
+				}
+				var val = o['source'];
+				if(vars.includes('source')) {
+					$('.inputTrafficFlowObserved' + pk + 'Source').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Source').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['type'];
+				if(vars.includes('type')) {
+					$('.inputTrafficFlowObserved' + pk + 'Type').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Type').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['vehicleSubType'];
+				if(vars.includes('vehicleSubType')) {
+					$('.inputTrafficFlowObserved' + pk + 'VehicleSubType').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'VehicleSubType').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['vehicleType'];
+				if(vars.includes('vehicleType')) {
+					$('.inputTrafficFlowObserved' + pk + 'VehicleType').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'VehicleType').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customRouteId'];
+				if(vars.includes('customRouteId')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomRouteId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomRouteId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customSigma'];
+				if(vars.includes('customSigma')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomSigma').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomSigma').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customAcceleration'];
+				if(vars.includes('customAcceleration')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomAcceleration').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomAcceleration').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customDeceleration'];
+				if(vars.includes('customDeceleration')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomDeceleration').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomDeceleration').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customMinGreenTime'];
+				if(vars.includes('customMinGreenTime')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomMinGreenTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomMinGreenTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customMaxGreenTime'];
+				if(vars.includes('customMaxGreenTime')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomMaxGreenTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomMaxGreenTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customAverageVehiclesPerMinute'];
+				if(vars.includes('customAverageVehiclesPerMinute')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomAverageVehiclesPerMinute').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomAverageVehiclesPerMinute').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customDemandScalingFactor'];
+				if(vars.includes('customDemandScalingFactor')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomDemandScalingFactor').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomDemandScalingFactor').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customQueueLengthThreshold'];
+				if(vars.includes('customQueueLengthThreshold')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomQueueLengthThreshold').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomQueueLengthThreshold').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['customTrafficLightId'];
+				if(vars.includes('customTrafficLightId')) {
+					$('.inputTrafficFlowObserved' + pk + 'CustomTrafficLightId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'CustomTrafficLightId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['inheritPk'];
+				if(vars.includes('inheritPk')) {
+					$('.inputTrafficFlowObserved' + pk + 'InheritPk').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'InheritPk').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classCanonicalName'];
+				if(vars.includes('classCanonicalName')) {
+					$('.inputTrafficFlowObserved' + pk + 'ClassCanonicalName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ClassCanonicalName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classSimpleName'];
+				if(vars.includes('classSimpleName')) {
+					$('.inputTrafficFlowObserved' + pk + 'ClassSimpleName').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ClassSimpleName').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['classCanonicalNames'];
+				if(vars.includes('classCanonicalNames')) {
+					$('.inputTrafficFlowObserved' + pk + 'ClassCanonicalNames').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ClassCanonicalNames').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['sessionId'];
+				if(vars.includes('sessionId')) {
+					$('.inputTrafficFlowObserved' + pk + 'SessionId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'SessionId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['userKey'];
+				if(vars.includes('userKey')) {
+					$('.inputTrafficFlowObserved' + pk + 'UserKey').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'UserKey').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['saves'];
+				if(vars.includes('saves')) {
+					$('.inputTrafficFlowObserved' + pk + 'Saves').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Saves').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectTitle'];
+				if(vars.includes('objectTitle')) {
+					$('.inputTrafficFlowObserved' + pk + 'ObjectTitle').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ObjectTitle').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectSuggest'];
+				if(vars.includes('objectSuggest')) {
+					$('.inputTrafficFlowObserved' + pk + 'ObjectSuggest').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ObjectSuggest').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['objectText'];
+				if(vars.includes('objectText')) {
+					$('.inputTrafficFlowObserved' + pk + 'ObjectText').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'ObjectText').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlId'];
+				if(vars.includes('pageUrlId')) {
+					$('.inputTrafficFlowObserved' + pk + 'PageUrlId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'PageUrlId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlPk'];
+				if(vars.includes('pageUrlPk')) {
+					$('.inputTrafficFlowObserved' + pk + 'PageUrlPk').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'PageUrlPk').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['pageUrlApi'];
+				if(vars.includes('pageUrlApi')) {
+					$('.inputTrafficFlowObserved' + pk + 'PageUrlApi').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'PageUrlApi').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['id'];
+				if(vars.includes('id')) {
+					$('.inputTrafficFlowObserved' + pk + 'Id').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Id').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['timeStepId'];
+				if(vars.includes('timeStepId')) {
+					$('.inputTrafficFlowObserved' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['x'];
+				if(vars.includes('x')) {
+					$('.inputTrafficFlowObserved' + pk + 'X').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'X').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['y'];
+				if(vars.includes('y')) {
+					$('.inputTrafficFlowObserved' + pk + 'Y').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficFlowObserved' + pk + 'Y').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+			} else {
+				window.location.href = '/traffic-flow-observed';
 			}
 		});
 	}
@@ -2841,19 +2845,22 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 }
 
 function animateStats() {
-	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
-	let xStep = parseFloat($('#animateStatsStep').val());
-	let xMin = parseFloat($('#animateStatsMin').val());
-	let xMax = parseFloat($('#animateStatsMax').val());
-	let x = xMin;
+	$('#pageSearchVal-fqTrafficFlowObserved_time').text('');
+	searchPage('TrafficFlowObserved', function() {
+		let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+		let xStep = parseFloat($('#animateStatsStep').val());
+		let xMin = parseFloat($('#animateStatsMin').val());
+		let xMax = parseFloat($('#animateStatsMax').val());
+		let x = xMin;
 
-	let animateInterval = window.setInterval(() => {
-	x = x + xStep;
-	if (x > xMax || x < 0) {
-		clearInterval(animateInterval);
-	}
-	$('#fqTrafficFlowObserved_time').val(x);
-	$('#fqTrafficFlowObserved_time').change();
-	searchPage();
-	}, speedRate);
+		let animateInterval = window.setInterval(() => {
+			x = x + xStep;
+			if (x > xMax || x < 0) {
+				clearInterval(animateInterval);
+			}
+			$('#fqTrafficFlowObserved_time').val(x);
+			$('#fqTrafficFlowObserved_time').change();
+			searchPage('TrafficFlowObserved');
+		}, speedRate);
+	});
 }

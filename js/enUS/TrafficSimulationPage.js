@@ -2135,19 +2135,22 @@ function pageGraphTrafficSimulation(apiRequest) {
 }
 
 function animateStats() {
-	let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
-	let xStep = parseFloat($('#animateStatsStep').val());
-	let xMin = parseFloat($('#animateStatsMin').val());
-	let xMax = parseFloat($('#animateStatsMax').val());
-	let x = xMin;
+	$('#pageSearchVal-fqTrafficSimulation_time').text('');
+	searchPage('TrafficSimulation', function() {
+		let speedRate = parseFloat($('#animateStatsSpeed').val()) * 1000;
+		let xStep = parseFloat($('#animateStatsStep').val());
+		let xMin = parseFloat($('#animateStatsMin').val());
+		let xMax = parseFloat($('#animateStatsMax').val());
+		let x = xMin;
 
-	let animateInterval = window.setInterval(() => {
-	x = x + xStep;
-	if (x > xMax || x < 0) {
-		clearInterval(animateInterval);
-	}
-	$('#fqTrafficSimulation_time').val(x);
-	$('#fqTrafficSimulation_time').change();
-	searchPage();
-	}, speedRate);
+		let animateInterval = window.setInterval(() => {
+			x = x + xStep;
+			if (x > xMax || x < 0) {
+				clearInterval(animateInterval);
+			}
+			$('#fqTrafficSimulation_time').val(x);
+			$('#fqTrafficSimulation_time').change();
+			searchPage('TrafficSimulation');
+		}, speedRate);
+	});
 }
