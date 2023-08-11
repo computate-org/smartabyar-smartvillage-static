@@ -7,4 +7,4 @@ The geographic area where a service or offered item is provided
 1.0.2
 
 ## Original Schema
-https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/docs/schema.json
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/schema.json

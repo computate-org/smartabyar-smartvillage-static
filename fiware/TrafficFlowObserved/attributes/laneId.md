@@ -7,4 +7,4 @@ Lane identifier. Lane identification is done using the conventions defined by Ro
 1.0.2
 
 ## Original Schema
-https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/docs/schema.json
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/schema.json

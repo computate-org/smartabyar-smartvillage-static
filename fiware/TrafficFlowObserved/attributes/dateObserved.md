@@ -7,4 +7,4 @@ The date and time of this observation in ISO8601 UTC format. It can be represent
 1.0.2
 
 ## Original Schema
-https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/docs/schema.json
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/schema.json

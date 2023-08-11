@@ -7,4 +7,4 @@ Min: 1
 1.0.2
 
 ## Original Schema
-https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/docs/schema.json
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/schema.json

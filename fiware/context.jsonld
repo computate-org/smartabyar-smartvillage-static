@@ -1,6 +1,6 @@
 {
   "@context" : {
-    "TrafficFlowObserved" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/docs/",
+    "TrafficFlowObserved" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/",
     "entityId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/entityId.md",
     "simulationName" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/simulationName.md",
     "sumocfgPath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/sumocfgPath.md",
@@ -44,7 +44,7 @@
     "customDemandScalingFactor" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customDemandScalingFactor.md",
     "customQueueLengthThreshold" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customQueueLengthThreshold.md",
     "customTrafficLightId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md",
-    "TrafficSimulation" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/docs/",
+    "TrafficSimulation" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/",
     "startDateTime" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startDateTime.md",
     "fcdFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/fcdFilePath.md",
     "netFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/netFilePath.md",

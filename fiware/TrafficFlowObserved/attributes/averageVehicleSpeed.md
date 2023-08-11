@@ -7,4 +7,4 @@ Average speed of the vehicles transiting during the observation period
 1.0.2
 
 ## Original Schema
-https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/docs/schema.json
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/schema.json
