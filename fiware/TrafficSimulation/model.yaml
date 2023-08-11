@@ -1,0 +1,298 @@
+TrafficSimulation:
+  description: >+
+    A SUMO Traffic Simulation
+  properties:
+    startDateTime:
+      description: >+
+        The start date and time. 
+      type: string
+      format: date-time
+      x-ngsi:
+        model: https://schema.org/DateTime
+        type: Property
+    simulationName:
+      type: string
+      required: true
+      x-ngsi:
+        type: Property
+    sumocfgPath:
+      type: string
+      x-ngsi:
+        type: Property
+    fcdFilePath:
+      type: string
+      x-ngsi:
+        type: Property
+    netFilePath:
+      type: string
+      x-ngsi:
+        type: Property
+    startSeconds:
+      description: >+
+        -b, --begin TIME Defines the begin time in seconds; The simulation
+        starts at this time
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    endSeconds:
+      description: >+
+        -e, --end TIME Defines the end time in seconds; The simulation ends at
+        this time
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    stepSeconds:
+      description: >+
+        --step-length TIME Defines the step duration in seconds
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramAvgVehiclePerMinFromWestToEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramAvgVehiclePerMinFromSouthToNorth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramVehicleDemandScalingFactor:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 2
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramAvgPedestrianPerMinFromWestToEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramAvgPedestrianPerMinFromSouthToNorth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramPedestrianDemandScalingFactor:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 2
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramDemandScale:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    paramMinGreenTimeSecWestEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 50
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramMaxGreenTimeSecWestEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 100
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramMinGreenTimeSecSouthNorth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 50
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramMaxGreenTimeSecSouthNorth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 100
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramPedestrianWaitThresholdSecNorthSouth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 60
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramPedestrianWaitThresholdSecWestEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 60
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramVehicleQueueThresholdWestEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 60
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramVehicleQueueThresholdSouthNorth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 15
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramPedestrianQueueThresholdNorthSouth:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 15
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramPedestrianQueueThresholdWestEast:
+      description: >+
+        Min: 1
+      type: number
+      minimum: 1
+      maximum: 15
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramStepSize:
+      description: >+
+        Min: 0.5
+      type: number
+      minimum: 0.5
+      maximum: 2
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramRunTime:
+      description: >+
+        Time duration of each simulated sample path. 
+      type: number
+      minimum: 500
+      maximum: 3600
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramItersPerPar:
+      description: >+
+        Number of repeats per round. 
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramTotalIterNum:
+      description: >+
+        Total iterations to update performance. 
+      type: number
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    reportKeys:
+      description: >+
+        The generated reports for this simulation
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    tlsStatesPaths:
+      description: >+
+        The paths to all TLS States files
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    additionalFilePaths:
+      description: >+
+        The paths to all the additional SUMO config files
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    laneAreaDetectorIds:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    laneAreaDetectorLanes:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    laneAreaDetectorPaths:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    e1DetectorIds:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    e1DetectorLanes:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    e1DetectorPaths:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string

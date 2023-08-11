@@ -1,0 +1,109 @@
+{
+  "id" : "urn:ngsi-ld:TrafficSimulation/1",
+  "type" : "TrafficSimulation",
+  "simulationName" : {
+    "type" : "Property",
+    "value" : "Veberöd intersection"
+  },
+  "sumocfgPath" : {
+    "type" : "Property",
+    "value" : "/usr/local/src/TLC/input/Veberod_intersection_pedestrian.sumocfg"
+  },
+  "fcdFilePath" : {
+    "type" : "Property",
+    "value" : "/usr/local/src/TLC/output/veberod-fcd.xml"
+  },
+  "startSeconds" : {
+    "type" : "Property",
+    "value" : 0
+  },
+  "endSeconds" : {
+    "type" : "Property",
+    "value" : 300
+  },
+  "stepSeconds" : {
+    "type" : "Property",
+    "value" : 0.1
+  },
+  "paramAvgVehiclePerMinFromWestToEast" : {
+    "type" : "Property",
+    "value" : 10
+  },
+  "paramAvgVehiclePerMinFromSouthToNorth" : {
+    "type" : "Property",
+    "value" : 10
+  },
+  "paramVehicleDemandScalingFactor" : {
+    "type" : "Property",
+    "value" : 1
+  },
+  "paramAvgPedestrianPerMinFromWestToEast" : {
+    "type" : "Property",
+    "value" : 5
+  },
+  "paramAvgPedestrianPerMinFromSouthToNorth" : {
+    "type" : "Property",
+    "value" : 5
+  },
+  "paramPedestrianDemandScalingFactor" : {
+    "type" : "Property",
+    "value" : 1
+  },
+  "paramMinGreenTimeSecWestEast" : {
+    "type" : "Property",
+    "value" : 20
+  },
+  "paramMaxGreenTimeSecWestEast" : {
+    "type" : "Property",
+    "value" : 30
+  },
+  "paramMinGreenTimeSecSouthNorth" : {
+    "type" : "Property",
+    "value" : 10
+  },
+  "paramMaxGreenTimeSecSouthNorth" : {
+    "type" : "Property",
+    "value" : 20
+  },
+  "paramPedestrianWaitThresholdSecNorthSouth" : {
+    "type" : "Property",
+    "value" : 10
+  },
+  "paramPedestrianWaitThresholdSecWestEast" : {
+    "type" : "Property",
+    "value" : 10
+  },
+  "paramVehicleQueueThresholdWestEast" : {
+    "type" : "Property",
+    "value" : 8
+  },
+  "paramVehicleQueueThresholdSouthNorth" : {
+    "type" : "Property",
+    "value" : 8
+  },
+  "paramPedestrianQueueThresholdNorthSouth" : {
+    "type" : "Property",
+    "value" : 6
+  },
+  "paramPedestrianQueueThresholdWestEast" : {
+    "type" : "Property",
+    "value" : 6
+  },
+  "paramStepSize" : {
+    "type" : "Property",
+    "value" : 1
+  },
+  "paramRunTime" : {
+    "type" : "Property",
+    "value" : 1000
+  },
+  "paramItersPerPar" : {
+    "type" : "Property",
+    "value" : 3
+  },
+  "paramTotalIterNum" : {
+    "type" : "Property",
+    "value" : 5
+  },
+  "@context" : [ "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficSimulation/context.jsonld" ]
+}
