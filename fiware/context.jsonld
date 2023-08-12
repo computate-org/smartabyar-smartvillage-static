@@ -1,6 +1,12 @@
 {
   "@context" : {
-    "TrafficFlowObserved" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/",
+    "@type" : "@type",
+    "@id" : "@id",
+    "ngsi-ld" : "https://uri.etsi.org/ngsi-ld/",
+    "fiware" : "https://uri.fiware.org/ns/data-models#",
+    "schema" : "https://schema.org/",
+    "smartvillage" : "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/",
+    "TrafficFlowObserved" : "smartvillage:TrafficFlowObserved",
     "entityId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/entityId.md",
     "simulationName" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/simulationName.md",
     "sumocfgPath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/sumocfgPath.md",
@@ -44,7 +50,7 @@
     "customDemandScalingFactor" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customDemandScalingFactor.md",
     "customQueueLengthThreshold" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customQueueLengthThreshold.md",
     "customTrafficLightId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md",
-    "TrafficSimulation" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/",
+    "TrafficSimulation" : "smartvillage:TrafficSimulation",
     "startDateTime" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startDateTime.md",
     "fcdFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/fcdFilePath.md",
     "netFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/netFilePath.md",
