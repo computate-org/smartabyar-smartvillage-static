@@ -1,7 +1,5 @@
 {
   "@context" : {
-    "@type" : "@type",
-    "@id" : "@id",
     "ngsi-ld" : "https://uri.etsi.org/ngsi-ld/",
     "fiware" : "https://uri.fiware.org/ns/data-models#",
     "schema" : "https://schema.org/",
