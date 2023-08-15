@@ -226,6 +226,30 @@ function searchTrafficSimulationFilters($formFilters) {
 		var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
 		if(filterParamDemandScale != null && filterParamDemandScale !== '')
 			filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+		var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
+		if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorIds:' + filterLaneAreaDetectorIds });
+
+		var filterLaneAreaDetectorLanes = $formFilters.find('.valueLaneAreaDetectorLanes').val();
+		if(filterLaneAreaDetectorLanes != null && filterLaneAreaDetectorLanes !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorLanes:' + filterLaneAreaDetectorLanes });
+
+		var filterLaneAreaDetectorPaths = $formFilters.find('.valueLaneAreaDetectorPaths').val();
+		if(filterLaneAreaDetectorPaths != null && filterLaneAreaDetectorPaths !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorPaths:' + filterLaneAreaDetectorPaths });
+
+		var filterE1DetectorIds = $formFilters.find('.valueE1DetectorIds').val();
+		if(filterE1DetectorIds != null && filterE1DetectorIds !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorIds:' + filterE1DetectorIds });
+
+		var filterE1DetectorLanes = $formFilters.find('.valueE1DetectorLanes').val();
+		if(filterE1DetectorLanes != null && filterE1DetectorLanes !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorLanes:' + filterE1DetectorLanes });
+
+		var filterE1DetectorPaths = $formFilters.find('.valueE1DetectorPaths').val();
+		if(filterE1DetectorPaths != null && filterE1DetectorPaths !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorPaths:' + filterE1DetectorPaths });
 	}
 	return filters;
 }
@@ -795,6 +819,78 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeParamDemandScale != null && removeParamDemandScale !== '')
 		vals['removeParamDemandScale'] = removeParamDemandScale;
 
+	var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
+	var removeLaneAreaDetectorIds = $formValues.find('.removeLaneAreaDetectorIds').val() === 'true';
+	var setLaneAreaDetectorIds = removeLaneAreaDetectorIds ? null : $formValues.find('.setLaneAreaDetectorIds').val();
+	var addLaneAreaDetectorIds = $formValues.find('.addLaneAreaDetectorIds').val();
+	if(removeLaneAreaDetectorIds || setLaneAreaDetectorIds != null && setLaneAreaDetectorIds !== '')
+		vals['setLaneAreaDetectorIds'] = setLaneAreaDetectorIds;
+	if(addLaneAreaDetectorIds != null && addLaneAreaDetectorIds !== '')
+		vals['addLaneAreaDetectorIds'] = addLaneAreaDetectorIds;
+	var removeLaneAreaDetectorIds = $formValues.find('.removeLaneAreaDetectorIds').val();
+	if(removeLaneAreaDetectorIds != null && removeLaneAreaDetectorIds !== '')
+		vals['removeLaneAreaDetectorIds'] = removeLaneAreaDetectorIds;
+
+	var valueLaneAreaDetectorLanes = $formValues.find('.valueLaneAreaDetectorLanes').val();
+	var removeLaneAreaDetectorLanes = $formValues.find('.removeLaneAreaDetectorLanes').val() === 'true';
+	var setLaneAreaDetectorLanes = removeLaneAreaDetectorLanes ? null : $formValues.find('.setLaneAreaDetectorLanes').val();
+	var addLaneAreaDetectorLanes = $formValues.find('.addLaneAreaDetectorLanes').val();
+	if(removeLaneAreaDetectorLanes || setLaneAreaDetectorLanes != null && setLaneAreaDetectorLanes !== '')
+		vals['setLaneAreaDetectorLanes'] = setLaneAreaDetectorLanes;
+	if(addLaneAreaDetectorLanes != null && addLaneAreaDetectorLanes !== '')
+		vals['addLaneAreaDetectorLanes'] = addLaneAreaDetectorLanes;
+	var removeLaneAreaDetectorLanes = $formValues.find('.removeLaneAreaDetectorLanes').val();
+	if(removeLaneAreaDetectorLanes != null && removeLaneAreaDetectorLanes !== '')
+		vals['removeLaneAreaDetectorLanes'] = removeLaneAreaDetectorLanes;
+
+	var valueLaneAreaDetectorPaths = $formValues.find('.valueLaneAreaDetectorPaths').val();
+	var removeLaneAreaDetectorPaths = $formValues.find('.removeLaneAreaDetectorPaths').val() === 'true';
+	var setLaneAreaDetectorPaths = removeLaneAreaDetectorPaths ? null : $formValues.find('.setLaneAreaDetectorPaths').val();
+	var addLaneAreaDetectorPaths = $formValues.find('.addLaneAreaDetectorPaths').val();
+	if(removeLaneAreaDetectorPaths || setLaneAreaDetectorPaths != null && setLaneAreaDetectorPaths !== '')
+		vals['setLaneAreaDetectorPaths'] = setLaneAreaDetectorPaths;
+	if(addLaneAreaDetectorPaths != null && addLaneAreaDetectorPaths !== '')
+		vals['addLaneAreaDetectorPaths'] = addLaneAreaDetectorPaths;
+	var removeLaneAreaDetectorPaths = $formValues.find('.removeLaneAreaDetectorPaths').val();
+	if(removeLaneAreaDetectorPaths != null && removeLaneAreaDetectorPaths !== '')
+		vals['removeLaneAreaDetectorPaths'] = removeLaneAreaDetectorPaths;
+
+	var valueE1DetectorIds = $formValues.find('.valueE1DetectorIds').val();
+	var removeE1DetectorIds = $formValues.find('.removeE1DetectorIds').val() === 'true';
+	var setE1DetectorIds = removeE1DetectorIds ? null : $formValues.find('.setE1DetectorIds').val();
+	var addE1DetectorIds = $formValues.find('.addE1DetectorIds').val();
+	if(removeE1DetectorIds || setE1DetectorIds != null && setE1DetectorIds !== '')
+		vals['setE1DetectorIds'] = setE1DetectorIds;
+	if(addE1DetectorIds != null && addE1DetectorIds !== '')
+		vals['addE1DetectorIds'] = addE1DetectorIds;
+	var removeE1DetectorIds = $formValues.find('.removeE1DetectorIds').val();
+	if(removeE1DetectorIds != null && removeE1DetectorIds !== '')
+		vals['removeE1DetectorIds'] = removeE1DetectorIds;
+
+	var valueE1DetectorLanes = $formValues.find('.valueE1DetectorLanes').val();
+	var removeE1DetectorLanes = $formValues.find('.removeE1DetectorLanes').val() === 'true';
+	var setE1DetectorLanes = removeE1DetectorLanes ? null : $formValues.find('.setE1DetectorLanes').val();
+	var addE1DetectorLanes = $formValues.find('.addE1DetectorLanes').val();
+	if(removeE1DetectorLanes || setE1DetectorLanes != null && setE1DetectorLanes !== '')
+		vals['setE1DetectorLanes'] = setE1DetectorLanes;
+	if(addE1DetectorLanes != null && addE1DetectorLanes !== '')
+		vals['addE1DetectorLanes'] = addE1DetectorLanes;
+	var removeE1DetectorLanes = $formValues.find('.removeE1DetectorLanes').val();
+	if(removeE1DetectorLanes != null && removeE1DetectorLanes !== '')
+		vals['removeE1DetectorLanes'] = removeE1DetectorLanes;
+
+	var valueE1DetectorPaths = $formValues.find('.valueE1DetectorPaths').val();
+	var removeE1DetectorPaths = $formValues.find('.removeE1DetectorPaths').val() === 'true';
+	var setE1DetectorPaths = removeE1DetectorPaths ? null : $formValues.find('.setE1DetectorPaths').val();
+	var addE1DetectorPaths = $formValues.find('.addE1DetectorPaths').val();
+	if(removeE1DetectorPaths || setE1DetectorPaths != null && setE1DetectorPaths !== '')
+		vals['setE1DetectorPaths'] = setE1DetectorPaths;
+	if(addE1DetectorPaths != null && addE1DetectorPaths !== '')
+		vals['addE1DetectorPaths'] = addE1DetectorPaths;
+	var removeE1DetectorPaths = $formValues.find('.removeE1DetectorPaths').val();
+	if(removeE1DetectorPaths != null && removeE1DetectorPaths !== '')
+		vals['removeE1DetectorPaths'] = removeE1DetectorPaths;
+
 	patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -1014,6 +1110,30 @@ function patchTrafficSimulationFilters($formFilters) {
 		var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
 		if(filterParamDemandScale != null && filterParamDemandScale !== '')
 			filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+		var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
+		if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorIds:' + filterLaneAreaDetectorIds });
+
+		var filterLaneAreaDetectorLanes = $formFilters.find('.valueLaneAreaDetectorLanes').val();
+		if(filterLaneAreaDetectorLanes != null && filterLaneAreaDetectorLanes !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorLanes:' + filterLaneAreaDetectorLanes });
+
+		var filterLaneAreaDetectorPaths = $formFilters.find('.valueLaneAreaDetectorPaths').val();
+		if(filterLaneAreaDetectorPaths != null && filterLaneAreaDetectorPaths !== '')
+			filters.push({ name: 'fq', value: 'laneAreaDetectorPaths:' + filterLaneAreaDetectorPaths });
+
+		var filterE1DetectorIds = $formFilters.find('.valueE1DetectorIds').val();
+		if(filterE1DetectorIds != null && filterE1DetectorIds !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorIds:' + filterE1DetectorIds });
+
+		var filterE1DetectorLanes = $formFilters.find('.valueE1DetectorLanes').val();
+		if(filterE1DetectorLanes != null && filterE1DetectorLanes !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorLanes:' + filterE1DetectorLanes });
+
+		var filterE1DetectorPaths = $formFilters.find('.valueE1DetectorPaths').val();
+		if(filterE1DetectorPaths != null && filterE1DetectorPaths !== '')
+			filters.push({ name: 'fq', value: 'e1DetectorPaths:' + filterE1DetectorPaths });
 	}
 	return filters;
 }
@@ -1216,6 +1336,30 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
 	if(valueParamDemandScale != null && valueParamDemandScale !== '')
 		vals['paramDemandScale'] = valueParamDemandScale;
+
+	var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
+	if(valueLaneAreaDetectorIds != null && valueLaneAreaDetectorIds !== '')
+		vals['laneAreaDetectorIds'] = valueLaneAreaDetectorIds;
+
+	var valueLaneAreaDetectorLanes = $formValues.find('.valueLaneAreaDetectorLanes').val();
+	if(valueLaneAreaDetectorLanes != null && valueLaneAreaDetectorLanes !== '')
+		vals['laneAreaDetectorLanes'] = valueLaneAreaDetectorLanes;
+
+	var valueLaneAreaDetectorPaths = $formValues.find('.valueLaneAreaDetectorPaths').val();
+	if(valueLaneAreaDetectorPaths != null && valueLaneAreaDetectorPaths !== '')
+		vals['laneAreaDetectorPaths'] = valueLaneAreaDetectorPaths;
+
+	var valueE1DetectorIds = $formValues.find('.valueE1DetectorIds').val();
+	if(valueE1DetectorIds != null && valueE1DetectorIds !== '')
+		vals['e1DetectorIds'] = valueE1DetectorIds;
+
+	var valueE1DetectorLanes = $formValues.find('.valueE1DetectorLanes').val();
+	if(valueE1DetectorLanes != null && valueE1DetectorLanes !== '')
+		vals['e1DetectorLanes'] = valueE1DetectorLanes;
+
+	var valueE1DetectorPaths = $formValues.find('.valueE1DetectorPaths').val();
+	if(valueE1DetectorPaths != null && valueE1DetectorPaths !== '')
+		vals['e1DetectorPaths'] = valueE1DetectorPaths;
 
 	$.ajax({
 		url: '/api/traffic-simulation'
@@ -1972,6 +2116,84 @@ async function websocketTrafficSimulationInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varTrafficSimulation' + pk + 'ParamDemandScale').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['laneAreaDetectorIds'];
+				if(vars.includes('laneAreaDetectorIds')) {
+					$('.inputTrafficSimulation' + pk + 'LaneAreaDetectorIds').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'LaneAreaDetectorIds').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['laneAreaDetectorLanes'];
+				if(vars.includes('laneAreaDetectorLanes')) {
+					$('.inputTrafficSimulation' + pk + 'LaneAreaDetectorLanes').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'LaneAreaDetectorLanes').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['laneAreaDetectorPaths'];
+				if(vars.includes('laneAreaDetectorPaths')) {
+					$('.inputTrafficSimulation' + pk + 'LaneAreaDetectorPaths').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'LaneAreaDetectorPaths').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['e1DetectorIds'];
+				if(vars.includes('e1DetectorIds')) {
+					$('.inputTrafficSimulation' + pk + 'E1DetectorIds').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'E1DetectorIds').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['e1DetectorLanes'];
+				if(vars.includes('e1DetectorLanes')) {
+					$('.inputTrafficSimulation' + pk + 'E1DetectorLanes').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'E1DetectorLanes').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['e1DetectorPaths'];
+				if(vars.includes('e1DetectorPaths')) {
+					$('.inputTrafficSimulation' + pk + 'E1DetectorPaths').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'E1DetectorPaths').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));

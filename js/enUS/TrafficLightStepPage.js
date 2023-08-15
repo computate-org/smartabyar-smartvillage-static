@@ -51,10 +51,6 @@ function searchTrafficLightStepFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
-
 		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
@@ -300,18 +296,6 @@ async function patchTrafficLightStep($formFilters, $formValues, id, success, err
 	var removeSimulationName = $formValues.find('.removeSimulationName').val();
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
-
-	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
-	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
-	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
-	var addSimulationKey = $formValues.find('.addSimulationKey').val();
-	if(removeSimulationKey || setSimulationKey != null && setSimulationKey !== '')
-		vals['setSimulationKey'] = setSimulationKey;
-	if(addSimulationKey != null && addSimulationKey !== '')
-		vals['addSimulationKey'] = addSimulationKey;
-	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
-	if(removeSimulationKey != null && removeSimulationKey !== '')
-		vals['removeSimulationKey'] = removeSimulationKey;
 
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -600,10 +584,6 @@ function patchTrafficLightStepFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
-
 		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
@@ -780,10 +760,6 @@ async function postTrafficLightStep($formValues, success, error) {
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
-
-	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
-	if(valueSimulationKey != null && valueSimulationKey !== '')
-		vals['simulationKey'] = valueSimulationKey;
 
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
@@ -1041,19 +1017,6 @@ async function websocketTrafficLightStepInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varTrafficLightStep' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['simulationKey'];
-				if(vars.includes('simulationKey')) {
-					$('.inputTrafficLightStep' + pk + 'SimulationKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLightStep' + pk + 'SimulationKey').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));

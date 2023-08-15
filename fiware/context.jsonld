@@ -31,7 +31,7 @@
     "name" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/name.md",
     "occupancy" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/occupancy.md",
     "owner" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/owner.md",
-    "refRoadSegment" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/refRoadSegment.md",
+    "refRoadSegment" : "https://smartdatamodels.org/dataModel.Transportation/refRoadSegment",
     "reversedLane" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/reversedLane.md",
     "seeAlso" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/seeAlso.md",
     "source" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/source.md",

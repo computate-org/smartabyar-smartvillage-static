@@ -51,10 +51,6 @@ function searchPersonStepFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
-
 		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
@@ -108,10 +104,6 @@ function searchPersonStepFilters($formFilters) {
 		var filterSlope = $formFilters.find('.valueSlope').val();
 		if(filterSlope != null && filterSlope !== '')
 			filters.push({ name: 'fq', value: 'slope:' + filterSlope });
-
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -168,6 +160,10 @@ function searchPersonStepFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
@@ -300,18 +296,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	var removeSimulationName = $formValues.find('.removeSimulationName').val();
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
-
-	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
-	var removeSimulationKey = $formValues.find('.removeSimulationKey').val() === 'true';
-	var setSimulationKey = removeSimulationKey ? null : $formValues.find('.setSimulationKey').val();
-	var addSimulationKey = $formValues.find('.addSimulationKey').val();
-	if(removeSimulationKey || setSimulationKey != null && setSimulationKey !== '')
-		vals['setSimulationKey'] = setSimulationKey;
-	if(addSimulationKey != null && addSimulationKey !== '')
-		vals['addSimulationKey'] = addSimulationKey;
-	var removeSimulationKey = $formValues.find('.removeSimulationKey').val();
-	if(removeSimulationKey != null && removeSimulationKey !== '')
-		vals['removeSimulationKey'] = removeSimulationKey;
 
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -460,42 +444,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeSlope != null && removeSlope !== '')
 		vals['removeSlope'] = removeSlope;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	var removeX = $formValues.find('.removeX').val() === 'true';
-	var setX = removeX ? null : $formValues.find('.setX').val();
-	var addX = $formValues.find('.addX').val();
-	if(removeX || setX != null && setX !== '')
-		vals['setX'] = setX;
-	if(addX != null && addX !== '')
-		vals['addX'] = addX;
-	var removeX = $formValues.find('.removeX').val();
-	if(removeX != null && removeX !== '')
-		vals['removeX'] = removeX;
-
-	var valueY = $formValues.find('.valueY').val();
-	var removeY = $formValues.find('.removeY').val() === 'true';
-	var setY = removeY ? null : $formValues.find('.setY').val();
-	var addY = $formValues.find('.addY').val();
-	if(removeY || setY != null && setY !== '')
-		vals['setY'] = setY;
-	if(addY != null && addY !== '')
-		vals['addY'] = addY;
-	var removeY = $formValues.find('.removeY').val();
-	if(removeY != null && removeY !== '')
-		vals['removeY'] = removeY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -556,6 +504,42 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
 	if(removeId != null && removeId !== '')
 		vals['removeId'] = removeId;
 
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
+
+	var valueX = $formValues.find('.valueX').val();
+	var removeX = $formValues.find('.removeX').val() === 'true';
+	var setX = removeX ? null : $formValues.find('.setX').val();
+	var addX = $formValues.find('.addX').val();
+	if(removeX || setX != null && setX !== '')
+		vals['setX'] = setX;
+	if(addX != null && addX !== '')
+		vals['addX'] = addX;
+	var removeX = $formValues.find('.removeX').val();
+	if(removeX != null && removeX !== '')
+		vals['removeX'] = removeX;
+
+	var valueY = $formValues.find('.valueY').val();
+	var removeY = $formValues.find('.removeY').val() === 'true';
+	var setY = removeY ? null : $formValues.find('.setY').val();
+	var addY = $formValues.find('.addY').val();
+	if(removeY || setY != null && setY !== '')
+		vals['setY'] = setY;
+	if(addY != null && addY !== '')
+		vals['addY'] = addY;
+	var removeY = $formValues.find('.removeY').val();
+	if(removeY != null && removeY !== '')
+		vals['removeY'] = removeY;
+
 	patchPersonStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -599,10 +583,6 @@ function patchPersonStepFilters($formFilters) {
 		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
 
 		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
@@ -657,10 +637,6 @@ function patchPersonStepFilters($formFilters) {
 		var filterSlope = $formFilters.find('.valueSlope').val();
 		if(filterSlope != null && filterSlope !== '')
 			filters.push({ name: 'fq', value: 'slope:' + filterSlope });
-
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -717,6 +693,10 @@ function patchPersonStepFilters($formFilters) {
 		var filterId = $formFilters.find('.valueId').val();
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+		if(filterTimeStepId != null && filterTimeStepId !== '')
+			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 	}
 	return filters;
 }
@@ -781,10 +761,6 @@ async function postPersonStep($formValues, success, error) {
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
 
-	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
-	if(valueSimulationKey != null && valueSimulationKey !== '')
-		vals['simulationKey'] = valueSimulationKey;
-
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
 		vals['sumocfgPath'] = valueSumocfgPath;
@@ -833,18 +809,6 @@ async function postPersonStep($formValues, success, error) {
 	if(valueSlope != null && valueSlope !== '')
 		vals['slope'] = valueSlope;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	if(valueX != null && valueX !== '')
-		vals['x'] = valueX;
-
-	var valueY = $formValues.find('.valueY').val();
-	if(valueY != null && valueY !== '')
-		vals['y'] = valueY;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -864,6 +828,18 @@ async function postPersonStep($formValues, success, error) {
 	var valueId = $formValues.find('.valueId').val();
 	if(valueId != null && valueId !== '')
 		vals['id'] = valueId;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
+
+	var valueX = $formValues.find('.valueX').val();
+	if(valueX != null && valueX !== '')
+		vals['x'] = valueX;
+
+	var valueY = $formValues.find('.valueY').val();
+	if(valueY != null && valueY !== '')
+		vals['y'] = valueY;
 
 	$.ajax({
 		url: '/api/person-step'
@@ -1046,19 +1022,6 @@ async function websocketPersonStepInner(apiRequest) {
 							addGlow($(this));
 					});
 				}
-				var val = o['simulationKey'];
-				if(vars.includes('simulationKey')) {
-					$('.inputPersonStep' + pk + 'SimulationKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varPersonStep' + pk + 'SimulationKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
 				var val = o['sumocfgPath'];
 				if(vars.includes('sumocfgPath')) {
 					$('.inputPersonStep' + pk + 'SumocfgPath').each(function() {
@@ -1210,45 +1173,6 @@ async function websocketPersonStepInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varPersonStep' + pk + 'Slope').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['timeStepId'];
-				if(vars.includes('timeStepId')) {
-					$('.inputPersonStep' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varPersonStep' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['x'];
-				if(vars.includes('x')) {
-					$('.inputPersonStep' + pk + 'X').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varPersonStep' + pk + 'X').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['y'];
-				if(vars.includes('y')) {
-					$('.inputPersonStep' + pk + 'Y').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varPersonStep' + pk + 'Y').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));
@@ -1431,6 +1355,45 @@ async function websocketPersonStepInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varPersonStep' + pk + 'Id').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['timeStepId'];
+				if(vars.includes('timeStepId')) {
+					$('.inputPersonStep' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varPersonStep' + pk + 'TimeStepId').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['x'];
+				if(vars.includes('x')) {
+					$('.inputPersonStep' + pk + 'X').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varPersonStep' + pk + 'X').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['y'];
+				if(vars.includes('y')) {
+					$('.inputPersonStep' + pk + 'Y').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varPersonStep' + pk + 'Y').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));

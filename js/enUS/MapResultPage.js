@@ -47,18 +47,6 @@ function searchMapResultFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
-
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
@@ -312,45 +300,6 @@ async function websocketMapResultInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varMapResult' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['simulationName'];
-				if(vars.includes('simulationName')) {
-					$('.inputMapResult' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varMapResult' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['simulationKey'];
-				if(vars.includes('simulationKey')) {
-					$('.inputMapResult' + pk + 'SimulationKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varMapResult' + pk + 'SimulationKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['sumocfgPath'];
-				if(vars.includes('sumocfgPath')) {
-					$('.inputMapResult' + pk + 'SumocfgPath').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varMapResult' + pk + 'SumocfgPath').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));
