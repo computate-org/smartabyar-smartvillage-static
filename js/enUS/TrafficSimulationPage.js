@@ -55,113 +55,9 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
-		var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
-		if(filterFcdFilePath != null && filterFcdFilePath !== '')
-			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
-
-		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
-		if(filterStartDateTime != null && filterStartDateTime !== '')
-			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
-		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-		if(filterStartSeconds != null && filterStartSeconds !== '')
-			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
-
-		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
-		if(filterEndSeconds != null && filterEndSeconds !== '')
-			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
-		if(filterStepSeconds != null && filterStepSeconds !== '')
-			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
-
-		var filterParamAvgVehiclePerMinFromWestToEast = $formFilters.find('.valueParamAvgVehiclePerMinFromWestToEast').val();
-		if(filterParamAvgVehiclePerMinFromWestToEast != null && filterParamAvgVehiclePerMinFromWestToEast !== '')
-			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromWestToEast:' + filterParamAvgVehiclePerMinFromWestToEast });
-
-		var filterParamAvgVehiclePerMinFromSouthToNorth = $formFilters.find('.valueParamAvgVehiclePerMinFromSouthToNorth').val();
-		if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
-			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
-
-		var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
-		if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
-
-		var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
-		if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
-			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
-
-		var filterParamAvgPedestrianPerMinFromSouthToNorth = $formFilters.find('.valueParamAvgPedestrianPerMinFromSouthToNorth').val();
-		if(filterParamAvgPedestrianPerMinFromSouthToNorth != null && filterParamAvgPedestrianPerMinFromSouthToNorth !== '')
-			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromSouthToNorth:' + filterParamAvgPedestrianPerMinFromSouthToNorth });
-
-		var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
-		if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
-
-		var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
-		if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecWestEast:' + filterParamMinGreenTimeSecWestEast });
-
-		var filterParamMaxGreenTimeSecWestEast = $formFilters.find('.valueParamMaxGreenTimeSecWestEast').val();
-		if(filterParamMaxGreenTimeSecWestEast != null && filterParamMaxGreenTimeSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecWestEast:' + filterParamMaxGreenTimeSecWestEast });
-
-		var filterParamMinGreenTimeSecSouthNorth = $formFilters.find('.valueParamMinGreenTimeSecSouthNorth').val();
-		if(filterParamMinGreenTimeSecSouthNorth != null && filterParamMinGreenTimeSecSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecSouthNorth:' + filterParamMinGreenTimeSecSouthNorth });
-
-		var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
-		if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
-
-		var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-		if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
-
-		var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
-		if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecWestEast:' + filterParamPedestrianWaitThresholdSecWestEast });
-
-		var filterParamVehicleQueueThresholdWestEast = $formFilters.find('.valueParamVehicleQueueThresholdWestEast').val();
-		if(filterParamVehicleQueueThresholdWestEast != null && filterParamVehicleQueueThresholdWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdWestEast:' + filterParamVehicleQueueThresholdWestEast });
-
-		var filterParamVehicleQueueThresholdSouthNorth = $formFilters.find('.valueParamVehicleQueueThresholdSouthNorth').val();
-		if(filterParamVehicleQueueThresholdSouthNorth != null && filterParamVehicleQueueThresholdSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdSouthNorth:' + filterParamVehicleQueueThresholdSouthNorth });
-
-		var filterParamPedestrianQueueThresholdNorthSouth = $formFilters.find('.valueParamPedestrianQueueThresholdNorthSouth').val();
-		if(filterParamPedestrianQueueThresholdNorthSouth != null && filterParamPedestrianQueueThresholdNorthSouth !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdNorthSouth:' + filterParamPedestrianQueueThresholdNorthSouth });
-
-		var filterParamPedestrianQueueThresholdWestEast = $formFilters.find('.valueParamPedestrianQueueThresholdWestEast').val();
-		if(filterParamPedestrianQueueThresholdWestEast != null && filterParamPedestrianQueueThresholdWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdWestEast:' + filterParamPedestrianQueueThresholdWestEast });
-
-		var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
-		if(filterParamRunTime != null && filterParamRunTime !== '')
-			filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
-		var filterParamStepSize = $formFilters.find('.valueParamStepSize').val();
-		if(filterParamStepSize != null && filterParamStepSize !== '')
-			filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
-
-		var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
-		if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
-			filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
-
-		var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
-		if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
-			filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
-
-		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
-		if(filterReportKeys != null && filterReportKeys !== '')
-			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
+		var filterLocation = $formFilters.find('.valueLocation').val();
+		if(filterLocation != null && filterLocation !== '')
+			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -219,13 +115,121 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+		if(filterStartDateTime != null && filterStartDateTime !== '')
+			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+		var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
+		if(filterFcdFilePath != null && filterFcdFilePath !== '')
+			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
+
 		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
 		if(filterNetFilePath != null && filterNetFilePath !== '')
 			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 
+		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
+		if(filterStartSeconds != null && filterStartSeconds !== '')
+			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
+
+		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
+		if(filterEndSeconds != null && filterEndSeconds !== '')
+			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
+
+		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
+		if(filterStepSeconds != null && filterStepSeconds !== '')
+			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
+
+		var filterParamAvgVehiclePerMinFromWestToEast = $formFilters.find('.valueParamAvgVehiclePerMinFromWestToEast').val();
+		if(filterParamAvgVehiclePerMinFromWestToEast != null && filterParamAvgVehiclePerMinFromWestToEast !== '')
+			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromWestToEast:' + filterParamAvgVehiclePerMinFromWestToEast });
+
+		var filterParamAvgVehiclePerMinFromSouthToNorth = $formFilters.find('.valueParamAvgVehiclePerMinFromSouthToNorth').val();
+		if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
+			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
+
+		var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
+		if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
+
+		var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
+		if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
+			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
+
+		var filterParamAvgPedestrianPerMinFromSouthToNorth = $formFilters.find('.valueParamAvgPedestrianPerMinFromSouthToNorth').val();
+		if(filterParamAvgPedestrianPerMinFromSouthToNorth != null && filterParamAvgPedestrianPerMinFromSouthToNorth !== '')
+			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromSouthToNorth:' + filterParamAvgPedestrianPerMinFromSouthToNorth });
+
+		var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
+		if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
+
 		var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
 		if(filterParamDemandScale != null && filterParamDemandScale !== '')
 			filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+		var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
+		if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecWestEast:' + filterParamMinGreenTimeSecWestEast });
+
+		var filterParamMaxGreenTimeSecWestEast = $formFilters.find('.valueParamMaxGreenTimeSecWestEast').val();
+		if(filterParamMaxGreenTimeSecWestEast != null && filterParamMaxGreenTimeSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecWestEast:' + filterParamMaxGreenTimeSecWestEast });
+
+		var filterParamMinGreenTimeSecSouthNorth = $formFilters.find('.valueParamMinGreenTimeSecSouthNorth').val();
+		if(filterParamMinGreenTimeSecSouthNorth != null && filterParamMinGreenTimeSecSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecSouthNorth:' + filterParamMinGreenTimeSecSouthNorth });
+
+		var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
+		if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
+
+		var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+		if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
+
+		var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
+		if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecWestEast:' + filterParamPedestrianWaitThresholdSecWestEast });
+
+		var filterParamVehicleQueueThresholdWestEast = $formFilters.find('.valueParamVehicleQueueThresholdWestEast').val();
+		if(filterParamVehicleQueueThresholdWestEast != null && filterParamVehicleQueueThresholdWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdWestEast:' + filterParamVehicleQueueThresholdWestEast });
+
+		var filterParamVehicleQueueThresholdSouthNorth = $formFilters.find('.valueParamVehicleQueueThresholdSouthNorth').val();
+		if(filterParamVehicleQueueThresholdSouthNorth != null && filterParamVehicleQueueThresholdSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdSouthNorth:' + filterParamVehicleQueueThresholdSouthNorth });
+
+		var filterParamPedestrianQueueThresholdNorthSouth = $formFilters.find('.valueParamPedestrianQueueThresholdNorthSouth').val();
+		if(filterParamPedestrianQueueThresholdNorthSouth != null && filterParamPedestrianQueueThresholdNorthSouth !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdNorthSouth:' + filterParamPedestrianQueueThresholdNorthSouth });
+
+		var filterParamPedestrianQueueThresholdWestEast = $formFilters.find('.valueParamPedestrianQueueThresholdWestEast').val();
+		if(filterParamPedestrianQueueThresholdWestEast != null && filterParamPedestrianQueueThresholdWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdWestEast:' + filterParamPedestrianQueueThresholdWestEast });
+
+		var filterParamStepSize = $formFilters.find('.valueParamStepSize').val();
+		if(filterParamStepSize != null && filterParamStepSize !== '')
+			filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
+
+		var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
+		if(filterParamRunTime != null && filterParamRunTime !== '')
+			filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
+
+		var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
+		if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
+			filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
+
+		var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
+		if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
+			filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
+
+		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
+		if(filterReportKeys != null && filterReportKeys !== '')
+			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
 		var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
 		if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
@@ -431,6 +435,78 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
 
+	var valueLocation = $formValues.find('.valueLocation').val();
+	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
+	var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
+	var addLocation = $formValues.find('.addLocation').val();
+	if(removeLocation || setLocation != null && setLocation !== '')
+		vals['setLocation'] = setLocation;
+	if(addLocation != null && addLocation !== '')
+		vals['addLocation'] = addLocation;
+	var removeLocation = $formValues.find('.removeLocation').val();
+	if(removeLocation != null && removeLocation !== '')
+		vals['removeLocation'] = removeLocation;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+	var addObjectTitle = $formValues.find('.addObjectTitle').val();
+	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+		vals['setObjectTitle'] = setObjectTitle;
+	if(addObjectTitle != null && addObjectTitle !== '')
+		vals['addObjectTitle'] = addObjectTitle;
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+	if(removeObjectTitle != null && removeObjectTitle !== '')
+		vals['removeObjectTitle'] = removeObjectTitle;
+
+	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+	var removeStartDateTime = $formValues.find('.removeStartDateTime').val() === 'true';
+	var setStartDateTime = removeStartDateTime ? null : $formValues.find('.setStartDateTime').val();
+	var addStartDateTime = $formValues.find('.addStartDateTime').val();
+	if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
+		vals['setStartDateTime'] = setStartDateTime;
+	if(addStartDateTime != null && addStartDateTime !== '')
+		vals['addStartDateTime'] = addStartDateTime;
+	var removeStartDateTime = $formValues.find('.removeStartDateTime').val();
+	if(removeStartDateTime != null && removeStartDateTime !== '')
+		vals['removeStartDateTime'] = removeStartDateTime;
+
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
 	var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
@@ -455,17 +531,17 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeFcdFilePath != null && removeFcdFilePath !== '')
 		vals['removeFcdFilePath'] = removeFcdFilePath;
 
-	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
-	var removeStartDateTime = $formValues.find('.removeStartDateTime').val() === 'true';
-	var setStartDateTime = removeStartDateTime ? null : $formValues.find('.setStartDateTime').val();
-	var addStartDateTime = $formValues.find('.addStartDateTime').val();
-	if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
-		vals['setStartDateTime'] = setStartDateTime;
-	if(addStartDateTime != null && addStartDateTime !== '')
-		vals['addStartDateTime'] = addStartDateTime;
-	var removeStartDateTime = $formValues.find('.removeStartDateTime').val();
-	if(removeStartDateTime != null && removeStartDateTime !== '')
-		vals['removeStartDateTime'] = removeStartDateTime;
+	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+	var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
+	var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
+	var addNetFilePath = $formValues.find('.addNetFilePath').val();
+	if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
+		vals['setNetFilePath'] = setNetFilePath;
+	if(addNetFilePath != null && addNetFilePath !== '')
+		vals['addNetFilePath'] = addNetFilePath;
+	var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
+	if(removeNetFilePath != null && removeNetFilePath !== '')
+		vals['removeNetFilePath'] = removeNetFilePath;
 
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
@@ -574,6 +650,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	var removeParamPedestrianDemandScalingFactor = $formValues.find('.removeParamPedestrianDemandScalingFactor').val();
 	if(removeParamPedestrianDemandScalingFactor != null && removeParamPedestrianDemandScalingFactor !== '')
 		vals['removeParamPedestrianDemandScalingFactor'] = removeParamPedestrianDemandScalingFactor;
+
+	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
+	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
+	var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
+	var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
+	if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
+		vals['setParamDemandScale'] = setParamDemandScale;
+	if(addParamDemandScale != null && addParamDemandScale !== '')
+		vals['addParamDemandScale'] = addParamDemandScale;
+	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
+	if(removeParamDemandScale != null && removeParamDemandScale !== '')
+		vals['removeParamDemandScale'] = removeParamDemandScale;
 
 	var valueParamMinGreenTimeSecWestEast = $formValues.find('.valueParamMinGreenTimeSecWestEast').val();
 	var removeParamMinGreenTimeSecWestEast = $formValues.find('.removeParamMinGreenTimeSecWestEast').val() === 'true';
@@ -695,18 +783,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeParamPedestrianQueueThresholdWestEast != null && removeParamPedestrianQueueThresholdWestEast !== '')
 		vals['removeParamPedestrianQueueThresholdWestEast'] = removeParamPedestrianQueueThresholdWestEast;
 
-	var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
-	var removeParamRunTime = $formValues.find('.removeParamRunTime').val() === 'true';
-	var setParamRunTime = removeParamRunTime ? null : $formValues.find('.setParamRunTime').val();
-	var addParamRunTime = $formValues.find('.addParamRunTime').val();
-	if(removeParamRunTime || setParamRunTime != null && setParamRunTime !== '')
-		vals['setParamRunTime'] = setParamRunTime;
-	if(addParamRunTime != null && addParamRunTime !== '')
-		vals['addParamRunTime'] = addParamRunTime;
-	var removeParamRunTime = $formValues.find('.removeParamRunTime').val();
-	if(removeParamRunTime != null && removeParamRunTime !== '')
-		vals['removeParamRunTime'] = removeParamRunTime;
-
 	var valueParamStepSize = $formValues.find('.valueParamStepSize').val();
 	var removeParamStepSize = $formValues.find('.removeParamStepSize').val() === 'true';
 	var setParamStepSize = removeParamStepSize ? null : $formValues.find('.setParamStepSize').val();
@@ -718,6 +794,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	var removeParamStepSize = $formValues.find('.removeParamStepSize').val();
 	if(removeParamStepSize != null && removeParamStepSize !== '')
 		vals['removeParamStepSize'] = removeParamStepSize;
+
+	var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
+	var removeParamRunTime = $formValues.find('.removeParamRunTime').val() === 'true';
+	var setParamRunTime = removeParamRunTime ? null : $formValues.find('.setParamRunTime').val();
+	var addParamRunTime = $formValues.find('.addParamRunTime').val();
+	if(removeParamRunTime || setParamRunTime != null && setParamRunTime !== '')
+		vals['setParamRunTime'] = setParamRunTime;
+	if(addParamRunTime != null && addParamRunTime !== '')
+		vals['addParamRunTime'] = addParamRunTime;
+	var removeParamRunTime = $formValues.find('.removeParamRunTime').val();
+	if(removeParamRunTime != null && removeParamRunTime !== '')
+		vals['removeParamRunTime'] = removeParamRunTime;
 
 	var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
 	var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val() === 'true';
@@ -742,82 +830,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	var removeParamTotalIterNum = $formValues.find('.removeParamTotalIterNum').val();
 	if(removeParamTotalIterNum != null && removeParamTotalIterNum !== '')
 		vals['removeParamTotalIterNum'] = removeParamTotalIterNum;
-
-	var valueReportKeys = $formValues.find('input.valueReportKeys:checked').val();
-	if(valueReportKeys != null && valueReportKeys !== '')
-		vals['addReportKeys'] = valueReportKeys;
-
-	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-	var addInheritPk = $formValues.find('.addInheritPk').val();
-	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-		vals['setInheritPk'] = setInheritPk;
-	if(addInheritPk != null && addInheritPk !== '')
-		vals['addInheritPk'] = addInheritPk;
-	var removeInheritPk = $formValues.find('.removeInheritPk').val();
-	if(removeInheritPk != null && removeInheritPk !== '')
-		vals['removeInheritPk'] = removeInheritPk;
-
-	var valueSessionId = $formValues.find('.valueSessionId').val();
-	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
-	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
-	var addSessionId = $formValues.find('.addSessionId').val();
-	if(removeSessionId || setSessionId != null && setSessionId !== '')
-		vals['setSessionId'] = setSessionId;
-	if(addSessionId != null && addSessionId !== '')
-		vals['addSessionId'] = addSessionId;
-	var removeSessionId = $formValues.find('.removeSessionId').val();
-	if(removeSessionId != null && removeSessionId !== '')
-		vals['removeSessionId'] = removeSessionId;
-
-	var valueUserKey = $formValues.find('.valueUserKey').val();
-	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
-	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
-	var addUserKey = $formValues.find('.addUserKey').val();
-	if(removeUserKey || setUserKey != null && setUserKey !== '')
-		vals['setUserKey'] = setUserKey;
-	if(addUserKey != null && addUserKey !== '')
-		vals['addUserKey'] = addUserKey;
-	var removeUserKey = $formValues.find('.removeUserKey').val();
-	if(removeUserKey != null && removeUserKey !== '')
-		vals['removeUserKey'] = removeUserKey;
-
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-	var addObjectTitle = $formValues.find('.addObjectTitle').val();
-	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-		vals['setObjectTitle'] = setObjectTitle;
-	if(addObjectTitle != null && addObjectTitle !== '')
-		vals['addObjectTitle'] = addObjectTitle;
-	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-	if(removeObjectTitle != null && removeObjectTitle !== '')
-		vals['removeObjectTitle'] = removeObjectTitle;
-
-	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-	var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
-	var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
-	var addNetFilePath = $formValues.find('.addNetFilePath').val();
-	if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
-		vals['setNetFilePath'] = setNetFilePath;
-	if(addNetFilePath != null && addNetFilePath !== '')
-		vals['addNetFilePath'] = addNetFilePath;
-	var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
-	if(removeNetFilePath != null && removeNetFilePath !== '')
-		vals['removeNetFilePath'] = removeNetFilePath;
-
-	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
-	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
-	var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
-	var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
-	if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
-		vals['setParamDemandScale'] = setParamDemandScale;
-	if(addParamDemandScale != null && addParamDemandScale !== '')
-		vals['addParamDemandScale'] = addParamDemandScale;
-	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
-	if(removeParamDemandScale != null && removeParamDemandScale !== '')
-		vals['removeParamDemandScale'] = removeParamDemandScale;
 
 	var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
 	var removeLaneAreaDetectorIds = $formValues.find('.removeLaneAreaDetectorIds').val() === 'true';
@@ -939,113 +951,9 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
-		var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
-		if(filterFcdFilePath != null && filterFcdFilePath !== '')
-			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
-
-		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
-		if(filterStartDateTime != null && filterStartDateTime !== '')
-			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
-		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-		if(filterStartSeconds != null && filterStartSeconds !== '')
-			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
-
-		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
-		if(filterEndSeconds != null && filterEndSeconds !== '')
-			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
-		if(filterStepSeconds != null && filterStepSeconds !== '')
-			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
-
-		var filterParamAvgVehiclePerMinFromWestToEast = $formFilters.find('.valueParamAvgVehiclePerMinFromWestToEast').val();
-		if(filterParamAvgVehiclePerMinFromWestToEast != null && filterParamAvgVehiclePerMinFromWestToEast !== '')
-			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromWestToEast:' + filterParamAvgVehiclePerMinFromWestToEast });
-
-		var filterParamAvgVehiclePerMinFromSouthToNorth = $formFilters.find('.valueParamAvgVehiclePerMinFromSouthToNorth').val();
-		if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
-			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
-
-		var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
-		if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
-
-		var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
-		if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
-			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
-
-		var filterParamAvgPedestrianPerMinFromSouthToNorth = $formFilters.find('.valueParamAvgPedestrianPerMinFromSouthToNorth').val();
-		if(filterParamAvgPedestrianPerMinFromSouthToNorth != null && filterParamAvgPedestrianPerMinFromSouthToNorth !== '')
-			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromSouthToNorth:' + filterParamAvgPedestrianPerMinFromSouthToNorth });
-
-		var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
-		if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
-
-		var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
-		if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecWestEast:' + filterParamMinGreenTimeSecWestEast });
-
-		var filterParamMaxGreenTimeSecWestEast = $formFilters.find('.valueParamMaxGreenTimeSecWestEast').val();
-		if(filterParamMaxGreenTimeSecWestEast != null && filterParamMaxGreenTimeSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecWestEast:' + filterParamMaxGreenTimeSecWestEast });
-
-		var filterParamMinGreenTimeSecSouthNorth = $formFilters.find('.valueParamMinGreenTimeSecSouthNorth').val();
-		if(filterParamMinGreenTimeSecSouthNorth != null && filterParamMinGreenTimeSecSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecSouthNorth:' + filterParamMinGreenTimeSecSouthNorth });
-
-		var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
-		if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
-
-		var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-		if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
-
-		var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
-		if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecWestEast:' + filterParamPedestrianWaitThresholdSecWestEast });
-
-		var filterParamVehicleQueueThresholdWestEast = $formFilters.find('.valueParamVehicleQueueThresholdWestEast').val();
-		if(filterParamVehicleQueueThresholdWestEast != null && filterParamVehicleQueueThresholdWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdWestEast:' + filterParamVehicleQueueThresholdWestEast });
-
-		var filterParamVehicleQueueThresholdSouthNorth = $formFilters.find('.valueParamVehicleQueueThresholdSouthNorth').val();
-		if(filterParamVehicleQueueThresholdSouthNorth != null && filterParamVehicleQueueThresholdSouthNorth !== '')
-			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdSouthNorth:' + filterParamVehicleQueueThresholdSouthNorth });
-
-		var filterParamPedestrianQueueThresholdNorthSouth = $formFilters.find('.valueParamPedestrianQueueThresholdNorthSouth').val();
-		if(filterParamPedestrianQueueThresholdNorthSouth != null && filterParamPedestrianQueueThresholdNorthSouth !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdNorthSouth:' + filterParamPedestrianQueueThresholdNorthSouth });
-
-		var filterParamPedestrianQueueThresholdWestEast = $formFilters.find('.valueParamPedestrianQueueThresholdWestEast').val();
-		if(filterParamPedestrianQueueThresholdWestEast != null && filterParamPedestrianQueueThresholdWestEast !== '')
-			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdWestEast:' + filterParamPedestrianQueueThresholdWestEast });
-
-		var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
-		if(filterParamRunTime != null && filterParamRunTime !== '')
-			filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
-		var filterParamStepSize = $formFilters.find('.valueParamStepSize').val();
-		if(filterParamStepSize != null && filterParamStepSize !== '')
-			filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
-
-		var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
-		if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
-			filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
-
-		var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
-		if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
-			filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
-
-		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
-		if(filterReportKeys != null && filterReportKeys !== '')
-			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
+		var filterLocation = $formFilters.find('.valueLocation').val();
+		if(filterLocation != null && filterLocation !== '')
+			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -1103,13 +1011,121 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+		if(filterStartDateTime != null && filterStartDateTime !== '')
+			filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+		var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
+		if(filterFcdFilePath != null && filterFcdFilePath !== '')
+			filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
+
 		var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
 		if(filterNetFilePath != null && filterNetFilePath !== '')
 			filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 
+		var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
+		if(filterStartSeconds != null && filterStartSeconds !== '')
+			filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
+
+		var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
+		if(filterEndSeconds != null && filterEndSeconds !== '')
+			filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
+
+		var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
+		if(filterStepSeconds != null && filterStepSeconds !== '')
+			filters.push({ name: 'fq', value: 'stepSeconds:' + filterStepSeconds });
+
+		var filterParamAvgVehiclePerMinFromWestToEast = $formFilters.find('.valueParamAvgVehiclePerMinFromWestToEast').val();
+		if(filterParamAvgVehiclePerMinFromWestToEast != null && filterParamAvgVehiclePerMinFromWestToEast !== '')
+			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromWestToEast:' + filterParamAvgVehiclePerMinFromWestToEast });
+
+		var filterParamAvgVehiclePerMinFromSouthToNorth = $formFilters.find('.valueParamAvgVehiclePerMinFromSouthToNorth').val();
+		if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
+			filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
+
+		var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
+		if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
+
+		var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
+		if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
+			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
+
+		var filterParamAvgPedestrianPerMinFromSouthToNorth = $formFilters.find('.valueParamAvgPedestrianPerMinFromSouthToNorth').val();
+		if(filterParamAvgPedestrianPerMinFromSouthToNorth != null && filterParamAvgPedestrianPerMinFromSouthToNorth !== '')
+			filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromSouthToNorth:' + filterParamAvgPedestrianPerMinFromSouthToNorth });
+
+		var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
+		if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
+
 		var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
 		if(filterParamDemandScale != null && filterParamDemandScale !== '')
 			filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+		var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
+		if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecWestEast:' + filterParamMinGreenTimeSecWestEast });
+
+		var filterParamMaxGreenTimeSecWestEast = $formFilters.find('.valueParamMaxGreenTimeSecWestEast').val();
+		if(filterParamMaxGreenTimeSecWestEast != null && filterParamMaxGreenTimeSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecWestEast:' + filterParamMaxGreenTimeSecWestEast });
+
+		var filterParamMinGreenTimeSecSouthNorth = $formFilters.find('.valueParamMinGreenTimeSecSouthNorth').val();
+		if(filterParamMinGreenTimeSecSouthNorth != null && filterParamMinGreenTimeSecSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramMinGreenTimeSecSouthNorth:' + filterParamMinGreenTimeSecSouthNorth });
+
+		var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
+		if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
+
+		var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+		if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
+
+		var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
+		if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecWestEast:' + filterParamPedestrianWaitThresholdSecWestEast });
+
+		var filterParamVehicleQueueThresholdWestEast = $formFilters.find('.valueParamVehicleQueueThresholdWestEast').val();
+		if(filterParamVehicleQueueThresholdWestEast != null && filterParamVehicleQueueThresholdWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdWestEast:' + filterParamVehicleQueueThresholdWestEast });
+
+		var filterParamVehicleQueueThresholdSouthNorth = $formFilters.find('.valueParamVehicleQueueThresholdSouthNorth').val();
+		if(filterParamVehicleQueueThresholdSouthNorth != null && filterParamVehicleQueueThresholdSouthNorth !== '')
+			filters.push({ name: 'fq', value: 'paramVehicleQueueThresholdSouthNorth:' + filterParamVehicleQueueThresholdSouthNorth });
+
+		var filterParamPedestrianQueueThresholdNorthSouth = $formFilters.find('.valueParamPedestrianQueueThresholdNorthSouth').val();
+		if(filterParamPedestrianQueueThresholdNorthSouth != null && filterParamPedestrianQueueThresholdNorthSouth !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdNorthSouth:' + filterParamPedestrianQueueThresholdNorthSouth });
+
+		var filterParamPedestrianQueueThresholdWestEast = $formFilters.find('.valueParamPedestrianQueueThresholdWestEast').val();
+		if(filterParamPedestrianQueueThresholdWestEast != null && filterParamPedestrianQueueThresholdWestEast !== '')
+			filters.push({ name: 'fq', value: 'paramPedestrianQueueThresholdWestEast:' + filterParamPedestrianQueueThresholdWestEast });
+
+		var filterParamStepSize = $formFilters.find('.valueParamStepSize').val();
+		if(filterParamStepSize != null && filterParamStepSize !== '')
+			filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
+
+		var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
+		if(filterParamRunTime != null && filterParamRunTime !== '')
+			filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
+
+		var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
+		if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
+			filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
+
+		var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
+		if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
+			filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
+
+		var filterReportKeys = $formFilters.find('.valueReportKeys').val();
+		if(filterReportKeys != null && filterReportKeys !== '')
+			filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
 		var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
 		if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
@@ -1202,6 +1218,30 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
 
+	var valueLocation = $formValues.find('.valueLocation').val();
+	if(valueLocation != null && valueLocation !== '')
+		vals['location'] = valueLocation;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+	if(valueStartDateTime != null && valueStartDateTime !== '')
+		vals['startDateTime'] = valueStartDateTime;
+
 	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
 		vals['sumocfgPath'] = valueSumocfgPath;
@@ -1210,9 +1250,9 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueFcdFilePath != null && valueFcdFilePath !== '')
 		vals['fcdFilePath'] = valueFcdFilePath;
 
-	var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
-	if(valueStartDateTime != null && valueStartDateTime !== '')
-		vals['startDateTime'] = valueStartDateTime;
+	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+	if(valueNetFilePath != null && valueNetFilePath !== '')
+		vals['netFilePath'] = valueNetFilePath;
 
 	var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
 	if(valueStartSeconds != null && valueStartSeconds !== '')
@@ -1249,6 +1289,10 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueParamPedestrianDemandScalingFactor = $formValues.find('.valueParamPedestrianDemandScalingFactor').val();
 	if(valueParamPedestrianDemandScalingFactor != null && valueParamPedestrianDemandScalingFactor !== '')
 		vals['paramPedestrianDemandScalingFactor'] = valueParamPedestrianDemandScalingFactor;
+
+	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
+	if(valueParamDemandScale != null && valueParamDemandScale !== '')
+		vals['paramDemandScale'] = valueParamDemandScale;
 
 	var valueParamMinGreenTimeSecWestEast = $formValues.find('.valueParamMinGreenTimeSecWestEast').val();
 	if(valueParamMinGreenTimeSecWestEast != null && valueParamMinGreenTimeSecWestEast !== '')
@@ -1290,13 +1334,13 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueParamPedestrianQueueThresholdWestEast != null && valueParamPedestrianQueueThresholdWestEast !== '')
 		vals['paramPedestrianQueueThresholdWestEast'] = valueParamPedestrianQueueThresholdWestEast;
 
-	var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
-	if(valueParamRunTime != null && valueParamRunTime !== '')
-		vals['paramRunTime'] = valueParamRunTime;
-
 	var valueParamStepSize = $formValues.find('.valueParamStepSize').val();
 	if(valueParamStepSize != null && valueParamStepSize !== '')
 		vals['paramStepSize'] = valueParamStepSize;
+
+	var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
+	if(valueParamRunTime != null && valueParamRunTime !== '')
+		vals['paramRunTime'] = valueParamRunTime;
 
 	var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
 	if(valueParamItersPerPar != null && valueParamItersPerPar !== '')
@@ -1305,37 +1349,6 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueParamTotalIterNum = $formValues.find('.valueParamTotalIterNum').val();
 	if(valueParamTotalIterNum != null && valueParamTotalIterNum !== '')
 		vals['paramTotalIterNum'] = valueParamTotalIterNum;
-
-	var valueReportKeys = [];
-	$formValues.find('input.valueReportKeys:checked').each(function(index) {
-		valueReportKeys.push($(this).val());
-	});
-	if(valueReportKeys.length > 0)
-		vals['reportKeys'] = valueReportKeys;
-
-	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	if(valueInheritPk != null && valueInheritPk !== '')
-		vals['inheritPk'] = valueInheritPk;
-
-	var valueSessionId = $formValues.find('.valueSessionId').val();
-	if(valueSessionId != null && valueSessionId !== '')
-		vals['sessionId'] = valueSessionId;
-
-	var valueUserKey = $formValues.find('.valueUserKey').val();
-	if(valueUserKey != null && valueUserKey !== '')
-		vals['userKey'] = valueUserKey;
-
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-		vals['objectTitle'] = valueObjectTitle;
-
-	var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-	if(valueNetFilePath != null && valueNetFilePath !== '')
-		vals['netFilePath'] = valueNetFilePath;
-
-	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
-	if(valueParamDemandScale != null && valueParamDemandScale !== '')
-		vals['paramDemandScale'] = valueParamDemandScale;
 
 	var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
 	if(valueLaneAreaDetectorIds != null && valueLaneAreaDetectorIds !== '')
@@ -1562,354 +1575,16 @@ async function websocketTrafficSimulationInner(apiRequest) {
 							addGlow($(this));
 					});
 				}
-				var val = o['sumocfgPath'];
-				if(vars.includes('sumocfgPath')) {
-					$('.inputTrafficSimulation' + pk + 'SumocfgPath').each(function() {
+				var val = o['location'];
+				if(vars.includes('location')) {
+					$('.inputTrafficSimulation' + pk + 'Location').each(function() {
 						if(val !== $(this).val())
-							$(this).val(val);
+							$(this).val(JSON.stringify(val));
 							addGlow($(this));
 					});
-					$('.varTrafficSimulation' + pk + 'SumocfgPath').each(function() {
+					$('.varTrafficSimulation' + pk + 'Location').each(function() {
 						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['fcdFilePath'];
-				if(vars.includes('fcdFilePath')) {
-					$('.inputTrafficSimulation' + pk + 'FcdFilePath').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'FcdFilePath').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['startDateTime'];
-				if(vars.includes('startDateTime')) {
-					$('.inputTrafficSimulation' + pk + 'StartDateTime').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'StartDateTime').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['startSeconds'];
-				if(vars.includes('startSeconds')) {
-					$('.inputTrafficSimulation' + pk + 'StartSeconds').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'StartSeconds').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['endSeconds'];
-				if(vars.includes('endSeconds')) {
-					$('.inputTrafficSimulation' + pk + 'EndSeconds').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'EndSeconds').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['stepSeconds'];
-				if(vars.includes('stepSeconds')) {
-					$('.inputTrafficSimulation' + pk + 'StepSeconds').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'StepSeconds').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramAvgVehiclePerMinFromWestToEast'];
-				if(vars.includes('paramAvgVehiclePerMinFromWestToEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromWestToEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromWestToEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramAvgVehiclePerMinFromSouthToNorth'];
-				if(vars.includes('paramAvgVehiclePerMinFromSouthToNorth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromSouthToNorth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromSouthToNorth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramVehicleDemandScalingFactor'];
-				if(vars.includes('paramVehicleDemandScalingFactor')) {
-					$('.inputTrafficSimulation' + pk + 'ParamVehicleDemandScalingFactor').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamVehicleDemandScalingFactor').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramAvgPedestrianPerMinFromWestToEast'];
-				if(vars.includes('paramAvgPedestrianPerMinFromWestToEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromWestToEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromWestToEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramAvgPedestrianPerMinFromSouthToNorth'];
-				if(vars.includes('paramAvgPedestrianPerMinFromSouthToNorth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromSouthToNorth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromSouthToNorth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramPedestrianDemandScalingFactor'];
-				if(vars.includes('paramPedestrianDemandScalingFactor')) {
-					$('.inputTrafficSimulation' + pk + 'ParamPedestrianDemandScalingFactor').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamPedestrianDemandScalingFactor').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramMinGreenTimeSecWestEast'];
-				if(vars.includes('paramMinGreenTimeSecWestEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamMinGreenTimeSecWestEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamMinGreenTimeSecWestEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramMaxGreenTimeSecWestEast'];
-				if(vars.includes('paramMaxGreenTimeSecWestEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamMaxGreenTimeSecWestEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamMaxGreenTimeSecWestEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramMinGreenTimeSecSouthNorth'];
-				if(vars.includes('paramMinGreenTimeSecSouthNorth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamMinGreenTimeSecSouthNorth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamMinGreenTimeSecSouthNorth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramMaxGreenTimeSecSouthNorth'];
-				if(vars.includes('paramMaxGreenTimeSecSouthNorth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamMaxGreenTimeSecSouthNorth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamMaxGreenTimeSecSouthNorth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramPedestrianWaitThresholdSecNorthSouth'];
-				if(vars.includes('paramPedestrianWaitThresholdSecNorthSouth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecNorthSouth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecNorthSouth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramPedestrianWaitThresholdSecWestEast'];
-				if(vars.includes('paramPedestrianWaitThresholdSecWestEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecWestEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecWestEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramVehicleQueueThresholdWestEast'];
-				if(vars.includes('paramVehicleQueueThresholdWestEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamVehicleQueueThresholdWestEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamVehicleQueueThresholdWestEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramVehicleQueueThresholdSouthNorth'];
-				if(vars.includes('paramVehicleQueueThresholdSouthNorth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamVehicleQueueThresholdSouthNorth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamVehicleQueueThresholdSouthNorth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramPedestrianQueueThresholdNorthSouth'];
-				if(vars.includes('paramPedestrianQueueThresholdNorthSouth')) {
-					$('.inputTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdNorthSouth').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdNorthSouth').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramPedestrianQueueThresholdWestEast'];
-				if(vars.includes('paramPedestrianQueueThresholdWestEast')) {
-					$('.inputTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdWestEast').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdWestEast').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramRunTime'];
-				if(vars.includes('paramRunTime')) {
-					$('.inputTrafficSimulation' + pk + 'ParamRunTime').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamRunTime').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramStepSize'];
-				if(vars.includes('paramStepSize')) {
-					$('.inputTrafficSimulation' + pk + 'ParamStepSize').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamStepSize').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramItersPerPar'];
-				if(vars.includes('paramItersPerPar')) {
-					$('.inputTrafficSimulation' + pk + 'ParamItersPerPar').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamItersPerPar').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['paramTotalIterNum'];
-				if(vars.includes('paramTotalIterNum')) {
-					$('.inputTrafficSimulation' + pk + 'ParamTotalIterNum').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ParamTotalIterNum').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['reportKeys'];
-				if(vars.includes('reportKeys')) {
-					$('.inputTrafficSimulation' + pk + 'ReportKeys').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficSimulation' + pk + 'ReportKeys').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
+							$(this).val(JSON.stringify(val));
 							addGlow($(this));
 					});
 				}
@@ -2095,6 +1770,45 @@ async function websocketTrafficSimulationInner(apiRequest) {
 							addGlow($(this));
 					});
 				}
+				var val = o['startDateTime'];
+				if(vars.includes('startDateTime')) {
+					$('.inputTrafficSimulation' + pk + 'StartDateTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'StartDateTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['sumocfgPath'];
+				if(vars.includes('sumocfgPath')) {
+					$('.inputTrafficSimulation' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'SumocfgPath').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['fcdFilePath'];
+				if(vars.includes('fcdFilePath')) {
+					$('.inputTrafficSimulation' + pk + 'FcdFilePath').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'FcdFilePath').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
 				var val = o['netFilePath'];
 				if(vars.includes('netFilePath')) {
 					$('.inputTrafficSimulation' + pk + 'NetFilePath').each(function() {
@@ -2108,6 +1822,123 @@ async function websocketTrafficSimulationInner(apiRequest) {
 							addGlow($(this));
 					});
 				}
+				var val = o['startSeconds'];
+				if(vars.includes('startSeconds')) {
+					$('.inputTrafficSimulation' + pk + 'StartSeconds').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'StartSeconds').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['endSeconds'];
+				if(vars.includes('endSeconds')) {
+					$('.inputTrafficSimulation' + pk + 'EndSeconds').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'EndSeconds').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['stepSeconds'];
+				if(vars.includes('stepSeconds')) {
+					$('.inputTrafficSimulation' + pk + 'StepSeconds').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'StepSeconds').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramAvgVehiclePerMinFromWestToEast'];
+				if(vars.includes('paramAvgVehiclePerMinFromWestToEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromWestToEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromWestToEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramAvgVehiclePerMinFromSouthToNorth'];
+				if(vars.includes('paramAvgVehiclePerMinFromSouthToNorth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromSouthToNorth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamAvgVehiclePerMinFromSouthToNorth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramVehicleDemandScalingFactor'];
+				if(vars.includes('paramVehicleDemandScalingFactor')) {
+					$('.inputTrafficSimulation' + pk + 'ParamVehicleDemandScalingFactor').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamVehicleDemandScalingFactor').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramAvgPedestrianPerMinFromWestToEast'];
+				if(vars.includes('paramAvgPedestrianPerMinFromWestToEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromWestToEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromWestToEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramAvgPedestrianPerMinFromSouthToNorth'];
+				if(vars.includes('paramAvgPedestrianPerMinFromSouthToNorth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromSouthToNorth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamAvgPedestrianPerMinFromSouthToNorth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramPedestrianDemandScalingFactor'];
+				if(vars.includes('paramPedestrianDemandScalingFactor')) {
+					$('.inputTrafficSimulation' + pk + 'ParamPedestrianDemandScalingFactor').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamPedestrianDemandScalingFactor').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
 				var val = o['paramDemandScale'];
 				if(vars.includes('paramDemandScale')) {
 					$('.inputTrafficSimulation' + pk + 'ParamDemandScale').each(function() {
@@ -2116,6 +1947,201 @@ async function websocketTrafficSimulationInner(apiRequest) {
 							addGlow($(this));
 					});
 					$('.varTrafficSimulation' + pk + 'ParamDemandScale').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramMinGreenTimeSecWestEast'];
+				if(vars.includes('paramMinGreenTimeSecWestEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamMinGreenTimeSecWestEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamMinGreenTimeSecWestEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramMaxGreenTimeSecWestEast'];
+				if(vars.includes('paramMaxGreenTimeSecWestEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamMaxGreenTimeSecWestEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamMaxGreenTimeSecWestEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramMinGreenTimeSecSouthNorth'];
+				if(vars.includes('paramMinGreenTimeSecSouthNorth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamMinGreenTimeSecSouthNorth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamMinGreenTimeSecSouthNorth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramMaxGreenTimeSecSouthNorth'];
+				if(vars.includes('paramMaxGreenTimeSecSouthNorth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamMaxGreenTimeSecSouthNorth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamMaxGreenTimeSecSouthNorth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramPedestrianWaitThresholdSecNorthSouth'];
+				if(vars.includes('paramPedestrianWaitThresholdSecNorthSouth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecNorthSouth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecNorthSouth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramPedestrianWaitThresholdSecWestEast'];
+				if(vars.includes('paramPedestrianWaitThresholdSecWestEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecWestEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamPedestrianWaitThresholdSecWestEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramVehicleQueueThresholdWestEast'];
+				if(vars.includes('paramVehicleQueueThresholdWestEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamVehicleQueueThresholdWestEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamVehicleQueueThresholdWestEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramVehicleQueueThresholdSouthNorth'];
+				if(vars.includes('paramVehicleQueueThresholdSouthNorth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamVehicleQueueThresholdSouthNorth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamVehicleQueueThresholdSouthNorth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramPedestrianQueueThresholdNorthSouth'];
+				if(vars.includes('paramPedestrianQueueThresholdNorthSouth')) {
+					$('.inputTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdNorthSouth').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdNorthSouth').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramPedestrianQueueThresholdWestEast'];
+				if(vars.includes('paramPedestrianQueueThresholdWestEast')) {
+					$('.inputTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdWestEast').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamPedestrianQueueThresholdWestEast').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramStepSize'];
+				if(vars.includes('paramStepSize')) {
+					$('.inputTrafficSimulation' + pk + 'ParamStepSize').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamStepSize').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramRunTime'];
+				if(vars.includes('paramRunTime')) {
+					$('.inputTrafficSimulation' + pk + 'ParamRunTime').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamRunTime').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramItersPerPar'];
+				if(vars.includes('paramItersPerPar')) {
+					$('.inputTrafficSimulation' + pk + 'ParamItersPerPar').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamItersPerPar').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['paramTotalIterNum'];
+				if(vars.includes('paramTotalIterNum')) {
+					$('.inputTrafficSimulation' + pk + 'ParamTotalIterNum').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ParamTotalIterNum').each(function() {
+						if(val !== $(this).text())
+							$(this).text(val);
+							addGlow($(this));
+					});
+				}
+				var val = o['reportKeys'];
+				if(vars.includes('reportKeys')) {
+					$('.inputTrafficSimulation' + pk + 'ReportKeys').each(function() {
+						if(val !== $(this).val())
+							$(this).val(val);
+							addGlow($(this));
+					});
+					$('.varTrafficSimulation' + pk + 'ReportKeys').each(function() {
 						if(val !== $(this).text())
 							$(this).text(val);
 							addGlow($(this));

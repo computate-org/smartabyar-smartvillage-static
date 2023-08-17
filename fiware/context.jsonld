@@ -10,7 +10,7 @@
     "sumocfgPath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/sumocfgPath.md",
     "smartTrafficLightSearch" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/smartTrafficLightSearch.md",
     "smartTrafficLight_" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/smartTrafficLight_.md",
-    "address" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/address.md",
+    "address" : "https://smartdatamodels.org/dataModel.Transportation/address",
     "alternateName" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/alternateName.md",
     "areaServed" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/areaServed.md",
     "averageGapDistance" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/averageGapDistance.md",
