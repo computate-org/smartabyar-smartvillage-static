@@ -660,325 +660,228 @@ async function websocketSystemEventInner(apiRequest) {
 	var vars = apiRequest['vars'];
 	var empty = apiRequest['empty'];
 
-	if(pk != null) {
-		searchSystemEventVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
-			var o = data['list'][0];
-			if(o != null) {
-				var val = o['modified'];
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputModified = null;
+				var inputCreated = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputType = null;
+				var inputMessage = null;
+				var inputStatus = null;
+				var inputCompleted = null;
+				var inputPageImageUri = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+
+				if(vars.includes('modified'))
+				inputModified = $response.find('.inputSystemEvent' + pk + 'Modified');
+				if(vars.includes('created'))
+				inputCreated = $response.find('.inputSystemEvent' + pk + 'Created');
+				if(vars.includes('objectId'))
+				inputObjectId = $response.find('.inputSystemEvent' + pk + 'ObjectId');
+				if(vars.includes('archived'))
+				inputArchived = $response.find('.inputSystemEvent' + pk + 'Archived');
+				if(vars.includes('deleted'))
+				inputDeleted = $response.find('.inputSystemEvent' + pk + 'Deleted');
+				if(vars.includes('type'))
+				inputType = $response.find('.inputSystemEvent' + pk + 'Type');
+				if(vars.includes('message'))
+				inputMessage = $response.find('.inputSystemEvent' + pk + 'Message');
+				if(vars.includes('status'))
+				inputStatus = $response.find('.inputSystemEvent' + pk + 'Status');
+				if(vars.includes('completed'))
+				inputCompleted = $response.find('.inputSystemEvent' + pk + 'Completed');
+				if(vars.includes('pageImageUri'))
+				inputPageImageUri = $response.find('.inputSystemEvent' + pk + 'PageImageUri');
+				if(vars.includes('inheritPk'))
+				inputInheritPk = $response.find('.inputSystemEvent' + pk + 'InheritPk');
+				if(vars.includes('classCanonicalName'))
+				inputClassCanonicalName = $response.find('.inputSystemEvent' + pk + 'ClassCanonicalName');
+				if(vars.includes('classSimpleName'))
+				inputClassSimpleName = $response.find('.inputSystemEvent' + pk + 'ClassSimpleName');
+				if(vars.includes('classCanonicalNames'))
+				inputClassCanonicalNames = $response.find('.inputSystemEvent' + pk + 'ClassCanonicalNames');
+				if(vars.includes('sessionId'))
+				inputSessionId = $response.find('.inputSystemEvent' + pk + 'SessionId');
+				if(vars.includes('userKey'))
+				inputUserKey = $response.find('.inputSystemEvent' + pk + 'UserKey');
+				if(vars.includes('saves'))
+				inputSaves = $response.find('.inputSystemEvent' + pk + 'Saves');
+				if(vars.includes('objectTitle'))
+				inputObjectTitle = $response.find('.inputSystemEvent' + pk + 'ObjectTitle');
+				if(vars.includes('objectSuggest'))
+				inputObjectSuggest = $response.find('.inputSystemEvent' + pk + 'ObjectSuggest');
+				if(vars.includes('objectText'))
+				inputObjectText = $response.find('.inputSystemEvent' + pk + 'ObjectText');
+				if(vars.includes('pageUrlId'))
+				inputPageUrlId = $response.find('.inputSystemEvent' + pk + 'PageUrlId');
+				if(vars.includes('pageUrlPk'))
+				inputPageUrlPk = $response.find('.inputSystemEvent' + pk + 'PageUrlPk');
+				if(vars.includes('pageUrlApi'))
+				inputPageUrlApi = $response.find('.inputSystemEvent' + pk + 'PageUrlApi');
+				if(vars.includes('id'))
+				inputId = $response.find('.inputSystemEvent' + pk + 'Id');
+
 				if(vars.includes('modified')) {
-					$('.inputSystemEvent' + pk + 'Modified').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Modified').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Modified').each(function(index, fragment) {
+						$(fragment).replaceWith(inputModified);
 					});
 				}
-				var val = o['created'];
+
 				if(vars.includes('created')) {
-					$('.inputSystemEvent' + pk + 'Created').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Created').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Created').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCreated);
 					});
 				}
-				var val = o['objectId'];
+
 				if(vars.includes('objectId')) {
-					$('.inputSystemEvent' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ObjectId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectId);
 					});
 				}
-				var val = o['archived'];
+
 				if(vars.includes('archived')) {
-					$('.inputSystemEvent' + pk + 'Archived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Archived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Archived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputArchived);
 					});
 				}
-				var val = o['deleted'];
+
 				if(vars.includes('deleted')) {
-					$('.inputSystemEvent' + pk + 'Deleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Deleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDeleted);
 					});
 				}
-				var val = o['type'];
+
 				if(vars.includes('type')) {
-					$('.inputSystemEvent' + pk + 'Type').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Type').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Type').each(function(index, fragment) {
+						$(fragment).replaceWith(inputType);
 					});
 				}
-				var val = o['message'];
+
 				if(vars.includes('message')) {
-					$('.inputSystemEvent' + pk + 'Message').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Message').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Message').each(function(index, fragment) {
+						$(fragment).replaceWith(inputMessage);
 					});
 				}
-				var val = o['status'];
+
 				if(vars.includes('status')) {
-					$('.inputSystemEvent' + pk + 'Status').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Status').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Status').each(function(index, fragment) {
+						$(fragment).replaceWith(inputStatus);
 					});
 				}
-				var val = o['completed'];
+
 				if(vars.includes('completed')) {
-					$('.inputSystemEvent' + pk + 'Completed').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Completed').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Completed').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCompleted);
 					});
 				}
-				var val = o['pageImageUri'];
+
 				if(vars.includes('pageImageUri')) {
-					$('.inputSystemEvent' + pk + 'PageImageUri').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'PageImageUri').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'PageImageUri').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageImageUri);
 					});
 				}
-				var val = o['inheritPk'];
+
 				if(vars.includes('inheritPk')) {
-					$('.inputSystemEvent' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'InheritPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputInheritPk);
 					});
 				}
-				var val = o['classCanonicalName'];
+
 				if(vars.includes('classCanonicalName')) {
-					$('.inputSystemEvent' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ClassCanonicalName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalName);
 					});
 				}
-				var val = o['classSimpleName'];
+
 				if(vars.includes('classSimpleName')) {
-					$('.inputSystemEvent' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ClassSimpleName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassSimpleName);
 					});
 				}
-				var val = o['classCanonicalNames'];
+
 				if(vars.includes('classCanonicalNames')) {
-					$('.inputSystemEvent' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalNames);
 					});
 				}
-				var val = o['sessionId'];
+
 				if(vars.includes('sessionId')) {
-					$('.inputSystemEvent' + pk + 'SessionId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'SessionId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'SessionId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSessionId);
 					});
 				}
-				var val = o['userKey'];
+
 				if(vars.includes('userKey')) {
-					$('.inputSystemEvent' + pk + 'UserKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'UserKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'UserKey').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKey);
 					});
 				}
-				var val = o['saves'];
+
 				if(vars.includes('saves')) {
-					$('.inputSystemEvent' + pk + 'Saves').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Saves').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Saves').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSaves);
 					});
 				}
-				var val = o['objectTitle'];
+
 				if(vars.includes('objectTitle')) {
-					$('.inputSystemEvent' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ObjectTitle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectTitle);
 					});
 				}
-				var val = o['objectSuggest'];
+
 				if(vars.includes('objectSuggest')) {
-					$('.inputSystemEvent' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ObjectSuggest').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectSuggest);
 					});
 				}
-				var val = o['objectText'];
+
 				if(vars.includes('objectText')) {
-					$('.inputSystemEvent' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'ObjectText').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectText);
 					});
 				}
-				var val = o['pageUrlId'];
+
 				if(vars.includes('pageUrlId')) {
-					$('.inputSystemEvent' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'PageUrlId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlId);
 					});
 				}
-				var val = o['pageUrlPk'];
+
 				if(vars.includes('pageUrlPk')) {
-					$('.inputSystemEvent' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'PageUrlPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlPk);
 					});
 				}
-				var val = o['pageUrlApi'];
+
 				if(vars.includes('pageUrlApi')) {
-					$('.inputSystemEvent' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'PageUrlApi').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlApi);
 					});
 				}
-				var val = o['id'];
+
 				if(vars.includes('id')) {
-					$('.inputSystemEvent' + pk + 'Id').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSystemEvent' + pk + 'Id').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSystemEvent' + pk + 'Id').each(function(index, fragment) {
+						$(fragment).replaceWith(inputId);
 					});
 				}
-			} else {
-				window.location.href = '/system-event';
-			}
 		});
 	}
 }

@@ -397,3 +397,7 @@ site-header-image-custom {
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+.varSimulationReportReportProgress::after {
+	content: '%';
+}

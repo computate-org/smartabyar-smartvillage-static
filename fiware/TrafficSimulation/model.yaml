@@ -15,6 +15,11 @@ TrafficSimulation:
       required: true
       x-ngsi:
         type: Property
+    location:
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: GeoProperty
     sumocfgPath:
       type: string
       x-ngsi:

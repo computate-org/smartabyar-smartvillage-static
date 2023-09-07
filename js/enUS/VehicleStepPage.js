@@ -55,10 +55,6 @@ function searchVehicleStepFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
 		var filterDateTime = $formFilters.find('.valueDateTime').val();
 		if(filterDateTime != null && filterDateTime !== '')
 			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -72,6 +68,10 @@ function searchVehicleStepFilters($formFilters) {
 			filterStep = filterStepSelectVal == 'true';
 		if(filterStep != null && filterStep === true)
 			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
@@ -309,18 +309,6 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	if(removeSumocfgPath != null && removeSumocfgPath !== '')
 		vals['removeSumocfgPath'] = removeSumocfgPath;
 
-	var valueTime = $formValues.find('.valueTime').val();
-	var removeTime = $formValues.find('.removeTime').val() === 'true';
-	var setTime = removeTime ? null : $formValues.find('.setTime').val();
-	var addTime = $formValues.find('.addTime').val();
-	if(removeTime || setTime != null && setTime !== '')
-		vals['setTime'] = setTime;
-	if(addTime != null && addTime !== '')
-		vals['addTime'] = addTime;
-	var removeTime = $formValues.find('.removeTime').val();
-	if(removeTime != null && removeTime !== '')
-		vals['removeTime'] = removeTime;
-
 	var valueDateTime = $formValues.find('.valueDateTime').val();
 	var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
 	var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
@@ -347,6 +335,18 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	var removeStep = $formValues.find('.removeStep').prop('checked');
 	if(removeStep != null && removeStep !== '')
 		vals['removeStep'] = removeStep;
+
+	var valueTime = $formValues.find('.valueTime').val();
+	var removeTime = $formValues.find('.removeTime').val() === 'true';
+	var setTime = removeTime ? null : $formValues.find('.setTime').val();
+	var addTime = $formValues.find('.addTime').val();
+	if(removeTime || setTime != null && setTime !== '')
+		vals['setTime'] = setTime;
+	if(addTime != null && addTime !== '')
+		vals['addTime'] = addTime;
+	var removeTime = $formValues.find('.removeTime').val();
+	if(removeTime != null && removeTime !== '')
+		vals['removeTime'] = removeTime;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -504,18 +504,6 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	if(removeId != null && removeId !== '')
 		vals['removeId'] = removeId;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
 	var valueX = $formValues.find('.valueX').val();
 	var removeX = $formValues.find('.removeX').val() === 'true';
 	var setX = removeX ? null : $formValues.find('.setX').val();
@@ -539,6 +527,18 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
 	var removeY = $formValues.find('.removeY').val();
 	if(removeY != null && removeY !== '')
 		vals['removeY'] = removeY;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
 
 	patchVehicleStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -588,10 +588,6 @@ function patchVehicleStepFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
 		var filterDateTime = $formFilters.find('.valueDateTime').val();
 		if(filterDateTime != null && filterDateTime !== '')
 			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -605,6 +601,10 @@ function patchVehicleStepFilters($formFilters) {
 			filterStep = filterStepSelectVal == 'true';
 		if(filterStep != null && filterStep === true)
 			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
@@ -765,10 +765,6 @@ async function postVehicleStep($formValues, success, error) {
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
 		vals['sumocfgPath'] = valueSumocfgPath;
 
-	var valueTime = $formValues.find('.valueTime').val();
-	if(valueTime != null && valueTime !== '')
-		vals['time'] = valueTime;
-
 	var valueDateTime = $formValues.find('.valueDateTime').val();
 	if(valueDateTime != null && valueDateTime !== '')
 		vals['dateTime'] = valueDateTime;
@@ -776,6 +772,10 @@ async function postVehicleStep($formValues, success, error) {
 	var valueStep = $formValues.find('.valueStep').val();
 	if(valueStep != null && valueStep !== '')
 		vals['step'] = valueStep == 'true';
+
+	var valueTime = $formValues.find('.valueTime').val();
+	if(valueTime != null && valueTime !== '')
+		vals['time'] = valueTime;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	if(valueLocation != null && valueLocation !== '')
@@ -829,10 +829,6 @@ async function postVehicleStep($formValues, success, error) {
 	if(valueId != null && valueId !== '')
 		vals['id'] = valueId;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
 	var valueX = $formValues.find('.valueX').val();
 	if(valueX != null && valueX !== '')
 		vals['x'] = valueX;
@@ -840,6 +836,10 @@ async function postVehicleStep($formValues, success, error) {
 	var valueY = $formValues.find('.valueY').val();
 	if(valueY != null && valueY !== '')
 		vals['y'] = valueY;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
 
 	$.ajax({
 		url: '/api/vehicle-step'
@@ -940,468 +940,327 @@ async function websocketVehicleStepInner(apiRequest) {
 	var vars = apiRequest['vars'];
 	var empty = apiRequest['empty'];
 
-	if(pk != null) {
-		searchVehicleStepVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
-			var o = data['list'][0];
-			if(o != null) {
-				var val = o['created'];
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputCreated = null;
+				var inputModified = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputSimulationName = null;
+				var inputSumocfgPath = null;
+				var inputDateTime = null;
+				var inputStep = null;
+				var inputTime = null;
+				var inputLocation = null;
+				var inputColor = null;
+				var inputVehicleId = null;
+				var inputVehicleType = null;
+				var inputAngle = null;
+				var inputSpeed = null;
+				var inputPos = null;
+				var inputSlope = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+				var inputX = null;
+				var inputY = null;
+				var inputTimeStepId = null;
+
+				if(vars.includes('created'))
+				inputCreated = $response.find('.inputVehicleStep' + pk + 'Created');
+				if(vars.includes('modified'))
+				inputModified = $response.find('.inputVehicleStep' + pk + 'Modified');
+				if(vars.includes('objectId'))
+				inputObjectId = $response.find('.inputVehicleStep' + pk + 'ObjectId');
+				if(vars.includes('archived'))
+				inputArchived = $response.find('.inputVehicleStep' + pk + 'Archived');
+				if(vars.includes('deleted'))
+				inputDeleted = $response.find('.inputVehicleStep' + pk + 'Deleted');
+				if(vars.includes('simulationName'))
+				inputSimulationName = $response.find('.inputVehicleStep' + pk + 'SimulationName');
+				if(vars.includes('sumocfgPath'))
+				inputSumocfgPath = $response.find('.inputVehicleStep' + pk + 'SumocfgPath');
+				if(vars.includes('dateTime'))
+				inputDateTime = $response.find('.inputVehicleStep' + pk + 'DateTime');
+				if(vars.includes('step'))
+				inputStep = $response.find('.inputVehicleStep' + pk + 'Step');
+				if(vars.includes('time'))
+				inputTime = $response.find('.inputVehicleStep' + pk + 'Time');
+				if(vars.includes('location'))
+				inputLocation = $response.find('.inputVehicleStep' + pk + 'Location');
+				if(vars.includes('color'))
+				inputColor = $response.find('.inputVehicleStep' + pk + 'Color');
+				if(vars.includes('vehicleId'))
+				inputVehicleId = $response.find('.inputVehicleStep' + pk + 'VehicleId');
+				if(vars.includes('vehicleType'))
+				inputVehicleType = $response.find('.inputVehicleStep' + pk + 'VehicleType');
+				if(vars.includes('angle'))
+				inputAngle = $response.find('.inputVehicleStep' + pk + 'Angle');
+				if(vars.includes('speed'))
+				inputSpeed = $response.find('.inputVehicleStep' + pk + 'Speed');
+				if(vars.includes('pos'))
+				inputPos = $response.find('.inputVehicleStep' + pk + 'Pos');
+				if(vars.includes('slope'))
+				inputSlope = $response.find('.inputVehicleStep' + pk + 'Slope');
+				if(vars.includes('inheritPk'))
+				inputInheritPk = $response.find('.inputVehicleStep' + pk + 'InheritPk');
+				if(vars.includes('classCanonicalName'))
+				inputClassCanonicalName = $response.find('.inputVehicleStep' + pk + 'ClassCanonicalName');
+				if(vars.includes('classSimpleName'))
+				inputClassSimpleName = $response.find('.inputVehicleStep' + pk + 'ClassSimpleName');
+				if(vars.includes('classCanonicalNames'))
+				inputClassCanonicalNames = $response.find('.inputVehicleStep' + pk + 'ClassCanonicalNames');
+				if(vars.includes('sessionId'))
+				inputSessionId = $response.find('.inputVehicleStep' + pk + 'SessionId');
+				if(vars.includes('userKey'))
+				inputUserKey = $response.find('.inputVehicleStep' + pk + 'UserKey');
+				if(vars.includes('saves'))
+				inputSaves = $response.find('.inputVehicleStep' + pk + 'Saves');
+				if(vars.includes('objectTitle'))
+				inputObjectTitle = $response.find('.inputVehicleStep' + pk + 'ObjectTitle');
+				if(vars.includes('objectSuggest'))
+				inputObjectSuggest = $response.find('.inputVehicleStep' + pk + 'ObjectSuggest');
+				if(vars.includes('objectText'))
+				inputObjectText = $response.find('.inputVehicleStep' + pk + 'ObjectText');
+				if(vars.includes('pageUrlId'))
+				inputPageUrlId = $response.find('.inputVehicleStep' + pk + 'PageUrlId');
+				if(vars.includes('pageUrlPk'))
+				inputPageUrlPk = $response.find('.inputVehicleStep' + pk + 'PageUrlPk');
+				if(vars.includes('pageUrlApi'))
+				inputPageUrlApi = $response.find('.inputVehicleStep' + pk + 'PageUrlApi');
+				if(vars.includes('id'))
+				inputId = $response.find('.inputVehicleStep' + pk + 'Id');
+				if(vars.includes('x'))
+				inputX = $response.find('.inputVehicleStep' + pk + 'X');
+				if(vars.includes('y'))
+				inputY = $response.find('.inputVehicleStep' + pk + 'Y');
+				if(vars.includes('timeStepId'))
+				inputTimeStepId = $response.find('.inputVehicleStep' + pk + 'TimeStepId');
+
 				if(vars.includes('created')) {
-					$('.inputVehicleStep' + pk + 'Created').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Created').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Created').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCreated);
 					});
 				}
-				var val = o['modified'];
+
 				if(vars.includes('modified')) {
-					$('.inputVehicleStep' + pk + 'Modified').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Modified').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Modified').each(function(index, fragment) {
+						$(fragment).replaceWith(inputModified);
 					});
 				}
-				var val = o['objectId'];
+
 				if(vars.includes('objectId')) {
-					$('.inputVehicleStep' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ObjectId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectId);
 					});
 				}
-				var val = o['archived'];
+
 				if(vars.includes('archived')) {
-					$('.inputVehicleStep' + pk + 'Archived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Archived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Archived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputArchived);
 					});
 				}
-				var val = o['deleted'];
+
 				if(vars.includes('deleted')) {
-					$('.inputVehicleStep' + pk + 'Deleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Deleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDeleted);
 					});
 				}
-				var val = o['simulationName'];
+
 				if(vars.includes('simulationName')) {
-					$('.inputVehicleStep' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'SimulationName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSimulationName);
 					});
 				}
-				var val = o['sumocfgPath'];
+
 				if(vars.includes('sumocfgPath')) {
-					$('.inputVehicleStep' + pk + 'SumocfgPath').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'SumocfgPath').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'SumocfgPath').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSumocfgPath);
 					});
 				}
-				var val = o['time'];
-				if(vars.includes('time')) {
-					$('.inputVehicleStep' + pk + 'Time').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Time').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['dateTime'];
+
 				if(vars.includes('dateTime')) {
-					$('.inputVehicleStep' + pk + 'DateTime').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'DateTime').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'DateTime').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDateTime);
 					});
 				}
-				var val = o['step'];
+
 				if(vars.includes('step')) {
-					$('.inputVehicleStep' + pk + 'Step').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Step').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Step').each(function(index, fragment) {
+						$(fragment).replaceWith(inputStep);
 					});
 				}
-				var val = o['location'];
+
+				if(vars.includes('time')) {
+					$('.inputVehicleStep' + pk + 'Time').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTime);
+					});
+				}
+
 				if(vars.includes('location')) {
-					$('.inputVehicleStep' + pk + 'Location').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Location').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Location').each(function(index, fragment) {
+						$(fragment).replaceWith(inputLocation);
 					});
 				}
-				var val = o['color'];
+
 				if(vars.includes('color')) {
-					$('.inputVehicleStep' + pk + 'Color').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Color').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Color').each(function(index, fragment) {
+						$(fragment).replaceWith(inputColor);
 					});
 				}
-				var val = o['vehicleId'];
+
 				if(vars.includes('vehicleId')) {
-					$('.inputVehicleStep' + pk + 'VehicleId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'VehicleId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'VehicleId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputVehicleId);
 					});
 				}
-				var val = o['vehicleType'];
+
 				if(vars.includes('vehicleType')) {
-					$('.inputVehicleStep' + pk + 'VehicleType').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'VehicleType').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'VehicleType').each(function(index, fragment) {
+						$(fragment).replaceWith(inputVehicleType);
 					});
 				}
-				var val = o['angle'];
+
 				if(vars.includes('angle')) {
-					$('.inputVehicleStep' + pk + 'Angle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Angle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Angle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputAngle);
 					});
 				}
-				var val = o['speed'];
+
 				if(vars.includes('speed')) {
-					$('.inputVehicleStep' + pk + 'Speed').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Speed').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Speed').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSpeed);
 					});
 				}
-				var val = o['pos'];
+
 				if(vars.includes('pos')) {
-					$('.inputVehicleStep' + pk + 'Pos').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Pos').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Pos').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPos);
 					});
 				}
-				var val = o['slope'];
+
 				if(vars.includes('slope')) {
-					$('.inputVehicleStep' + pk + 'Slope').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Slope').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Slope').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSlope);
 					});
 				}
-				var val = o['inheritPk'];
+
 				if(vars.includes('inheritPk')) {
-					$('.inputVehicleStep' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'InheritPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputInheritPk);
 					});
 				}
-				var val = o['classCanonicalName'];
+
 				if(vars.includes('classCanonicalName')) {
-					$('.inputVehicleStep' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ClassCanonicalName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalName);
 					});
 				}
-				var val = o['classSimpleName'];
+
 				if(vars.includes('classSimpleName')) {
-					$('.inputVehicleStep' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ClassSimpleName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassSimpleName);
 					});
 				}
-				var val = o['classCanonicalNames'];
+
 				if(vars.includes('classCanonicalNames')) {
-					$('.inputVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalNames);
 					});
 				}
-				var val = o['sessionId'];
+
 				if(vars.includes('sessionId')) {
-					$('.inputVehicleStep' + pk + 'SessionId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'SessionId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'SessionId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSessionId);
 					});
 				}
-				var val = o['userKey'];
+
 				if(vars.includes('userKey')) {
-					$('.inputVehicleStep' + pk + 'UserKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'UserKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'UserKey').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKey);
 					});
 				}
-				var val = o['saves'];
+
 				if(vars.includes('saves')) {
-					$('.inputVehicleStep' + pk + 'Saves').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Saves').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Saves').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSaves);
 					});
 				}
-				var val = o['objectTitle'];
+
 				if(vars.includes('objectTitle')) {
-					$('.inputVehicleStep' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ObjectTitle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectTitle);
 					});
 				}
-				var val = o['objectSuggest'];
+
 				if(vars.includes('objectSuggest')) {
-					$('.inputVehicleStep' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ObjectSuggest').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectSuggest);
 					});
 				}
-				var val = o['objectText'];
+
 				if(vars.includes('objectText')) {
-					$('.inputVehicleStep' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'ObjectText').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectText);
 					});
 				}
-				var val = o['pageUrlId'];
+
 				if(vars.includes('pageUrlId')) {
-					$('.inputVehicleStep' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'PageUrlId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlId);
 					});
 				}
-				var val = o['pageUrlPk'];
+
 				if(vars.includes('pageUrlPk')) {
-					$('.inputVehicleStep' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'PageUrlPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlPk);
 					});
 				}
-				var val = o['pageUrlApi'];
+
 				if(vars.includes('pageUrlApi')) {
-					$('.inputVehicleStep' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'PageUrlApi').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlApi);
 					});
 				}
-				var val = o['id'];
+
 				if(vars.includes('id')) {
-					$('.inputVehicleStep' + pk + 'Id').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Id').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Id').each(function(index, fragment) {
+						$(fragment).replaceWith(inputId);
 					});
 				}
-				var val = o['timeStepId'];
-				if(vars.includes('timeStepId')) {
-					$('.inputVehicleStep' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['x'];
+
 				if(vars.includes('x')) {
-					$('.inputVehicleStep' + pk + 'X').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'X').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'X').each(function(index, fragment) {
+						$(fragment).replaceWith(inputX);
 					});
 				}
-				var val = o['y'];
+
 				if(vars.includes('y')) {
-					$('.inputVehicleStep' + pk + 'Y').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varVehicleStep' + pk + 'Y').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputVehicleStep' + pk + 'Y').each(function(index, fragment) {
+						$(fragment).replaceWith(inputY);
 					});
 				}
-			} else {
-				window.location.href = '/vehicle-step';
-			}
+
+				if(vars.includes('timeStepId')) {
+					$('.inputVehicleStep' + pk + 'TimeStepId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTimeStepId);
+					});
+				}
 		});
 	}
 }

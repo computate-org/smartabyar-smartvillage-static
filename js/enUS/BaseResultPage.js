@@ -55,260 +55,183 @@ async function websocketBaseResultInner(apiRequest) {
 	var vars = apiRequest['vars'];
 	var empty = apiRequest['empty'];
 
-	if(pk != null) {
-		searchBaseResultVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
-			var o = data['list'][0];
-			if(o != null) {
-				var val = o['created'];
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputCreated = null;
+				var inputModified = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+
+				if(vars.includes('created'))
+				inputCreated = $response.find('.inputBaseResult' + pk + 'Created');
+				if(vars.includes('modified'))
+				inputModified = $response.find('.inputBaseResult' + pk + 'Modified');
+				if(vars.includes('objectId'))
+				inputObjectId = $response.find('.inputBaseResult' + pk + 'ObjectId');
+				if(vars.includes('archived'))
+				inputArchived = $response.find('.inputBaseResult' + pk + 'Archived');
+				if(vars.includes('deleted'))
+				inputDeleted = $response.find('.inputBaseResult' + pk + 'Deleted');
+				if(vars.includes('inheritPk'))
+				inputInheritPk = $response.find('.inputBaseResult' + pk + 'InheritPk');
+				if(vars.includes('classCanonicalName'))
+				inputClassCanonicalName = $response.find('.inputBaseResult' + pk + 'ClassCanonicalName');
+				if(vars.includes('classSimpleName'))
+				inputClassSimpleName = $response.find('.inputBaseResult' + pk + 'ClassSimpleName');
+				if(vars.includes('classCanonicalNames'))
+				inputClassCanonicalNames = $response.find('.inputBaseResult' + pk + 'ClassCanonicalNames');
+				if(vars.includes('sessionId'))
+				inputSessionId = $response.find('.inputBaseResult' + pk + 'SessionId');
+				if(vars.includes('userKey'))
+				inputUserKey = $response.find('.inputBaseResult' + pk + 'UserKey');
+				if(vars.includes('saves'))
+				inputSaves = $response.find('.inputBaseResult' + pk + 'Saves');
+				if(vars.includes('objectTitle'))
+				inputObjectTitle = $response.find('.inputBaseResult' + pk + 'ObjectTitle');
+				if(vars.includes('objectSuggest'))
+				inputObjectSuggest = $response.find('.inputBaseResult' + pk + 'ObjectSuggest');
+				if(vars.includes('objectText'))
+				inputObjectText = $response.find('.inputBaseResult' + pk + 'ObjectText');
+				if(vars.includes('pageUrlId'))
+				inputPageUrlId = $response.find('.inputBaseResult' + pk + 'PageUrlId');
+				if(vars.includes('pageUrlPk'))
+				inputPageUrlPk = $response.find('.inputBaseResult' + pk + 'PageUrlPk');
+				if(vars.includes('pageUrlApi'))
+				inputPageUrlApi = $response.find('.inputBaseResult' + pk + 'PageUrlApi');
+				if(vars.includes('id'))
+				inputId = $response.find('.inputBaseResult' + pk + 'Id');
+
 				if(vars.includes('created')) {
-					$('.inputBaseResult' + pk + 'Created').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Created').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Created').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCreated);
 					});
 				}
-				var val = o['modified'];
+
 				if(vars.includes('modified')) {
-					$('.inputBaseResult' + pk + 'Modified').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Modified').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Modified').each(function(index, fragment) {
+						$(fragment).replaceWith(inputModified);
 					});
 				}
-				var val = o['objectId'];
+
 				if(vars.includes('objectId')) {
-					$('.inputBaseResult' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ObjectId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectId);
 					});
 				}
-				var val = o['archived'];
+
 				if(vars.includes('archived')) {
-					$('.inputBaseResult' + pk + 'Archived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Archived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Archived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputArchived);
 					});
 				}
-				var val = o['deleted'];
+
 				if(vars.includes('deleted')) {
-					$('.inputBaseResult' + pk + 'Deleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Deleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDeleted);
 					});
 				}
-				var val = o['inheritPk'];
+
 				if(vars.includes('inheritPk')) {
-					$('.inputBaseResult' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'InheritPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputInheritPk);
 					});
 				}
-				var val = o['classCanonicalName'];
+
 				if(vars.includes('classCanonicalName')) {
-					$('.inputBaseResult' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ClassCanonicalName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalName);
 					});
 				}
-				var val = o['classSimpleName'];
+
 				if(vars.includes('classSimpleName')) {
-					$('.inputBaseResult' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ClassSimpleName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassSimpleName);
 					});
 				}
-				var val = o['classCanonicalNames'];
+
 				if(vars.includes('classCanonicalNames')) {
-					$('.inputBaseResult' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalNames);
 					});
 				}
-				var val = o['sessionId'];
+
 				if(vars.includes('sessionId')) {
-					$('.inputBaseResult' + pk + 'SessionId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'SessionId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'SessionId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSessionId);
 					});
 				}
-				var val = o['userKey'];
+
 				if(vars.includes('userKey')) {
-					$('.inputBaseResult' + pk + 'UserKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'UserKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'UserKey').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKey);
 					});
 				}
-				var val = o['saves'];
+
 				if(vars.includes('saves')) {
-					$('.inputBaseResult' + pk + 'Saves').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Saves').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Saves').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSaves);
 					});
 				}
-				var val = o['objectTitle'];
+
 				if(vars.includes('objectTitle')) {
-					$('.inputBaseResult' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ObjectTitle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectTitle);
 					});
 				}
-				var val = o['objectSuggest'];
+
 				if(vars.includes('objectSuggest')) {
-					$('.inputBaseResult' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ObjectSuggest').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectSuggest);
 					});
 				}
-				var val = o['objectText'];
+
 				if(vars.includes('objectText')) {
-					$('.inputBaseResult' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'ObjectText').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectText);
 					});
 				}
-				var val = o['pageUrlId'];
+
 				if(vars.includes('pageUrlId')) {
-					$('.inputBaseResult' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'PageUrlId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlId);
 					});
 				}
-				var val = o['pageUrlPk'];
+
 				if(vars.includes('pageUrlPk')) {
-					$('.inputBaseResult' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'PageUrlPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlPk);
 					});
 				}
-				var val = o['pageUrlApi'];
+
 				if(vars.includes('pageUrlApi')) {
-					$('.inputBaseResult' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'PageUrlApi').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlApi);
 					});
 				}
-				var val = o['id'];
+
 				if(vars.includes('id')) {
-					$('.inputBaseResult' + pk + 'Id').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varBaseResult' + pk + 'Id').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputBaseResult' + pk + 'Id').each(function(index, fragment) {
+						$(fragment).replaceWith(inputId);
 					});
 				}
-			} else {
-				window.location.href = 'null';
-			}
 		});
 	}
 }

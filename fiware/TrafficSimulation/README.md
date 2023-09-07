@@ -13,6 +13,7 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 - [startDateTime](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startDateTime.md)
 - [simulationName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/simulationName.md)
+- [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/location.md)
 - [sumocfgPath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/sumocfgPath.md)
 - [fcdFilePath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/fcdFilePath.md)
 - [netFilePath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/netFilePath.md)

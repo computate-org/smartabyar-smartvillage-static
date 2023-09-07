@@ -55,10 +55,6 @@ function searchTrafficLightFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
 		var filterDateTime = $formFilters.find('.valueDateTime').val();
 		if(filterDateTime != null && filterDateTime !== '')
 			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -72,6 +68,10 @@ function searchTrafficLightFilters($formFilters) {
 			filterStep = filterStepSelectVal == 'true';
 		if(filterStep != null && filterStep === true)
 			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
@@ -301,18 +301,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	if(removeSumocfgPath != null && removeSumocfgPath !== '')
 		vals['removeSumocfgPath'] = removeSumocfgPath;
 
-	var valueTime = $formValues.find('.valueTime').val();
-	var removeTime = $formValues.find('.removeTime').val() === 'true';
-	var setTime = removeTime ? null : $formValues.find('.setTime').val();
-	var addTime = $formValues.find('.addTime').val();
-	if(removeTime || setTime != null && setTime !== '')
-		vals['setTime'] = setTime;
-	if(addTime != null && addTime !== '')
-		vals['addTime'] = addTime;
-	var removeTime = $formValues.find('.removeTime').val();
-	if(removeTime != null && removeTime !== '')
-		vals['removeTime'] = removeTime;
-
 	var valueDateTime = $formValues.find('.valueDateTime').val();
 	var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
 	var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
@@ -339,6 +327,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	var removeStep = $formValues.find('.removeStep').prop('checked');
 	if(removeStep != null && removeStep !== '')
 		vals['removeStep'] = removeStep;
+
+	var valueTime = $formValues.find('.valueTime').val();
+	var removeTime = $formValues.find('.removeTime').val() === 'true';
+	var setTime = removeTime ? null : $formValues.find('.setTime').val();
+	var addTime = $formValues.find('.addTime').val();
+	if(removeTime || setTime != null && setTime !== '')
+		vals['setTime'] = setTime;
+	if(addTime != null && addTime !== '')
+		vals['addTime'] = addTime;
+	var removeTime = $formValues.find('.removeTime').val();
+	if(removeTime != null && removeTime !== '')
+		vals['removeTime'] = removeTime;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -472,18 +472,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	if(removeId != null && removeId !== '')
 		vals['removeId'] = removeId;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
 	var valueX = $formValues.find('.valueX').val();
 	var removeX = $formValues.find('.removeX').val() === 'true';
 	var setX = removeX ? null : $formValues.find('.setX').val();
@@ -507,6 +495,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
 	var removeY = $formValues.find('.removeY').val();
 	if(removeY != null && removeY !== '')
 		vals['removeY'] = removeY;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+	var addTimeStepId = $formValues.find('.addTimeStepId').val();
+	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+		vals['setTimeStepId'] = setTimeStepId;
+	if(addTimeStepId != null && addTimeStepId !== '')
+		vals['addTimeStepId'] = addTimeStepId;
+	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+	if(removeTimeStepId != null && removeTimeStepId !== '')
+		vals['removeTimeStepId'] = removeTimeStepId;
 
 	patchTrafficLightVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -556,10 +556,6 @@ function patchTrafficLightFilters($formFilters) {
 		if(filterSumocfgPath != null && filterSumocfgPath !== '')
 			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
 		var filterDateTime = $formFilters.find('.valueDateTime').val();
 		if(filterDateTime != null && filterDateTime !== '')
 			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -573,6 +569,10 @@ function patchTrafficLightFilters($formFilters) {
 			filterStep = filterStepSelectVal == 'true';
 		if(filterStep != null && filterStep === true)
 			filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+		var filterTime = $formFilters.find('.valueTime').val();
+		if(filterTime != null && filterTime !== '')
+			filters.push({ name: 'fq', value: 'time:' + filterTime });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
@@ -725,10 +725,6 @@ async function postTrafficLight($formValues, success, error) {
 	if(valueSumocfgPath != null && valueSumocfgPath !== '')
 		vals['sumocfgPath'] = valueSumocfgPath;
 
-	var valueTime = $formValues.find('.valueTime').val();
-	if(valueTime != null && valueTime !== '')
-		vals['time'] = valueTime;
-
 	var valueDateTime = $formValues.find('.valueDateTime').val();
 	if(valueDateTime != null && valueDateTime !== '')
 		vals['dateTime'] = valueDateTime;
@@ -736,6 +732,10 @@ async function postTrafficLight($formValues, success, error) {
 	var valueStep = $formValues.find('.valueStep').val();
 	if(valueStep != null && valueStep !== '')
 		vals['step'] = valueStep == 'true';
+
+	var valueTime = $formValues.find('.valueTime').val();
+	if(valueTime != null && valueTime !== '')
+		vals['time'] = valueTime;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	if(valueLocation != null && valueLocation !== '')
@@ -781,10 +781,6 @@ async function postTrafficLight($formValues, success, error) {
 	if(valueId != null && valueId !== '')
 		vals['id'] = valueId;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
 	var valueX = $formValues.find('.valueX').val();
 	if(valueX != null && valueX !== '')
 		vals['x'] = valueX;
@@ -792,6 +788,10 @@ async function postTrafficLight($formValues, success, error) {
 	var valueY = $formValues.find('.valueY').val();
 	if(valueY != null && valueY !== '')
 		vals['y'] = valueY;
+
+	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+	if(valueTimeStepId != null && valueTimeStepId !== '')
+		vals['timeStepId'] = valueTimeStepId;
 
 	$.ajax({
 		url: '/api/traffic-light'
@@ -892,442 +892,309 @@ async function websocketTrafficLightInner(apiRequest) {
 	var vars = apiRequest['vars'];
 	var empty = apiRequest['empty'];
 
-	if(pk != null) {
-		searchTrafficLightVals([ {name: 'fq', value: 'id:' + pk} ], function( data, textStatus, jQxhr ) {
-			var o = data['list'][0];
-			if(o != null) {
-				var val = o['created'];
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputCreated = null;
+				var inputModified = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputSimulationName = null;
+				var inputSumocfgPath = null;
+				var inputDateTime = null;
+				var inputStep = null;
+				var inputTime = null;
+				var inputLocation = null;
+				var inputColor = null;
+				var inputTrafficLightId = null;
+				var inputTrafficLightType = null;
+				var inputAngle = null;
+				var inputColor = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+				var inputX = null;
+				var inputY = null;
+				var inputTimeStepId = null;
+
+				if(vars.includes('created'))
+				inputCreated = $response.find('.inputTrafficLight' + pk + 'Created');
+				if(vars.includes('modified'))
+				inputModified = $response.find('.inputTrafficLight' + pk + 'Modified');
+				if(vars.includes('objectId'))
+				inputObjectId = $response.find('.inputTrafficLight' + pk + 'ObjectId');
+				if(vars.includes('archived'))
+				inputArchived = $response.find('.inputTrafficLight' + pk + 'Archived');
+				if(vars.includes('deleted'))
+				inputDeleted = $response.find('.inputTrafficLight' + pk + 'Deleted');
+				if(vars.includes('simulationName'))
+				inputSimulationName = $response.find('.inputTrafficLight' + pk + 'SimulationName');
+				if(vars.includes('sumocfgPath'))
+				inputSumocfgPath = $response.find('.inputTrafficLight' + pk + 'SumocfgPath');
+				if(vars.includes('dateTime'))
+				inputDateTime = $response.find('.inputTrafficLight' + pk + 'DateTime');
+				if(vars.includes('step'))
+				inputStep = $response.find('.inputTrafficLight' + pk + 'Step');
+				if(vars.includes('time'))
+				inputTime = $response.find('.inputTrafficLight' + pk + 'Time');
+				if(vars.includes('location'))
+				inputLocation = $response.find('.inputTrafficLight' + pk + 'Location');
+				if(vars.includes('color'))
+				inputColor = $response.find('.inputTrafficLight' + pk + 'Color');
+				if(vars.includes('trafficLightId'))
+				inputTrafficLightId = $response.find('.inputTrafficLight' + pk + 'TrafficLightId');
+				if(vars.includes('trafficLightType'))
+				inputTrafficLightType = $response.find('.inputTrafficLight' + pk + 'TrafficLightType');
+				if(vars.includes('angle'))
+				inputAngle = $response.find('.inputTrafficLight' + pk + 'Angle');
+				if(vars.includes('color'))
+				inputColor = $response.find('.inputTrafficLight' + pk + 'Color');
+				if(vars.includes('inheritPk'))
+				inputInheritPk = $response.find('.inputTrafficLight' + pk + 'InheritPk');
+				if(vars.includes('classCanonicalName'))
+				inputClassCanonicalName = $response.find('.inputTrafficLight' + pk + 'ClassCanonicalName');
+				if(vars.includes('classSimpleName'))
+				inputClassSimpleName = $response.find('.inputTrafficLight' + pk + 'ClassSimpleName');
+				if(vars.includes('classCanonicalNames'))
+				inputClassCanonicalNames = $response.find('.inputTrafficLight' + pk + 'ClassCanonicalNames');
+				if(vars.includes('sessionId'))
+				inputSessionId = $response.find('.inputTrafficLight' + pk + 'SessionId');
+				if(vars.includes('userKey'))
+				inputUserKey = $response.find('.inputTrafficLight' + pk + 'UserKey');
+				if(vars.includes('saves'))
+				inputSaves = $response.find('.inputTrafficLight' + pk + 'Saves');
+				if(vars.includes('objectTitle'))
+				inputObjectTitle = $response.find('.inputTrafficLight' + pk + 'ObjectTitle');
+				if(vars.includes('objectSuggest'))
+				inputObjectSuggest = $response.find('.inputTrafficLight' + pk + 'ObjectSuggest');
+				if(vars.includes('objectText'))
+				inputObjectText = $response.find('.inputTrafficLight' + pk + 'ObjectText');
+				if(vars.includes('pageUrlId'))
+				inputPageUrlId = $response.find('.inputTrafficLight' + pk + 'PageUrlId');
+				if(vars.includes('pageUrlPk'))
+				inputPageUrlPk = $response.find('.inputTrafficLight' + pk + 'PageUrlPk');
+				if(vars.includes('pageUrlApi'))
+				inputPageUrlApi = $response.find('.inputTrafficLight' + pk + 'PageUrlApi');
+				if(vars.includes('id'))
+				inputId = $response.find('.inputTrafficLight' + pk + 'Id');
+				if(vars.includes('x'))
+				inputX = $response.find('.inputTrafficLight' + pk + 'X');
+				if(vars.includes('y'))
+				inputY = $response.find('.inputTrafficLight' + pk + 'Y');
+				if(vars.includes('timeStepId'))
+				inputTimeStepId = $response.find('.inputTrafficLight' + pk + 'TimeStepId');
+
 				if(vars.includes('created')) {
-					$('.inputTrafficLight' + pk + 'Created').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Created').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Created').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCreated);
 					});
 				}
-				var val = o['modified'];
+
 				if(vars.includes('modified')) {
-					$('.inputTrafficLight' + pk + 'Modified').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Modified').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Modified').each(function(index, fragment) {
+						$(fragment).replaceWith(inputModified);
 					});
 				}
-				var val = o['objectId'];
+
 				if(vars.includes('objectId')) {
-					$('.inputTrafficLight' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ObjectId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectId);
 					});
 				}
-				var val = o['archived'];
+
 				if(vars.includes('archived')) {
-					$('.inputTrafficLight' + pk + 'Archived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Archived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Archived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputArchived);
 					});
 				}
-				var val = o['deleted'];
+
 				if(vars.includes('deleted')) {
-					$('.inputTrafficLight' + pk + 'Deleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Deleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDeleted);
 					});
 				}
-				var val = o['simulationName'];
+
 				if(vars.includes('simulationName')) {
-					$('.inputTrafficLight' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'SimulationName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'SimulationName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSimulationName);
 					});
 				}
-				var val = o['sumocfgPath'];
+
 				if(vars.includes('sumocfgPath')) {
-					$('.inputTrafficLight' + pk + 'SumocfgPath').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'SumocfgPath').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'SumocfgPath').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSumocfgPath);
 					});
 				}
-				var val = o['time'];
-				if(vars.includes('time')) {
-					$('.inputTrafficLight' + pk + 'Time').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Time').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['dateTime'];
+
 				if(vars.includes('dateTime')) {
-					$('.inputTrafficLight' + pk + 'DateTime').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'DateTime').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'DateTime').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDateTime);
 					});
 				}
-				var val = o['step'];
+
 				if(vars.includes('step')) {
-					$('.inputTrafficLight' + pk + 'Step').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Step').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Step').each(function(index, fragment) {
+						$(fragment).replaceWith(inputStep);
 					});
 				}
-				var val = o['location'];
+
+				if(vars.includes('time')) {
+					$('.inputTrafficLight' + pk + 'Time').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTime);
+					});
+				}
+
 				if(vars.includes('location')) {
-					$('.inputTrafficLight' + pk + 'Location').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Location').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Location').each(function(index, fragment) {
+						$(fragment).replaceWith(inputLocation);
 					});
 				}
-				var val = o['color'];
+
 				if(vars.includes('color')) {
-					$('.inputTrafficLight' + pk + 'Color').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Color').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Color').each(function(index, fragment) {
+						$(fragment).replaceWith(inputColor);
 					});
 				}
-				var val = o['trafficLightId'];
+
 				if(vars.includes('trafficLightId')) {
-					$('.inputTrafficLight' + pk + 'TrafficLightId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'TrafficLightId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'TrafficLightId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTrafficLightId);
 					});
 				}
-				var val = o['trafficLightType'];
+
 				if(vars.includes('trafficLightType')) {
-					$('.inputTrafficLight' + pk + 'TrafficLightType').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'TrafficLightType').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'TrafficLightType').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTrafficLightType);
 					});
 				}
-				var val = o['angle'];
+
 				if(vars.includes('angle')) {
-					$('.inputTrafficLight' + pk + 'Angle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Angle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Angle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputAngle);
 					});
 				}
-				var val = o['color'];
+
 				if(vars.includes('color')) {
-					$('.inputTrafficLight' + pk + 'Color').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Color').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Color').each(function(index, fragment) {
+						$(fragment).replaceWith(inputColor);
 					});
 				}
-				var val = o['inheritPk'];
+
 				if(vars.includes('inheritPk')) {
-					$('.inputTrafficLight' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'InheritPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputInheritPk);
 					});
 				}
-				var val = o['classCanonicalName'];
+
 				if(vars.includes('classCanonicalName')) {
-					$('.inputTrafficLight' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ClassCanonicalName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalName);
 					});
 				}
-				var val = o['classSimpleName'];
+
 				if(vars.includes('classSimpleName')) {
-					$('.inputTrafficLight' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ClassSimpleName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassSimpleName);
 					});
 				}
-				var val = o['classCanonicalNames'];
+
 				if(vars.includes('classCanonicalNames')) {
-					$('.inputTrafficLight' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalNames);
 					});
 				}
-				var val = o['sessionId'];
+
 				if(vars.includes('sessionId')) {
-					$('.inputTrafficLight' + pk + 'SessionId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'SessionId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'SessionId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSessionId);
 					});
 				}
-				var val = o['userKey'];
+
 				if(vars.includes('userKey')) {
-					$('.inputTrafficLight' + pk + 'UserKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'UserKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'UserKey').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKey);
 					});
 				}
-				var val = o['saves'];
+
 				if(vars.includes('saves')) {
-					$('.inputTrafficLight' + pk + 'Saves').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Saves').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Saves').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSaves);
 					});
 				}
-				var val = o['objectTitle'];
+
 				if(vars.includes('objectTitle')) {
-					$('.inputTrafficLight' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ObjectTitle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectTitle);
 					});
 				}
-				var val = o['objectSuggest'];
+
 				if(vars.includes('objectSuggest')) {
-					$('.inputTrafficLight' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ObjectSuggest').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectSuggest);
 					});
 				}
-				var val = o['objectText'];
+
 				if(vars.includes('objectText')) {
-					$('.inputTrafficLight' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'ObjectText').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectText);
 					});
 				}
-				var val = o['pageUrlId'];
+
 				if(vars.includes('pageUrlId')) {
-					$('.inputTrafficLight' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'PageUrlId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlId);
 					});
 				}
-				var val = o['pageUrlPk'];
+
 				if(vars.includes('pageUrlPk')) {
-					$('.inputTrafficLight' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'PageUrlPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlPk);
 					});
 				}
-				var val = o['pageUrlApi'];
+
 				if(vars.includes('pageUrlApi')) {
-					$('.inputTrafficLight' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'PageUrlApi').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlApi);
 					});
 				}
-				var val = o['id'];
+
 				if(vars.includes('id')) {
-					$('.inputTrafficLight' + pk + 'Id').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Id').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Id').each(function(index, fragment) {
+						$(fragment).replaceWith(inputId);
 					});
 				}
-				var val = o['timeStepId'];
-				if(vars.includes('timeStepId')) {
-					$('.inputTrafficLight' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'TimeStepId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['x'];
+
 				if(vars.includes('x')) {
-					$('.inputTrafficLight' + pk + 'X').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'X').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'X').each(function(index, fragment) {
+						$(fragment).replaceWith(inputX);
 					});
 				}
-				var val = o['y'];
+
 				if(vars.includes('y')) {
-					$('.inputTrafficLight' + pk + 'Y').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varTrafficLight' + pk + 'Y').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputTrafficLight' + pk + 'Y').each(function(index, fragment) {
+						$(fragment).replaceWith(inputY);
 					});
 				}
-			} else {
-				window.location.href = '/traffic-light';
-			}
+
+				if(vars.includes('timeStepId')) {
+					$('.inputTrafficLight' + pk + 'TimeStepId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputTimeStepId);
+					});
+				}
 		});
 	}
 }

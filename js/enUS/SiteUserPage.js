@@ -15,10 +15,6 @@ function searchSiteUserFilters($formFilters) {
 	var filters = [];
 	if($formFilters) {
 
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
@@ -70,6 +66,10 @@ function searchSiteUserFilters($formFilters) {
 			filterSeeDeleted = filterSeeDeletedSelectVal == 'true';
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
+
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -194,18 +194,6 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var filters = patchSiteUserFilters($formFilters);
 
 	var vals = {};
-
-	var valuePk = $formValues.find('.valuePk').val();
-	var removePk = $formValues.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	var addPk = $formValues.find('.addPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
@@ -431,10 +419,6 @@ function patchSiteUserFilters($formFilters) {
 	if($formFilters) {
 		filters.push({ name: 'softCommit', value: 'true' });
 
-		var filterPk = $formFilters.find('.valuePk').val();
-		if(filterPk != null && filterPk !== '')
-			filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 		var filterCreated = $formFilters.find('.valueCreated').val();
 		if(filterCreated != null && filterCreated !== '')
 			filters.push({ name: 'fq', value: 'created:' + filterCreated });
@@ -486,6 +470,10 @@ function patchSiteUserFilters($formFilters) {
 			filterSeeDeleted = filterSeeDeletedSelectVal == 'true';
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
+
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -609,10 +597,6 @@ async function postSiteUser($formValues, success, error) {
 			addError($formValues.next('button'));
 		};
 	}
-
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
@@ -781,390 +765,273 @@ async function websocketSiteUserInner(apiRequest) {
 	var vars = apiRequest['vars'];
 	var empty = apiRequest['empty'];
 
-	if(pk != null) {
-		searchSiteUserVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
-			var o = data['list'][0];
-			if(o != null) {
-				var val = o['pk'];
-				if(vars.includes('pk')) {
-					$('.inputSiteUser' + pk + 'Pk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Pk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
-					});
-				}
-				var val = o['created'];
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputCreated = null;
+				var inputModified = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputSeeArchived = null;
+				var inputSeeDeleted = null;
+				var inputPk = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+				var inputUserKeys = null;
+				var inputUserId = null;
+				var inputUserName = null;
+				var inputUserEmail = null;
+				var inputUserFirstName = null;
+				var inputUserLastName = null;
+				var inputUserFullName = null;
+
+				if(vars.includes('created'))
+				inputCreated = $response.find('.inputSiteUser' + pk + 'Created');
+				if(vars.includes('modified'))
+				inputModified = $response.find('.inputSiteUser' + pk + 'Modified');
+				if(vars.includes('objectId'))
+				inputObjectId = $response.find('.inputSiteUser' + pk + 'ObjectId');
+				if(vars.includes('archived'))
+				inputArchived = $response.find('.inputSiteUser' + pk + 'Archived');
+				if(vars.includes('deleted'))
+				inputDeleted = $response.find('.inputSiteUser' + pk + 'Deleted');
+				if(vars.includes('seeArchived'))
+				inputSeeArchived = $response.find('.inputSiteUser' + pk + 'SeeArchived');
+				if(vars.includes('seeDeleted'))
+				inputSeeDeleted = $response.find('.inputSiteUser' + pk + 'SeeDeleted');
+				if(vars.includes('pk'))
+				inputPk = $response.find('.inputSiteUser' + pk + 'Pk');
+				if(vars.includes('inheritPk'))
+				inputInheritPk = $response.find('.inputSiteUser' + pk + 'InheritPk');
+				if(vars.includes('classCanonicalName'))
+				inputClassCanonicalName = $response.find('.inputSiteUser' + pk + 'ClassCanonicalName');
+				if(vars.includes('classSimpleName'))
+				inputClassSimpleName = $response.find('.inputSiteUser' + pk + 'ClassSimpleName');
+				if(vars.includes('classCanonicalNames'))
+				inputClassCanonicalNames = $response.find('.inputSiteUser' + pk + 'ClassCanonicalNames');
+				if(vars.includes('sessionId'))
+				inputSessionId = $response.find('.inputSiteUser' + pk + 'SessionId');
+				if(vars.includes('userKey'))
+				inputUserKey = $response.find('.inputSiteUser' + pk + 'UserKey');
+				if(vars.includes('saves'))
+				inputSaves = $response.find('.inputSiteUser' + pk + 'Saves');
+				if(vars.includes('objectTitle'))
+				inputObjectTitle = $response.find('.inputSiteUser' + pk + 'ObjectTitle');
+				if(vars.includes('objectSuggest'))
+				inputObjectSuggest = $response.find('.inputSiteUser' + pk + 'ObjectSuggest');
+				if(vars.includes('objectText'))
+				inputObjectText = $response.find('.inputSiteUser' + pk + 'ObjectText');
+				if(vars.includes('pageUrlId'))
+				inputPageUrlId = $response.find('.inputSiteUser' + pk + 'PageUrlId');
+				if(vars.includes('pageUrlPk'))
+				inputPageUrlPk = $response.find('.inputSiteUser' + pk + 'PageUrlPk');
+				if(vars.includes('pageUrlApi'))
+				inputPageUrlApi = $response.find('.inputSiteUser' + pk + 'PageUrlApi');
+				if(vars.includes('id'))
+				inputId = $response.find('.inputSiteUser' + pk + 'Id');
+				if(vars.includes('userKeys'))
+				inputUserKeys = $response.find('.inputSiteUser' + pk + 'UserKeys');
+				if(vars.includes('userId'))
+				inputUserId = $response.find('.inputSiteUser' + pk + 'UserId');
+				if(vars.includes('userName'))
+				inputUserName = $response.find('.inputSiteUser' + pk + 'UserName');
+				if(vars.includes('userEmail'))
+				inputUserEmail = $response.find('.inputSiteUser' + pk + 'UserEmail');
+				if(vars.includes('userFirstName'))
+				inputUserFirstName = $response.find('.inputSiteUser' + pk + 'UserFirstName');
+				if(vars.includes('userLastName'))
+				inputUserLastName = $response.find('.inputSiteUser' + pk + 'UserLastName');
+				if(vars.includes('userFullName'))
+				inputUserFullName = $response.find('.inputSiteUser' + pk + 'UserFullName');
+
 				if(vars.includes('created')) {
-					$('.inputSiteUser' + pk + 'Created').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Created').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Created').each(function(index, fragment) {
+						$(fragment).replaceWith(inputCreated);
 					});
 				}
-				var val = o['modified'];
+
 				if(vars.includes('modified')) {
-					$('.inputSiteUser' + pk + 'Modified').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Modified').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Modified').each(function(index, fragment) {
+						$(fragment).replaceWith(inputModified);
 					});
 				}
-				var val = o['objectId'];
+
 				if(vars.includes('objectId')) {
-					$('.inputSiteUser' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ObjectId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ObjectId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectId);
 					});
 				}
-				var val = o['archived'];
+
 				if(vars.includes('archived')) {
-					$('.inputSiteUser' + pk + 'Archived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Archived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Archived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputArchived);
 					});
 				}
-				var val = o['deleted'];
+
 				if(vars.includes('deleted')) {
-					$('.inputSiteUser' + pk + 'Deleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Deleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Deleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputDeleted);
 					});
 				}
-				var val = o['seeArchived'];
+
 				if(vars.includes('seeArchived')) {
-					$('.inputSiteUser' + pk + 'SeeArchived').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'SeeArchived').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'SeeArchived').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSeeArchived);
 					});
 				}
-				var val = o['seeDeleted'];
+
 				if(vars.includes('seeDeleted')) {
-					$('.inputSiteUser' + pk + 'SeeDeleted').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'SeeDeleted').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'SeeDeleted').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSeeDeleted);
 					});
 				}
-				var val = o['inheritPk'];
+
+				if(vars.includes('pk')) {
+					$('.inputSiteUser' + pk + 'Pk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPk);
+					});
+				}
+
 				if(vars.includes('inheritPk')) {
-					$('.inputSiteUser' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'InheritPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'InheritPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputInheritPk);
 					});
 				}
-				var val = o['classCanonicalName'];
+
 				if(vars.includes('classCanonicalName')) {
-					$('.inputSiteUser' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ClassCanonicalName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ClassCanonicalName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalName);
 					});
 				}
-				var val = o['classSimpleName'];
+
 				if(vars.includes('classSimpleName')) {
-					$('.inputSiteUser' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ClassSimpleName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ClassSimpleName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassSimpleName);
 					});
 				}
-				var val = o['classCanonicalNames'];
+
 				if(vars.includes('classCanonicalNames')) {
-					$('.inputSiteUser' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ClassCanonicalNames').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
+						$(fragment).replaceWith(inputClassCanonicalNames);
 					});
 				}
-				var val = o['sessionId'];
+
 				if(vars.includes('sessionId')) {
-					$('.inputSiteUser' + pk + 'SessionId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'SessionId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'SessionId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSessionId);
 					});
 				}
-				var val = o['userKey'];
+
 				if(vars.includes('userKey')) {
-					$('.inputSiteUser' + pk + 'UserKey').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserKey').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserKey').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKey);
 					});
 				}
-				var val = o['saves'];
+
 				if(vars.includes('saves')) {
-					$('.inputSiteUser' + pk + 'Saves').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Saves').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Saves').each(function(index, fragment) {
+						$(fragment).replaceWith(inputSaves);
 					});
 				}
-				var val = o['objectTitle'];
+
 				if(vars.includes('objectTitle')) {
-					$('.inputSiteUser' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ObjectTitle').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ObjectTitle').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectTitle);
 					});
 				}
-				var val = o['objectSuggest'];
+
 				if(vars.includes('objectSuggest')) {
-					$('.inputSiteUser' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ObjectSuggest').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ObjectSuggest').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectSuggest);
 					});
 				}
-				var val = o['objectText'];
+
 				if(vars.includes('objectText')) {
-					$('.inputSiteUser' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'ObjectText').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'ObjectText').each(function(index, fragment) {
+						$(fragment).replaceWith(inputObjectText);
 					});
 				}
-				var val = o['pageUrlId'];
+
 				if(vars.includes('pageUrlId')) {
-					$('.inputSiteUser' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'PageUrlId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'PageUrlId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlId);
 					});
 				}
-				var val = o['pageUrlPk'];
+
 				if(vars.includes('pageUrlPk')) {
-					$('.inputSiteUser' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'PageUrlPk').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'PageUrlPk').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlPk);
 					});
 				}
-				var val = o['pageUrlApi'];
+
 				if(vars.includes('pageUrlApi')) {
-					$('.inputSiteUser' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'PageUrlApi').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'PageUrlApi').each(function(index, fragment) {
+						$(fragment).replaceWith(inputPageUrlApi);
 					});
 				}
-				var val = o['id'];
+
 				if(vars.includes('id')) {
-					$('.inputSiteUser' + pk + 'Id').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'Id').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'Id').each(function(index, fragment) {
+						$(fragment).replaceWith(inputId);
 					});
 				}
-				var val = o['userKeys'];
+
 				if(vars.includes('userKeys')) {
-					$('.inputSiteUser' + pk + 'UserKeys').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserKeys').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserKeys').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserKeys);
 					});
 				}
-				var val = o['userId'];
+
 				if(vars.includes('userId')) {
-					$('.inputSiteUser' + pk + 'UserId').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserId').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserId').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserId);
 					});
 				}
-				var val = o['userName'];
+
 				if(vars.includes('userName')) {
-					$('.inputSiteUser' + pk + 'UserName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserName);
 					});
 				}
-				var val = o['userEmail'];
+
 				if(vars.includes('userEmail')) {
-					$('.inputSiteUser' + pk + 'UserEmail').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserEmail').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserEmail').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserEmail);
 					});
 				}
-				var val = o['userFirstName'];
+
 				if(vars.includes('userFirstName')) {
-					$('.inputSiteUser' + pk + 'UserFirstName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserFirstName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserFirstName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserFirstName);
 					});
 				}
-				var val = o['userLastName'];
+
 				if(vars.includes('userLastName')) {
-					$('.inputSiteUser' + pk + 'UserLastName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserLastName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserLastName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserLastName);
 					});
 				}
-				var val = o['userFullName'];
+
 				if(vars.includes('userFullName')) {
-					$('.inputSiteUser' + pk + 'UserFullName').each(function() {
-						if(val !== $(this).val())
-							$(this).val(val);
-							addGlow($(this));
-					});
-					$('.varSiteUser' + pk + 'UserFullName').each(function() {
-						if(val !== $(this).text())
-							$(this).text(val);
-							addGlow($(this));
+					$('.inputSiteUser' + pk + 'UserFullName').each(function(index, fragment) {
+						$(fragment).replaceWith(inputUserFullName);
 					});
 				}
-			} else {
-				window.location.href = '/user';
-			}
 		});
 	}
 }

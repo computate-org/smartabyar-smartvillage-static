@@ -50,6 +50,7 @@
     "customTrafficLightId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md",
     "TrafficSimulation" : "smartvillage:TrafficSimulation",
     "startDateTime" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startDateTime.md",
+    "location" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/location.md",
     "fcdFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/fcdFilePath.md",
     "netFilePath" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/netFilePath.md",
     "startSeconds" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startSeconds.md",

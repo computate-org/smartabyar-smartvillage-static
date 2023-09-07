@@ -21,6 +21,9 @@
     "simulationName" : {
       "type" : "string"
     },
+    "location" : {
+      "type" : "number"
+    },
     "sumocfgPath" : {
       "type" : "string"
     },
