@@ -1793,6 +1793,19 @@ function putimportSimulationReportVals(json, success, error) {
 
 async function putcopySimulationReport($formValues, pk, success, error) {
 	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			addGlow($formValues.next('button'));
+			var url = data['pageUrlPk'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			addError($formValues.next('button'));
+		};
+	}
 
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
@@ -1822,18 +1835,12 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 	if(valueLocation != null && valueLocation !== '')
 		vals['location'] = valueLocation;
 
-	var valueSimulationKey = $formValues.find('input.valueSimulationKey:checked').val();
-	var valueSimulationKeyClear = $formValues.find('input.simulationKey_clear:checked').val();
-	if(valueSimulationKeyClear != null && valueSimulationKeyClear)
-		vals['simulationKey'] = null;
-	else if(valueSimulationKey != null && valueSimulationKey)
+	var valueSimulationKey = $formValues.find('.valueSimulationKey').val();
+	if(valueSimulationKey != null && valueSimulationKey !== '')
 		vals['simulationKey'] = valueSimulationKey;
 
-	var valueSmartTrafficLightKey = $formValues.find('input.valueSmartTrafficLightKey:checked').val();
-	var valueSmartTrafficLightKeyClear = $formValues.find('input.smartTrafficLightKey_clear:checked').val();
-	if(valueSmartTrafficLightKeyClear != null && valueSmartTrafficLightKeyClear)
-		vals['smartTrafficLightKey'] = null;
-	else if(valueSmartTrafficLightKey != null && valueSmartTrafficLightKey)
+	var valueSmartTrafficLightKey = $formValues.find('.valueSmartTrafficLightKey').val();
+	if(valueSmartTrafficLightKey != null && valueSmartTrafficLightKey !== '')
 		vals['smartTrafficLightKey'] = valueSmartTrafficLightKey;
 
 	var valueParamAvgVehiclePerMinFromWestToEast = $formValues.find('.valueParamAvgVehiclePerMinFromWestToEast').val();

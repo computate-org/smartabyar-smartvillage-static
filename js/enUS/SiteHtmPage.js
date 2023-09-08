@@ -981,284 +981,249 @@ async function websocketSiteHtmInner(apiRequest) {
 				var inputHtmAfter = null;
 
 				if(vars.includes('created'))
-				inputCreated = $response.find('.inputSiteHtm' + pk + 'Created');
+					inputCreated = $response.find('#Page_created');
 				if(vars.includes('modified'))
-				inputModified = $response.find('.inputSiteHtm' + pk + 'Modified');
+					inputModified = $response.find('#Page_modified');
 				if(vars.includes('objectId'))
-				inputObjectId = $response.find('.inputSiteHtm' + pk + 'ObjectId');
+					inputObjectId = $response.find('#Page_objectId');
 				if(vars.includes('archived'))
-				inputArchived = $response.find('.inputSiteHtm' + pk + 'Archived');
+					inputArchived = $response.find('#Page_archived');
 				if(vars.includes('deleted'))
-				inputDeleted = $response.find('.inputSiteHtm' + pk + 'Deleted');
+					inputDeleted = $response.find('#Page_deleted');
 				if(vars.includes('url'))
-				inputUrl = $response.find('.inputSiteHtm' + pk + 'Url');
+					inputUrl = $response.find('#Page_url');
 				if(vars.includes('uri'))
-				inputUri = $response.find('.inputSiteHtm' + pk + 'Uri');
+					inputUri = $response.find('#Page_uri');
 				if(vars.includes('pageId'))
-				inputPageId = $response.find('.inputSiteHtm' + pk + 'PageId');
+					inputPageId = $response.find('#Page_pageId');
 				if(vars.includes('sequenceNum'))
-				inputSequenceNum = $response.find('.inputSiteHtm' + pk + 'SequenceNum');
+					inputSequenceNum = $response.find('#Page_sequenceNum');
 				if(vars.includes('inheritPk'))
-				inputInheritPk = $response.find('.inputSiteHtm' + pk + 'InheritPk');
+					inputInheritPk = $response.find('#Page_inheritPk');
 				if(vars.includes('classCanonicalName'))
-				inputClassCanonicalName = $response.find('.inputSiteHtm' + pk + 'ClassCanonicalName');
+					inputClassCanonicalName = $response.find('#Page_classCanonicalName');
 				if(vars.includes('classSimpleName'))
-				inputClassSimpleName = $response.find('.inputSiteHtm' + pk + 'ClassSimpleName');
+					inputClassSimpleName = $response.find('#Page_classSimpleName');
 				if(vars.includes('classCanonicalNames'))
-				inputClassCanonicalNames = $response.find('.inputSiteHtm' + pk + 'ClassCanonicalNames');
+					inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
 				if(vars.includes('sessionId'))
-				inputSessionId = $response.find('.inputSiteHtm' + pk + 'SessionId');
+					inputSessionId = $response.find('#Page_sessionId');
 				if(vars.includes('userKey'))
-				inputUserKey = $response.find('.inputSiteHtm' + pk + 'UserKey');
+					inputUserKey = $response.find('#Page_userKey');
 				if(vars.includes('saves'))
-				inputSaves = $response.find('.inputSiteHtm' + pk + 'Saves');
+					inputSaves = $response.find('#Page_saves');
 				if(vars.includes('objectTitle'))
-				inputObjectTitle = $response.find('.inputSiteHtm' + pk + 'ObjectTitle');
+					inputObjectTitle = $response.find('#Page_objectTitle');
 				if(vars.includes('objectSuggest'))
-				inputObjectSuggest = $response.find('.inputSiteHtm' + pk + 'ObjectSuggest');
+					inputObjectSuggest = $response.find('#Page_objectSuggest');
 				if(vars.includes('objectText'))
-				inputObjectText = $response.find('.inputSiteHtm' + pk + 'ObjectText');
+					inputObjectText = $response.find('#Page_objectText');
 				if(vars.includes('pageUrlId'))
-				inputPageUrlId = $response.find('.inputSiteHtm' + pk + 'PageUrlId');
+					inputPageUrlId = $response.find('#Page_pageUrlId');
 				if(vars.includes('pageUrlPk'))
-				inputPageUrlPk = $response.find('.inputSiteHtm' + pk + 'PageUrlPk');
+					inputPageUrlPk = $response.find('#Page_pageUrlPk');
 				if(vars.includes('pageUrlApi'))
-				inputPageUrlApi = $response.find('.inputSiteHtm' + pk + 'PageUrlApi');
+					inputPageUrlApi = $response.find('#Page_pageUrlApi');
 				if(vars.includes('id'))
-				inputId = $response.find('.inputSiteHtm' + pk + 'Id');
+					inputId = $response.find('#Page_id');
 				if(vars.includes('htmGroup'))
-				inputHtmGroup = $response.find('.inputSiteHtm' + pk + 'HtmGroup');
+					inputHtmGroup = $response.find('#Page_htmGroup');
 				if(vars.includes('labels'))
-				inputLabels = $response.find('.inputSiteHtm' + pk + 'Labels');
+					inputLabels = $response.find('#Page_labels');
 				if(vars.includes('eBefore'))
-				inputEBefore = $response.find('.inputSiteHtm' + pk + 'EBefore');
+					inputEBefore = $response.find('#Page_eBefore');
 				if(vars.includes('eAfter'))
-				inputEAfter = $response.find('.inputSiteHtm' + pk + 'EAfter');
+					inputEAfter = $response.find('#Page_eAfter');
 				if(vars.includes('a'))
-				inputA = $response.find('.inputSiteHtm' + pk + 'A');
+					inputA = $response.find('#Page_a');
 				if(vars.includes('text'))
-				inputText = $response.find('.inputSiteHtm' + pk + 'Text');
+					inputText = $response.find('#Page_text');
 				if(vars.includes('comment'))
-				inputComment = $response.find('.inputSiteHtm' + pk + 'Comment');
+					inputComment = $response.find('#Page_comment');
 				if(vars.includes('tabs'))
-				inputTabs = $response.find('.inputSiteHtm' + pk + 'Tabs');
+					inputTabs = $response.find('#Page_tabs');
 				if(vars.includes('newLine'))
-				inputNewLine = $response.find('.inputSiteHtm' + pk + 'NewLine');
+					inputNewLine = $response.find('#Page_newLine');
 				if(vars.includes('htmBefore'))
-				inputHtmBefore = $response.find('.inputSiteHtm' + pk + 'HtmBefore');
+					inputHtmBefore = $response.find('#Page_htmBefore');
 				if(vars.includes('htmMiddle'))
-				inputHtmMiddle = $response.find('.inputSiteHtm' + pk + 'HtmMiddle');
+					inputHtmMiddle = $response.find('#Page_htmMiddle');
 				if(vars.includes('htmAfter'))
-				inputHtmAfter = $response.find('.inputSiteHtm' + pk + 'HtmAfter');
+					inputHtmAfter = $response.find('#Page_htmAfter');
 
-				if(vars.includes('created')) {
-					$('.inputSiteHtm' + pk + 'Created').each(function(index, fragment) {
-						$(fragment).replaceWith(inputCreated);
-					});
+				if(inputCreated) {
+					inputCreated.replaceAll('#Page_created');
+					addGlow($('#Page_created'));
 				}
 
-				if(vars.includes('modified')) {
-					$('.inputSiteHtm' + pk + 'Modified').each(function(index, fragment) {
-						$(fragment).replaceWith(inputModified);
-					});
+				if(inputModified) {
+					inputModified.replaceAll('#Page_modified');
+					addGlow($('#Page_modified'));
 				}
 
-				if(vars.includes('objectId')) {
-					$('.inputSiteHtm' + pk + 'ObjectId').each(function(index, fragment) {
-						$(fragment).replaceWith(inputObjectId);
-					});
+				if(inputObjectId) {
+					inputObjectId.replaceAll('#Page_objectId');
+					addGlow($('#Page_objectId'));
 				}
 
-				if(vars.includes('archived')) {
-					$('.inputSiteHtm' + pk + 'Archived').each(function(index, fragment) {
-						$(fragment).replaceWith(inputArchived);
-					});
+				if(inputArchived) {
+					inputArchived.replaceAll('#Page_archived');
+					addGlow($('#Page_archived'));
 				}
 
-				if(vars.includes('deleted')) {
-					$('.inputSiteHtm' + pk + 'Deleted').each(function(index, fragment) {
-						$(fragment).replaceWith(inputDeleted);
-					});
+				if(inputDeleted) {
+					inputDeleted.replaceAll('#Page_deleted');
+					addGlow($('#Page_deleted'));
 				}
 
-				if(vars.includes('url')) {
-					$('.inputSiteHtm' + pk + 'Url').each(function(index, fragment) {
-						$(fragment).replaceWith(inputUrl);
-					});
+				if(inputUrl) {
+					inputUrl.replaceAll('#Page_url');
+					addGlow($('#Page_url'));
 				}
 
-				if(vars.includes('uri')) {
-					$('.inputSiteHtm' + pk + 'Uri').each(function(index, fragment) {
-						$(fragment).replaceWith(inputUri);
-					});
+				if(inputUri) {
+					inputUri.replaceAll('#Page_uri');
+					addGlow($('#Page_uri'));
 				}
 
-				if(vars.includes('pageId')) {
-					$('.inputSiteHtm' + pk + 'PageId').each(function(index, fragment) {
-						$(fragment).replaceWith(inputPageId);
-					});
+				if(inputPageId) {
+					inputPageId.replaceAll('#Page_pageId');
+					addGlow($('#Page_pageId'));
 				}
 
-				if(vars.includes('sequenceNum')) {
-					$('.inputSiteHtm' + pk + 'SequenceNum').each(function(index, fragment) {
-						$(fragment).replaceWith(inputSequenceNum);
-					});
+				if(inputSequenceNum) {
+					inputSequenceNum.replaceAll('#Page_sequenceNum');
+					addGlow($('#Page_sequenceNum'));
 				}
 
-				if(vars.includes('inheritPk')) {
-					$('.inputSiteHtm' + pk + 'InheritPk').each(function(index, fragment) {
-						$(fragment).replaceWith(inputInheritPk);
-					});
+				if(inputInheritPk) {
+					inputInheritPk.replaceAll('#Page_inheritPk');
+					addGlow($('#Page_inheritPk'));
 				}
 
-				if(vars.includes('classCanonicalName')) {
-					$('.inputSiteHtm' + pk + 'ClassCanonicalName').each(function(index, fragment) {
-						$(fragment).replaceWith(inputClassCanonicalName);
-					});
+				if(inputClassCanonicalName) {
+					inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+					addGlow($('#Page_classCanonicalName'));
 				}
 
-				if(vars.includes('classSimpleName')) {
-					$('.inputSiteHtm' + pk + 'ClassSimpleName').each(function(index, fragment) {
-						$(fragment).replaceWith(inputClassSimpleName);
-					});
+				if(inputClassSimpleName) {
+					inputClassSimpleName.replaceAll('#Page_classSimpleName');
+					addGlow($('#Page_classSimpleName'));
 				}
 
-				if(vars.includes('classCanonicalNames')) {
-					$('.inputSiteHtm' + pk + 'ClassCanonicalNames').each(function(index, fragment) {
-						$(fragment).replaceWith(inputClassCanonicalNames);
-					});
+				if(inputClassCanonicalNames) {
+					inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+					addGlow($('#Page_classCanonicalNames'));
 				}
 
-				if(vars.includes('sessionId')) {
-					$('.inputSiteHtm' + pk + 'SessionId').each(function(index, fragment) {
-						$(fragment).replaceWith(inputSessionId);
-					});
+				if(inputSessionId) {
+					inputSessionId.replaceAll('#Page_sessionId');
+					addGlow($('#Page_sessionId'));
 				}
 
-				if(vars.includes('userKey')) {
-					$('.inputSiteHtm' + pk + 'UserKey').each(function(index, fragment) {
-						$(fragment).replaceWith(inputUserKey);
-					});
+				if(inputUserKey) {
+					inputUserKey.replaceAll('#Page_userKey');
+					addGlow($('#Page_userKey'));
 				}
 
-				if(vars.includes('saves')) {
-					$('.inputSiteHtm' + pk + 'Saves').each(function(index, fragment) {
-						$(fragment).replaceWith(inputSaves);
-					});
+				if(inputSaves) {
+					inputSaves.replaceAll('#Page_saves');
+					addGlow($('#Page_saves'));
 				}
 
-				if(vars.includes('objectTitle')) {
-					$('.inputSiteHtm' + pk + 'ObjectTitle').each(function(index, fragment) {
-						$(fragment).replaceWith(inputObjectTitle);
-					});
+				if(inputObjectTitle) {
+					inputObjectTitle.replaceAll('#Page_objectTitle');
+					addGlow($('#Page_objectTitle'));
 				}
 
-				if(vars.includes('objectSuggest')) {
-					$('.inputSiteHtm' + pk + 'ObjectSuggest').each(function(index, fragment) {
-						$(fragment).replaceWith(inputObjectSuggest);
-					});
+				if(inputObjectSuggest) {
+					inputObjectSuggest.replaceAll('#Page_objectSuggest');
+					addGlow($('#Page_objectSuggest'));
 				}
 
-				if(vars.includes('objectText')) {
-					$('.inputSiteHtm' + pk + 'ObjectText').each(function(index, fragment) {
-						$(fragment).replaceWith(inputObjectText);
-					});
+				if(inputObjectText) {
+					inputObjectText.replaceAll('#Page_objectText');
+					addGlow($('#Page_objectText'));
 				}
 
-				if(vars.includes('pageUrlId')) {
-					$('.inputSiteHtm' + pk + 'PageUrlId').each(function(index, fragment) {
-						$(fragment).replaceWith(inputPageUrlId);
-					});
+				if(inputPageUrlId) {
+					inputPageUrlId.replaceAll('#Page_pageUrlId');
+					addGlow($('#Page_pageUrlId'));
 				}
 
-				if(vars.includes('pageUrlPk')) {
-					$('.inputSiteHtm' + pk + 'PageUrlPk').each(function(index, fragment) {
-						$(fragment).replaceWith(inputPageUrlPk);
-					});
+				if(inputPageUrlPk) {
+					inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+					addGlow($('#Page_pageUrlPk'));
 				}
 
-				if(vars.includes('pageUrlApi')) {
-					$('.inputSiteHtm' + pk + 'PageUrlApi').each(function(index, fragment) {
-						$(fragment).replaceWith(inputPageUrlApi);
-					});
+				if(inputPageUrlApi) {
+					inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+					addGlow($('#Page_pageUrlApi'));
 				}
 
-				if(vars.includes('id')) {
-					$('.inputSiteHtm' + pk + 'Id').each(function(index, fragment) {
-						$(fragment).replaceWith(inputId);
-					});
+				if(inputId) {
+					inputId.replaceAll('#Page_id');
+					addGlow($('#Page_id'));
 				}
 
-				if(vars.includes('htmGroup')) {
-					$('.inputSiteHtm' + pk + 'HtmGroup').each(function(index, fragment) {
-						$(fragment).replaceWith(inputHtmGroup);
-					});
+				if(inputHtmGroup) {
+					inputHtmGroup.replaceAll('#Page_htmGroup');
+					addGlow($('#Page_htmGroup'));
 				}
 
-				if(vars.includes('labels')) {
-					$('.inputSiteHtm' + pk + 'Labels').each(function(index, fragment) {
-						$(fragment).replaceWith(inputLabels);
-					});
+				if(inputLabels) {
+					inputLabels.replaceAll('#Page_labels');
+					addGlow($('#Page_labels'));
 				}
 
-				if(vars.includes('eBefore')) {
-					$('.inputSiteHtm' + pk + 'EBefore').each(function(index, fragment) {
-						$(fragment).replaceWith(inputEBefore);
-					});
+				if(inputEBefore) {
+					inputEBefore.replaceAll('#Page_eBefore');
+					addGlow($('#Page_eBefore'));
 				}
 
-				if(vars.includes('eAfter')) {
-					$('.inputSiteHtm' + pk + 'EAfter').each(function(index, fragment) {
-						$(fragment).replaceWith(inputEAfter);
-					});
+				if(inputEAfter) {
+					inputEAfter.replaceAll('#Page_eAfter');
+					addGlow($('#Page_eAfter'));
 				}
 
-				if(vars.includes('a')) {
-					$('.inputSiteHtm' + pk + 'A').each(function(index, fragment) {
-						$(fragment).replaceWith(inputA);
-					});
+				if(inputA) {
+					inputA.replaceAll('#Page_a');
+					addGlow($('#Page_a'));
 				}
 
-				if(vars.includes('text')) {
-					$('.inputSiteHtm' + pk + 'Text').each(function(index, fragment) {
-						$(fragment).replaceWith(inputText);
-					});
+				if(inputText) {
+					inputText.replaceAll('#Page_text');
+					addGlow($('#Page_text'));
 				}
 
-				if(vars.includes('comment')) {
-					$('.inputSiteHtm' + pk + 'Comment').each(function(index, fragment) {
-						$(fragment).replaceWith(inputComment);
-					});
+				if(inputComment) {
+					inputComment.replaceAll('#Page_comment');
+					addGlow($('#Page_comment'));
 				}
 
-				if(vars.includes('tabs')) {
-					$('.inputSiteHtm' + pk + 'Tabs').each(function(index, fragment) {
-						$(fragment).replaceWith(inputTabs);
-					});
+				if(inputTabs) {
+					inputTabs.replaceAll('#Page_tabs');
+					addGlow($('#Page_tabs'));
 				}
 
-				if(vars.includes('newLine')) {
-					$('.inputSiteHtm' + pk + 'NewLine').each(function(index, fragment) {
-						$(fragment).replaceWith(inputNewLine);
-					});
+				if(inputNewLine) {
+					inputNewLine.replaceAll('#Page_newLine');
+					addGlow($('#Page_newLine'));
 				}
 
-				if(vars.includes('htmBefore')) {
-					$('.inputSiteHtm' + pk + 'HtmBefore').each(function(index, fragment) {
-						$(fragment).replaceWith(inputHtmBefore);
-					});
+				if(inputHtmBefore) {
+					inputHtmBefore.replaceAll('#Page_htmBefore');
+					addGlow($('#Page_htmBefore'));
 				}
 
-				if(vars.includes('htmMiddle')) {
-					$('.inputSiteHtm' + pk + 'HtmMiddle').each(function(index, fragment) {
-						$(fragment).replaceWith(inputHtmMiddle);
-					});
+				if(inputHtmMiddle) {
+					inputHtmMiddle.replaceAll('#Page_htmMiddle');
+					addGlow($('#Page_htmMiddle'));
 				}
 
-				if(vars.includes('htmAfter')) {
-					$('.inputSiteHtm' + pk + 'HtmAfter').each(function(index, fragment) {
-						$(fragment).replaceWith(inputHtmAfter);
-					});
+				if(inputHtmAfter) {
+					inputHtmAfter.replaceAll('#Page_htmAfter');
+					addGlow($('#Page_htmAfter'));
 				}
 		});
 	}
