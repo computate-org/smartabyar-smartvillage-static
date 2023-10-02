@@ -2,6 +2,11 @@ TrafficFlowObserved:
   description: >+
     A device for watching vehicles in a lane of traffic on a road. 
   properties:
+    path:
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: GeoProperty
     entityId:
       description: >+
         A unique ID for this Smart Data Model

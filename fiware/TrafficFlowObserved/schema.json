@@ -13,6 +13,9 @@
   } ],
   "required" : [ ],
   "properties" : {
+    "path" : {
+      "type" : "number"
+    },
     "entityId" : {
       "description" : "A unique ID for this Smart Data Model",
       "type" : "string"
