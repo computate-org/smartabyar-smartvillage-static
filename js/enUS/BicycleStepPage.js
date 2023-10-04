@@ -47,39 +47,9 @@ function searchBicycleStepFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
-		var filterDateTime = $formFilters.find('.valueDateTime').val();
-		if(filterDateTime != null && filterDateTime !== '')
-			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
-
-		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
-		var $filterStepSelect = $formFilters.find('select.valueStep');
-		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
-		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
-		var filterStep = null;
-		if(filterStepSelectVal !== '')
-			filterStep = filterStepSelectVal == 'true';
-		if(filterStep != null && filterStep === true)
-			filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-		var filterLocation = $formFilters.find('.valueLocation').val();
-		if(filterLocation != null && filterLocation !== '')
-			filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-		var filterColor = $formFilters.find('.valueColor').val();
-		if(filterColor != null && filterColor !== '')
-			filters.push({ name: 'fq', value: 'color:' + filterColor });
-
 		var filterBicycleId = $formFilters.find('.valueBicycleId').val();
 		if(filterBicycleId != null && filterBicycleId !== '')
 			filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
-
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -257,69 +227,6 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueTime = $formValues.find('.valueTime').val();
-	var removeTime = $formValues.find('.removeTime').val() === 'true';
-	var setTime = removeTime ? null : $formValues.find('.setTime').val();
-	var addTime = $formValues.find('.addTime').val();
-	if(removeTime || setTime != null && setTime !== '')
-		vals['setTime'] = setTime;
-	if(addTime != null && addTime !== '')
-		vals['addTime'] = addTime;
-	var removeTime = $formValues.find('.removeTime').val();
-	if(removeTime != null && removeTime !== '')
-		vals['removeTime'] = removeTime;
-
-	var valueDateTime = $formValues.find('.valueDateTime').val();
-	var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
-	var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
-	var addDateTime = $formValues.find('.addDateTime').val();
-	if(removeDateTime || setDateTime != null && setDateTime !== '')
-		vals['setDateTime'] = setDateTime;
-	if(addDateTime != null && addDateTime !== '')
-		vals['addDateTime'] = addDateTime;
-	var removeDateTime = $formValues.find('.removeDateTime').val();
-	if(removeDateTime != null && removeDateTime !== '')
-		vals['removeDateTime'] = removeDateTime;
-
-	var valueStep = $formValues.find('.valueStep').val();
-	var removeStep = $formValues.find('.removeStep').val() === 'true';
-	var valueStepSelectVal = $formValues.find('select.setStep').val();
-	if(valueStepSelectVal != null && valueStepSelectVal !== '')
-		valueStep = valueStepSelectVal == 'true';
-	var setStep = removeStep ? null : valueStep;
-	var addStep = $formValues.find('.addStep').prop('checked');
-	if(removeStep || setStep != null && setStep !== '')
-		vals['setStep'] = setStep;
-	if(addStep != null && addStep !== '')
-		vals['addStep'] = addStep;
-	var removeStep = $formValues.find('.removeStep').prop('checked');
-	if(removeStep != null && removeStep !== '')
-		vals['removeStep'] = removeStep;
-
-	var valueLocation = $formValues.find('.valueLocation').val();
-	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
-	var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
-	var addLocation = $formValues.find('.addLocation').val();
-	if(removeLocation || setLocation != null && setLocation !== '')
-		vals['setLocation'] = setLocation;
-	if(addLocation != null && addLocation !== '')
-		vals['addLocation'] = addLocation;
-	var removeLocation = $formValues.find('.removeLocation').val();
-	if(removeLocation != null && removeLocation !== '')
-		vals['removeLocation'] = removeLocation;
-
-	var valueColor = $formValues.find('.valueColor').val();
-	var removeColor = $formValues.find('.removeColor').val() === 'true';
-	var setColor = removeColor ? null : $formValues.find('.setColor').val();
-	var addColor = $formValues.find('.addColor').val();
-	if(removeColor || setColor != null && setColor !== '')
-		vals['setColor'] = setColor;
-	if(addColor != null && addColor !== '')
-		vals['addColor'] = addColor;
-	var removeColor = $formValues.find('.removeColor').val();
-	if(removeColor != null && removeColor !== '')
-		vals['removeColor'] = removeColor;
-
 	var valueBicycleId = $formValues.find('.valueBicycleId').val();
 	var removeBicycleId = $formValues.find('.removeBicycleId').val() === 'true';
 	var setBicycleId = removeBicycleId ? null : $formValues.find('.setBicycleId').val();
@@ -331,42 +238,6 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
 	var removeBicycleId = $formValues.find('.removeBicycleId').val();
 	if(removeBicycleId != null && removeBicycleId !== '')
 		vals['removeBicycleId'] = removeBicycleId;
-
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	var removeX = $formValues.find('.removeX').val() === 'true';
-	var setX = removeX ? null : $formValues.find('.setX').val();
-	var addX = $formValues.find('.addX').val();
-	if(removeX || setX != null && setX !== '')
-		vals['setX'] = setX;
-	if(addX != null && addX !== '')
-		vals['addX'] = addX;
-	var removeX = $formValues.find('.removeX').val();
-	if(removeX != null && removeX !== '')
-		vals['removeX'] = removeX;
-
-	var valueY = $formValues.find('.valueY').val();
-	var removeY = $formValues.find('.removeY').val() === 'true';
-	var setY = removeY ? null : $formValues.find('.setY').val();
-	var addY = $formValues.find('.addY').val();
-	if(removeY || setY != null && setY !== '')
-		vals['setY'] = setY;
-	if(addY != null && addY !== '')
-		vals['addY'] = addY;
-	var removeY = $formValues.find('.removeY').val();
-	if(removeY != null && removeY !== '')
-		vals['removeY'] = removeY;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -468,39 +339,9 @@ function patchBicycleStepFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
-		var filterDateTime = $formFilters.find('.valueDateTime').val();
-		if(filterDateTime != null && filterDateTime !== '')
-			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
-
-		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
-		var $filterStepSelect = $formFilters.find('select.valueStep');
-		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
-		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
-		var filterStep = null;
-		if(filterStepSelectVal !== '')
-			filterStep = filterStepSelectVal == 'true';
-		if(filterStep != null && filterStep === true)
-			filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-		var filterLocation = $formFilters.find('.valueLocation').val();
-		if(filterLocation != null && filterLocation !== '')
-			filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-		var filterColor = $formFilters.find('.valueColor').val();
-		if(filterColor != null && filterColor !== '')
-			filters.push({ name: 'fq', value: 'color:' + filterColor });
-
 		var filterBicycleId = $formFilters.find('.valueBicycleId').val();
 		if(filterBicycleId != null && filterBicycleId !== '')
 			filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
-
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -617,41 +458,9 @@ async function postBicycleStep($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
-	var valueTime = $formValues.find('.valueTime').val();
-	if(valueTime != null && valueTime !== '')
-		vals['time'] = valueTime;
-
-	var valueDateTime = $formValues.find('.valueDateTime').val();
-	if(valueDateTime != null && valueDateTime !== '')
-		vals['dateTime'] = valueDateTime;
-
-	var valueStep = $formValues.find('.valueStep').val();
-	if(valueStep != null && valueStep !== '')
-		vals['step'] = valueStep == 'true';
-
-	var valueLocation = $formValues.find('.valueLocation').val();
-	if(valueLocation != null && valueLocation !== '')
-		vals['location'] = valueLocation;
-
-	var valueColor = $formValues.find('.valueColor').val();
-	if(valueColor != null && valueColor !== '')
-		vals['color'] = valueColor;
-
 	var valueBicycleId = $formValues.find('.valueBicycleId').val();
 	if(valueBicycleId != null && valueBicycleId !== '')
 		vals['bicycleId'] = valueBicycleId;
-
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	if(valueX != null && valueX !== '')
-		vals['x'] = valueX;
-
-	var valueY = $formValues.find('.valueY').val();
-	if(valueY != null && valueY !== '')
-		vals['y'] = valueY;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -782,15 +591,7 @@ async function websocketBicycleStepInner(apiRequest) {
 				var inputObjectId = null;
 				var inputArchived = null;
 				var inputDeleted = null;
-				var inputTime = null;
-				var inputDateTime = null;
-				var inputStep = null;
-				var inputLocation = null;
-				var inputColor = null;
 				var inputBicycleId = null;
-				var inputTimeStepId = null;
-				var inputX = null;
-				var inputY = null;
 				var inputInheritPk = null;
 				var inputClassCanonicalName = null;
 				var inputClassSimpleName = null;
@@ -816,24 +617,8 @@ async function websocketBicycleStepInner(apiRequest) {
 					inputArchived = $response.find('#Page_archived');
 				if(vars.includes('deleted'))
 					inputDeleted = $response.find('#Page_deleted');
-				if(vars.includes('time'))
-					inputTime = $response.find('#Page_time');
-				if(vars.includes('dateTime'))
-					inputDateTime = $response.find('#Page_dateTime');
-				if(vars.includes('step'))
-					inputStep = $response.find('#Page_step');
-				if(vars.includes('location'))
-					inputLocation = $response.find('#Page_location');
-				if(vars.includes('color'))
-					inputColor = $response.find('#Page_color');
 				if(vars.includes('bicycleId'))
 					inputBicycleId = $response.find('#Page_bicycleId');
-				if(vars.includes('timeStepId'))
-					inputTimeStepId = $response.find('#Page_timeStepId');
-				if(vars.includes('x'))
-					inputX = $response.find('#Page_x');
-				if(vars.includes('y'))
-					inputY = $response.find('#Page_y');
 				if(vars.includes('inheritPk'))
 					inputInheritPk = $response.find('#Page_inheritPk');
 				if(vars.includes('classCanonicalName'))
@@ -888,49 +673,9 @@ async function websocketBicycleStepInner(apiRequest) {
 					addGlow($('#Page_deleted'));
 				}
 
-				if(inputTime) {
-					inputTime.replaceAll('#Page_time');
-					addGlow($('#Page_time'));
-				}
-
-				if(inputDateTime) {
-					inputDateTime.replaceAll('#Page_dateTime');
-					addGlow($('#Page_dateTime'));
-				}
-
-				if(inputStep) {
-					inputStep.replaceAll('#Page_step');
-					addGlow($('#Page_step'));
-				}
-
-				if(inputLocation) {
-					inputLocation.replaceAll('#Page_location');
-					addGlow($('#Page_location'));
-				}
-
-				if(inputColor) {
-					inputColor.replaceAll('#Page_color');
-					addGlow($('#Page_color'));
-				}
-
 				if(inputBicycleId) {
 					inputBicycleId.replaceAll('#Page_bicycleId');
 					addGlow($('#Page_bicycleId'));
-				}
-
-				if(inputTimeStepId) {
-					inputTimeStepId.replaceAll('#Page_timeStepId');
-					addGlow($('#Page_timeStepId'));
-				}
-
-				if(inputX) {
-					inputX.replaceAll('#Page_x');
-					addGlow($('#Page_x'));
-				}
-
-				if(inputY) {
-					inputY.replaceAll('#Page_y');
-					addGlow($('#Page_y'));
 				}
 
 				if(inputInheritPk) {

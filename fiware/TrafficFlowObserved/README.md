@@ -11,7 +11,8 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 ## Attributes of the entity
 
-- [path](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/path.md)
+- [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/location.md)
+- [color](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/color.md)
 - [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/entityId.md)
 - [simulationName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/simulationName.md)
 - [sumocfgPath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/sumocfgPath.md)

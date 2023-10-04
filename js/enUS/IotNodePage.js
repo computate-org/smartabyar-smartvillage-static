@@ -2188,7 +2188,7 @@ function pageGraphIotNode(apiRequest) {
 						});
 					}
 				}
-				Plotly.react('htmBodyGraphMapResultPage', data, layout);
+				Plotly.react('htmBodyGraphBaseResultPage', data, layout);
 			}
 		}
 	}

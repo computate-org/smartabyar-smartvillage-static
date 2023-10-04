@@ -13,8 +13,11 @@
   } ],
   "required" : [ ],
   "properties" : {
-    "path" : {
-      "type" : "number"
+    "location" : {
+      "type" : "string"
+    },
+    "color" : {
+      "type" : "string"
     },
     "entityId" : {
       "description" : "A unique ID for this Smart Data Model",

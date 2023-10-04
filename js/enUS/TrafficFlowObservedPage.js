@@ -47,47 +47,21 @@ function searchTrafficFlowObservedFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
-		var filterDateTime = $formFilters.find('.valueDateTime').val();
-		if(filterDateTime != null && filterDateTime !== '')
-			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
-
-		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
-		var $filterStepSelect = $formFilters.find('select.valueStep');
-		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
-		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
-		var filterStep = null;
-		if(filterStepSelectVal !== '')
-			filterStep = filterStepSelectVal == 'true';
-		if(filterStep != null && filterStep === true)
-			filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-		var filterPath = $formFilters.find('.valuePath').val();
-		if(filterPath != null && filterPath !== '')
-			filters.push({ name: 'fq', value: 'path:' + filterPath });
-
-		var filterColor = $formFilters.find('.valueColor').val();
-		if(filterColor != null && filterColor !== '')
-			filters.push({ name: 'fq', value: 'color:' + filterColor });
-
 		var filterEntityId = $formFilters.find('.valueEntityId').val();
 		if(filterEntityId != null && filterEntityId !== '')
 			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
 		var filterAddress = $formFilters.find('.valueAddress').val();
 		if(filterAddress != null && filterAddress !== '')
@@ -253,6 +227,10 @@ function searchTrafficFlowObservedFilters($formFilters) {
 		if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
 			filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
 
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -309,9 +287,9 @@ function searchTrafficFlowObservedFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 	}
 	return filters;
 }
@@ -349,7 +327,7 @@ function suggestTrafficFlowObservedObjectSuggest($formFilters, $list) {
 
 // GET //
 
-async function getTrafficFlowObserved() {
+async function getTrafficFlowObserved(pk) {
 	$.ajax({
 		url: '/api/traffic-flow-observed/' + id
 		, dataType: 'json'
@@ -362,7 +340,7 @@ async function getTrafficFlowObserved() {
 
 // PATCH //
 
-async function patchTrafficFlowObserved($formFilters, $formValues, id, success, error) {
+async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, error) {
 	var filters = patchTrafficFlowObservedFilters($formFilters);
 
 	var vals = {};
@@ -433,68 +411,17 @@ async function patchTrafficFlowObserved($formFilters, $formValues, id, success, 
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueSimulationName = $formValues.find('.valueSimulationName').val();
-	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
-	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
-	var addSimulationName = $formValues.find('.addSimulationName').val();
-	if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
-		vals['setSimulationName'] = setSimulationName;
-	if(addSimulationName != null && addSimulationName !== '')
-		vals['addSimulationName'] = addSimulationName;
-	var removeSimulationName = $formValues.find('.removeSimulationName').val();
-	if(removeSimulationName != null && removeSimulationName !== '')
-		vals['removeSimulationName'] = removeSimulationName;
-
-	var valueTime = $formValues.find('.valueTime').val();
-	var removeTime = $formValues.find('.removeTime').val() === 'true';
-	var setTime = removeTime ? null : $formValues.find('.setTime').val();
-	var addTime = $formValues.find('.addTime').val();
-	if(removeTime || setTime != null && setTime !== '')
-		vals['setTime'] = setTime;
-	if(addTime != null && addTime !== '')
-		vals['addTime'] = addTime;
-	var removeTime = $formValues.find('.removeTime').val();
-	if(removeTime != null && removeTime !== '')
-		vals['removeTime'] = removeTime;
-
-	var valueDateTime = $formValues.find('.valueDateTime').val();
-	var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
-	var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
-	var addDateTime = $formValues.find('.addDateTime').val();
-	if(removeDateTime || setDateTime != null && setDateTime !== '')
-		vals['setDateTime'] = setDateTime;
-	if(addDateTime != null && addDateTime !== '')
-		vals['addDateTime'] = addDateTime;
-	var removeDateTime = $formValues.find('.removeDateTime').val();
-	if(removeDateTime != null && removeDateTime !== '')
-		vals['removeDateTime'] = removeDateTime;
-
-	var valueStep = $formValues.find('.valueStep').val();
-	var removeStep = $formValues.find('.removeStep').val() === 'true';
-	var valueStepSelectVal = $formValues.find('select.setStep').val();
-	if(valueStepSelectVal != null && valueStepSelectVal !== '')
-		valueStep = valueStepSelectVal == 'true';
-	var setStep = removeStep ? null : valueStep;
-	var addStep = $formValues.find('.addStep').prop('checked');
-	if(removeStep || setStep != null && setStep !== '')
-		vals['setStep'] = setStep;
-	if(addStep != null && addStep !== '')
-		vals['addStep'] = addStep;
-	var removeStep = $formValues.find('.removeStep').prop('checked');
-	if(removeStep != null && removeStep !== '')
-		vals['removeStep'] = removeStep;
-
-	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
-	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
-	var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
-	var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
-	if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
-		vals['setSumocfgPath'] = setSumocfgPath;
-	if(addSumocfgPath != null && addSumocfgPath !== '')
-		vals['addSumocfgPath'] = addSumocfgPath;
-	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
-	if(removeSumocfgPath != null && removeSumocfgPath !== '')
-		vals['removeSumocfgPath'] = removeSumocfgPath;
+	var valueColor = $formValues.find('.valueColor').val();
+	var removeColor = $formValues.find('.removeColor').val() === 'true';
+	var setColor = removeColor ? null : $formValues.find('.setColor').val();
+	var addColor = $formValues.find('.addColor').val();
+	if(removeColor || setColor != null && setColor !== '')
+		vals['setColor'] = setColor;
+	if(addColor != null && addColor !== '')
+		vals['addColor'] = addColor;
+	var removeColor = $formValues.find('.removeColor').val();
+	if(removeColor != null && removeColor !== '')
+		vals['removeColor'] = removeColor;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -508,30 +435,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, id, success, 
 	if(removeLocation != null && removeLocation !== '')
 		vals['removeLocation'] = removeLocation;
 
-	var valuePath = $formValues.find('.valuePath').val();
-	var removePath = $formValues.find('.removePath').val() === 'true';
-	var setPath = removePath ? null : $formValues.find('.setPath').val();
-	var addPath = $formValues.find('.addPath').val();
-	if(removePath || setPath != null && setPath !== '')
-		vals['setPath'] = setPath;
-	if(addPath != null && addPath !== '')
-		vals['addPath'] = addPath;
-	var removePath = $formValues.find('.removePath').val();
-	if(removePath != null && removePath !== '')
-		vals['removePath'] = removePath;
-
-	var valueColor = $formValues.find('.valueColor').val();
-	var removeColor = $formValues.find('.removeColor').val() === 'true';
-	var setColor = removeColor ? null : $formValues.find('.setColor').val();
-	var addColor = $formValues.find('.addColor').val();
-	if(removeColor || setColor != null && setColor !== '')
-		vals['setColor'] = setColor;
-	if(addColor != null && addColor !== '')
-		vals['addColor'] = addColor;
-	var removeColor = $formValues.find('.removeColor').val();
-	if(removeColor != null && removeColor !== '')
-		vals['removeColor'] = removeColor;
-
 	var valueEntityId = $formValues.find('.valueEntityId').val();
 	var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
 	var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
@@ -543,6 +446,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, id, success, 
 	var removeEntityId = $formValues.find('.removeEntityId').val();
 	if(removeEntityId != null && removeEntityId !== '')
 		vals['removeEntityId'] = removeEntityId;
+
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
+	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
+	var addSimulationName = $formValues.find('.addSimulationName').val();
+	if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
+		vals['setSimulationName'] = setSimulationName;
+	if(addSimulationName != null && addSimulationName !== '')
+		vals['addSimulationName'] = addSimulationName;
+	var removeSimulationName = $formValues.find('.removeSimulationName').val();
+	if(removeSimulationName != null && removeSimulationName !== '')
+		vals['removeSimulationName'] = removeSimulationName;
 
 	var valueAddress = $formValues.find('.valueAddress').val();
 	var removeAddress = $formValues.find('.removeAddress').val() === 'true';
@@ -1054,55 +969,19 @@ async function patchTrafficFlowObserved($formFilters, $formValues, id, success, 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var valueId = $formValues.find('.valueId').val();
-	var removeId = $formValues.find('.removeId').val() === 'true';
-	var setId = removeId ? null : $formValues.find('.setId').val();
-	var addId = $formValues.find('.addId').val();
-	if(removeId || setId != null && setId !== '')
-		vals['setId'] = setId;
-	if(addId != null && addId !== '')
-		vals['addId'] = addId;
-	var removeId = $formValues.find('.removeId').val();
-	if(removeId != null && removeId !== '')
-		vals['removeId'] = removeId;
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
+	var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
+	var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
+	if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
+		vals['setSumocfgPath'] = setSumocfgPath;
+	if(addSumocfgPath != null && addSumocfgPath !== '')
+		vals['addSumocfgPath'] = addSumocfgPath;
+	var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
+	if(removeSumocfgPath != null && removeSumocfgPath !== '')
+		vals['removeSumocfgPath'] = removeSumocfgPath;
 
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-	var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-	var addTimeStepId = $formValues.find('.addTimeStepId').val();
-	if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-		vals['setTimeStepId'] = setTimeStepId;
-	if(addTimeStepId != null && addTimeStepId !== '')
-		vals['addTimeStepId'] = addTimeStepId;
-	var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-	if(removeTimeStepId != null && removeTimeStepId !== '')
-		vals['removeTimeStepId'] = removeTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	var removeX = $formValues.find('.removeX').val() === 'true';
-	var setX = removeX ? null : $formValues.find('.setX').val();
-	var addX = $formValues.find('.addX').val();
-	if(removeX || setX != null && setX !== '')
-		vals['setX'] = setX;
-	if(addX != null && addX !== '')
-		vals['addX'] = addX;
-	var removeX = $formValues.find('.removeX').val();
-	if(removeX != null && removeX !== '')
-		vals['removeX'] = removeX;
-
-	var valueY = $formValues.find('.valueY').val();
-	var removeY = $formValues.find('.removeY').val() === 'true';
-	var setY = removeY ? null : $formValues.find('.setY').val();
-	var addY = $formValues.find('.addY').val();
-	if(removeY || setY != null && setY !== '')
-		vals['setY'] = setY;
-	if(addY != null && addY !== '')
-		vals['addY'] = addY;
-	var removeY = $formValues.find('.removeY').val();
-	if(removeY != null && removeY !== '')
-		vals['removeY'] = removeY;
-
-	patchTrafficFlowObservedVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
+	patchTrafficFlowObservedVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchTrafficFlowObservedFilters($formFilters) {
@@ -1142,47 +1021,21 @@ function patchTrafficFlowObservedFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
-		var filterTime = $formFilters.find('.valueTime').val();
-		if(filterTime != null && filterTime !== '')
-			filters.push({ name: 'fq', value: 'time:' + filterTime });
-
-		var filterDateTime = $formFilters.find('.valueDateTime').val();
-		if(filterDateTime != null && filterDateTime !== '')
-			filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
-
-		var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
-		var $filterStepSelect = $formFilters.find('select.valueStep');
-		var filterStep = $filterStepSelect.length ? $filterStepSelect.val() : $filterStepCheckbox.prop('checked');
-		var filterStepSelectVal = $formFilters.find('select.filterStep').val();
-		var filterStep = null;
-		if(filterStepSelectVal !== '')
-			filterStep = filterStepSelectVal == 'true';
-		if(filterStep != null && filterStep === true)
-			filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterLocation = $formFilters.find('.valueLocation').val();
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-		var filterPath = $formFilters.find('.valuePath').val();
-		if(filterPath != null && filterPath !== '')
-			filters.push({ name: 'fq', value: 'path:' + filterPath });
-
-		var filterColor = $formFilters.find('.valueColor').val();
-		if(filterColor != null && filterColor !== '')
-			filters.push({ name: 'fq', value: 'color:' + filterColor });
-
 		var filterEntityId = $formFilters.find('.valueEntityId').val();
 		if(filterEntityId != null && filterEntityId !== '')
 			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
+		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+		if(filterSimulationName != null && filterSimulationName !== '')
+			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
 		var filterAddress = $formFilters.find('.valueAddress').val();
 		if(filterAddress != null && filterAddress !== '')
@@ -1348,6 +1201,10 @@ function patchTrafficFlowObservedFilters($formFilters) {
 		if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
 			filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
 
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -1404,9 +1261,9 @@ function patchTrafficFlowObservedFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-		var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-		if(filterTimeStepId != null && filterTimeStepId !== '')
-			filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+		if(filterSumocfgPath != null && filterSumocfgPath !== '')
+			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 	}
 	return filters;
 }
@@ -1467,41 +1324,21 @@ async function postTrafficFlowObserved($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
-	var valueSimulationName = $formValues.find('.valueSimulationName').val();
-	if(valueSimulationName != null && valueSimulationName !== '')
-		vals['simulationName'] = valueSimulationName;
-
-	var valueTime = $formValues.find('.valueTime').val();
-	if(valueTime != null && valueTime !== '')
-		vals['time'] = valueTime;
-
-	var valueDateTime = $formValues.find('.valueDateTime').val();
-	if(valueDateTime != null && valueDateTime !== '')
-		vals['dateTime'] = valueDateTime;
-
-	var valueStep = $formValues.find('.valueStep').val();
-	if(valueStep != null && valueStep !== '')
-		vals['step'] = valueStep == 'true';
-
-	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
-	if(valueSumocfgPath != null && valueSumocfgPath !== '')
-		vals['sumocfgPath'] = valueSumocfgPath;
+	var valueColor = $formValues.find('.valueColor').val();
+	if(valueColor != null && valueColor !== '')
+		vals['color'] = valueColor;
 
 	var valueLocation = $formValues.find('.valueLocation').val();
 	if(valueLocation != null && valueLocation !== '')
 		vals['location'] = valueLocation;
 
-	var valuePath = $formValues.find('.valuePath').val();
-	if(valuePath != null && valuePath !== '')
-		vals['path'] = valuePath;
-
-	var valueColor = $formValues.find('.valueColor').val();
-	if(valueColor != null && valueColor !== '')
-		vals['color'] = valueColor;
-
 	var valueEntityId = $formValues.find('.valueEntityId').val();
 	if(valueEntityId != null && valueEntityId !== '')
 		vals['entityId'] = valueEntityId;
+
+	var valueSimulationName = $formValues.find('.valueSimulationName').val();
+	if(valueSimulationName != null && valueSimulationName !== '')
+		vals['simulationName'] = valueSimulationName;
 
 	var valueAddress = $formValues.find('.valueAddress').val();
 	if(valueAddress != null && valueAddress !== '')
@@ -1671,21 +1508,9 @@ async function postTrafficFlowObserved($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueId = $formValues.find('.valueId').val();
-	if(valueId != null && valueId !== '')
-		vals['id'] = valueId;
-
-	var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-	if(valueTimeStepId != null && valueTimeStepId !== '')
-		vals['timeStepId'] = valueTimeStepId;
-
-	var valueX = $formValues.find('.valueX').val();
-	if(valueX != null && valueX !== '')
-		vals['x'] = valueX;
-
-	var valueY = $formValues.find('.valueY').val();
-	if(valueY != null && valueY !== '')
-		vals['y'] = valueY;
+	var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+	if(valueSumocfgPath != null && valueSumocfgPath !== '')
+		vals['sumocfgPath'] = valueSumocfgPath;
 
 	$.ajax({
 		url: '/api/traffic-flow-observed'
@@ -1712,7 +1537,7 @@ function postTrafficFlowObservedVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportTrafficFlowObserved($formValues, id, success, error) {
+async function putimportTrafficFlowObserved($formValues, pk, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
 		putimportTrafficFlowObservedVals(JSON.parse(json), success, error);
@@ -1737,7 +1562,7 @@ async function websocketTrafficFlowObserved(success) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#TrafficFlowObservedForm :input[name=id]').val();
+			var pkPage = $('#TrafficFlowObservedForm :input[name=pk]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -1796,15 +1621,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				var inputObjectId = null;
 				var inputArchived = null;
 				var inputDeleted = null;
-				var inputSimulationName = null;
-				var inputTime = null;
-				var inputDateTime = null;
-				var inputStep = null;
-				var inputSumocfgPath = null;
-				var inputLocation = null;
-				var inputPath = null;
 				var inputColor = null;
+				var inputLocation = null;
 				var inputEntityId = null;
+				var inputSimulationName = null;
 				var inputAddress = null;
 				var inputAlternateName = null;
 				var inputAreaServed = null;
@@ -1843,6 +1663,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				var inputCustomDemandScalingFactor = null;
 				var inputCustomQueueLengthThreshold = null;
 				var inputCustomTrafficLightId = null;
+				var inputPk = null;
 				var inputInheritPk = null;
 				var inputClassCanonicalName = null;
 				var inputClassSimpleName = null;
@@ -1857,9 +1678,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				var inputPageUrlPk = null;
 				var inputPageUrlApi = null;
 				var inputId = null;
-				var inputTimeStepId = null;
-				var inputX = null;
-				var inputY = null;
+				var inputSumocfgPath = null;
 
 				if(vars.includes('created'))
 					inputCreated = $response.find('#Page_created');
@@ -1871,24 +1690,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					inputArchived = $response.find('#Page_archived');
 				if(vars.includes('deleted'))
 					inputDeleted = $response.find('#Page_deleted');
-				if(vars.includes('simulationName'))
-					inputSimulationName = $response.find('#Page_simulationName');
-				if(vars.includes('time'))
-					inputTime = $response.find('#Page_time');
-				if(vars.includes('dateTime'))
-					inputDateTime = $response.find('#Page_dateTime');
-				if(vars.includes('step'))
-					inputStep = $response.find('#Page_step');
-				if(vars.includes('sumocfgPath'))
-					inputSumocfgPath = $response.find('#Page_sumocfgPath');
-				if(vars.includes('location'))
-					inputLocation = $response.find('#Page_location');
-				if(vars.includes('path'))
-					inputPath = $response.find('#Page_path');
 				if(vars.includes('color'))
 					inputColor = $response.find('#Page_color');
+				if(vars.includes('location'))
+					inputLocation = $response.find('#Page_location');
 				if(vars.includes('entityId'))
 					inputEntityId = $response.find('#Page_entityId');
+				if(vars.includes('simulationName'))
+					inputSimulationName = $response.find('#Page_simulationName');
 				if(vars.includes('address'))
 					inputAddress = $response.find('#Page_address');
 				if(vars.includes('alternateName'))
@@ -1965,6 +1774,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					inputCustomQueueLengthThreshold = $response.find('#Page_customQueueLengthThreshold');
 				if(vars.includes('customTrafficLightId'))
 					inputCustomTrafficLightId = $response.find('#Page_customTrafficLightId');
+				if(vars.includes('pk'))
+					inputPk = $response.find('#Page_pk');
 				if(vars.includes('inheritPk'))
 					inputInheritPk = $response.find('#Page_inheritPk');
 				if(vars.includes('classCanonicalName'))
@@ -1993,12 +1804,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					inputPageUrlApi = $response.find('#Page_pageUrlApi');
 				if(vars.includes('id'))
 					inputId = $response.find('#Page_id');
-				if(vars.includes('timeStepId'))
-					inputTimeStepId = $response.find('#Page_timeStepId');
-				if(vars.includes('x'))
-					inputX = $response.find('#Page_x');
-				if(vars.includes('y'))
-					inputY = $response.find('#Page_y');
+				if(vars.includes('sumocfgPath'))
+					inputSumocfgPath = $response.find('#Page_sumocfgPath');
 
 				if(inputCreated) {
 					inputCreated.replaceAll('#Page_created');
@@ -2025,29 +1832,9 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					addGlow($('#Page_deleted'));
 				}
 
-				if(inputSimulationName) {
-					inputSimulationName.replaceAll('#Page_simulationName');
-					addGlow($('#Page_simulationName'));
-				}
-
-				if(inputTime) {
-					inputTime.replaceAll('#Page_time');
-					addGlow($('#Page_time'));
-				}
-
-				if(inputDateTime) {
-					inputDateTime.replaceAll('#Page_dateTime');
-					addGlow($('#Page_dateTime'));
-				}
-
-				if(inputStep) {
-					inputStep.replaceAll('#Page_step');
-					addGlow($('#Page_step'));
-				}
-
-				if(inputSumocfgPath) {
-					inputSumocfgPath.replaceAll('#Page_sumocfgPath');
-					addGlow($('#Page_sumocfgPath'));
+				if(inputColor) {
+					inputColor.replaceAll('#Page_color');
+					addGlow($('#Page_color'));
 				}
 
 				if(inputLocation) {
@@ -2055,19 +1842,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					addGlow($('#Page_location'));
 				}
 
-				if(inputPath) {
-					inputPath.replaceAll('#Page_path');
-					addGlow($('#Page_path'));
-				}
-
-				if(inputColor) {
-					inputColor.replaceAll('#Page_color');
-					addGlow($('#Page_color'));
-				}
-
 				if(inputEntityId) {
 					inputEntityId.replaceAll('#Page_entityId');
 					addGlow($('#Page_entityId'));
+				}
+
+				if(inputSimulationName) {
+					inputSimulationName.replaceAll('#Page_simulationName');
+					addGlow($('#Page_simulationName'));
 				}
 
 				if(inputAddress) {
@@ -2260,6 +2042,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					addGlow($('#Page_customTrafficLightId'));
 				}
 
+				if(inputPk) {
+					inputPk.replaceAll('#Page_pk');
+					addGlow($('#Page_pk'));
+				}
+
 				if(inputInheritPk) {
 					inputInheritPk.replaceAll('#Page_inheritPk');
 					addGlow($('#Page_inheritPk'));
@@ -2330,19 +2117,9 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					addGlow($('#Page_id'));
 				}
 
-				if(inputTimeStepId) {
-					inputTimeStepId.replaceAll('#Page_timeStepId');
-					addGlow($('#Page_timeStepId'));
-				}
-
-				if(inputX) {
-					inputX.replaceAll('#Page_x');
-					addGlow($('#Page_x'));
-				}
-
-				if(inputY) {
-					inputY.replaceAll('#Page_y');
-					addGlow($('#Page_y'));
+				if(inputSumocfgPath) {
+					inputSumocfgPath.replaceAll('#Page_sumocfgPath');
+					addGlow($('#Page_sumocfgPath'));
 				}
 		});
 	}
@@ -2411,7 +2188,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 							text.push('pivot1Val');
 							lat.push(parseFloat(locationParts[0]));
 							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
+							colors.push(record.fields[window.varsFq['color'].varIndexed]);
 							var vals = {};
 							var hovertemplate = '';
 							Object.entries(window.varsFq).forEach(([key, data]) => {
@@ -2492,7 +2269,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 						});
 					}
 				}
-				Plotly.react('htmBodyGraphMapResultPage', data, layout);
+				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
 		}
 	}
