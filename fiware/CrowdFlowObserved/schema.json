@@ -1,0 +1,109 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/schema.json",
+  "title" : "CrowdFlowObserved",
+  "description" : "ApiTag.enUS: CrowdFlowObserved",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ ],
+  "properties" : {
+    "address" : {
+      "type" : "object",
+      "description" : "The mailing address"
+    },
+    "alternateName" : {
+      "type" : "string",
+      "description" : "An alternative name for this item"
+    },
+    "areaServed" : {
+      "type" : "string",
+      "description" : "The geographic area where a service or offered item is provided"
+    },
+    "averageCrowdSpeed" : {
+      "type" : "number",
+      "description" : "Average speed of the crowd transiting during the observation period"
+    },
+    "averageHeadwayTime" : {
+      "type" : "number",
+      "description" : "Average headway time. Headway time is the time elapsed between two consecutive persons"
+    },
+    "congested" : {
+      "type" : "boolean",
+      "description" : "Flags whether there was a crowd congestion during the observation period in the referred walkway. The absence of this attribute means no crowd congestion"
+    },
+    "dataProvider" : {
+      "type" : "string",
+      "description" : "A sequence of characters identifying the provider of the harmonised data entity."
+    },
+    "dateCreated" : {
+      "type" : "string",
+      "description" : "Entity creation timestamp. This will usually be allocated by the storage platform."
+    },
+    "dateModified" : {
+      "type" : "string",
+      "description" : "Timestamp of the last modification of the entity. This will usually be allocated by the storage platform."
+    },
+    "dateObserved" : {
+      "type" : "string",
+      "description" : "The date and time of this observation in ISO8601 UTC format. It can be represented by an specific time instant or by an ISO8601 interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `dateObservedFrom`, `dateObservedTo`"
+    },
+    "dateObservedFrom" : {
+      "type" : "string",
+      "description" : "Observation period start date and time. See `dateObserved`."
+    },
+    "dateObservedTo" : {
+      "type" : "string",
+      "description" : "Observation period end date and time. See `dateObserved`."
+    },
+    "description" : {
+      "type" : "string",
+      "description" : "A description of this item"
+    },
+    "direction" : {
+      "type" : "string",
+      "description" : "Usual direction of travel in the walkway referred by this observation with respect to the city center. Enum:'inbound, outbound'"
+    },
+    "location" : {
+      "type" : "string",
+      "description" : "Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "The name of this item."
+    },
+    "occupancy" : {
+      "type" : "number",
+      "description" : "Fraction of the observation time where a person has been occupying the observed walkway"
+    },
+    "owner" : {
+      "type" : "object",
+      "description" : "A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
+    },
+    "peopleCount" : {
+      "type" : "number",
+      "description" : "Total number of people detected during this observation."
+    },
+    "refRoadSegment" : {
+      "type" : "object",
+      "description" : "Concerned road segment on which the observation has been made"
+    },
+    "seeAlso" : {
+      "type" : "object",
+      "description" : "list of uri pointing to additional resources about the item"
+    },
+    "source" : {
+      "type" : "string",
+      "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object."
+    },
+    "type" : {
+      "type" : "string",
+      "description" : "NGSI Entity type. It has to be CrowdFlowObserved"
+    }
+  }
+}

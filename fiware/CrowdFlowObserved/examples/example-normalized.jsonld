@@ -1,0 +1,5 @@
+{
+  "id" : "urn:ngsi-ld:CrowdFlowObserved/1",
+  "type" : "CrowdFlowObserved",
+  "@context" : [ "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/context.jsonld" ]
+}
