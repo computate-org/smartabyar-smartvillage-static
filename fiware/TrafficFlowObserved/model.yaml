@@ -230,12 +230,6 @@ TrafficFlowObserved:
         source provider, or the URL to the source object.
       x-ngsi:
         type: Property
-    type:
-      type: string
-      description: >+
-        NGSI Entity type. It has to be TrafficFlowObserved
-      x-ngsi:
-        type: Property
     vehicleSubType:
       type: string
       description: >+

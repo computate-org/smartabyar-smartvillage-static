@@ -44,7 +44,6 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [reversedLane](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/reversedLane.md)
 - [seeAlso](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/seeAlso.md)
 - [source](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/source.md)
-- [type](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/type.md)
 - [vehicleSubType](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/vehicleSubType.md)
 - [vehicleType](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/vehicleType.md)
 - [customSigma](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customSigma.md)

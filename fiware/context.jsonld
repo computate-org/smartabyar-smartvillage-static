@@ -27,7 +27,7 @@
     "refRoadSegment" : "https://smartdatamodels.org/dataModel.Transportation/refRoadSegment",
     "seeAlso" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/seeAlso.md",
     "source" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/source.md",
-    "type" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/type.md",
+    "type" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/type.md",
     "SmartTrafficLight" : "smartvillage:SmartTrafficLight",
     "entityId" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/entityId.md",
     "smartTrafficLightName" : "https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/smartTrafficLightName.md",

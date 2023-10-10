@@ -179,10 +179,6 @@ function searchTrafficFlowObservedFilters($formFilters) {
 		if(filterSource != null && filterSource !== '')
 			filters.push({ name: 'fq', value: 'source:' + filterSource });
 
-		var filterType = $formFilters.find('.valueType').val();
-		if(filterType != null && filterType !== '')
-			filters.push({ name: 'fq', value: 'type:' + filterType });
-
 		var filterVehicleSubType = $formFilters.find('.valueVehicleSubType').val();
 		if(filterVehicleSubType != null && filterVehicleSubType !== '')
 			filters.push({ name: 'fq', value: 'vehicleSubType:' + filterVehicleSubType });
@@ -781,18 +777,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
 	if(removeSource != null && removeSource !== '')
 		vals['removeSource'] = removeSource;
 
-	var valueType = $formValues.find('.valueType').val();
-	var removeType = $formValues.find('.removeType').val() === 'true';
-	var setType = removeType ? null : $formValues.find('.setType').val();
-	var addType = $formValues.find('.addType').val();
-	if(removeType || setType != null && setType !== '')
-		vals['setType'] = setType;
-	if(addType != null && addType !== '')
-		vals['addType'] = addType;
-	var removeType = $formValues.find('.removeType').val();
-	if(removeType != null && removeType !== '')
-		vals['removeType'] = removeType;
-
 	var valueVehicleSubType = $formValues.find('.valueVehicleSubType').val();
 	var removeVehicleSubType = $formValues.find('.removeVehicleSubType').val() === 'true';
 	var setVehicleSubType = removeVehicleSubType ? null : $formValues.find('.setVehicleSubType').val();
@@ -1169,10 +1153,6 @@ function patchTrafficFlowObservedFilters($formFilters) {
 		if(filterSource != null && filterSource !== '')
 			filters.push({ name: 'fq', value: 'source:' + filterSource });
 
-		var filterType = $formFilters.find('.valueType').val();
-		if(filterType != null && filterType !== '')
-			filters.push({ name: 'fq', value: 'type:' + filterType });
-
 		var filterVehicleSubType = $formFilters.find('.valueVehicleSubType').val();
 		if(filterVehicleSubType != null && filterVehicleSubType !== '')
 			filters.push({ name: 'fq', value: 'vehicleSubType:' + filterVehicleSubType });
@@ -1464,10 +1444,6 @@ async function postTrafficFlowObserved($formValues, success, error) {
 	if(valueSource != null && valueSource !== '')
 		vals['source'] = valueSource;
 
-	var valueType = $formValues.find('.valueType').val();
-	if(valueType != null && valueType !== '')
-		vals['type'] = valueType;
-
 	var valueVehicleSubType = $formValues.find('.valueVehicleSubType').val();
 	if(valueVehicleSubType != null && valueVehicleSubType !== '')
 		vals['vehicleSubType'] = valueVehicleSubType;
@@ -1675,7 +1651,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				var inputReversedLane = null;
 				var inputSeeAlso = null;
 				var inputSource = null;
-				var inputType = null;
 				var inputVehicleSubType = null;
 				var inputVehicleType = null;
 				var inputLaneAreaDetectorId = null;
@@ -1775,8 +1750,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 					inputSeeAlso = $response.find('#Page_seeAlso');
 				if(vars.includes('source'))
 					inputSource = $response.find('#Page_source');
-				if(vars.includes('type'))
-					inputType = $response.find('#Page_type');
 				if(vars.includes('vehicleSubType'))
 					inputVehicleSubType = $response.find('#Page_vehicleSubType');
 				if(vars.includes('vehicleType'))
@@ -2007,11 +1980,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 				if(inputSource) {
 					inputSource.replaceAll('#Page_source');
 					addGlow($('#Page_source'));
-				}
-
-				if(inputType) {
-					inputType.replaceAll('#Page_type');
-					addGlow($('#Page_type'));
 				}
 
 				if(inputVehicleSubType) {

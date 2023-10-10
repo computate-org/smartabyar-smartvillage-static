@@ -141,10 +141,6 @@
       "type" : "string",
       "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object."
     },
-    "type" : {
-      "type" : "string",
-      "description" : "NGSI Entity type. It has to be TrafficFlowObserved"
-    },
     "vehicleSubType" : {
       "type" : "string",
       "description" : "It allows to specify a sub type of `vehicleType`, eg if the `vehicleType` is set to `Lorry` the `vehicleSubType` may be `OGV1` or `OGV2` to convey more information about the exact type of vehicle."
