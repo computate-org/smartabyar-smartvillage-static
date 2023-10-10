@@ -1,0 +1,63 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/schema.json",
+  "title" : "SmartTrafficLight",
+  "description" : null,
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ "entityId" ],
+  "properties" : {
+    "entityId" : {
+      "type" : "string",
+      "description" : "A unique ID for this Smart Data Model"
+    },
+    "smartTrafficLightName" : {
+      "type" : "string"
+    },
+    "routeIds" : {
+      "type" : "array"
+    },
+    "routeIdNorth" : {
+      "type" : "string"
+    },
+    "routeIdEast" : {
+      "type" : "string"
+    },
+    "paramVehicleDemandScalingFactor" : {
+      "type" : "number",
+      "description" : "Min: 1",
+      "minimum" : "1",
+      "maximum" : "2"
+    },
+    "paramStepSize" : {
+      "type" : "number",
+      "description" : "Min: 0.5",
+      "minimum" : "0.5",
+      "maximum" : "2"
+    },
+    "paramRunTime" : {
+      "type" : "number",
+      "description" : "Time duration of each simulated sample path. ",
+      "minimum" : "500",
+      "maximum" : "3600"
+    },
+    "paramItersPerPar" : {
+      "type" : "number",
+      "description" : "Number of repeats per round. ",
+      "minimum" : "1",
+      "maximum" : "30"
+    },
+    "paramTotalIterNum" : {
+      "type" : "number",
+      "description" : "Total iterations to update performance. ",
+      "minimum" : "1",
+      "maximum" : "30"
+    }
+  }
+}

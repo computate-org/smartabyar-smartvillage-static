@@ -1,0 +1,72 @@
+SmartTrafficLight:
+  properties:
+    entityId:
+      type: string
+      description: >+
+        A unique ID for this Smart Data Model
+      required: true
+      x-ngsi:
+        type: Property
+    smartTrafficLightName:
+      type: string
+      x-ngsi:
+        type: Property
+    routeIds:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    routeIdNorth:
+      type: string
+      x-ngsi:
+        type: Property
+    routeIdEast:
+      type: string
+      x-ngsi:
+        type: Property
+    paramVehicleDemandScalingFactor:
+      type: number
+      description: >+
+        Min: 1
+      minimum: 1
+      maximum: 2
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramStepSize:
+      type: number
+      description: >+
+        Min: 0.5
+      minimum: 0.5
+      maximum: 2
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramRunTime:
+      type: number
+      description: >+
+        Time duration of each simulated sample path. 
+      minimum: 500
+      maximum: 3600
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramItersPerPar:
+      type: number
+      description: >+
+        Number of repeats per round. 
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    paramTotalIterNum:
+      type: number
+      description: >+
+        Total iterations to update performance. 
+      minimum: 1
+      maximum: 30
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property

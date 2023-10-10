@@ -787,37 +787,17 @@ function pageGraphTrafficFlowObserved2(apiRequest) {
 	trace['customdata'] = customdata;
 	trace['marker'] = { color: colors, size: 10 };
 
-	data.push({
-		type: 'scattermapbox'
-		, lat: [55.63271352675811, 55.6328803799553, 55.63307851322209, 55.633165023015664]
-		, lon: [13.491925461716146, 13.491959719458668, 13.492001830794774, 13.49203583929166]
-		, mode: 'lines'
-		, line:{
-			width: 2,
-			color: 'red'
-		}
-	});
-
-	data.push({
-		type: 'scattermapbox'
-		, lat: [55.63326306524109, 55.63330503030353, 55.633425750604616, 55.63359752341646]
-		, lon: [13.492094186839967, 13.49212323459849, 13.49224266648859, 13.49241399185663]
-		, mode: 'lines'
-		, line:{
-			width: 2,
-			color: 'red'
-		}
-	});
-
-	data.push({
-		type: 'scattermapbox'
-		, lat: [55.633599977927105, 55.63370944475262, 55.63372646415785]
-		, lon: [13.492416280489497, 13.492519465989837, 13.492544230047926]
-		, mode: 'lines'
-		, line:{
-			width: 2,
-			color: 'red'
-		}
+	$.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
+		data.push({
+			type: 'scattermapbox'
+			, lat: trafficFlowObserved.location.coordinates.map(elem => elem[0])
+			, lon: trafficFlowObserved.location.coordinates.map(elem => elem[1])
+			, mode: 'lines'
+			, line:{
+				width: 2,
+				color: 'red'
+			}
+		});
 	});
 //
 //	data.push({

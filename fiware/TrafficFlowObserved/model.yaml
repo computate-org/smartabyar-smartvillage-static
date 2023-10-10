@@ -2,20 +2,32 @@ TrafficFlowObserved:
   description: >+
     A device for watching vehicles in a lane of traffic on a road. 
   properties:
-    location:
-      type: string
-      x-ngsi:
-        type: GeoProperty
     color:
       type: string
       x-ngsi:
         type: Property
     entityId:
+      type: string
       description: >+
         A unique ID for this Smart Data Model
-      type: string
       x-ngsi:
         type: Property
+    trafficSimulationId:
+      type: string
+      description: >+
+        The Traffic Simulation ID
+      x-ngsi:
+        type: Property
+    laneAreaDetectorId:
+      type: string
+      description: >+
+        The unique ID of the lane area detector in SUMO. 
+      x-ngsi:
+        type: Property
+    location:
+      type: string
+      x-ngsi:
+        type: GeoProperty
     simulationName:
       type: string
       x-ngsi:
@@ -24,94 +36,96 @@ TrafficFlowObserved:
       type: string
       x-ngsi:
         type: Property
-    smartTrafficLightSearch:
-      type: 
+    customTrafficLightId:
+      type: string
+      description: >+
+        The Smart Traffic Light ID
       x-ngsi:
-        type: 
-    smartTrafficLight_:
-      type: 
-      x-ngsi:
-        type: 
+        type: Property
     address:
+      type: object
       description: >+
         The mailing address
-      type: object
       x-ngsi:
         model: https://schema.org/address
         type: Property
     alternateName:
+      type: string
       description: >+
         An alternative name for this item
-      type: string
       x-ngsi:
         type: Property
     areaServed:
+      type: geo:json
       description: >+
-        The geographic area where a service or offered item is provided
-      type: string
+        The geographic area where a service or offered item is provided.
+        Geojson reference to the item. It can be Point, LineString, Polygon,
+        MultiPoint, MultiLineString or MultiPolygon. 
+      required: true
       x-ngsi:
-        type: Property
+        type: GeoProperty
     averageGapDistance:
+      type: number
       description: >+
         Average gap distance between consecutive vehicles
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     averageHeadwayTime:
+      type: number
       description: >+
         Average headway time. Headway time is the time ellapsed between two
         consecutive vehicles
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     averageVehicleLength:
+      type: number
       description: >+
         Average length of the vehicles transiting during     the observation
         period
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     averageVehicleSpeed:
+      type: number
       description: >+
         Average speed of the vehicles transiting during the observation period
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     congested:
+      type: boolean
       description: >+
         Flags whether there was a traffic congestion during the observation
         period in the referred lane. The absence of this attribute means no
         traffic congestion
-      type: boolean
       x-ngsi:
         model: https://schema.org/Boolean
         type: Property
     dataProvider:
+      type: string
       description: >+
         A sequence of characters identifying the provider of the harmonised
         data entity.
-      type: string
       x-ngsi:
         type: Property
     dateCreated:
+      type: string
       description: >+
         Entity creation timestamp. This will usually be allocated by the
         storage platform.
-      type: string
       x-ngsi:
         type: Property
     dateModified:
+      type: string
       description: >+
         Timestamp of the last modification of the entity. This will usually be
         allocated by the storage platform.
-      type: string
       x-ngsi:
         type: Property
     dateObserved:
+      type: string
       description: >+
         The date and time of this observation in ISO8601 UTC format. It can be
         represented by an specific time instant or by an ISO8601 interval. As
@@ -120,118 +134,118 @@ TrafficFlowObserved:
         `dateObservedFrom`, `dateObservedTo`.
         [DateTime](https://schema.org/DateTime) or an ISO8601 interval
         represented as [Text](https://schema.org/Text)
-      type: string
       x-ngsi:
         type: Property
     dateObservedFrom:
+      type: string
       description: >+
         Observation period start date and time. See `dateObserved`
-      type: string
       x-ngsi:
         type: Property
     dateObservedTo:
+      type: string
       description: >+
         Observation period end date and time. See `dateObserved`
-      type: string
       x-ngsi:
         type: Property
     description:
+      type: string
       description: >+
         A description of this item
-      type: string
       x-ngsi:
         type: Property
     intensity:
+      type: number
       description: >+
         Total number of vehicles detected during this observation period
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     laneDirection:
+      type: string
       description: >+
         Usual direction of travel in the lane referred by this observation.
         This attribute is useful when the observation is not referencing any
         road segment, allowing to know the direction of travel of the traffic
         flow observed. Enum:forward, backward'. See RoadSegment for a
         description of the semantics of these values.
-      type: string
       x-ngsi:
         type: Property
     laneId:
+      type: number
       description: >+
         Lane identifier. Lane identification is done using the conventions
         defined by RoadSegment entity which are based on
         [OpenStreetMap](http://wiki.openstreetmap.org/wiki/Forward_%26_backward,_left_%26_right).
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     name:
+      type: string
       description: >+
         The name of this item.
-      type: string
       x-ngsi:
         type: Property
     occupancy:
+      type: number
       description: >+
         Fraction of the observation time where a vehicle has been occupying
         the observed lane
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     owner:
+      type: object
       description: >+
         A List containing a JSON encoded sequence of characters referencing
         the unique Ids of the owner(s)
-      type: object
       x-ngsi:
         type: Property
     refRoadSegment:
+      type: string
       description: >+
         Concerned road segment on which the observation has been made.
         Reference to an entity of type RoadSegment
-      type: string
       x-ngsi:
         type: Property
     reversedLane:
+      type: boolean
       description: >+
         Flags whether traffic in the lane was reversed during the observation
         period. The absence of this attribute means no lane reversion
-      type: boolean
       x-ngsi:
         model: https://schema.org/Boolean
         type: Property
     seeAlso:
+      type: object
       description: >+
         list of uri pointing to additional resources about the item
-      type: object
       x-ngsi:
         type: Property
     source:
+      type: string
       description: >+
         A sequence of characters giving the original source of the entity data
         as a URL. Recommended to be the fully qualified domain name of the
         source provider, or the URL to the source object.
-      type: string
       x-ngsi:
         type: Property
     type:
+      type: string
       description: >+
         NGSI Entity type. It has to be TrafficFlowObserved
-      type: string
       x-ngsi:
         type: Property
     vehicleSubType:
+      type: string
       description: >+
         It allows to specify a sub type of `vehicleType`, eg if the
         `vehicleType` is set to `Lorry` the `vehicleSubType` may be `OGV1` or
         `OGV2` to convey more information about the exact type of vehicle.
-      type: string
       x-ngsi:
         type: Property
     vehicleType:
+      type: string
       description: >+
         Type of vehicle from the point of view of its structural
         characteristics. Enum:'agriculturalVehicle, bicycle, bus, minibus,
@@ -239,75 +253,62 @@ TrafficFlowObserved:
         moped, motorcycle, motorcycleWithSideCar, motorscooter, trailer, van,
         constructionOrMaintenanceVehicle, trolley, binTrolley,
         sweepingMachine, cleaningTrolley'
-      type: string
-      x-ngsi:
-        type: Property
-    customRouteId:
-      description: >+
-        The unique ID of the route in SUMO. 
-      type: string
       x-ngsi:
         type: Property
     customSigma:
+      type: number
       description: >+
         The driver imperfection as a floating point number [0,1] (0 denotes
         perfect driving). 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customAcceleration:
+      type: number
       description: >+
         The acceleration ability of vehicles of this type (in m/s^2). 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customDeceleration:
+      type: number
       description: >+
         The deceleration ability of vehicles of this type (in m/s^2). 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customMinGreenTime:
+      type: number
       description: >+
         Min green time for the traffic light in seconds [1, 50]. 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customMaxGreenTime:
+      type: number
       description: >+
         Max green time for the traffic light in seconds [1, 50]. 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customAverageVehiclesPerMinute:
+      type: number
       description: >+
         Average vehicle/min [1, 30]. 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customDemandScalingFactor:
+      type: number
       description: >+
         Demand scaling factor (multiplies all vehicle demands) [1, 2]. 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
         type: Property
     customQueueLengthThreshold:
+      type: number
       description: >+
         Demand scaling factor (multiplies all vehicle demands) [1, 2]. 
-      type: number
       x-ngsi:
         model: https://schema.org/Number
-        type: Property
-    customTrafficLightId:
-      description: >+
-        The Smart Traffic Light ID
-      type: string
-      x-ngsi:
         type: Property

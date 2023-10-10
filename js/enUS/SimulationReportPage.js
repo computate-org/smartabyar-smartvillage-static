@@ -291,6 +291,10 @@ function searchSimulationReportFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
+		var filterSmartTrafficLightId = $formFilters.find('.valueSmartTrafficLightId').val();
+		if(filterSmartTrafficLightId != null && filterSmartTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'smartTrafficLightId:' + filterSmartTrafficLightId });
+
 		var filterSmartTrafficLightName = $formFilters.find('.valueSmartTrafficLightName').val();
 		if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
 			filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
@@ -1095,6 +1099,18 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
 
+	var valueSmartTrafficLightId = $formValues.find('.valueSmartTrafficLightId').val();
+	var removeSmartTrafficLightId = $formValues.find('.removeSmartTrafficLightId').val() === 'true';
+	var setSmartTrafficLightId = removeSmartTrafficLightId ? null : $formValues.find('.setSmartTrafficLightId').val();
+	var addSmartTrafficLightId = $formValues.find('.addSmartTrafficLightId').val();
+	if(removeSmartTrafficLightId || setSmartTrafficLightId != null && setSmartTrafficLightId !== '')
+		vals['setSmartTrafficLightId'] = setSmartTrafficLightId;
+	if(addSmartTrafficLightId != null && addSmartTrafficLightId !== '')
+		vals['addSmartTrafficLightId'] = addSmartTrafficLightId;
+	var removeSmartTrafficLightId = $formValues.find('.removeSmartTrafficLightId').val();
+	if(removeSmartTrafficLightId != null && removeSmartTrafficLightId !== '')
+		vals['removeSmartTrafficLightId'] = removeSmartTrafficLightId;
+
 	var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
 	var removeSmartTrafficLightName = $formValues.find('.removeSmartTrafficLightName').val() === 'true';
 	var setSmartTrafficLightName = removeSmartTrafficLightName ? null : $formValues.find('.setSmartTrafficLightName').val();
@@ -1439,6 +1455,10 @@ function patchSimulationReportFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
+		var filterSmartTrafficLightId = $formFilters.find('.valueSmartTrafficLightId').val();
+		if(filterSmartTrafficLightId != null && filterSmartTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'smartTrafficLightId:' + filterSmartTrafficLightId });
+
 		var filterSmartTrafficLightName = $formFilters.find('.valueSmartTrafficLightName').val();
 		if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
 			filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
@@ -1725,6 +1745,10 @@ async function postSimulationReport($formValues, success, error) {
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
+
+	var valueSmartTrafficLightId = $formValues.find('.valueSmartTrafficLightId').val();
+	if(valueSmartTrafficLightId != null && valueSmartTrafficLightId !== '')
+		vals['smartTrafficLightId'] = valueSmartTrafficLightId;
 
 	var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
 	if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
@@ -2026,6 +2050,10 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
+
+	var valueSmartTrafficLightId = $formValues.find('.valueSmartTrafficLightId').val();
+	if(valueSmartTrafficLightId != null && valueSmartTrafficLightId !== '')
+		vals['smartTrafficLightId'] = valueSmartTrafficLightId;
 
 	var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
 	if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
@@ -2719,6 +2747,18 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	if(removeSimulationName != null && removeSimulationName !== '')
 		vals['removeSimulationName'] = removeSimulationName;
 
+	var valueSmartTrafficLightId = $formValues.find('.valueSmartTrafficLightId').val();
+	var removeSmartTrafficLightId = $formValues.find('.removeSmartTrafficLightId').val() === 'true';
+	var setSmartTrafficLightId = removeSmartTrafficLightId ? null : $formValues.find('.setSmartTrafficLightId').val();
+	var addSmartTrafficLightId = $formValues.find('.addSmartTrafficLightId').val();
+	if(removeSmartTrafficLightId || setSmartTrafficLightId != null && setSmartTrafficLightId !== '')
+		vals['setSmartTrafficLightId'] = setSmartTrafficLightId;
+	if(addSmartTrafficLightId != null && addSmartTrafficLightId !== '')
+		vals['addSmartTrafficLightId'] = addSmartTrafficLightId;
+	var removeSmartTrafficLightId = $formValues.find('.removeSmartTrafficLightId').val();
+	if(removeSmartTrafficLightId != null && removeSmartTrafficLightId !== '')
+		vals['removeSmartTrafficLightId'] = removeSmartTrafficLightId;
+
 	var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
 	var removeSmartTrafficLightName = $formValues.find('.removeSmartTrafficLightName').val() === 'true';
 	var setSmartTrafficLightName = removeSmartTrafficLightName ? null : $formValues.find('.setSmartTrafficLightName').val();
@@ -3063,6 +3103,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
+		var filterSmartTrafficLightId = $formFilters.find('.valueSmartTrafficLightId').val();
+		if(filterSmartTrafficLightId != null && filterSmartTrafficLightId !== '')
+			filters.push({ name: 'fq', value: 'smartTrafficLightId:' + filterSmartTrafficLightId });
+
 		var filterSmartTrafficLightName = $formFilters.find('.valueSmartTrafficLightName').val();
 		if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
 			filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
@@ -3253,6 +3297,7 @@ async function websocketSimulationReportInner(apiRequest) {
 				var inputPageUrlApi = null;
 				var inputId = null;
 				var inputSimulationName = null;
+				var inputSmartTrafficLightId = null;
 				var inputSmartTrafficLightName = null;
 				var inputParamLam = null;
 				var inputParamDemandScale = null;
@@ -3393,6 +3438,8 @@ async function websocketSimulationReportInner(apiRequest) {
 					inputId = $response.find('#Page_id');
 				if(vars.includes('simulationName'))
 					inputSimulationName = $response.find('#Page_simulationName');
+				if(vars.includes('smartTrafficLightId'))
+					inputSmartTrafficLightId = $response.find('#Page_smartTrafficLightId');
 				if(vars.includes('smartTrafficLightName'))
 					inputSmartTrafficLightName = $response.find('#Page_smartTrafficLightName');
 				if(vars.includes('paramLam'))
@@ -3736,6 +3783,11 @@ async function websocketSimulationReportInner(apiRequest) {
 				if(inputSimulationName) {
 					inputSimulationName.replaceAll('#Page_simulationName');
 					addGlow($('#Page_simulationName'));
+				}
+
+				if(inputSmartTrafficLightId) {
+					inputSmartTrafficLightId.replaceAll('#Page_smartTrafficLightId');
+					addGlow($('#Page_smartTrafficLightId'));
 				}
 
 				if(inputSmartTrafficLightName) {

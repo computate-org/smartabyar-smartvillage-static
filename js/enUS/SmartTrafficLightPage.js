@@ -55,6 +55,10 @@ function searchSmartTrafficLightFilters($formFilters) {
 		if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
 			filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
 
+		var filterRouteIds = $formFilters.find('.valueRouteIds').val();
+		if(filterRouteIds != null && filterRouteIds !== '')
+			filters.push({ name: 'fq', value: 'routeIds:' + filterRouteIds });
+
 		var filterRouteIdNorth = $formFilters.find('.valueRouteIdNorth').val();
 		if(filterRouteIdNorth != null && filterRouteIdNorth !== '')
 			filters.push({ name: 'fq', value: 'routeIdNorth:' + filterRouteIdNorth });
@@ -394,6 +398,18 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
 	var removeSmartTrafficLightName = $formValues.find('.removeSmartTrafficLightName').val();
 	if(removeSmartTrafficLightName != null && removeSmartTrafficLightName !== '')
 		vals['removeSmartTrafficLightName'] = removeSmartTrafficLightName;
+
+	var valueRouteIds = $formValues.find('.valueRouteIds').val();
+	var removeRouteIds = $formValues.find('.removeRouteIds').val() === 'true';
+	var setRouteIds = removeRouteIds ? null : $formValues.find('.setRouteIds').val();
+	var addRouteIds = $formValues.find('.addRouteIds').val();
+	if(removeRouteIds || setRouteIds != null && setRouteIds !== '')
+		vals['setRouteIds'] = setRouteIds;
+	if(addRouteIds != null && addRouteIds !== '')
+		vals['addRouteIds'] = addRouteIds;
+	var removeRouteIds = $formValues.find('.removeRouteIds').val();
+	if(removeRouteIds != null && removeRouteIds !== '')
+		vals['removeRouteIds'] = removeRouteIds;
 
 	var valueRouteIdNorth = $formValues.find('.valueRouteIdNorth').val();
 	var removeRouteIdNorth = $formValues.find('.removeRouteIdNorth').val() === 'true';
@@ -759,6 +775,10 @@ function patchSmartTrafficLightFilters($formFilters) {
 		if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
 			filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
 
+		var filterRouteIds = $formFilters.find('.valueRouteIds').val();
+		if(filterRouteIds != null && filterRouteIds !== '')
+			filters.push({ name: 'fq', value: 'routeIds:' + filterRouteIds });
+
 		var filterRouteIdNorth = $formFilters.find('.valueRouteIdNorth').val();
 		if(filterRouteIdNorth != null && filterRouteIdNorth !== '')
 			filters.push({ name: 'fq', value: 'routeIdNorth:' + filterRouteIdNorth });
@@ -985,6 +1005,10 @@ async function postSmartTrafficLight($formValues, success, error) {
 	var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
 	if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
 		vals['smartTrafficLightName'] = valueSmartTrafficLightName;
+
+	var valueRouteIds = $formValues.find('.valueRouteIds').val();
+	if(valueRouteIds != null && valueRouteIds !== '')
+		vals['routeIds'] = valueRouteIds;
 
 	var valueRouteIdNorth = $formValues.find('.valueRouteIdNorth').val();
 	if(valueRouteIdNorth != null && valueRouteIdNorth !== '')
@@ -1215,6 +1239,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
 				var inputDeleted = null;
 				var inputEntityId = null;
 				var inputSmartTrafficLightName = null;
+				var inputRouteIds = null;
 				var inputRouteIdNorth = null;
 				var inputRouteIdEast = null;
 				var inputParamAvgVehiclePerMinFromWestToEast = null;
@@ -1270,6 +1295,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
 					inputEntityId = $response.find('#Page_entityId');
 				if(vars.includes('smartTrafficLightName'))
 					inputSmartTrafficLightName = $response.find('#Page_smartTrafficLightName');
+				if(vars.includes('routeIds'))
+					inputRouteIds = $response.find('#Page_routeIds');
 				if(vars.includes('routeIdNorth'))
 					inputRouteIdNorth = $response.find('#Page_routeIdNorth');
 				if(vars.includes('routeIdEast'))
@@ -1384,6 +1411,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
 				if(inputSmartTrafficLightName) {
 					inputSmartTrafficLightName.replaceAll('#Page_smartTrafficLightName');
 					addGlow($('#Page_smartTrafficLightName'));
+				}
+
+				if(inputRouteIds) {
+					inputRouteIds.replaceAll('#Page_routeIds');
+					addGlow($('#Page_routeIds'));
 				}
 
 				if(inputRouteIdNorth) {

@@ -59,6 +59,10 @@ function searchTrafficSimulationFilters($formFilters) {
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
+		var filterEntityId = $formFilters.find('.valueEntityId').val();
+		if(filterEntityId != null && filterEntityId !== '')
+			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
 		var filterPk = $formFilters.find('.valuePk').val();
 		if(filterPk != null && filterPk !== '')
 			filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -438,6 +442,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	var removeLocation = $formValues.find('.removeLocation').val();
 	if(removeLocation != null && removeLocation !== '')
 		vals['removeLocation'] = removeLocation;
+
+	var valueEntityId = $formValues.find('.valueEntityId').val();
+	var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
+	var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
+	var addEntityId = $formValues.find('.addEntityId').val();
+	if(removeEntityId || setEntityId != null && setEntityId !== '')
+		vals['setEntityId'] = setEntityId;
+	if(addEntityId != null && addEntityId !== '')
+		vals['addEntityId'] = addEntityId;
+	var removeEntityId = $formValues.find('.removeEntityId').val();
+	if(removeEntityId != null && removeEntityId !== '')
+		vals['removeEntityId'] = removeEntityId;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -947,6 +963,10 @@ function patchTrafficSimulationFilters($formFilters) {
 		if(filterLocation != null && filterLocation !== '')
 			filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
+		var filterEntityId = $formFilters.find('.valueEntityId').val();
+		if(filterEntityId != null && filterEntityId !== '')
+			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
 		var filterPk = $formFilters.find('.valuePk').val();
 		if(filterPk != null && filterPk !== '')
 			filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -1216,6 +1236,10 @@ async function postTrafficSimulation($formValues, success, error) {
 	var valueLocation = $formValues.find('.valueLocation').val();
 	if(valueLocation != null && valueLocation !== '')
 		vals['location'] = valueLocation;
+
+	var valueEntityId = $formValues.find('.valueEntityId').val();
+	if(valueEntityId != null && valueEntityId !== '')
+		vals['entityId'] = valueEntityId;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -1488,6 +1512,7 @@ async function websocketTrafficSimulationInner(apiRequest) {
 				var inputSimulationName = null;
 				var inputReportKeys = null;
 				var inputLocation = null;
+				var inputEntityId = null;
 				var inputPk = null;
 				var inputInheritPk = null;
 				var inputClassCanonicalName = null;
@@ -1554,6 +1579,8 @@ async function websocketTrafficSimulationInner(apiRequest) {
 					inputReportKeys = $response.find('#Page_reportKeys');
 				if(vars.includes('location'))
 					inputLocation = $response.find('#Page_location');
+				if(vars.includes('entityId'))
+					inputEntityId = $response.find('#Page_entityId');
 				if(vars.includes('pk'))
 					inputPk = $response.find('#Page_pk');
 				if(vars.includes('inheritPk'))
@@ -1691,6 +1718,11 @@ async function websocketTrafficSimulationInner(apiRequest) {
 				if(inputLocation) {
 					inputLocation.replaceAll('#Page_location');
 					addGlow($('#Page_location'));
+				}
+
+				if(inputEntityId) {
+					inputEntityId.replaceAll('#Page_entityId');
+					addGlow($('#Page_entityId'));
 				}
 
 				if(inputPk) {

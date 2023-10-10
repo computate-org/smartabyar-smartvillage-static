@@ -13,16 +13,20 @@
   } ],
   "required" : [ "simulationName" ],
   "properties" : {
-    "startDateTime" : {
-      "description" : "The start date and time. ",
+    "entityId" : {
       "type" : "string",
-      "format" : "date-time"
+      "description" : "A unique ID for this Smart Data Model"
+    },
+    "startDateTime" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "The start date and time. "
     },
     "simulationName" : {
       "type" : "string"
     },
     "location" : {
-      "type" : "number"
+      "type" : "string"
     },
     "sumocfgPath" : {
       "type" : "string"
@@ -34,50 +38,50 @@
       "type" : "string"
     },
     "startSeconds" : {
-      "description" : "-b, --begin TIME Defines the begin time in seconds; The simulation starts at this time",
-      "type" : "number"
+      "type" : "number",
+      "description" : "-b, --begin TIME Defines the begin time in seconds; The simulation starts at this time"
     },
     "endSeconds" : {
-      "description" : "-e, --end TIME Defines the end time in seconds; The simulation ends at this time",
-      "type" : "number"
+      "type" : "number",
+      "description" : "-e, --end TIME Defines the end time in seconds; The simulation ends at this time"
     },
     "stepSeconds" : {
-      "description" : "--step-length TIME Defines the step duration in seconds",
-      "type" : "number"
+      "type" : "number",
+      "description" : "--step-length TIME Defines the step duration in seconds"
     },
     "paramAvgVehiclePerMinFromWestToEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "30"
     },
     "paramAvgVehiclePerMinFromSouthToNorth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "30"
     },
     "paramVehicleDemandScalingFactor" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "2"
     },
     "paramAvgPedestrianPerMinFromWestToEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "30"
     },
     "paramAvgPedestrianPerMinFromSouthToNorth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "30"
     },
     "paramPedestrianDemandScalingFactor" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "2"
     },
@@ -85,100 +89,88 @@
       "type" : "array"
     },
     "paramMinGreenTimeSecWestEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "50"
     },
     "paramMaxGreenTimeSecWestEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "100"
     },
     "paramMinGreenTimeSecSouthNorth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "50"
     },
     "paramMaxGreenTimeSecSouthNorth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "100"
     },
     "paramPedestrianWaitThresholdSecNorthSouth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "60"
     },
     "paramPedestrianWaitThresholdSecWestEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "60"
     },
     "paramVehicleQueueThresholdWestEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "60"
     },
     "paramVehicleQueueThresholdSouthNorth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "15"
     },
     "paramPedestrianQueueThresholdNorthSouth" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "15"
     },
     "paramPedestrianQueueThresholdWestEast" : {
-      "description" : "Min: 1",
       "type" : "number",
+      "description" : "Min: 1",
       "minimum" : "1",
       "maximum" : "15"
     },
     "paramStepSize" : {
-      "description" : "Min: 0.5",
       "type" : "number",
+      "description" : "Min: 0.5",
       "minimum" : "0.5",
       "maximum" : "2"
     },
     "paramRunTime" : {
-      "description" : "Time duration of each simulated sample path. ",
       "type" : "number",
+      "description" : "Time duration of each simulated sample path. ",
       "minimum" : "500",
       "maximum" : "3600"
     },
     "paramItersPerPar" : {
-      "description" : "Number of repeats per round. ",
       "type" : "number",
+      "description" : "Number of repeats per round. ",
       "minimum" : "1",
       "maximum" : "30"
     },
     "paramTotalIterNum" : {
-      "description" : "Total iterations to update performance. ",
       "type" : "number",
+      "description" : "Total iterations to update performance. ",
       "minimum" : "1",
       "maximum" : "30"
-    },
-    "reportKeys" : {
-      "description" : "The generated reports for this simulation",
-      "type" : "array"
-    },
-    "tlsStatesPaths" : {
-      "description" : "The paths to all TLS States files",
-      "type" : "array"
-    },
-    "additionalFilePaths" : {
-      "description" : "The paths to all the additional SUMO config files",
-      "type" : "array"
     },
     "laneAreaDetectorIds" : {
       "type" : "array"

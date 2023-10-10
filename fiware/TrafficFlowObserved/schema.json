@@ -11,16 +11,24 @@
   }, {
     "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
   } ],
-  "required" : [ ],
+  "required" : [ "areaServed" ],
   "properties" : {
-    "location" : {
-      "type" : "string"
-    },
     "color" : {
       "type" : "string"
     },
     "entityId" : {
-      "description" : "A unique ID for this Smart Data Model",
+      "type" : "string",
+      "description" : "A unique ID for this Smart Data Model"
+    },
+    "trafficSimulationId" : {
+      "type" : "string",
+      "description" : "The Traffic Simulation ID"
+    },
+    "laneAreaDetectorId" : {
+      "type" : "string",
+      "description" : "The unique ID of the lane area detector in SUMO. "
+    },
+    "location" : {
       "type" : "string"
     },
     "simulationName" : {
@@ -29,163 +37,153 @@
     "sumocfgPath" : {
       "type" : "string"
     },
-    "smartTrafficLightSearch" : {
-      "type" : null
-    },
-    "smartTrafficLight_" : {
-      "type" : null
+    "customTrafficLightId" : {
+      "type" : "string",
+      "description" : "The Smart Traffic Light ID"
     },
     "address" : {
-      "description" : "The mailing address",
-      "type" : "object"
+      "type" : "object",
+      "description" : "The mailing address"
     },
     "alternateName" : {
-      "description" : "An alternative name for this item",
-      "type" : "string"
+      "type" : "string",
+      "description" : "An alternative name for this item"
     },
     "areaServed" : {
-      "description" : "The geographic area where a service or offered item is provided",
-      "type" : "string"
+      "type" : "geo:json",
+      "description" : "The geographic area where a service or offered item is provided. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon. "
     },
     "averageGapDistance" : {
-      "description" : "Average gap distance between consecutive vehicles",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Average gap distance between consecutive vehicles"
     },
     "averageHeadwayTime" : {
-      "description" : "Average headway time. Headway time is the time ellapsed between two consecutive vehicles",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Average headway time. Headway time is the time ellapsed between two consecutive vehicles"
     },
     "averageVehicleLength" : {
-      "description" : "Average length of the vehicles transiting during     the observation period",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Average length of the vehicles transiting during     the observation period"
     },
     "averageVehicleSpeed" : {
-      "description" : "Average speed of the vehicles transiting during the observation period",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Average speed of the vehicles transiting during the observation period"
     },
     "congested" : {
-      "description" : "Flags whether there was a traffic congestion during the observation period in the referred lane. The absence of this attribute means no traffic congestion",
-      "type" : "boolean"
+      "type" : "boolean",
+      "description" : "Flags whether there was a traffic congestion during the observation period in the referred lane. The absence of this attribute means no traffic congestion"
     },
     "dataProvider" : {
-      "description" : "A sequence of characters identifying the provider of the harmonised data entity.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "A sequence of characters identifying the provider of the harmonised data entity."
     },
     "dateCreated" : {
-      "description" : "Entity creation timestamp. This will usually be allocated by the storage platform.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Entity creation timestamp. This will usually be allocated by the storage platform."
     },
     "dateModified" : {
-      "description" : "Timestamp of the last modification of the entity. This will usually be allocated by the storage platform.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Timestamp of the last modification of the entity. This will usually be allocated by the storage platform."
     },
     "dateObserved" : {
-      "description" : "The date and time of this observation in ISO8601 UTC format. It can be represented by an specific time instant or by an ISO8601 interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `dateObservedFrom`, `dateObservedTo`. [DateTime](https://schema.org/DateTime) or an ISO8601 interval represented as [Text](https://schema.org/Text)",
-      "type" : "string"
+      "type" : "string",
+      "description" : "The date and time of this observation in ISO8601 UTC format. It can be represented by an specific time instant or by an ISO8601 interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `dateObservedFrom`, `dateObservedTo`. [DateTime](https://schema.org/DateTime) or an ISO8601 interval represented as [Text](https://schema.org/Text)"
     },
     "dateObservedFrom" : {
-      "description" : "Observation period start date and time. See `dateObserved`",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Observation period start date and time. See `dateObserved`"
     },
     "dateObservedTo" : {
-      "description" : "Observation period end date and time. See `dateObserved`",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Observation period end date and time. See `dateObserved`"
     },
     "description" : {
-      "description" : "A description of this item",
-      "type" : "string"
+      "type" : "string",
+      "description" : "A description of this item"
     },
     "intensity" : {
-      "description" : "Total number of vehicles detected during this observation period",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Total number of vehicles detected during this observation period"
     },
     "laneDirection" : {
-      "description" : "Usual direction of travel in the lane referred by this observation. This attribute is useful when the observation is not referencing any road segment, allowing to know the direction of travel of the traffic flow observed. Enum:forward, backward'. See RoadSegment for a description of the semantics of these values.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Usual direction of travel in the lane referred by this observation. This attribute is useful when the observation is not referencing any road segment, allowing to know the direction of travel of the traffic flow observed. Enum:forward, backward'. See RoadSegment for a description of the semantics of these values."
     },
     "laneId" : {
-      "description" : "Lane identifier. Lane identification is done using the conventions defined by RoadSegment entity which are based on [OpenStreetMap](http://wiki.openstreetmap.org/wiki/Forward_%26_backward,_left_%26_right).",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Lane identifier. Lane identification is done using the conventions defined by RoadSegment entity which are based on [OpenStreetMap](http://wiki.openstreetmap.org/wiki/Forward_%26_backward,_left_%26_right)."
     },
     "name" : {
-      "description" : "The name of this item.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "The name of this item."
     },
     "occupancy" : {
-      "description" : "Fraction of the observation time where a vehicle has been occupying the observed lane",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Fraction of the observation time where a vehicle has been occupying the observed lane"
     },
     "owner" : {
-      "description" : "A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)",
-      "type" : "object"
+      "type" : "object",
+      "description" : "A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
     },
     "refRoadSegment" : {
-      "description" : "Concerned road segment on which the observation has been made. Reference to an entity of type RoadSegment",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Concerned road segment on which the observation has been made. Reference to an entity of type RoadSegment"
     },
     "reversedLane" : {
-      "description" : "Flags whether traffic in the lane was reversed during the observation period. The absence of this attribute means no lane reversion",
-      "type" : "boolean"
+      "type" : "boolean",
+      "description" : "Flags whether traffic in the lane was reversed during the observation period. The absence of this attribute means no lane reversion"
     },
     "seeAlso" : {
-      "description" : "list of uri pointing to additional resources about the item",
-      "type" : "object"
+      "type" : "object",
+      "description" : "list of uri pointing to additional resources about the item"
     },
     "source" : {
-      "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object."
     },
     "type" : {
-      "description" : "NGSI Entity type. It has to be TrafficFlowObserved",
-      "type" : "string"
+      "type" : "string",
+      "description" : "NGSI Entity type. It has to be TrafficFlowObserved"
     },
     "vehicleSubType" : {
-      "description" : "It allows to specify a sub type of `vehicleType`, eg if the `vehicleType` is set to `Lorry` the `vehicleSubType` may be `OGV1` or `OGV2` to convey more information about the exact type of vehicle.",
-      "type" : "string"
+      "type" : "string",
+      "description" : "It allows to specify a sub type of `vehicleType`, eg if the `vehicleType` is set to `Lorry` the `vehicleSubType` may be `OGV1` or `OGV2` to convey more information about the exact type of vehicle."
     },
     "vehicleType" : {
-      "description" : "Type of vehicle from the point of view of its structural characteristics. Enum:'agriculturalVehicle, bicycle, bus, minibus, car, caravan, tram, tanker, carWithCaravan, carWithTrailer, lorry, moped, motorcycle, motorcycleWithSideCar, motorscooter, trailer, van, constructionOrMaintenanceVehicle, trolley, binTrolley, sweepingMachine, cleaningTrolley'",
-      "type" : "string"
-    },
-    "customRouteId" : {
-      "description" : "The unique ID of the route in SUMO. ",
-      "type" : "string"
+      "type" : "string",
+      "description" : "Type of vehicle from the point of view of its structural characteristics. Enum:'agriculturalVehicle, bicycle, bus, minibus, car, caravan, tram, tanker, carWithCaravan, carWithTrailer, lorry, moped, motorcycle, motorcycleWithSideCar, motorscooter, trailer, van, constructionOrMaintenanceVehicle, trolley, binTrolley, sweepingMachine, cleaningTrolley'"
     },
     "customSigma" : {
-      "description" : "The driver imperfection as a floating point number [0,1] (0 denotes perfect driving). ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "The driver imperfection as a floating point number [0,1] (0 denotes perfect driving). "
     },
     "customAcceleration" : {
-      "description" : "The acceleration ability of vehicles of this type (in m/s^2). ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "The acceleration ability of vehicles of this type (in m/s^2). "
     },
     "customDeceleration" : {
-      "description" : "The deceleration ability of vehicles of this type (in m/s^2). ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "The deceleration ability of vehicles of this type (in m/s^2). "
     },
     "customMinGreenTime" : {
-      "description" : "Min green time for the traffic light in seconds [1, 50]. ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Min green time for the traffic light in seconds [1, 50]. "
     },
     "customMaxGreenTime" : {
-      "description" : "Max green time for the traffic light in seconds [1, 50]. ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Max green time for the traffic light in seconds [1, 50]. "
     },
     "customAverageVehiclesPerMinute" : {
-      "description" : "Average vehicle/min [1, 30]. ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Average vehicle/min [1, 30]. "
     },
     "customDemandScalingFactor" : {
-      "description" : "Demand scaling factor (multiplies all vehicle demands) [1, 2]. ",
-      "type" : "number"
+      "type" : "number",
+      "description" : "Demand scaling factor (multiplies all vehicle demands) [1, 2]. "
     },
     "customQueueLengthThreshold" : {
-      "description" : "Demand scaling factor (multiplies all vehicle demands) [1, 2]. ",
-      "type" : "number"
-    },
-    "customTrafficLightId" : {
-      "description" : "The Smart Traffic Light ID",
-      "type" : "string"
+      "type" : "number",
+      "description" : "Demand scaling factor (multiplies all vehicle demands) [1, 2]. "
     }
   }
 }

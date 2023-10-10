@@ -11,6 +11,7 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 ## Attributes of the entity
 
+- [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/entityId.md)
 - [startDateTime](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/startDateTime.md)
 - [simulationName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/simulationName.md)
 - [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/location.md)
@@ -41,9 +42,6 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [paramRunTime](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/paramRunTime.md)
 - [paramItersPerPar](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/paramItersPerPar.md)
 - [paramTotalIterNum](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/paramTotalIterNum.md)
-- [reportKeys](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/reportKeys.md)
-- [tlsStatesPaths](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/tlsStatesPaths.md)
-- [additionalFilePaths](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/additionalFilePaths.md)
 - [laneAreaDetectorIds](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/laneAreaDetectorIds.md)
 - [laneAreaDetectorLanes](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/laneAreaDetectorLanes.md)
 - [laneAreaDetectorPaths](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/laneAreaDetectorPaths.md)

@@ -11,13 +11,14 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 ## Attributes of the entity
 
-- [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/location.md)
 - [color](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/color.md)
 - [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/entityId.md)
+- [trafficSimulationId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/trafficSimulationId.md)
+- [laneAreaDetectorId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/laneAreaDetectorId.md)
+- [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/location.md)
 - [simulationName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/simulationName.md)
 - [sumocfgPath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/sumocfgPath.md)
-- [smartTrafficLightSearch](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/smartTrafficLightSearch.md)
-- [smartTrafficLight_](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/smartTrafficLight_.md)
+- [customTrafficLightId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md)
 - [address](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/address.md)
 - [alternateName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/alternateName.md)
 - [areaServed](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/areaServed.md)
@@ -46,7 +47,6 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [type](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/type.md)
 - [vehicleSubType](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/vehicleSubType.md)
 - [vehicleType](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/vehicleType.md)
-- [customRouteId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customRouteId.md)
 - [customSigma](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customSigma.md)
 - [customAcceleration](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customAcceleration.md)
 - [customDeceleration](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customDeceleration.md)
@@ -55,4 +55,3 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [customAverageVehiclesPerMinute](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customAverageVehiclesPerMinute.md)
 - [customDemandScalingFactor](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customDemandScalingFactor.md)
 - [customQueueLengthThreshold](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customQueueLengthThreshold.md)
-- [customTrafficLightId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md)

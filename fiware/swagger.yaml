@@ -3,6 +3,8 @@ components:
   schemas:
     CrowdFlowObserved
       "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/model.yaml#/CrowdFlowObserved
+    SmartTrafficLight
+      "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/model.yaml#/SmartTrafficLight
     TrafficFlowObserved
       "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficFlowObserved/model.yaml#/TrafficFlowObserved
     TrafficSimulation
@@ -31,12 +33,14 @@ paths:
                   summary: "Key-Values Pairs"
                   value:
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/examples/example.json"
+                    - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/examples/example.json"
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficFlowObserved/examples/example.json"
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficSimulation/examples/example.json"
                 normalized:
                   summary: "Normalized NGSI-LD"
                   value:
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/examples/example-normalized.json"
+                    - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/examples/example-normalized.json"
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficFlowObserved/examples/example-normalized.json"
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/TrafficSimulation/examples/example-normalized.json"
           description: OK

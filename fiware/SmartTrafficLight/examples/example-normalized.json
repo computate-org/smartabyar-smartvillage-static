@@ -1,0 +1,24 @@
+{
+  "id" : "urn:ngsi-ld:SmartTrafficLight/1",
+  "type" : "SmartTrafficLight",
+  "paramVehicleDemandScalingFactor" : {
+    "type" : "Property",
+    "value" : 1
+  },
+  "paramStepSize" : {
+    "type" : "Property",
+    "value" : 1
+  },
+  "paramRunTime" : {
+    "type" : "Property",
+    "value" : 1000
+  },
+  "paramItersPerPar" : {
+    "type" : "Property",
+    "value" : 3
+  },
+  "paramTotalIterNum" : {
+    "type" : "Property",
+    "value" : 5
+  }
+}
