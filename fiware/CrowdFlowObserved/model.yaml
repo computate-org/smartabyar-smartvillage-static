@@ -2,12 +2,27 @@ CrowdFlowObserved:
   description: >+
     ApiTag.enUS: CrowdFlowObserved
   properties:
-    address:
-      type: object
-      description: >+
-        The mailing address
+    color:
+      type: string
       x-ngsi:
-        model: https://schema.org/address
+        type: Property
+    entityId:
+      type: string
+      description: >+
+        A unique ID for this Smart Data Model
+      x-ngsi:
+        type: Property
+    trafficSimulationId:
+      type: string
+      description: >+
+        The Traffic Simulation ID
+      x-ngsi:
+        type: Property
+    walkingAreaId:
+      type: string
+      description: >+
+        The walking area ID of pedestrians in SUMO
+      x-ngsi:
         type: Property
     alternateName:
       type: string
@@ -16,11 +31,11 @@ CrowdFlowObserved:
       x-ngsi:
         type: Property
     areaServed:
-      type: string
+      type: geo:linestring
       description: >+
         The geographic area where a service or offered item is provided
       x-ngsi:
-        type: Property
+        type: GeoProperty
     averageCrowdSpeed:
       type: number
       description: >+
@@ -102,7 +117,7 @@ CrowdFlowObserved:
       x-ngsi:
         type: Property
     location:
-      type: string
+      type: object
       description: >+
         Geojson reference to the item. It can be Point, LineString, Polygon,
         MultiPoint, MultiLineString or MultiPolygon
@@ -154,11 +169,5 @@ CrowdFlowObserved:
         A sequence of characters giving the original source of the entity data
         as a URL. Recommended to be the fully qualified domain name of the
         source provider, or the URL to the source object.
-      x-ngsi:
-        type: Property
-    type:
-      type: string
-      description: >+
-        NGSI Entity type. It has to be CrowdFlowObserved
       x-ngsi:
         type: Property

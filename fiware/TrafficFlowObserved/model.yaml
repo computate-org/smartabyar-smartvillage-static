@@ -25,7 +25,7 @@ TrafficFlowObserved:
       x-ngsi:
         type: Property
     location:
-      type: string
+      type: geo:point
       x-ngsi:
         type: GeoProperty
     simulationName:
@@ -56,7 +56,7 @@ TrafficFlowObserved:
       x-ngsi:
         type: Property
     areaServed:
-      type: geo:json
+      type: geo:linestring
       description: >+
         The geographic area where a service or offered item is provided.
         Geojson reference to the item. It can be Point, LineString, Polygon,

@@ -2128,7 +2128,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
 function pageGraphTrafficFlowObserved(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -2156,55 +2156,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push(record.fields[window.varsFq['color'].varIndexed]);
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'traffic flow observeds';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
@@ -2272,6 +2224,56 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
 		}
+
+		// Graph Location
+		var data = [];
+		var layout = {};
+		layout['showlegend'] = true;
+		layout['dragmode'] = 'zoom';
+		layout['uirevision'] = 'true';
+		if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_LOCATION'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+		else
+			layout['mapbox'] = { style: 'open-street-map' };
+		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+		$.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
+			if(trafficFlowObserved.areaServed) {
+				if(trafficFlowObserved.areaServed.type == 'Polygon' || trafficFlowObserved.areaServed.type == 'MultiPolygon') {
+					data.push({
+						type: 'choroplethmapbox'
+						, name: trafficFlowObserved.objectTitle
+						, locations: [ trafficFlowObserved.objectId ]
+						, z: [ 10 ]
+						, geojson: {
+							type: 'Feature'
+							, id: trafficFlowObserved.objectId
+							, geometry: trafficFlowObserved.areaServed
+						}
+						, line:{
+							width: 2,
+							color: 'red'
+						}
+					});
+				} else {
+					data.push({
+						type: 'scattermapbox'
+						, name: trafficFlowObserved.objectTitle
+						, lat: trafficFlowObserved.areaServed.coordinates.map(elem => elem[0])
+						, lon: trafficFlowObserved.areaServed.coordinates.map(elem => elem[1])
+						, mode: 'lines+markers'
+						, line:{
+							width: 2,
+							color: 'red'
+						}
+					});
+				}
+			}
+		});
+		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
 	}
 }
 

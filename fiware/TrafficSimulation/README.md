@@ -48,3 +48,5 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [e1DetectorIds](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/e1DetectorIds.md)
 - [e1DetectorLanes](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/e1DetectorLanes.md)
 - [e1DetectorPaths](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/e1DetectorPaths.md)
+- [walkingAreaIds](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/walkingAreaIds.md)
+- [walkingAreaLanes](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/attributes/walkingAreaLanes.md)

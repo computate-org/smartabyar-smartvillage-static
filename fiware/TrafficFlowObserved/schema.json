@@ -29,7 +29,7 @@
       "description" : "The unique ID of the lane area detector in SUMO. "
     },
     "location" : {
-      "type" : "string"
+      "type" : "geo:point"
     },
     "simulationName" : {
       "type" : "string"
@@ -50,7 +50,7 @@
       "description" : "An alternative name for this item"
     },
     "areaServed" : {
-      "type" : "geo:json",
+      "type" : "geo:linestring",
       "description" : "The geographic area where a service or offered item is provided. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon. "
     },
     "averageGapDistance" : {

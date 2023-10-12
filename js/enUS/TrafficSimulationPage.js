@@ -258,6 +258,14 @@ function searchTrafficSimulationFilters($formFilters) {
 		var filterE1DetectorPaths = $formFilters.find('.valueE1DetectorPaths').val();
 		if(filterE1DetectorPaths != null && filterE1DetectorPaths !== '')
 			filters.push({ name: 'fq', value: 'e1DetectorPaths:' + filterE1DetectorPaths });
+
+		var filterWalkingAreaIds = $formFilters.find('.valueWalkingAreaIds').val();
+		if(filterWalkingAreaIds != null && filterWalkingAreaIds !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaIds:' + filterWalkingAreaIds });
+
+		var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
+		if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
 	}
 	return filters;
 }
@@ -911,6 +919,30 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
 	if(removeE1DetectorPaths != null && removeE1DetectorPaths !== '')
 		vals['removeE1DetectorPaths'] = removeE1DetectorPaths;
 
+	var valueWalkingAreaIds = $formValues.find('.valueWalkingAreaIds').val();
+	var removeWalkingAreaIds = $formValues.find('.removeWalkingAreaIds').val() === 'true';
+	var setWalkingAreaIds = removeWalkingAreaIds ? null : $formValues.find('.setWalkingAreaIds').val();
+	var addWalkingAreaIds = $formValues.find('.addWalkingAreaIds').val();
+	if(removeWalkingAreaIds || setWalkingAreaIds != null && setWalkingAreaIds !== '')
+		vals['setWalkingAreaIds'] = setWalkingAreaIds;
+	if(addWalkingAreaIds != null && addWalkingAreaIds !== '')
+		vals['addWalkingAreaIds'] = addWalkingAreaIds;
+	var removeWalkingAreaIds = $formValues.find('.removeWalkingAreaIds').val();
+	if(removeWalkingAreaIds != null && removeWalkingAreaIds !== '')
+		vals['removeWalkingAreaIds'] = removeWalkingAreaIds;
+
+	var valueWalkingAreaLanes = $formValues.find('.valueWalkingAreaLanes').val();
+	var removeWalkingAreaLanes = $formValues.find('.removeWalkingAreaLanes').val() === 'true';
+	var setWalkingAreaLanes = removeWalkingAreaLanes ? null : $formValues.find('.setWalkingAreaLanes').val();
+	var addWalkingAreaLanes = $formValues.find('.addWalkingAreaLanes').val();
+	if(removeWalkingAreaLanes || setWalkingAreaLanes != null && setWalkingAreaLanes !== '')
+		vals['setWalkingAreaLanes'] = setWalkingAreaLanes;
+	if(addWalkingAreaLanes != null && addWalkingAreaLanes !== '')
+		vals['addWalkingAreaLanes'] = addWalkingAreaLanes;
+	var removeWalkingAreaLanes = $formValues.find('.removeWalkingAreaLanes').val();
+	if(removeWalkingAreaLanes != null && removeWalkingAreaLanes !== '')
+		vals['removeWalkingAreaLanes'] = removeWalkingAreaLanes;
+
 	patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -1162,6 +1194,14 @@ function patchTrafficSimulationFilters($formFilters) {
 		var filterE1DetectorPaths = $formFilters.find('.valueE1DetectorPaths').val();
 		if(filterE1DetectorPaths != null && filterE1DetectorPaths !== '')
 			filters.push({ name: 'fq', value: 'e1DetectorPaths:' + filterE1DetectorPaths });
+
+		var filterWalkingAreaIds = $formFilters.find('.valueWalkingAreaIds').val();
+		if(filterWalkingAreaIds != null && filterWalkingAreaIds !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaIds:' + filterWalkingAreaIds });
+
+		var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
+		if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
 	}
 	return filters;
 }
@@ -1393,6 +1433,14 @@ async function postTrafficSimulation($formValues, success, error) {
 	if(valueE1DetectorPaths != null && valueE1DetectorPaths !== '')
 		vals['e1DetectorPaths'] = valueE1DetectorPaths;
 
+	var valueWalkingAreaIds = $formValues.find('.valueWalkingAreaIds').val();
+	if(valueWalkingAreaIds != null && valueWalkingAreaIds !== '')
+		vals['walkingAreaIds'] = valueWalkingAreaIds;
+
+	var valueWalkingAreaLanes = $formValues.find('.valueWalkingAreaLanes').val();
+	if(valueWalkingAreaLanes != null && valueWalkingAreaLanes !== '')
+		vals['walkingAreaLanes'] = valueWalkingAreaLanes;
+
 	$.ajax({
 		url: '/api/traffic-simulation'
 		, dataType: 'json'
@@ -1562,6 +1610,8 @@ async function websocketTrafficSimulationInner(apiRequest) {
 				var inputE1DetectorIds = null;
 				var inputE1DetectorLanes = null;
 				var inputE1DetectorPaths = null;
+				var inputWalkingAreaIds = null;
+				var inputWalkingAreaLanes = null;
 
 				if(vars.includes('created'))
 					inputCreated = $response.find('#Page_created');
@@ -1679,6 +1729,10 @@ async function websocketTrafficSimulationInner(apiRequest) {
 					inputE1DetectorLanes = $response.find('#Page_e1DetectorLanes');
 				if(vars.includes('e1DetectorPaths'))
 					inputE1DetectorPaths = $response.find('#Page_e1DetectorPaths');
+				if(vars.includes('walkingAreaIds'))
+					inputWalkingAreaIds = $response.find('#Page_walkingAreaIds');
+				if(vars.includes('walkingAreaLanes'))
+					inputWalkingAreaLanes = $response.find('#Page_walkingAreaLanes');
 
 				if(inputCreated) {
 					inputCreated.replaceAll('#Page_created');
@@ -1969,6 +2023,16 @@ async function websocketTrafficSimulationInner(apiRequest) {
 					inputE1DetectorPaths.replaceAll('#Page_e1DetectorPaths');
 					addGlow($('#Page_e1DetectorPaths'));
 				}
+
+				if(inputWalkingAreaIds) {
+					inputWalkingAreaIds.replaceAll('#Page_walkingAreaIds');
+					addGlow($('#Page_walkingAreaIds'));
+				}
+
+				if(inputWalkingAreaLanes) {
+					inputWalkingAreaLanes.replaceAll('#Page_walkingAreaLanes');
+					addGlow($('#Page_walkingAreaLanes'));
+				}
 		});
 	}
 }
@@ -1976,7 +2040,7 @@ async function websocketTrafficSimulationInner(apiRequest) {
 function pageGraphTrafficSimulation(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -2004,55 +2068,7 @@ function pageGraphTrafficSimulation(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'traffic simulations';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName

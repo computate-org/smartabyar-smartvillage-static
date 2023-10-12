@@ -11,7 +11,10 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 ## Attributes of the entity
 
-- [address](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/address.md)
+- [color](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/color.md)
+- [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/entityId.md)
+- [trafficSimulationId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/trafficSimulationId.md)
+- [walkingAreaId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/walkingAreaId.md)
 - [alternateName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/alternateName.md)
 - [areaServed](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/areaServed.md)
 - [averageCrowdSpeed](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/averageCrowdSpeed.md)
@@ -33,4 +36,3 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [refRoadSegment](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/refRoadSegment.md)
 - [seeAlso](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/seeAlso.md)
 - [source](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/source.md)
-- [type](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/type.md)

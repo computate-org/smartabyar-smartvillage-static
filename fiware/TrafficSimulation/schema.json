@@ -26,7 +26,7 @@
       "type" : "string"
     },
     "location" : {
-      "type" : "string"
+      "type" : "geo:point"
     },
     "sumocfgPath" : {
       "type" : "string"
@@ -188,6 +188,12 @@
       "type" : "array"
     },
     "e1DetectorPaths" : {
+      "type" : "array"
+    },
+    "walkingAreaIds" : {
+      "type" : "array"
+    },
+    "walkingAreaLanes" : {
       "type" : "array"
     }
   }

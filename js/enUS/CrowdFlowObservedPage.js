@@ -47,13 +47,17 @@ function searchCrowdFlowObservedFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterAddress = $formFilters.find('.valueAddress').val();
-		if(filterAddress != null && filterAddress !== '')
-			filters.push({ name: 'fq', value: 'address:' + filterAddress });
+		var filterWalkingAreaId = $formFilters.find('.valueWalkingAreaId').val();
+		if(filterWalkingAreaId != null && filterWalkingAreaId !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaId:' + filterWalkingAreaId });
 
 		var filterAlternateName = $formFilters.find('.valueAlternateName').val();
 		if(filterAlternateName != null && filterAlternateName !== '')
 			filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
 		if(filterAreaServed != null && filterAreaServed !== '')
@@ -77,9 +81,17 @@ function searchCrowdFlowObservedFilters($formFilters) {
 		if(filterCongested != null && filterCongested === true)
 			filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
+		var filterEntityId = $formFilters.find('.valueEntityId').val();
+		if(filterEntityId != null && filterEntityId !== '')
+			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
 		var filterDataProvider = $formFilters.find('.valueDataProvider').val();
 		if(filterDataProvider != null && filterDataProvider !== '')
 			filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
+
+		var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+		if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+			filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
 		var filterDateCreated = $formFilters.find('.valueDateCreated').val();
 		if(filterDateCreated != null && filterDateCreated !== '')
@@ -140,10 +152,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
 		var filterSource = $formFilters.find('.valueSource').val();
 		if(filterSource != null && filterSource !== '')
 			filters.push({ name: 'fq', value: 'source:' + filterSource });
-
-		var filterType = $formFilters.find('.valueType').val();
-		if(filterType != null && filterType !== '')
-			filters.push({ name: 'fq', value: 'type:' + filterType });
 
 		var filterPk = $formFilters.find('.valuePk').val();
 		if(filterPk != null && filterPk !== '')
@@ -212,7 +220,7 @@ function searchCrowdFlowObservedVals(filters, success, error) {
 
 
 	$.ajax({
-		url: '/api/CrowdFlowObserved?' + $.param(filters)
+		url: '/api/crowd-flow-observed?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -243,7 +251,7 @@ function suggestCrowdFlowObservedObjectSuggest($formFilters, $list) {
 
 async function getCrowdFlowObserved(pk) {
 	$.ajax({
-		url: '/api/CrowdFlowObserved/' + id
+		url: '/api/crowd-flow-observed/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -325,17 +333,17 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueAddress = $formValues.find('.valueAddress').val();
-	var removeAddress = $formValues.find('.removeAddress').val() === 'true';
-	var setAddress = removeAddress ? null : $formValues.find('.setAddress').val();
-	var addAddress = $formValues.find('.addAddress').val();
-	if(removeAddress || setAddress != null && setAddress !== '')
-		vals['setAddress'] = setAddress;
-	if(addAddress != null && addAddress !== '')
-		vals['addAddress'] = addAddress;
-	var removeAddress = $formValues.find('.removeAddress').val();
-	if(removeAddress != null && removeAddress !== '')
-		vals['removeAddress'] = removeAddress;
+	var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
+	var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val() === 'true';
+	var setWalkingAreaId = removeWalkingAreaId ? null : $formValues.find('.setWalkingAreaId').val();
+	var addWalkingAreaId = $formValues.find('.addWalkingAreaId').val();
+	if(removeWalkingAreaId || setWalkingAreaId != null && setWalkingAreaId !== '')
+		vals['setWalkingAreaId'] = setWalkingAreaId;
+	if(addWalkingAreaId != null && addWalkingAreaId !== '')
+		vals['addWalkingAreaId'] = addWalkingAreaId;
+	var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val();
+	if(removeWalkingAreaId != null && removeWalkingAreaId !== '')
+		vals['removeWalkingAreaId'] = removeWalkingAreaId;
 
 	var valueAlternateName = $formValues.find('.valueAlternateName').val();
 	var removeAlternateName = $formValues.find('.removeAlternateName').val() === 'true';
@@ -348,6 +356,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var removeAlternateName = $formValues.find('.removeAlternateName').val();
 	if(removeAlternateName != null && removeAlternateName !== '')
 		vals['removeAlternateName'] = removeAlternateName;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	var removeColor = $formValues.find('.removeColor').val() === 'true';
+	var setColor = removeColor ? null : $formValues.find('.setColor').val();
+	var addColor = $formValues.find('.addColor').val();
+	if(removeColor || setColor != null && setColor !== '')
+		vals['setColor'] = setColor;
+	if(addColor != null && addColor !== '')
+		vals['addColor'] = addColor;
+	var removeColor = $formValues.find('.removeColor').val();
+	if(removeColor != null && removeColor !== '')
+		vals['removeColor'] = removeColor;
 
 	var valueAreaServed = $formValues.find('.valueAreaServed').val();
 	var removeAreaServed = $formValues.find('.removeAreaServed').val() === 'true';
@@ -400,6 +420,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	if(removeCongested != null && removeCongested !== '')
 		vals['removeCongested'] = removeCongested;
 
+	var valueEntityId = $formValues.find('.valueEntityId').val();
+	var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
+	var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
+	var addEntityId = $formValues.find('.addEntityId').val();
+	if(removeEntityId || setEntityId != null && setEntityId !== '')
+		vals['setEntityId'] = setEntityId;
+	if(addEntityId != null && addEntityId !== '')
+		vals['addEntityId'] = addEntityId;
+	var removeEntityId = $formValues.find('.removeEntityId').val();
+	if(removeEntityId != null && removeEntityId !== '')
+		vals['removeEntityId'] = removeEntityId;
+
 	var valueDataProvider = $formValues.find('.valueDataProvider').val();
 	var removeDataProvider = $formValues.find('.removeDataProvider').val() === 'true';
 	var setDataProvider = removeDataProvider ? null : $formValues.find('.setDataProvider').val();
@@ -411,6 +443,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var removeDataProvider = $formValues.find('.removeDataProvider').val();
 	if(removeDataProvider != null && removeDataProvider !== '')
 		vals['removeDataProvider'] = removeDataProvider;
+
+	var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+	var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
+	var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
+	var addTrafficSimulationId = $formValues.find('.addTrafficSimulationId').val();
+	if(removeTrafficSimulationId || setTrafficSimulationId != null && setTrafficSimulationId !== '')
+		vals['setTrafficSimulationId'] = setTrafficSimulationId;
+	if(addTrafficSimulationId != null && addTrafficSimulationId !== '')
+		vals['addTrafficSimulationId'] = addTrafficSimulationId;
+	var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
+	if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
+		vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
 
 	var valueDateCreated = $formValues.find('.valueDateCreated').val();
 	var removeDateCreated = $formValues.find('.removeDateCreated').val() === 'true';
@@ -592,18 +636,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	if(removeSource != null && removeSource !== '')
 		vals['removeSource'] = removeSource;
 
-	var valueType = $formValues.find('.valueType').val();
-	var removeType = $formValues.find('.removeType').val() === 'true';
-	var setType = removeType ? null : $formValues.find('.setType').val();
-	var addType = $formValues.find('.addType').val();
-	if(removeType || setType != null && setType !== '')
-		vals['setType'] = setType;
-	if(addType != null && addType !== '')
-		vals['addType'] = addType;
-	var removeType = $formValues.find('.removeType').val();
-	if(removeType != null && removeType !== '')
-		vals['removeType'] = removeType;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -692,13 +724,17 @@ function patchCrowdFlowObservedFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterAddress = $formFilters.find('.valueAddress').val();
-		if(filterAddress != null && filterAddress !== '')
-			filters.push({ name: 'fq', value: 'address:' + filterAddress });
+		var filterWalkingAreaId = $formFilters.find('.valueWalkingAreaId').val();
+		if(filterWalkingAreaId != null && filterWalkingAreaId !== '')
+			filters.push({ name: 'fq', value: 'walkingAreaId:' + filterWalkingAreaId });
 
 		var filterAlternateName = $formFilters.find('.valueAlternateName').val();
 		if(filterAlternateName != null && filterAlternateName !== '')
 			filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
+
+		var filterColor = $formFilters.find('.valueColor').val();
+		if(filterColor != null && filterColor !== '')
+			filters.push({ name: 'fq', value: 'color:' + filterColor });
 
 		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
 		if(filterAreaServed != null && filterAreaServed !== '')
@@ -722,9 +758,17 @@ function patchCrowdFlowObservedFilters($formFilters) {
 		if(filterCongested != null && filterCongested === true)
 			filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
+		var filterEntityId = $formFilters.find('.valueEntityId').val();
+		if(filterEntityId != null && filterEntityId !== '')
+			filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
 		var filterDataProvider = $formFilters.find('.valueDataProvider').val();
 		if(filterDataProvider != null && filterDataProvider !== '')
 			filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
+
+		var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+		if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+			filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
 		var filterDateCreated = $formFilters.find('.valueDateCreated').val();
 		if(filterDateCreated != null && filterDateCreated !== '')
@@ -785,10 +829,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
 		var filterSource = $formFilters.find('.valueSource').val();
 		if(filterSource != null && filterSource !== '')
 			filters.push({ name: 'fq', value: 'source:' + filterSource });
-
-		var filterType = $formFilters.find('.valueType').val();
-		if(filterType != null && filterType !== '')
-			filters.push({ name: 'fq', value: 'type:' + filterType });
 
 		var filterPk = $formFilters.find('.valuePk').val();
 		if(filterPk != null && filterPk !== '')
@@ -861,7 +901,7 @@ function patchCrowdFlowObservedVal(filters, v, val, success, error) {
 
 function patchCrowdFlowObservedVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/CrowdFlowObserved?' + $.param(filters)
+		url: '/api/crowd-flow-observed?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -909,13 +949,17 @@ async function postCrowdFlowObserved($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted == 'true';
 
-	var valueAddress = $formValues.find('.valueAddress').val();
-	if(valueAddress != null && valueAddress !== '')
-		vals['address'] = valueAddress;
+	var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
+	if(valueWalkingAreaId != null && valueWalkingAreaId !== '')
+		vals['walkingAreaId'] = valueWalkingAreaId;
 
 	var valueAlternateName = $formValues.find('.valueAlternateName').val();
 	if(valueAlternateName != null && valueAlternateName !== '')
 		vals['alternateName'] = valueAlternateName;
+
+	var valueColor = $formValues.find('.valueColor').val();
+	if(valueColor != null && valueColor !== '')
+		vals['color'] = valueColor;
 
 	var valueAreaServed = $formValues.find('.valueAreaServed').val();
 	if(valueAreaServed != null && valueAreaServed !== '')
@@ -933,9 +977,17 @@ async function postCrowdFlowObserved($formValues, success, error) {
 	if(valueCongested != null && valueCongested !== '')
 		vals['congested'] = valueCongested == 'true';
 
+	var valueEntityId = $formValues.find('.valueEntityId').val();
+	if(valueEntityId != null && valueEntityId !== '')
+		vals['entityId'] = valueEntityId;
+
 	var valueDataProvider = $formValues.find('.valueDataProvider').val();
 	if(valueDataProvider != null && valueDataProvider !== '')
 		vals['dataProvider'] = valueDataProvider;
+
+	var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+	if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
+		vals['trafficSimulationId'] = valueTrafficSimulationId;
 
 	var valueDateCreated = $formValues.find('.valueDateCreated').val();
 	if(valueDateCreated != null && valueDateCreated !== '')
@@ -997,10 +1049,6 @@ async function postCrowdFlowObserved($formValues, success, error) {
 	if(valueSource != null && valueSource !== '')
 		vals['source'] = valueSource;
 
-	var valueType = $formValues.find('.valueType').val();
-	if(valueType != null && valueType !== '')
-		vals['type'] = valueType;
-
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
@@ -1018,7 +1066,7 @@ async function postCrowdFlowObserved($formValues, success, error) {
 		vals['objectTitle'] = valueObjectTitle;
 
 	$.ajax({
-		url: '/api/CrowdFlowObserved'
+		url: '/api/crowd-flow-observed'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -1030,7 +1078,7 @@ async function postCrowdFlowObserved($formValues, success, error) {
 
 function postCrowdFlowObservedVals(vals, success, error) {
 	$.ajax({
-		url: '/api/CrowdFlowObserved'
+		url: '/api/crowd-flow-observed'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -1050,7 +1098,7 @@ async function putimportCrowdFlowObserved($formValues, id, success, error) {
 
 function putimportCrowdFlowObservedVals(json, success, error) {
 	$.ajax({
-		url: '/api/CrowdFlowObserved-import'
+		url: '/api/crowd-flow-observed-import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -1126,13 +1174,16 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 				var inputObjectId = null;
 				var inputArchived = null;
 				var inputDeleted = null;
-				var inputAddress = null;
+				var inputWalkingAreaId = null;
 				var inputAlternateName = null;
+				var inputColor = null;
 				var inputAreaServed = null;
 				var inputAverageCrowdSpeed = null;
 				var inputAverageHeadwayTime = null;
 				var inputCongested = null;
+				var inputEntityId = null;
 				var inputDataProvider = null;
+				var inputTrafficSimulationId = null;
 				var inputDateCreated = null;
 				var inputDateModified = null;
 				var inputDateObserved = null;
@@ -1148,7 +1199,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 				var inputRefRoadSegment = null;
 				var inputSeeAlso = null;
 				var inputSource = null;
-				var inputType = null;
 				var inputPk = null;
 				var inputInheritPk = null;
 				var inputClassCanonicalName = null;
@@ -1175,10 +1225,12 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 					inputArchived = $response.find('#Page_archived');
 				if(vars.includes('deleted'))
 					inputDeleted = $response.find('#Page_deleted');
-				if(vars.includes('address'))
-					inputAddress = $response.find('#Page_address');
+				if(vars.includes('walkingAreaId'))
+					inputWalkingAreaId = $response.find('#Page_walkingAreaId');
 				if(vars.includes('alternateName'))
 					inputAlternateName = $response.find('#Page_alternateName');
+				if(vars.includes('color'))
+					inputColor = $response.find('#Page_color');
 				if(vars.includes('areaServed'))
 					inputAreaServed = $response.find('#Page_areaServed');
 				if(vars.includes('averageCrowdSpeed'))
@@ -1187,8 +1239,12 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 					inputAverageHeadwayTime = $response.find('#Page_averageHeadwayTime');
 				if(vars.includes('congested'))
 					inputCongested = $response.find('#Page_congested');
+				if(vars.includes('entityId'))
+					inputEntityId = $response.find('#Page_entityId');
 				if(vars.includes('dataProvider'))
 					inputDataProvider = $response.find('#Page_dataProvider');
+				if(vars.includes('trafficSimulationId'))
+					inputTrafficSimulationId = $response.find('#Page_trafficSimulationId');
 				if(vars.includes('dateCreated'))
 					inputDateCreated = $response.find('#Page_dateCreated');
 				if(vars.includes('dateModified'))
@@ -1219,8 +1275,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 					inputSeeAlso = $response.find('#Page_seeAlso');
 				if(vars.includes('source'))
 					inputSource = $response.find('#Page_source');
-				if(vars.includes('type'))
-					inputType = $response.find('#Page_type');
 				if(vars.includes('pk'))
 					inputPk = $response.find('#Page_pk');
 				if(vars.includes('inheritPk'))
@@ -1277,14 +1331,19 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 					addGlow($('#Page_deleted'));
 				}
 
-				if(inputAddress) {
-					inputAddress.replaceAll('#Page_address');
-					addGlow($('#Page_address'));
+				if(inputWalkingAreaId) {
+					inputWalkingAreaId.replaceAll('#Page_walkingAreaId');
+					addGlow($('#Page_walkingAreaId'));
 				}
 
 				if(inputAlternateName) {
 					inputAlternateName.replaceAll('#Page_alternateName');
 					addGlow($('#Page_alternateName'));
+				}
+
+				if(inputColor) {
+					inputColor.replaceAll('#Page_color');
+					addGlow($('#Page_color'));
 				}
 
 				if(inputAreaServed) {
@@ -1307,9 +1366,19 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 					addGlow($('#Page_congested'));
 				}
 
+				if(inputEntityId) {
+					inputEntityId.replaceAll('#Page_entityId');
+					addGlow($('#Page_entityId'));
+				}
+
 				if(inputDataProvider) {
 					inputDataProvider.replaceAll('#Page_dataProvider');
 					addGlow($('#Page_dataProvider'));
+				}
+
+				if(inputTrafficSimulationId) {
+					inputTrafficSimulationId.replaceAll('#Page_trafficSimulationId');
+					addGlow($('#Page_trafficSimulationId'));
 				}
 
 				if(inputDateCreated) {
@@ -1385,11 +1454,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 				if(inputSource) {
 					inputSource.replaceAll('#Page_source');
 					addGlow($('#Page_source'));
-				}
-
-				if(inputType) {
-					inputType.replaceAll('#Page_type');
-					addGlow($('#Page_type'));
 				}
 
 				if(inputPk) {
@@ -1473,7 +1537,7 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 function pageGraphCrowdFlowObserved(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -1501,55 +1565,7 @@ function pageGraphCrowdFlowObserved(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'CrowdFlowObserveds';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
@@ -1617,6 +1633,56 @@ function pageGraphCrowdFlowObserved(apiRequest) {
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
 		}
+
+		// Graph Location
+		var data = [];
+		var layout = {};
+		layout['showlegend'] = true;
+		layout['dragmode'] = 'zoom';
+		layout['uirevision'] = 'true';
+		if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_LOCATION'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+		else
+			layout['mapbox'] = { style: 'open-street-map' };
+		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+		$.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
+			if(crowdFlowObserved.areaServed) {
+				if(crowdFlowObserved.areaServed.type == 'Polygon' || crowdFlowObserved.areaServed.type == 'MultiPolygon') {
+					data.push({
+						type: 'choroplethmapbox'
+						, name: crowdFlowObserved.objectTitle
+						, locations: [ crowdFlowObserved.objectId ]
+						, z: [ 10 ]
+						, geojson: {
+							type: 'Feature'
+							, id: crowdFlowObserved.objectId
+							, geometry: crowdFlowObserved.areaServed
+						}
+						, line:{
+							width: 2,
+							color: 'red'
+						}
+					});
+				} else {
+					data.push({
+						type: 'scattermapbox'
+						, name: crowdFlowObserved.objectTitle
+						, lat: crowdFlowObserved.areaServed.coordinates.map(elem => elem[0])
+						, lon: crowdFlowObserved.areaServed.coordinates.map(elem => elem[1])
+						, mode: 'lines+markers'
+						, line:{
+							width: 2,
+							color: 'red'
+						}
+					});
+				}
+			}
+		});
+		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
 	}
 }
 

@@ -22,7 +22,7 @@ TrafficSimulation:
       x-ngsi:
         type: Property
     location:
-      type: string
+      type: geo:point
       x-ngsi:
         type: GeoProperty
     sumocfgPath:
@@ -280,3 +280,13 @@ TrafficSimulation:
         type: Property
       items:
         type: string
+    walkingAreaIds:
+      type: array
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    walkingAreaLanes:
+      type: array
+      x-ngsi:
+        type: Property

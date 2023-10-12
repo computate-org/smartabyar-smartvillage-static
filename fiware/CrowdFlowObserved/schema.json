@@ -13,16 +13,27 @@
   } ],
   "required" : [ ],
   "properties" : {
-    "address" : {
-      "type" : "object",
-      "description" : "The mailing address"
+    "color" : {
+      "type" : "string"
+    },
+    "entityId" : {
+      "type" : "string",
+      "description" : "A unique ID for this Smart Data Model"
+    },
+    "trafficSimulationId" : {
+      "type" : "string",
+      "description" : "The Traffic Simulation ID"
+    },
+    "walkingAreaId" : {
+      "type" : "string",
+      "description" : "The walking area ID of pedestrians in SUMO"
     },
     "alternateName" : {
       "type" : "string",
       "description" : "An alternative name for this item"
     },
     "areaServed" : {
-      "type" : "string",
+      "type" : "geo:linestring",
       "description" : "The geographic area where a service or offered item is provided"
     },
     "averageCrowdSpeed" : {
@@ -70,7 +81,7 @@
       "description" : "Usual direction of travel in the walkway referred by this observation with respect to the city center. Enum:'inbound, outbound'"
     },
     "location" : {
-      "type" : "string",
+      "type" : "object",
       "description" : "Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
     },
     "name" : {
@@ -100,10 +111,6 @@
     "source" : {
       "type" : "string",
       "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object."
-    },
-    "type" : {
-      "type" : "string",
-      "description" : "NGSI Entity type. It has to be CrowdFlowObserved"
     }
   }
 }

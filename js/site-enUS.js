@@ -788,16 +788,41 @@ function pageGraphTrafficFlowObserved2(apiRequest) {
 	trace['marker'] = { color: colors, size: 10 };
 
 	$.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
-		data.push({
-			type: 'scattermapbox'
-			, lat: trafficFlowObserved.location.coordinates.map(elem => elem[0])
-			, lon: trafficFlowObserved.location.coordinates.map(elem => elem[1])
-			, mode: 'lines'
-			, line:{
-				width: 2,
-				color: 'red'
+		if(trafficFlowObserved.areaServed) {
+			if(trafficFlowObserved.areaServed.type == 'Polygon' || trafficFlowObserved.areaServed.type == 'MultiPolygon') {
+				data.push({
+					type: 'choroplethmapbox'
+					, name: trafficFlowObserved.objectTitle
+					,locations: [ trafficFlowObserved.id ]
+					, z: [ 10 ]
+					, geojson: {
+						type: "Feature"
+						, id: trafficFlowObserved.id
+						, geometry: trafficFlowObserved.areaServed
+					}
+					, line:{
+						width: 2,
+						color: 'red'
+					}
+				});
+			} else {
+				data.push({
+					type: 'scattermapbox'
+					, name: trafficFlowObserved.objectTitle
+					, legendgroup: trafficFlowObserved.classSimpleName
+					, legendgrouptitle: {
+						title: 'Traffic Flow Observed entities'
+					}
+					, lat: trafficFlowObserved.areaServed.coordinates.map(elem => elem[0])
+					, lon: trafficFlowObserved.areaServed.coordinates.map(elem => elem[1])
+					, mode: 'lines+markers'
+					, line:{
+						width: 2,
+						color: 'red'
+					}
+				});
 			}
-		});
+		}
 	});
 //
 //	data.push({
