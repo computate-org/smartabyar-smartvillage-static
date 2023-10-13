@@ -262,7 +262,7 @@ async function getCrowdFlowObserved(pk) {
 
 // PATCH //
 
-async function patchCrowdFlowObserved($formFilters, $formValues, id, success, error) {
+async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, error) {
 	var filters = patchCrowdFlowObservedFilters($formFilters);
 
 	var vals = {};
@@ -374,7 +374,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
 	var addAreaServed = $formValues.find('.addAreaServed').val();
 	if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-		vals['setAreaServed'] = setAreaServed;
+		vals['setAreaServed'] = JSON.parse(setAreaServed);
 	if(addAreaServed != null && addAreaServed !== '')
 		vals['addAreaServed'] = addAreaServed;
 	var removeAreaServed = $formValues.find('.removeAreaServed').val();
@@ -581,7 +581,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var setOwner = removeOwner ? null : $formValues.find('.setOwner').val();
 	var addOwner = $formValues.find('.addOwner').val();
 	if(removeOwner || setOwner != null && setOwner !== '')
-		vals['setOwner'] = setOwner;
+		vals['setOwner'] = JSON.parse(setOwner);
 	if(addOwner != null && addOwner !== '')
 		vals['addOwner'] = addOwner;
 	var removeOwner = $formValues.find('.removeOwner').val();
@@ -605,7 +605,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var setRefRoadSegment = removeRefRoadSegment ? null : $formValues.find('.setRefRoadSegment').val();
 	var addRefRoadSegment = $formValues.find('.addRefRoadSegment').val();
 	if(removeRefRoadSegment || setRefRoadSegment != null && setRefRoadSegment !== '')
-		vals['setRefRoadSegment'] = setRefRoadSegment;
+		vals['setRefRoadSegment'] = JSON.parse(setRefRoadSegment);
 	if(addRefRoadSegment != null && addRefRoadSegment !== '')
 		vals['addRefRoadSegment'] = addRefRoadSegment;
 	var removeRefRoadSegment = $formValues.find('.removeRefRoadSegment').val();
@@ -617,7 +617,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	var setSeeAlso = removeSeeAlso ? null : $formValues.find('.setSeeAlso').val();
 	var addSeeAlso = $formValues.find('.addSeeAlso').val();
 	if(removeSeeAlso || setSeeAlso != null && setSeeAlso !== '')
-		vals['setSeeAlso'] = setSeeAlso;
+		vals['setSeeAlso'] = JSON.parse(setSeeAlso);
 	if(addSeeAlso != null && addSeeAlso !== '')
 		vals['addSeeAlso'] = addSeeAlso;
 	var removeSeeAlso = $formValues.find('.removeSeeAlso').val();
@@ -684,7 +684,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, id, success, er
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchCrowdFlowObservedVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
+	patchCrowdFlowObservedVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchCrowdFlowObservedFilters($formFilters) {
@@ -963,7 +963,7 @@ async function postCrowdFlowObserved($formValues, success, error) {
 
 	var valueAreaServed = $formValues.find('.valueAreaServed').val();
 	if(valueAreaServed != null && valueAreaServed !== '')
-		vals['areaServed'] = valueAreaServed;
+		vals['areaServed'] = JSON.parse(valueAreaServed);
 
 	var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
 	if(valueAverageCrowdSpeed != null && valueAverageCrowdSpeed !== '')
@@ -1031,7 +1031,7 @@ async function postCrowdFlowObserved($formValues, success, error) {
 
 	var valueOwner = $formValues.find('.valueOwner').val();
 	if(valueOwner != null && valueOwner !== '')
-		vals['owner'] = valueOwner;
+		vals['owner'] = JSON.parse(valueOwner);
 
 	var valuePeopleCount = $formValues.find('.valuePeopleCount').val();
 	if(valuePeopleCount != null && valuePeopleCount !== '')
@@ -1039,11 +1039,11 @@ async function postCrowdFlowObserved($formValues, success, error) {
 
 	var valueRefRoadSegment = $formValues.find('.valueRefRoadSegment').val();
 	if(valueRefRoadSegment != null && valueRefRoadSegment !== '')
-		vals['refRoadSegment'] = valueRefRoadSegment;
+		vals['refRoadSegment'] = JSON.parse(valueRefRoadSegment);
 
 	var valueSeeAlso = $formValues.find('.valueSeeAlso').val();
 	if(valueSeeAlso != null && valueSeeAlso !== '')
-		vals['seeAlso'] = valueSeeAlso;
+		vals['seeAlso'] = JSON.parse(valueSeeAlso);
 
 	var valueSource = $formValues.find('.valueSource').val();
 	if(valueSource != null && valueSource !== '')
@@ -1090,7 +1090,7 @@ function postCrowdFlowObservedVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportCrowdFlowObserved($formValues, id, success, error) {
+async function putimportCrowdFlowObserved($formValues, pk, success, error) {
 	var json = $formValues.find('.PUTImport_searchList').val();
 	if(json != null && json !== '')
 		putimportCrowdFlowObservedVals(JSON.parse(json), success, error);
@@ -1115,7 +1115,7 @@ async function websocketCrowdFlowObserved(success) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#CrowdFlowObservedForm :input[name=id]').val();
+			var pkPage = $('#CrowdFlowObservedForm :input[name=pk]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = parseInt(json['numFound']);
@@ -1651,35 +1651,21 @@ function pageGraphCrowdFlowObserved(apiRequest) {
 		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 		$.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
 			if(crowdFlowObserved.areaServed) {
-				if(crowdFlowObserved.areaServed.type == 'Polygon' || crowdFlowObserved.areaServed.type == 'MultiPolygon') {
-					data.push({
-						type: 'choroplethmapbox'
-						, name: crowdFlowObserved.objectTitle
-						, locations: [ crowdFlowObserved.objectId ]
-						, z: [ 10 ]
-						, geojson: {
-							type: 'Feature'
-							, id: crowdFlowObserved.objectId
-							, geometry: crowdFlowObserved.areaServed
-						}
-						, line:{
-							width: 2,
-							color: 'red'
-						}
-					});
-				} else {
+					var lat = [].concat.apply([], crowdFlowObserved.areaServed.coordinates).map(elem => elem[0]);
+					lat.push(lat[0]);
+					var lon = [].concat.apply([], crowdFlowObserved.areaServed.coordinates).map(elem => elem[1]);
+					lon.push(lon[0]);
 					data.push({
 						type: 'scattermapbox'
 						, name: crowdFlowObserved.objectTitle
-						, lat: crowdFlowObserved.areaServed.coordinates.map(elem => elem[0])
-						, lon: crowdFlowObserved.areaServed.coordinates.map(elem => elem[1])
+						, lat: lat
+						, lon: lon
 						, mode: 'lines+markers'
 						, line:{
 							width: 2,
 							color: 'red'
 						}
 					});
-				}
 			}
 		});
 		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);

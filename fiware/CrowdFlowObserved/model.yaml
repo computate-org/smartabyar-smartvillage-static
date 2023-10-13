@@ -117,7 +117,7 @@ CrowdFlowObserved:
       x-ngsi:
         type: Property
     location:
-      type: object
+      type: geo:point
       description: >+
         Geojson reference to the item. It can be Point, LineString, Polygon,
         MultiPoint, MultiLineString or MultiPolygon
