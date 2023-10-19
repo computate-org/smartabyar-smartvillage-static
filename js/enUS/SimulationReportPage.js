@@ -287,6 +287,10 @@ function searchSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+		if(filterAreaServed != null && filterAreaServed !== '')
+			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
 		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
@@ -792,7 +796,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters1 = removeUpdatedParameters1 ? null : $formValues.find('.setUpdatedParameters1').val();
 	var addUpdatedParameters1 = $formValues.find('.addUpdatedParameters1').val();
 	if(removeUpdatedParameters1 || setUpdatedParameters1 != null && setUpdatedParameters1 !== '')
-		vals['setUpdatedParameters1'] = setUpdatedParameters1;
+		vals['setUpdatedParameters1'] = JSON.parse(setUpdatedParameters1);
 	if(addUpdatedParameters1 != null && addUpdatedParameters1 !== '')
 		vals['addUpdatedParameters1'] = addUpdatedParameters1;
 	var removeUpdatedParameters1 = $formValues.find('.removeUpdatedParameters1').val();
@@ -804,7 +808,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters2 = removeUpdatedParameters2 ? null : $formValues.find('.setUpdatedParameters2').val();
 	var addUpdatedParameters2 = $formValues.find('.addUpdatedParameters2').val();
 	if(removeUpdatedParameters2 || setUpdatedParameters2 != null && setUpdatedParameters2 !== '')
-		vals['setUpdatedParameters2'] = setUpdatedParameters2;
+		vals['setUpdatedParameters2'] = JSON.parse(setUpdatedParameters2);
 	if(addUpdatedParameters2 != null && addUpdatedParameters2 !== '')
 		vals['addUpdatedParameters2'] = addUpdatedParameters2;
 	var removeUpdatedParameters2 = $formValues.find('.removeUpdatedParameters2').val();
@@ -816,7 +820,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters3 = removeUpdatedParameters3 ? null : $formValues.find('.setUpdatedParameters3').val();
 	var addUpdatedParameters3 = $formValues.find('.addUpdatedParameters3').val();
 	if(removeUpdatedParameters3 || setUpdatedParameters3 != null && setUpdatedParameters3 !== '')
-		vals['setUpdatedParameters3'] = setUpdatedParameters3;
+		vals['setUpdatedParameters3'] = JSON.parse(setUpdatedParameters3);
 	if(addUpdatedParameters3 != null && addUpdatedParameters3 !== '')
 		vals['addUpdatedParameters3'] = addUpdatedParameters3;
 	var removeUpdatedParameters3 = $formValues.find('.removeUpdatedParameters3').val();
@@ -828,7 +832,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters4 = removeUpdatedParameters4 ? null : $formValues.find('.setUpdatedParameters4').val();
 	var addUpdatedParameters4 = $formValues.find('.addUpdatedParameters4').val();
 	if(removeUpdatedParameters4 || setUpdatedParameters4 != null && setUpdatedParameters4 !== '')
-		vals['setUpdatedParameters4'] = setUpdatedParameters4;
+		vals['setUpdatedParameters4'] = JSON.parse(setUpdatedParameters4);
 	if(addUpdatedParameters4 != null && addUpdatedParameters4 !== '')
 		vals['addUpdatedParameters4'] = addUpdatedParameters4;
 	var removeUpdatedParameters4 = $formValues.find('.removeUpdatedParameters4').val();
@@ -840,7 +844,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters5 = removeUpdatedParameters5 ? null : $formValues.find('.setUpdatedParameters5').val();
 	var addUpdatedParameters5 = $formValues.find('.addUpdatedParameters5').val();
 	if(removeUpdatedParameters5 || setUpdatedParameters5 != null && setUpdatedParameters5 !== '')
-		vals['setUpdatedParameters5'] = setUpdatedParameters5;
+		vals['setUpdatedParameters5'] = JSON.parse(setUpdatedParameters5);
 	if(addUpdatedParameters5 != null && addUpdatedParameters5 !== '')
 		vals['addUpdatedParameters5'] = addUpdatedParameters5;
 	var removeUpdatedParameters5 = $formValues.find('.removeUpdatedParameters5').val();
@@ -852,7 +856,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters6 = removeUpdatedParameters6 ? null : $formValues.find('.setUpdatedParameters6').val();
 	var addUpdatedParameters6 = $formValues.find('.addUpdatedParameters6').val();
 	if(removeUpdatedParameters6 || setUpdatedParameters6 != null && setUpdatedParameters6 !== '')
-		vals['setUpdatedParameters6'] = setUpdatedParameters6;
+		vals['setUpdatedParameters6'] = JSON.parse(setUpdatedParameters6);
 	if(addUpdatedParameters6 != null && addUpdatedParameters6 !== '')
 		vals['addUpdatedParameters6'] = addUpdatedParameters6;
 	var removeUpdatedParameters6 = $formValues.find('.removeUpdatedParameters6').val();
@@ -864,7 +868,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters7 = removeUpdatedParameters7 ? null : $formValues.find('.setUpdatedParameters7').val();
 	var addUpdatedParameters7 = $formValues.find('.addUpdatedParameters7').val();
 	if(removeUpdatedParameters7 || setUpdatedParameters7 != null && setUpdatedParameters7 !== '')
-		vals['setUpdatedParameters7'] = setUpdatedParameters7;
+		vals['setUpdatedParameters7'] = JSON.parse(setUpdatedParameters7);
 	if(addUpdatedParameters7 != null && addUpdatedParameters7 !== '')
 		vals['addUpdatedParameters7'] = addUpdatedParameters7;
 	var removeUpdatedParameters7 = $formValues.find('.removeUpdatedParameters7').val();
@@ -876,7 +880,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters8 = removeUpdatedParameters8 ? null : $formValues.find('.setUpdatedParameters8').val();
 	var addUpdatedParameters8 = $formValues.find('.addUpdatedParameters8').val();
 	if(removeUpdatedParameters8 || setUpdatedParameters8 != null && setUpdatedParameters8 !== '')
-		vals['setUpdatedParameters8'] = setUpdatedParameters8;
+		vals['setUpdatedParameters8'] = JSON.parse(setUpdatedParameters8);
 	if(addUpdatedParameters8 != null && addUpdatedParameters8 !== '')
 		vals['addUpdatedParameters8'] = addUpdatedParameters8;
 	var removeUpdatedParameters8 = $formValues.find('.removeUpdatedParameters8').val();
@@ -888,7 +892,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters9 = removeUpdatedParameters9 ? null : $formValues.find('.setUpdatedParameters9').val();
 	var addUpdatedParameters9 = $formValues.find('.addUpdatedParameters9').val();
 	if(removeUpdatedParameters9 || setUpdatedParameters9 != null && setUpdatedParameters9 !== '')
-		vals['setUpdatedParameters9'] = setUpdatedParameters9;
+		vals['setUpdatedParameters9'] = JSON.parse(setUpdatedParameters9);
 	if(addUpdatedParameters9 != null && addUpdatedParameters9 !== '')
 		vals['addUpdatedParameters9'] = addUpdatedParameters9;
 	var removeUpdatedParameters9 = $formValues.find('.removeUpdatedParameters9').val();
@@ -900,7 +904,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters10 = removeUpdatedParameters10 ? null : $formValues.find('.setUpdatedParameters10').val();
 	var addUpdatedParameters10 = $formValues.find('.addUpdatedParameters10').val();
 	if(removeUpdatedParameters10 || setUpdatedParameters10 != null && setUpdatedParameters10 !== '')
-		vals['setUpdatedParameters10'] = setUpdatedParameters10;
+		vals['setUpdatedParameters10'] = JSON.parse(setUpdatedParameters10);
 	if(addUpdatedParameters10 != null && addUpdatedParameters10 !== '')
 		vals['addUpdatedParameters10'] = addUpdatedParameters10;
 	var removeUpdatedParameters10 = $formValues.find('.removeUpdatedParameters10').val();
@@ -912,7 +916,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformanceWaitWestEastVehicleSec = removeUpdatedPerformanceWaitWestEastVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitWestEastVehicleSec').val();
 	var addUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.addUpdatedPerformanceWaitWestEastVehicleSec').val();
 	if(removeUpdatedPerformanceWaitWestEastVehicleSec || setUpdatedPerformanceWaitWestEastVehicleSec != null && setUpdatedPerformanceWaitWestEastVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitWestEastVehicleSec'] = setUpdatedPerformanceWaitWestEastVehicleSec;
+		vals['setUpdatedPerformanceWaitWestEastVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitWestEastVehicleSec);
 	if(addUpdatedPerformanceWaitWestEastVehicleSec != null && addUpdatedPerformanceWaitWestEastVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitWestEastVehicleSec'] = addUpdatedPerformanceWaitWestEastVehicleSec;
 	var removeUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitWestEastVehicleSec').val();
@@ -924,7 +928,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformanceWaitSouthNorthVehicleSec = removeUpdatedPerformanceWaitSouthNorthVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	var addUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.addUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	if(removeUpdatedPerformanceWaitSouthNorthVehicleSec || setUpdatedPerformanceWaitSouthNorthVehicleSec != null && setUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitSouthNorthVehicleSec'] = setUpdatedPerformanceWaitSouthNorthVehicleSec;
+		vals['setUpdatedPerformanceWaitSouthNorthVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitSouthNorthVehicleSec);
 	if(addUpdatedPerformanceWaitSouthNorthVehicleSec != null && addUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitSouthNorthVehicleSec'] = addUpdatedPerformanceWaitSouthNorthVehicleSec;
 	var removeUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitSouthNorthVehicleSec').val();
@@ -936,7 +940,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformanceWaitAllVehicleSec = removeUpdatedPerformanceWaitAllVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllVehicleSec').val();
 	var addUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.addUpdatedPerformanceWaitAllVehicleSec').val();
 	if(removeUpdatedPerformanceWaitAllVehicleSec || setUpdatedPerformanceWaitAllVehicleSec != null && setUpdatedPerformanceWaitAllVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitAllVehicleSec'] = setUpdatedPerformanceWaitAllVehicleSec;
+		vals['setUpdatedPerformanceWaitAllVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitAllVehicleSec);
 	if(addUpdatedPerformanceWaitAllVehicleSec != null && addUpdatedPerformanceWaitAllVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitAllVehicleSec'] = addUpdatedPerformanceWaitAllVehicleSec;
 	var removeUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitAllVehicleSec').val();
@@ -948,7 +952,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformanceWaitAllPedestrianSec = removeUpdatedPerformanceWaitAllPedestrianSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllPedestrianSec').val();
 	var addUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.addUpdatedPerformanceWaitAllPedestrianSec').val();
 	if(removeUpdatedPerformanceWaitAllPedestrianSec || setUpdatedPerformanceWaitAllPedestrianSec != null && setUpdatedPerformanceWaitAllPedestrianSec !== '')
-		vals['setUpdatedPerformanceWaitAllPedestrianSec'] = setUpdatedPerformanceWaitAllPedestrianSec;
+		vals['setUpdatedPerformanceWaitAllPedestrianSec'] = JSON.parse(setUpdatedPerformanceWaitAllPedestrianSec);
 	if(addUpdatedPerformanceWaitAllPedestrianSec != null && addUpdatedPerformanceWaitAllPedestrianSec !== '')
 		vals['addUpdatedPerformanceWaitAllPedestrianSec'] = addUpdatedPerformanceWaitAllPedestrianSec;
 	var removeUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.removeUpdatedPerformanceWaitAllPedestrianSec').val();
@@ -960,7 +964,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformanceWaitAllVehiclePedestrianSec = removeUpdatedPerformanceWaitAllVehiclePedestrianSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	var addUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.addUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	if(removeUpdatedPerformanceWaitAllVehiclePedestrianSec || setUpdatedPerformanceWaitAllVehiclePedestrianSec != null && setUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
-		vals['setUpdatedPerformanceWaitAllVehiclePedestrianSec'] = setUpdatedPerformanceWaitAllVehiclePedestrianSec;
+		vals['setUpdatedPerformanceWaitAllVehiclePedestrianSec'] = JSON.parse(setUpdatedPerformanceWaitAllVehiclePedestrianSec);
 	if(addUpdatedPerformanceWaitAllVehiclePedestrianSec != null && addUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 		vals['addUpdatedPerformanceWaitAllVehiclePedestrianSec'] = addUpdatedPerformanceWaitAllVehiclePedestrianSec;
 	var removeUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.removeUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
@@ -972,7 +976,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setAvgQueueLengthWestEastVehicle = removeAvgQueueLengthWestEastVehicle ? null : $formValues.find('.setAvgQueueLengthWestEastVehicle').val();
 	var addAvgQueueLengthWestEastVehicle = $formValues.find('.addAvgQueueLengthWestEastVehicle').val();
 	if(removeAvgQueueLengthWestEastVehicle || setAvgQueueLengthWestEastVehicle != null && setAvgQueueLengthWestEastVehicle !== '')
-		vals['setAvgQueueLengthWestEastVehicle'] = setAvgQueueLengthWestEastVehicle;
+		vals['setAvgQueueLengthWestEastVehicle'] = JSON.parse(setAvgQueueLengthWestEastVehicle);
 	if(addAvgQueueLengthWestEastVehicle != null && addAvgQueueLengthWestEastVehicle !== '')
 		vals['addAvgQueueLengthWestEastVehicle'] = addAvgQueueLengthWestEastVehicle;
 	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val();
@@ -984,7 +988,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setAvgQueueLengthSouthNorthVehicle = removeAvgQueueLengthSouthNorthVehicle ? null : $formValues.find('.setAvgQueueLengthSouthNorthVehicle').val();
 	var addAvgQueueLengthSouthNorthVehicle = $formValues.find('.addAvgQueueLengthSouthNorthVehicle').val();
 	if(removeAvgQueueLengthSouthNorthVehicle || setAvgQueueLengthSouthNorthVehicle != null && setAvgQueueLengthSouthNorthVehicle !== '')
-		vals['setAvgQueueLengthSouthNorthVehicle'] = setAvgQueueLengthSouthNorthVehicle;
+		vals['setAvgQueueLengthSouthNorthVehicle'] = JSON.parse(setAvgQueueLengthSouthNorthVehicle);
 	if(addAvgQueueLengthSouthNorthVehicle != null && addAvgQueueLengthSouthNorthVehicle !== '')
 		vals['addAvgQueueLengthSouthNorthVehicle'] = addAvgQueueLengthSouthNorthVehicle;
 	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val();
@@ -996,7 +1000,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setAvgQueueLengthNorthSouthPedestrian = removeAvgQueueLengthNorthSouthPedestrian ? null : $formValues.find('.setAvgQueueLengthNorthSouthPedestrian').val();
 	var addAvgQueueLengthNorthSouthPedestrian = $formValues.find('.addAvgQueueLengthNorthSouthPedestrian').val();
 	if(removeAvgQueueLengthNorthSouthPedestrian || setAvgQueueLengthNorthSouthPedestrian != null && setAvgQueueLengthNorthSouthPedestrian !== '')
-		vals['setAvgQueueLengthNorthSouthPedestrian'] = setAvgQueueLengthNorthSouthPedestrian;
+		vals['setAvgQueueLengthNorthSouthPedestrian'] = JSON.parse(setAvgQueueLengthNorthSouthPedestrian);
 	if(addAvgQueueLengthNorthSouthPedestrian != null && addAvgQueueLengthNorthSouthPedestrian !== '')
 		vals['addAvgQueueLengthNorthSouthPedestrian'] = addAvgQueueLengthNorthSouthPedestrian;
 	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val();
@@ -1008,7 +1012,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setAvgQueueLengthWestEastPedestrian = removeAvgQueueLengthWestEastPedestrian ? null : $formValues.find('.setAvgQueueLengthWestEastPedestrian').val();
 	var addAvgQueueLengthWestEastPedestrian = $formValues.find('.addAvgQueueLengthWestEastPedestrian').val();
 	if(removeAvgQueueLengthWestEastPedestrian || setAvgQueueLengthWestEastPedestrian != null && setAvgQueueLengthWestEastPedestrian !== '')
-		vals['setAvgQueueLengthWestEastPedestrian'] = setAvgQueueLengthWestEastPedestrian;
+		vals['setAvgQueueLengthWestEastPedestrian'] = JSON.parse(setAvgQueueLengthWestEastPedestrian);
 	if(addAvgQueueLengthWestEastPedestrian != null && addAvgQueueLengthWestEastPedestrian !== '')
 		vals['addAvgQueueLengthWestEastPedestrian'] = addAvgQueueLengthWestEastPedestrian;
 	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val();
@@ -1128,7 +1132,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
 	var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
 	if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
-		vals['setParamDemandScale'] = setParamDemandScale;
+		vals['setParamDemandScale'] = JSON.parse(setParamDemandScale);
 	if(addParamDemandScale != null && addParamDemandScale !== '')
 		vals['addParamDemandScale'] = addParamDemandScale;
 	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
@@ -1140,7 +1144,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedParameters = removeUpdatedParameters ? null : $formValues.find('.setUpdatedParameters').val();
 	var addUpdatedParameters = $formValues.find('.addUpdatedParameters').val();
 	if(removeUpdatedParameters || setUpdatedParameters != null && setUpdatedParameters !== '')
-		vals['setUpdatedParameters'] = setUpdatedParameters;
+		vals['setUpdatedParameters'] = JSON.parse(setUpdatedParameters);
 	if(addUpdatedParameters != null && addUpdatedParameters !== '')
 		vals['addUpdatedParameters'] = addUpdatedParameters;
 	var removeUpdatedParameters = $formValues.find('.removeUpdatedParameters').val();
@@ -1152,7 +1156,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
 	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
 	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
-		vals['setUpdatedPerformance'] = setUpdatedPerformance;
+		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
 	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
 		vals['addUpdatedPerformance'] = addUpdatedPerformance;
 	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
@@ -1164,7 +1168,7 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
 	var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
 	if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
-		vals['setAverageQueueLength'] = setAverageQueueLength;
+		vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
 	if(addAverageQueueLength != null && addAverageQueueLength !== '')
 		vals['addAverageQueueLength'] = addAverageQueueLength;
 	var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
@@ -1451,6 +1455,10 @@ function patchSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+		if(filterAreaServed != null && filterAreaServed !== '')
+			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
 		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
@@ -1644,79 +1652,79 @@ async function postSimulationReport($formValues, success, error) {
 
 	var valueUpdatedParameters1 = $formValues.find('.valueUpdatedParameters1').val();
 	if(valueUpdatedParameters1 != null && valueUpdatedParameters1 !== '')
-		vals['updatedParameters1'] = valueUpdatedParameters1;
+		vals['updatedParameters1'] = JSON.parse(valueUpdatedParameters1);
 
 	var valueUpdatedParameters2 = $formValues.find('.valueUpdatedParameters2').val();
 	if(valueUpdatedParameters2 != null && valueUpdatedParameters2 !== '')
-		vals['updatedParameters2'] = valueUpdatedParameters2;
+		vals['updatedParameters2'] = JSON.parse(valueUpdatedParameters2);
 
 	var valueUpdatedParameters3 = $formValues.find('.valueUpdatedParameters3').val();
 	if(valueUpdatedParameters3 != null && valueUpdatedParameters3 !== '')
-		vals['updatedParameters3'] = valueUpdatedParameters3;
+		vals['updatedParameters3'] = JSON.parse(valueUpdatedParameters3);
 
 	var valueUpdatedParameters4 = $formValues.find('.valueUpdatedParameters4').val();
 	if(valueUpdatedParameters4 != null && valueUpdatedParameters4 !== '')
-		vals['updatedParameters4'] = valueUpdatedParameters4;
+		vals['updatedParameters4'] = JSON.parse(valueUpdatedParameters4);
 
 	var valueUpdatedParameters5 = $formValues.find('.valueUpdatedParameters5').val();
 	if(valueUpdatedParameters5 != null && valueUpdatedParameters5 !== '')
-		vals['updatedParameters5'] = valueUpdatedParameters5;
+		vals['updatedParameters5'] = JSON.parse(valueUpdatedParameters5);
 
 	var valueUpdatedParameters6 = $formValues.find('.valueUpdatedParameters6').val();
 	if(valueUpdatedParameters6 != null && valueUpdatedParameters6 !== '')
-		vals['updatedParameters6'] = valueUpdatedParameters6;
+		vals['updatedParameters6'] = JSON.parse(valueUpdatedParameters6);
 
 	var valueUpdatedParameters7 = $formValues.find('.valueUpdatedParameters7').val();
 	if(valueUpdatedParameters7 != null && valueUpdatedParameters7 !== '')
-		vals['updatedParameters7'] = valueUpdatedParameters7;
+		vals['updatedParameters7'] = JSON.parse(valueUpdatedParameters7);
 
 	var valueUpdatedParameters8 = $formValues.find('.valueUpdatedParameters8').val();
 	if(valueUpdatedParameters8 != null && valueUpdatedParameters8 !== '')
-		vals['updatedParameters8'] = valueUpdatedParameters8;
+		vals['updatedParameters8'] = JSON.parse(valueUpdatedParameters8);
 
 	var valueUpdatedParameters9 = $formValues.find('.valueUpdatedParameters9').val();
 	if(valueUpdatedParameters9 != null && valueUpdatedParameters9 !== '')
-		vals['updatedParameters9'] = valueUpdatedParameters9;
+		vals['updatedParameters9'] = JSON.parse(valueUpdatedParameters9);
 
 	var valueUpdatedParameters10 = $formValues.find('.valueUpdatedParameters10').val();
 	if(valueUpdatedParameters10 != null && valueUpdatedParameters10 !== '')
-		vals['updatedParameters10'] = valueUpdatedParameters10;
+		vals['updatedParameters10'] = JSON.parse(valueUpdatedParameters10);
 
 	var valueUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitWestEastVehicleSec').val();
 	if(valueUpdatedPerformanceWaitWestEastVehicleSec != null && valueUpdatedPerformanceWaitWestEastVehicleSec !== '')
-		vals['updatedPerformanceWaitWestEastVehicleSec'] = valueUpdatedPerformanceWaitWestEastVehicleSec;
+		vals['updatedPerformanceWaitWestEastVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitWestEastVehicleSec);
 
 	var valueUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	if(valueUpdatedPerformanceWaitSouthNorthVehicleSec != null && valueUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
-		vals['updatedPerformanceWaitSouthNorthVehicleSec'] = valueUpdatedPerformanceWaitSouthNorthVehicleSec;
+		vals['updatedPerformanceWaitSouthNorthVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitSouthNorthVehicleSec);
 
 	var valueUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitAllVehicleSec').val();
 	if(valueUpdatedPerformanceWaitAllVehicleSec != null && valueUpdatedPerformanceWaitAllVehicleSec !== '')
-		vals['updatedPerformanceWaitAllVehicleSec'] = valueUpdatedPerformanceWaitAllVehicleSec;
+		vals['updatedPerformanceWaitAllVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitAllVehicleSec);
 
 	var valueUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.valueUpdatedPerformanceWaitAllPedestrianSec').val();
 	if(valueUpdatedPerformanceWaitAllPedestrianSec != null && valueUpdatedPerformanceWaitAllPedestrianSec !== '')
-		vals['updatedPerformanceWaitAllPedestrianSec'] = valueUpdatedPerformanceWaitAllPedestrianSec;
+		vals['updatedPerformanceWaitAllPedestrianSec'] = JSON.parse(valueUpdatedPerformanceWaitAllPedestrianSec);
 
 	var valueUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.valueUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	if(valueUpdatedPerformanceWaitAllVehiclePedestrianSec != null && valueUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
-		vals['updatedPerformanceWaitAllVehiclePedestrianSec'] = valueUpdatedPerformanceWaitAllVehiclePedestrianSec;
+		vals['updatedPerformanceWaitAllVehiclePedestrianSec'] = JSON.parse(valueUpdatedPerformanceWaitAllVehiclePedestrianSec);
 
 	var valueAvgQueueLengthWestEastVehicle = $formValues.find('.valueAvgQueueLengthWestEastVehicle').val();
 	if(valueAvgQueueLengthWestEastVehicle != null && valueAvgQueueLengthWestEastVehicle !== '')
-		vals['avgQueueLengthWestEastVehicle'] = valueAvgQueueLengthWestEastVehicle;
+		vals['avgQueueLengthWestEastVehicle'] = JSON.parse(valueAvgQueueLengthWestEastVehicle);
 
 	var valueAvgQueueLengthSouthNorthVehicle = $formValues.find('.valueAvgQueueLengthSouthNorthVehicle').val();
 	if(valueAvgQueueLengthSouthNorthVehicle != null && valueAvgQueueLengthSouthNorthVehicle !== '')
-		vals['avgQueueLengthSouthNorthVehicle'] = valueAvgQueueLengthSouthNorthVehicle;
+		vals['avgQueueLengthSouthNorthVehicle'] = JSON.parse(valueAvgQueueLengthSouthNorthVehicle);
 
 	var valueAvgQueueLengthNorthSouthPedestrian = $formValues.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
 	if(valueAvgQueueLengthNorthSouthPedestrian != null && valueAvgQueueLengthNorthSouthPedestrian !== '')
-		vals['avgQueueLengthNorthSouthPedestrian'] = valueAvgQueueLengthNorthSouthPedestrian;
+		vals['avgQueueLengthNorthSouthPedestrian'] = JSON.parse(valueAvgQueueLengthNorthSouthPedestrian);
 
 	var valueAvgQueueLengthWestEastPedestrian = $formValues.find('.valueAvgQueueLengthWestEastPedestrian').val();
 	if(valueAvgQueueLengthWestEastPedestrian != null && valueAvgQueueLengthWestEastPedestrian !== '')
-		vals['avgQueueLengthWestEastPedestrian'] = valueAvgQueueLengthWestEastPedestrian;
+		vals['avgQueueLengthWestEastPedestrian'] = JSON.parse(valueAvgQueueLengthWestEastPedestrian);
 
 	var valueReportStatus = $formValues.find('.valueReportStatus').val();
 	if(valueReportStatus != null && valueReportStatus !== '')
@@ -1756,19 +1764,19 @@ async function postSimulationReport($formValues, success, error) {
 
 	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
 	if(valueParamDemandScale != null && valueParamDemandScale !== '')
-		vals['paramDemandScale'] = valueParamDemandScale;
+		vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
 
 	var valueUpdatedParameters = $formValues.find('.valueUpdatedParameters').val();
 	if(valueUpdatedParameters != null && valueUpdatedParameters !== '')
-		vals['updatedParameters'] = valueUpdatedParameters;
+		vals['updatedParameters'] = JSON.parse(valueUpdatedParameters);
 
 	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
 	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
-		vals['updatedPerformance'] = valueUpdatedPerformance;
+		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
-		vals['averageQueueLength'] = valueAverageQueueLength;
+		vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
 
 	$.ajax({
 		url: '/api/simulation-report'
@@ -1949,79 +1957,79 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 
 	var valueUpdatedParameters1 = $formValues.find('.valueUpdatedParameters1').val();
 	if(valueUpdatedParameters1 != null && valueUpdatedParameters1 !== '')
-		vals['updatedParameters1'] = valueUpdatedParameters1;
+		vals['updatedParameters1'] = JSON.parse(valueUpdatedParameters1);
 
 	var valueUpdatedParameters2 = $formValues.find('.valueUpdatedParameters2').val();
 	if(valueUpdatedParameters2 != null && valueUpdatedParameters2 !== '')
-		vals['updatedParameters2'] = valueUpdatedParameters2;
+		vals['updatedParameters2'] = JSON.parse(valueUpdatedParameters2);
 
 	var valueUpdatedParameters3 = $formValues.find('.valueUpdatedParameters3').val();
 	if(valueUpdatedParameters3 != null && valueUpdatedParameters3 !== '')
-		vals['updatedParameters3'] = valueUpdatedParameters3;
+		vals['updatedParameters3'] = JSON.parse(valueUpdatedParameters3);
 
 	var valueUpdatedParameters4 = $formValues.find('.valueUpdatedParameters4').val();
 	if(valueUpdatedParameters4 != null && valueUpdatedParameters4 !== '')
-		vals['updatedParameters4'] = valueUpdatedParameters4;
+		vals['updatedParameters4'] = JSON.parse(valueUpdatedParameters4);
 
 	var valueUpdatedParameters5 = $formValues.find('.valueUpdatedParameters5').val();
 	if(valueUpdatedParameters5 != null && valueUpdatedParameters5 !== '')
-		vals['updatedParameters5'] = valueUpdatedParameters5;
+		vals['updatedParameters5'] = JSON.parse(valueUpdatedParameters5);
 
 	var valueUpdatedParameters6 = $formValues.find('.valueUpdatedParameters6').val();
 	if(valueUpdatedParameters6 != null && valueUpdatedParameters6 !== '')
-		vals['updatedParameters6'] = valueUpdatedParameters6;
+		vals['updatedParameters6'] = JSON.parse(valueUpdatedParameters6);
 
 	var valueUpdatedParameters7 = $formValues.find('.valueUpdatedParameters7').val();
 	if(valueUpdatedParameters7 != null && valueUpdatedParameters7 !== '')
-		vals['updatedParameters7'] = valueUpdatedParameters7;
+		vals['updatedParameters7'] = JSON.parse(valueUpdatedParameters7);
 
 	var valueUpdatedParameters8 = $formValues.find('.valueUpdatedParameters8').val();
 	if(valueUpdatedParameters8 != null && valueUpdatedParameters8 !== '')
-		vals['updatedParameters8'] = valueUpdatedParameters8;
+		vals['updatedParameters8'] = JSON.parse(valueUpdatedParameters8);
 
 	var valueUpdatedParameters9 = $formValues.find('.valueUpdatedParameters9').val();
 	if(valueUpdatedParameters9 != null && valueUpdatedParameters9 !== '')
-		vals['updatedParameters9'] = valueUpdatedParameters9;
+		vals['updatedParameters9'] = JSON.parse(valueUpdatedParameters9);
 
 	var valueUpdatedParameters10 = $formValues.find('.valueUpdatedParameters10').val();
 	if(valueUpdatedParameters10 != null && valueUpdatedParameters10 !== '')
-		vals['updatedParameters10'] = valueUpdatedParameters10;
+		vals['updatedParameters10'] = JSON.parse(valueUpdatedParameters10);
 
 	var valueUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitWestEastVehicleSec').val();
 	if(valueUpdatedPerformanceWaitWestEastVehicleSec != null && valueUpdatedPerformanceWaitWestEastVehicleSec !== '')
-		vals['updatedPerformanceWaitWestEastVehicleSec'] = valueUpdatedPerformanceWaitWestEastVehicleSec;
+		vals['updatedPerformanceWaitWestEastVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitWestEastVehicleSec);
 
 	var valueUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	if(valueUpdatedPerformanceWaitSouthNorthVehicleSec != null && valueUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
-		vals['updatedPerformanceWaitSouthNorthVehicleSec'] = valueUpdatedPerformanceWaitSouthNorthVehicleSec;
+		vals['updatedPerformanceWaitSouthNorthVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitSouthNorthVehicleSec);
 
 	var valueUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.valueUpdatedPerformanceWaitAllVehicleSec').val();
 	if(valueUpdatedPerformanceWaitAllVehicleSec != null && valueUpdatedPerformanceWaitAllVehicleSec !== '')
-		vals['updatedPerformanceWaitAllVehicleSec'] = valueUpdatedPerformanceWaitAllVehicleSec;
+		vals['updatedPerformanceWaitAllVehicleSec'] = JSON.parse(valueUpdatedPerformanceWaitAllVehicleSec);
 
 	var valueUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.valueUpdatedPerformanceWaitAllPedestrianSec').val();
 	if(valueUpdatedPerformanceWaitAllPedestrianSec != null && valueUpdatedPerformanceWaitAllPedestrianSec !== '')
-		vals['updatedPerformanceWaitAllPedestrianSec'] = valueUpdatedPerformanceWaitAllPedestrianSec;
+		vals['updatedPerformanceWaitAllPedestrianSec'] = JSON.parse(valueUpdatedPerformanceWaitAllPedestrianSec);
 
 	var valueUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.valueUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	if(valueUpdatedPerformanceWaitAllVehiclePedestrianSec != null && valueUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
-		vals['updatedPerformanceWaitAllVehiclePedestrianSec'] = valueUpdatedPerformanceWaitAllVehiclePedestrianSec;
+		vals['updatedPerformanceWaitAllVehiclePedestrianSec'] = JSON.parse(valueUpdatedPerformanceWaitAllVehiclePedestrianSec);
 
 	var valueAvgQueueLengthWestEastVehicle = $formValues.find('.valueAvgQueueLengthWestEastVehicle').val();
 	if(valueAvgQueueLengthWestEastVehicle != null && valueAvgQueueLengthWestEastVehicle !== '')
-		vals['avgQueueLengthWestEastVehicle'] = valueAvgQueueLengthWestEastVehicle;
+		vals['avgQueueLengthWestEastVehicle'] = JSON.parse(valueAvgQueueLengthWestEastVehicle);
 
 	var valueAvgQueueLengthSouthNorthVehicle = $formValues.find('.valueAvgQueueLengthSouthNorthVehicle').val();
 	if(valueAvgQueueLengthSouthNorthVehicle != null && valueAvgQueueLengthSouthNorthVehicle !== '')
-		vals['avgQueueLengthSouthNorthVehicle'] = valueAvgQueueLengthSouthNorthVehicle;
+		vals['avgQueueLengthSouthNorthVehicle'] = JSON.parse(valueAvgQueueLengthSouthNorthVehicle);
 
 	var valueAvgQueueLengthNorthSouthPedestrian = $formValues.find('.valueAvgQueueLengthNorthSouthPedestrian').val();
 	if(valueAvgQueueLengthNorthSouthPedestrian != null && valueAvgQueueLengthNorthSouthPedestrian !== '')
-		vals['avgQueueLengthNorthSouthPedestrian'] = valueAvgQueueLengthNorthSouthPedestrian;
+		vals['avgQueueLengthNorthSouthPedestrian'] = JSON.parse(valueAvgQueueLengthNorthSouthPedestrian);
 
 	var valueAvgQueueLengthWestEastPedestrian = $formValues.find('.valueAvgQueueLengthWestEastPedestrian').val();
 	if(valueAvgQueueLengthWestEastPedestrian != null && valueAvgQueueLengthWestEastPedestrian !== '')
-		vals['avgQueueLengthWestEastPedestrian'] = valueAvgQueueLengthWestEastPedestrian;
+		vals['avgQueueLengthWestEastPedestrian'] = JSON.parse(valueAvgQueueLengthWestEastPedestrian);
 
 	var valueReportStatus = $formValues.find('.valueReportStatus').val();
 	if(valueReportStatus != null && valueReportStatus !== '')
@@ -2061,19 +2069,19 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 
 	var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
 	if(valueParamDemandScale != null && valueParamDemandScale !== '')
-		vals['paramDemandScale'] = valueParamDemandScale;
+		vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
 
 	var valueUpdatedParameters = $formValues.find('.valueUpdatedParameters').val();
 	if(valueUpdatedParameters != null && valueUpdatedParameters !== '')
-		vals['updatedParameters'] = valueUpdatedParameters;
+		vals['updatedParameters'] = JSON.parse(valueUpdatedParameters);
 
 	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
 	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
-		vals['updatedPerformance'] = valueUpdatedPerformance;
+		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
-		vals['averageQueueLength'] = valueAverageQueueLength;
+		vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
 
 	putcopySimulationReportVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -2440,7 +2448,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters1 = removeUpdatedParameters1 ? null : $formValues.find('.setUpdatedParameters1').val();
 	var addUpdatedParameters1 = $formValues.find('.addUpdatedParameters1').val();
 	if(removeUpdatedParameters1 || setUpdatedParameters1 != null && setUpdatedParameters1 !== '')
-		vals['setUpdatedParameters1'] = setUpdatedParameters1;
+		vals['setUpdatedParameters1'] = JSON.parse(setUpdatedParameters1);
 	if(addUpdatedParameters1 != null && addUpdatedParameters1 !== '')
 		vals['addUpdatedParameters1'] = addUpdatedParameters1;
 	var removeUpdatedParameters1 = $formValues.find('.removeUpdatedParameters1').val();
@@ -2452,7 +2460,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters2 = removeUpdatedParameters2 ? null : $formValues.find('.setUpdatedParameters2').val();
 	var addUpdatedParameters2 = $formValues.find('.addUpdatedParameters2').val();
 	if(removeUpdatedParameters2 || setUpdatedParameters2 != null && setUpdatedParameters2 !== '')
-		vals['setUpdatedParameters2'] = setUpdatedParameters2;
+		vals['setUpdatedParameters2'] = JSON.parse(setUpdatedParameters2);
 	if(addUpdatedParameters2 != null && addUpdatedParameters2 !== '')
 		vals['addUpdatedParameters2'] = addUpdatedParameters2;
 	var removeUpdatedParameters2 = $formValues.find('.removeUpdatedParameters2').val();
@@ -2464,7 +2472,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters3 = removeUpdatedParameters3 ? null : $formValues.find('.setUpdatedParameters3').val();
 	var addUpdatedParameters3 = $formValues.find('.addUpdatedParameters3').val();
 	if(removeUpdatedParameters3 || setUpdatedParameters3 != null && setUpdatedParameters3 !== '')
-		vals['setUpdatedParameters3'] = setUpdatedParameters3;
+		vals['setUpdatedParameters3'] = JSON.parse(setUpdatedParameters3);
 	if(addUpdatedParameters3 != null && addUpdatedParameters3 !== '')
 		vals['addUpdatedParameters3'] = addUpdatedParameters3;
 	var removeUpdatedParameters3 = $formValues.find('.removeUpdatedParameters3').val();
@@ -2476,7 +2484,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters4 = removeUpdatedParameters4 ? null : $formValues.find('.setUpdatedParameters4').val();
 	var addUpdatedParameters4 = $formValues.find('.addUpdatedParameters4').val();
 	if(removeUpdatedParameters4 || setUpdatedParameters4 != null && setUpdatedParameters4 !== '')
-		vals['setUpdatedParameters4'] = setUpdatedParameters4;
+		vals['setUpdatedParameters4'] = JSON.parse(setUpdatedParameters4);
 	if(addUpdatedParameters4 != null && addUpdatedParameters4 !== '')
 		vals['addUpdatedParameters4'] = addUpdatedParameters4;
 	var removeUpdatedParameters4 = $formValues.find('.removeUpdatedParameters4').val();
@@ -2488,7 +2496,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters5 = removeUpdatedParameters5 ? null : $formValues.find('.setUpdatedParameters5').val();
 	var addUpdatedParameters5 = $formValues.find('.addUpdatedParameters5').val();
 	if(removeUpdatedParameters5 || setUpdatedParameters5 != null && setUpdatedParameters5 !== '')
-		vals['setUpdatedParameters5'] = setUpdatedParameters5;
+		vals['setUpdatedParameters5'] = JSON.parse(setUpdatedParameters5);
 	if(addUpdatedParameters5 != null && addUpdatedParameters5 !== '')
 		vals['addUpdatedParameters5'] = addUpdatedParameters5;
 	var removeUpdatedParameters5 = $formValues.find('.removeUpdatedParameters5').val();
@@ -2500,7 +2508,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters6 = removeUpdatedParameters6 ? null : $formValues.find('.setUpdatedParameters6').val();
 	var addUpdatedParameters6 = $formValues.find('.addUpdatedParameters6').val();
 	if(removeUpdatedParameters6 || setUpdatedParameters6 != null && setUpdatedParameters6 !== '')
-		vals['setUpdatedParameters6'] = setUpdatedParameters6;
+		vals['setUpdatedParameters6'] = JSON.parse(setUpdatedParameters6);
 	if(addUpdatedParameters6 != null && addUpdatedParameters6 !== '')
 		vals['addUpdatedParameters6'] = addUpdatedParameters6;
 	var removeUpdatedParameters6 = $formValues.find('.removeUpdatedParameters6').val();
@@ -2512,7 +2520,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters7 = removeUpdatedParameters7 ? null : $formValues.find('.setUpdatedParameters7').val();
 	var addUpdatedParameters7 = $formValues.find('.addUpdatedParameters7').val();
 	if(removeUpdatedParameters7 || setUpdatedParameters7 != null && setUpdatedParameters7 !== '')
-		vals['setUpdatedParameters7'] = setUpdatedParameters7;
+		vals['setUpdatedParameters7'] = JSON.parse(setUpdatedParameters7);
 	if(addUpdatedParameters7 != null && addUpdatedParameters7 !== '')
 		vals['addUpdatedParameters7'] = addUpdatedParameters7;
 	var removeUpdatedParameters7 = $formValues.find('.removeUpdatedParameters7').val();
@@ -2524,7 +2532,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters8 = removeUpdatedParameters8 ? null : $formValues.find('.setUpdatedParameters8').val();
 	var addUpdatedParameters8 = $formValues.find('.addUpdatedParameters8').val();
 	if(removeUpdatedParameters8 || setUpdatedParameters8 != null && setUpdatedParameters8 !== '')
-		vals['setUpdatedParameters8'] = setUpdatedParameters8;
+		vals['setUpdatedParameters8'] = JSON.parse(setUpdatedParameters8);
 	if(addUpdatedParameters8 != null && addUpdatedParameters8 !== '')
 		vals['addUpdatedParameters8'] = addUpdatedParameters8;
 	var removeUpdatedParameters8 = $formValues.find('.removeUpdatedParameters8').val();
@@ -2536,7 +2544,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters9 = removeUpdatedParameters9 ? null : $formValues.find('.setUpdatedParameters9').val();
 	var addUpdatedParameters9 = $formValues.find('.addUpdatedParameters9').val();
 	if(removeUpdatedParameters9 || setUpdatedParameters9 != null && setUpdatedParameters9 !== '')
-		vals['setUpdatedParameters9'] = setUpdatedParameters9;
+		vals['setUpdatedParameters9'] = JSON.parse(setUpdatedParameters9);
 	if(addUpdatedParameters9 != null && addUpdatedParameters9 !== '')
 		vals['addUpdatedParameters9'] = addUpdatedParameters9;
 	var removeUpdatedParameters9 = $formValues.find('.removeUpdatedParameters9').val();
@@ -2548,7 +2556,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters10 = removeUpdatedParameters10 ? null : $formValues.find('.setUpdatedParameters10').val();
 	var addUpdatedParameters10 = $formValues.find('.addUpdatedParameters10').val();
 	if(removeUpdatedParameters10 || setUpdatedParameters10 != null && setUpdatedParameters10 !== '')
-		vals['setUpdatedParameters10'] = setUpdatedParameters10;
+		vals['setUpdatedParameters10'] = JSON.parse(setUpdatedParameters10);
 	if(addUpdatedParameters10 != null && addUpdatedParameters10 !== '')
 		vals['addUpdatedParameters10'] = addUpdatedParameters10;
 	var removeUpdatedParameters10 = $formValues.find('.removeUpdatedParameters10').val();
@@ -2560,7 +2568,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformanceWaitWestEastVehicleSec = removeUpdatedPerformanceWaitWestEastVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitWestEastVehicleSec').val();
 	var addUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.addUpdatedPerformanceWaitWestEastVehicleSec').val();
 	if(removeUpdatedPerformanceWaitWestEastVehicleSec || setUpdatedPerformanceWaitWestEastVehicleSec != null && setUpdatedPerformanceWaitWestEastVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitWestEastVehicleSec'] = setUpdatedPerformanceWaitWestEastVehicleSec;
+		vals['setUpdatedPerformanceWaitWestEastVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitWestEastVehicleSec);
 	if(addUpdatedPerformanceWaitWestEastVehicleSec != null && addUpdatedPerformanceWaitWestEastVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitWestEastVehicleSec'] = addUpdatedPerformanceWaitWestEastVehicleSec;
 	var removeUpdatedPerformanceWaitWestEastVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitWestEastVehicleSec').val();
@@ -2572,7 +2580,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformanceWaitSouthNorthVehicleSec = removeUpdatedPerformanceWaitSouthNorthVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	var addUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.addUpdatedPerformanceWaitSouthNorthVehicleSec').val();
 	if(removeUpdatedPerformanceWaitSouthNorthVehicleSec || setUpdatedPerformanceWaitSouthNorthVehicleSec != null && setUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitSouthNorthVehicleSec'] = setUpdatedPerformanceWaitSouthNorthVehicleSec;
+		vals['setUpdatedPerformanceWaitSouthNorthVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitSouthNorthVehicleSec);
 	if(addUpdatedPerformanceWaitSouthNorthVehicleSec != null && addUpdatedPerformanceWaitSouthNorthVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitSouthNorthVehicleSec'] = addUpdatedPerformanceWaitSouthNorthVehicleSec;
 	var removeUpdatedPerformanceWaitSouthNorthVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitSouthNorthVehicleSec').val();
@@ -2584,7 +2592,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformanceWaitAllVehicleSec = removeUpdatedPerformanceWaitAllVehicleSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllVehicleSec').val();
 	var addUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.addUpdatedPerformanceWaitAllVehicleSec').val();
 	if(removeUpdatedPerformanceWaitAllVehicleSec || setUpdatedPerformanceWaitAllVehicleSec != null && setUpdatedPerformanceWaitAllVehicleSec !== '')
-		vals['setUpdatedPerformanceWaitAllVehicleSec'] = setUpdatedPerformanceWaitAllVehicleSec;
+		vals['setUpdatedPerformanceWaitAllVehicleSec'] = JSON.parse(setUpdatedPerformanceWaitAllVehicleSec);
 	if(addUpdatedPerformanceWaitAllVehicleSec != null && addUpdatedPerformanceWaitAllVehicleSec !== '')
 		vals['addUpdatedPerformanceWaitAllVehicleSec'] = addUpdatedPerformanceWaitAllVehicleSec;
 	var removeUpdatedPerformanceWaitAllVehicleSec = $formValues.find('.removeUpdatedPerformanceWaitAllVehicleSec').val();
@@ -2596,7 +2604,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformanceWaitAllPedestrianSec = removeUpdatedPerformanceWaitAllPedestrianSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllPedestrianSec').val();
 	var addUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.addUpdatedPerformanceWaitAllPedestrianSec').val();
 	if(removeUpdatedPerformanceWaitAllPedestrianSec || setUpdatedPerformanceWaitAllPedestrianSec != null && setUpdatedPerformanceWaitAllPedestrianSec !== '')
-		vals['setUpdatedPerformanceWaitAllPedestrianSec'] = setUpdatedPerformanceWaitAllPedestrianSec;
+		vals['setUpdatedPerformanceWaitAllPedestrianSec'] = JSON.parse(setUpdatedPerformanceWaitAllPedestrianSec);
 	if(addUpdatedPerformanceWaitAllPedestrianSec != null && addUpdatedPerformanceWaitAllPedestrianSec !== '')
 		vals['addUpdatedPerformanceWaitAllPedestrianSec'] = addUpdatedPerformanceWaitAllPedestrianSec;
 	var removeUpdatedPerformanceWaitAllPedestrianSec = $formValues.find('.removeUpdatedPerformanceWaitAllPedestrianSec').val();
@@ -2608,7 +2616,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformanceWaitAllVehiclePedestrianSec = removeUpdatedPerformanceWaitAllVehiclePedestrianSec ? null : $formValues.find('.setUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	var addUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.addUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
 	if(removeUpdatedPerformanceWaitAllVehiclePedestrianSec || setUpdatedPerformanceWaitAllVehiclePedestrianSec != null && setUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
-		vals['setUpdatedPerformanceWaitAllVehiclePedestrianSec'] = setUpdatedPerformanceWaitAllVehiclePedestrianSec;
+		vals['setUpdatedPerformanceWaitAllVehiclePedestrianSec'] = JSON.parse(setUpdatedPerformanceWaitAllVehiclePedestrianSec);
 	if(addUpdatedPerformanceWaitAllVehiclePedestrianSec != null && addUpdatedPerformanceWaitAllVehiclePedestrianSec !== '')
 		vals['addUpdatedPerformanceWaitAllVehiclePedestrianSec'] = addUpdatedPerformanceWaitAllVehiclePedestrianSec;
 	var removeUpdatedPerformanceWaitAllVehiclePedestrianSec = $formValues.find('.removeUpdatedPerformanceWaitAllVehiclePedestrianSec').val();
@@ -2620,7 +2628,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setAvgQueueLengthWestEastVehicle = removeAvgQueueLengthWestEastVehicle ? null : $formValues.find('.setAvgQueueLengthWestEastVehicle').val();
 	var addAvgQueueLengthWestEastVehicle = $formValues.find('.addAvgQueueLengthWestEastVehicle').val();
 	if(removeAvgQueueLengthWestEastVehicle || setAvgQueueLengthWestEastVehicle != null && setAvgQueueLengthWestEastVehicle !== '')
-		vals['setAvgQueueLengthWestEastVehicle'] = setAvgQueueLengthWestEastVehicle;
+		vals['setAvgQueueLengthWestEastVehicle'] = JSON.parse(setAvgQueueLengthWestEastVehicle);
 	if(addAvgQueueLengthWestEastVehicle != null && addAvgQueueLengthWestEastVehicle !== '')
 		vals['addAvgQueueLengthWestEastVehicle'] = addAvgQueueLengthWestEastVehicle;
 	var removeAvgQueueLengthWestEastVehicle = $formValues.find('.removeAvgQueueLengthWestEastVehicle').val();
@@ -2632,7 +2640,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setAvgQueueLengthSouthNorthVehicle = removeAvgQueueLengthSouthNorthVehicle ? null : $formValues.find('.setAvgQueueLengthSouthNorthVehicle').val();
 	var addAvgQueueLengthSouthNorthVehicle = $formValues.find('.addAvgQueueLengthSouthNorthVehicle').val();
 	if(removeAvgQueueLengthSouthNorthVehicle || setAvgQueueLengthSouthNorthVehicle != null && setAvgQueueLengthSouthNorthVehicle !== '')
-		vals['setAvgQueueLengthSouthNorthVehicle'] = setAvgQueueLengthSouthNorthVehicle;
+		vals['setAvgQueueLengthSouthNorthVehicle'] = JSON.parse(setAvgQueueLengthSouthNorthVehicle);
 	if(addAvgQueueLengthSouthNorthVehicle != null && addAvgQueueLengthSouthNorthVehicle !== '')
 		vals['addAvgQueueLengthSouthNorthVehicle'] = addAvgQueueLengthSouthNorthVehicle;
 	var removeAvgQueueLengthSouthNorthVehicle = $formValues.find('.removeAvgQueueLengthSouthNorthVehicle').val();
@@ -2644,7 +2652,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setAvgQueueLengthNorthSouthPedestrian = removeAvgQueueLengthNorthSouthPedestrian ? null : $formValues.find('.setAvgQueueLengthNorthSouthPedestrian').val();
 	var addAvgQueueLengthNorthSouthPedestrian = $formValues.find('.addAvgQueueLengthNorthSouthPedestrian').val();
 	if(removeAvgQueueLengthNorthSouthPedestrian || setAvgQueueLengthNorthSouthPedestrian != null && setAvgQueueLengthNorthSouthPedestrian !== '')
-		vals['setAvgQueueLengthNorthSouthPedestrian'] = setAvgQueueLengthNorthSouthPedestrian;
+		vals['setAvgQueueLengthNorthSouthPedestrian'] = JSON.parse(setAvgQueueLengthNorthSouthPedestrian);
 	if(addAvgQueueLengthNorthSouthPedestrian != null && addAvgQueueLengthNorthSouthPedestrian !== '')
 		vals['addAvgQueueLengthNorthSouthPedestrian'] = addAvgQueueLengthNorthSouthPedestrian;
 	var removeAvgQueueLengthNorthSouthPedestrian = $formValues.find('.removeAvgQueueLengthNorthSouthPedestrian').val();
@@ -2656,7 +2664,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setAvgQueueLengthWestEastPedestrian = removeAvgQueueLengthWestEastPedestrian ? null : $formValues.find('.setAvgQueueLengthWestEastPedestrian').val();
 	var addAvgQueueLengthWestEastPedestrian = $formValues.find('.addAvgQueueLengthWestEastPedestrian').val();
 	if(removeAvgQueueLengthWestEastPedestrian || setAvgQueueLengthWestEastPedestrian != null && setAvgQueueLengthWestEastPedestrian !== '')
-		vals['setAvgQueueLengthWestEastPedestrian'] = setAvgQueueLengthWestEastPedestrian;
+		vals['setAvgQueueLengthWestEastPedestrian'] = JSON.parse(setAvgQueueLengthWestEastPedestrian);
 	if(addAvgQueueLengthWestEastPedestrian != null && addAvgQueueLengthWestEastPedestrian !== '')
 		vals['addAvgQueueLengthWestEastPedestrian'] = addAvgQueueLengthWestEastPedestrian;
 	var removeAvgQueueLengthWestEastPedestrian = $formValues.find('.removeAvgQueueLengthWestEastPedestrian').val();
@@ -2776,7 +2784,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
 	var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
 	if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
-		vals['setParamDemandScale'] = setParamDemandScale;
+		vals['setParamDemandScale'] = JSON.parse(setParamDemandScale);
 	if(addParamDemandScale != null && addParamDemandScale !== '')
 		vals['addParamDemandScale'] = addParamDemandScale;
 	var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
@@ -2788,7 +2796,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedParameters = removeUpdatedParameters ? null : $formValues.find('.setUpdatedParameters').val();
 	var addUpdatedParameters = $formValues.find('.addUpdatedParameters').val();
 	if(removeUpdatedParameters || setUpdatedParameters != null && setUpdatedParameters !== '')
-		vals['setUpdatedParameters'] = setUpdatedParameters;
+		vals['setUpdatedParameters'] = JSON.parse(setUpdatedParameters);
 	if(addUpdatedParameters != null && addUpdatedParameters !== '')
 		vals['addUpdatedParameters'] = addUpdatedParameters;
 	var removeUpdatedParameters = $formValues.find('.removeUpdatedParameters').val();
@@ -2800,7 +2808,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
 	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
 	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
-		vals['setUpdatedPerformance'] = setUpdatedPerformance;
+		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
 	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
 		vals['addUpdatedPerformance'] = addUpdatedPerformance;
 	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
@@ -2812,7 +2820,7 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
 	var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
 	if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
-		vals['setAverageQueueLength'] = setAverageQueueLength;
+		vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
 	if(addAverageQueueLength != null && addAverageQueueLength !== '')
 		vals['addAverageQueueLength'] = addAverageQueueLength;
 	var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
@@ -3099,6 +3107,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+		if(filterAreaServed != null && filterAreaServed !== '')
+			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
 		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
 		if(filterSimulationName != null && filterSimulationName !== '')
 			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
@@ -3296,6 +3308,7 @@ async function websocketSimulationReportInner(apiRequest) {
 				var inputPageUrlPk = null;
 				var inputPageUrlApi = null;
 				var inputId = null;
+				var inputAreaServed = null;
 				var inputSimulationName = null;
 				var inputSmartTrafficLightId = null;
 				var inputSmartTrafficLightName = null;
@@ -3436,6 +3449,8 @@ async function websocketSimulationReportInner(apiRequest) {
 					inputPageUrlApi = $response.find('#Page_pageUrlApi');
 				if(vars.includes('id'))
 					inputId = $response.find('#Page_id');
+				if(vars.includes('areaServed'))
+					inputAreaServed = $response.find('#Page_areaServed');
 				if(vars.includes('simulationName'))
 					inputSimulationName = $response.find('#Page_simulationName');
 				if(vars.includes('smartTrafficLightId'))
@@ -3780,6 +3795,11 @@ async function websocketSimulationReportInner(apiRequest) {
 					addGlow($('#Page_id'));
 				}
 
+				if(inputAreaServed) {
+					inputAreaServed.replaceAll('#Page_areaServed');
+					addGlow($('#Page_areaServed'));
+				}
+
 				if(inputSimulationName) {
 					inputSimulationName.replaceAll('#Page_simulationName');
 					addGlow($('#Page_simulationName'));
@@ -3831,7 +3851,7 @@ async function websocketSimulationReportInner(apiRequest) {
 function pageGraphSimulationReport(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -3859,55 +3879,7 @@ function pageGraphSimulationReport(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'simulation reports';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName
@@ -3975,6 +3947,58 @@ function pageGraphSimulationReport(apiRequest) {
 				Plotly.react('htmBodyGraphBaseModelPage', data, layout);
 			}
 		}
+
+		// Graph Location
+		var data = [];
+		var layout = {};
+		layout['showlegend'] = true;
+		layout['dragmode'] = 'zoom';
+		layout['uirevision'] = 'true';
+		if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_ZOOM'])
+			layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+		else if(window['DEFAULT_MAP_LOCATION'])
+			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
+		else
+			layout['mapbox'] = { style: 'open-street-map' };
+		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+		$.each( window.listSimulationReport, function(index, simulationReport) {
+			if(simulationReport.areaServed) {
+				var shapes = [];
+				if(Array.isArray(simulationReport.areaServed))
+					shapes = shapes.concat(simulationReport.areaServed);
+				else
+					shapes.push(simulationReport.areaServed);
+				shapes.forEach(shape => {
+					var parts = [];
+					if(shape.coordinates && shape.coordinates[0].length > 0 && Array.isArray(shape.coordinates[0][0]))
+						parts = parts.concat(shape.coordinates);
+					else
+						parts.push(shape.coordinates);
+					parts.forEach(part => {
+						var lat = part.map(elem => elem[0]);
+						var lon = part.map(elem => elem[1]);
+						if(shape.type == 'Polygon') {
+							lat.push(lat[0]);
+							lon.push(lon[0]);
+						}
+						data.push({
+							type: 'scattermapbox'
+							, name: simulationReport.objectTitle
+							, lat: lat
+							, lon: lon
+							, mode: 'lines+markers'
+							, line:{
+								width: 2,
+								color: 'red'
+							}
+						});
+					});
+				});
+			}
+		});
+		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
 	}
 }
 

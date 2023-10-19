@@ -13,10 +13,6 @@
   } ],
   "required" : [ "simulationName" ],
   "properties" : {
-    "entityId" : {
-      "type" : "string",
-      "description" : "A unique ID for this Smart Data Model"
-    },
     "startDateTime" : {
       "type" : "string",
       "format" : "date-time",
@@ -24,6 +20,10 @@
     },
     "simulationName" : {
       "type" : "string"
+    },
+    "entityId" : {
+      "type" : "string",
+      "description" : "A unique ID for this Smart Data Model"
     },
     "location" : {
       "type" : "geo:point"

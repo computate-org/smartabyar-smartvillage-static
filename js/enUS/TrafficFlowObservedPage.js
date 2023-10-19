@@ -476,7 +476,7 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
 	var setAddress = removeAddress ? null : $formValues.find('.setAddress').val();
 	var addAddress = $formValues.find('.addAddress').val();
 	if(removeAddress || setAddress != null && setAddress !== '')
-		vals['setAddress'] = setAddress;
+		vals['setAddress'] = JSON.parse(setAddress);
 	if(addAddress != null && addAddress !== '')
 		vals['addAddress'] = addAddress;
 	var removeAddress = $formValues.find('.removeAddress').val();
@@ -500,7 +500,7 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
 	var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
 	var addAreaServed = $formValues.find('.addAreaServed').val();
 	if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-		vals['setAreaServed'] = setAreaServed;
+		vals['setAreaServed'] = JSON.parse(setAreaServed);
 	if(addAreaServed != null && addAreaServed !== '')
 		vals['addAreaServed'] = addAreaServed;
 	var removeAreaServed = $formValues.find('.removeAreaServed').val();
@@ -719,7 +719,7 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
 	var setOwner = removeOwner ? null : $formValues.find('.setOwner').val();
 	var addOwner = $formValues.find('.addOwner').val();
 	if(removeOwner || setOwner != null && setOwner !== '')
-		vals['setOwner'] = setOwner;
+		vals['setOwner'] = JSON.parse(setOwner);
 	if(addOwner != null && addOwner !== '')
 		vals['addOwner'] = addOwner;
 	var removeOwner = $formValues.find('.removeOwner').val();
@@ -758,7 +758,7 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
 	var setSeeAlso = removeSeeAlso ? null : $formValues.find('.setSeeAlso').val();
 	var addSeeAlso = $formValues.find('.addSeeAlso').val();
 	if(removeSeeAlso || setSeeAlso != null && setSeeAlso !== '')
-		vals['setSeeAlso'] = setSeeAlso;
+		vals['setSeeAlso'] = JSON.parse(setSeeAlso);
 	if(addSeeAlso != null && addSeeAlso !== '')
 		vals['addSeeAlso'] = addSeeAlso;
 	var removeSeeAlso = $formValues.find('.removeSeeAlso').val();
@@ -1346,7 +1346,7 @@ async function postTrafficFlowObserved($formValues, success, error) {
 
 	var valueAddress = $formValues.find('.valueAddress').val();
 	if(valueAddress != null && valueAddress !== '')
-		vals['address'] = valueAddress;
+		vals['address'] = JSON.parse(valueAddress);
 
 	var valueAlternateName = $formValues.find('.valueAlternateName').val();
 	if(valueAlternateName != null && valueAlternateName !== '')
@@ -1354,7 +1354,7 @@ async function postTrafficFlowObserved($formValues, success, error) {
 
 	var valueAreaServed = $formValues.find('.valueAreaServed').val();
 	if(valueAreaServed != null && valueAreaServed !== '')
-		vals['areaServed'] = valueAreaServed;
+		vals['areaServed'] = JSON.parse(valueAreaServed);
 
 	var valueAverageGapDistance = $formValues.find('.valueAverageGapDistance').val();
 	if(valueAverageGapDistance != null && valueAverageGapDistance !== '')
@@ -1426,7 +1426,7 @@ async function postTrafficFlowObserved($formValues, success, error) {
 
 	var valueOwner = $formValues.find('.valueOwner').val();
 	if(valueOwner != null && valueOwner !== '')
-		vals['owner'] = valueOwner;
+		vals['owner'] = JSON.parse(valueOwner);
 
 	var valueRefRoadSegment = $formValues.find('.valueRefRoadSegment').val();
 	if(valueRefRoadSegment != null && valueRefRoadSegment !== '')
@@ -1438,7 +1438,7 @@ async function postTrafficFlowObserved($formValues, success, error) {
 
 	var valueSeeAlso = $formValues.find('.valueSeeAlso').val();
 	if(valueSeeAlso != null && valueSeeAlso !== '')
-		vals['seeAlso'] = valueSeeAlso;
+		vals['seeAlso'] = JSON.parse(valueSeeAlso);
 
 	var valueSource = $formValues.find('.valueSource').val();
 	if(valueSource != null && valueSource !== '')
@@ -2242,35 +2242,37 @@ function pageGraphTrafficFlowObserved(apiRequest) {
 		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 		$.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
 			if(trafficFlowObserved.areaServed) {
-				if(trafficFlowObserved.areaServed.type == 'Polygon' || trafficFlowObserved.areaServed.type == 'MultiPolygon') {
-					data.push({
-						type: 'choroplethmapbox'
-						, name: trafficFlowObserved.objectTitle
-						, locations: [ trafficFlowObserved.objectId ]
-						, z: [ 10 ]
-						, geojson: {
-							type: 'Feature'
-							, id: trafficFlowObserved.objectId
-							, geometry: trafficFlowObserved.areaServed
+				var shapes = [];
+				if(Array.isArray(trafficFlowObserved.areaServed))
+					shapes = shapes.concat(trafficFlowObserved.areaServed);
+				else
+					shapes.push(trafficFlowObserved.areaServed);
+				shapes.forEach(shape => {
+					var parts = [];
+					if(shape.coordinates && shape.coordinates[0].length > 0 && Array.isArray(shape.coordinates[0][0]))
+						parts = parts.concat(shape.coordinates);
+					else
+						parts.push(shape.coordinates);
+					parts.forEach(part => {
+						var lat = part.map(elem => elem[0]);
+						var lon = part.map(elem => elem[1]);
+						if(shape.type == 'Polygon') {
+							lat.push(lat[0]);
+							lon.push(lon[0]);
 						}
-						, line:{
-							width: 2,
-							color: 'red'
-						}
+						data.push({
+							type: 'scattermapbox'
+							, name: trafficFlowObserved.objectTitle
+							, lat: lat
+							, lon: lon
+							, mode: 'lines+markers'
+							, line:{
+								width: 2,
+								color: 'red'
+							}
+						});
 					});
-				} else {
-					data.push({
-						type: 'scattermapbox'
-						, name: trafficFlowObserved.objectTitle
-						, lat: trafficFlowObserved.areaServed.coordinates.map(elem => elem[0])
-						, lon: trafficFlowObserved.areaServed.coordinates.map(elem => elem[1])
-						, mode: 'lines+markers'
-						, line:{
-							width: 2,
-							color: 'red'
-						}
-					});
-				}
+				});
 			}
 		});
 		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);

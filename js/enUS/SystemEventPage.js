@@ -237,7 +237,7 @@ async function postSystemEvent($formValues, success, error) {
 
 	var valueObjectText = $formValues.find('.valueObjectText').val();
 	if(valueObjectText != null && valueObjectText !== '')
-		vals['objectText'] = valueObjectText;
+		vals['objectText'] = JSON.parse(valueObjectText);
 
 	$.ajax({
 		url: '/api/system-event'
@@ -448,7 +448,7 @@ async function patchSystemEvent($formFilters, $formValues, id, success, error) {
 	var setObjectText = removeObjectText ? null : $formValues.find('.setObjectText').val();
 	var addObjectText = $formValues.find('.addObjectText').val();
 	if(removeObjectText || setObjectText != null && setObjectText !== '')
-		vals['setObjectText'] = setObjectText;
+		vals['setObjectText'] = JSON.parse(setObjectText);
 	if(addObjectText != null && addObjectText !== '')
 		vals['addObjectText'] = addObjectText;
 	var removeObjectText = $formValues.find('.removeObjectText').val();
@@ -865,7 +865,7 @@ async function websocketSystemEventInner(apiRequest) {
 function pageGraphSystemEvent(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -893,55 +893,7 @@ function pageGraphSystemEvent(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'system events';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName

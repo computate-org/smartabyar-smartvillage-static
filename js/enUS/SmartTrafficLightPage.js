@@ -404,7 +404,7 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
 	var setRouteIds = removeRouteIds ? null : $formValues.find('.setRouteIds').val();
 	var addRouteIds = $formValues.find('.addRouteIds').val();
 	if(removeRouteIds || setRouteIds != null && setRouteIds !== '')
-		vals['setRouteIds'] = setRouteIds;
+		vals['setRouteIds'] = JSON.parse(setRouteIds);
 	if(addRouteIds != null && addRouteIds !== '')
 		vals['addRouteIds'] = addRouteIds;
 	var removeRouteIds = $formValues.find('.removeRouteIds').val();
@@ -1008,7 +1008,7 @@ async function postSmartTrafficLight($formValues, success, error) {
 
 	var valueRouteIds = $formValues.find('.valueRouteIds').val();
 	if(valueRouteIds != null && valueRouteIds !== '')
-		vals['routeIds'] = valueRouteIds;
+		vals['routeIds'] = JSON.parse(valueRouteIds);
 
 	var valueRouteIdNorth = $formValues.find('.valueRouteIdNorth').val();
 	if(valueRouteIdNorth != null && valueRouteIdNorth !== '')
@@ -1624,7 +1624,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
 function pageGraphSmartTrafficLight(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -1652,55 +1652,7 @@ function pageGraphSmartTrafficLight(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'smart traffic lights';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName

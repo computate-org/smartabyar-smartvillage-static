@@ -291,7 +291,7 @@ async function postSiteHtm($formValues, success, error) {
 
 	var valueLabels = $formValues.find('.valueLabels').val();
 	if(valueLabels != null && valueLabels !== '')
-		vals['labels'] = valueLabels;
+		vals['labels'] = JSON.parse(valueLabels);
 
 	var valueEBefore = $formValues.find('.valueEBefore').val();
 	if(valueEBefore != null && valueEBefore !== '')
@@ -303,15 +303,15 @@ async function postSiteHtm($formValues, success, error) {
 
 	var valueA = $formValues.find('.valueA').val();
 	if(valueA != null && valueA !== '')
-		vals['a'] = valueA;
+		vals['a'] = JSON.parse(valueA);
 
 	var valueText = $formValues.find('.valueText').val();
 	if(valueText != null && valueText !== '')
-		vals['text'] = valueText;
+		vals['text'] = JSON.parse(valueText);
 
 	var valueComment = $formValues.find('.valueComment').val();
 	if(valueComment != null && valueComment !== '')
-		vals['comment'] = valueComment;
+		vals['comment'] = JSON.parse(valueComment);
 
 	var valueTabs = $formValues.find('.valueTabs').val();
 	if(valueTabs != null && valueTabs !== '')
@@ -327,7 +327,7 @@ async function postSiteHtm($formValues, success, error) {
 
 	var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
 	if(valueHtmMiddle != null && valueHtmMiddle !== '')
-		vals['htmMiddle'] = valueHtmMiddle;
+		vals['htmMiddle'] = JSON.parse(valueHtmMiddle);
 
 	var valueHtmAfter = $formValues.find('.valueHtmAfter').val();
 	if(valueHtmAfter != null && valueHtmAfter !== '')
@@ -554,7 +554,7 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	var setLabels = removeLabels ? null : $formValues.find('.setLabels').val();
 	var addLabels = $formValues.find('.addLabels').val();
 	if(removeLabels || setLabels != null && setLabels !== '')
-		vals['setLabels'] = setLabels;
+		vals['setLabels'] = JSON.parse(setLabels);
 	if(addLabels != null && addLabels !== '')
 		vals['addLabels'] = addLabels;
 	var removeLabels = $formValues.find('.removeLabels').val();
@@ -590,7 +590,7 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	var setA = removeA ? null : $formValues.find('.setA').val();
 	var addA = $formValues.find('.addA').val();
 	if(removeA || setA != null && setA !== '')
-		vals['setA'] = setA;
+		vals['setA'] = JSON.parse(setA);
 	if(addA != null && addA !== '')
 		vals['addA'] = addA;
 	var removeA = $formValues.find('.removeA').val();
@@ -602,7 +602,7 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	var setText = removeText ? null : $formValues.find('.setText').val();
 	var addText = $formValues.find('.addText').val();
 	if(removeText || setText != null && setText !== '')
-		vals['setText'] = setText;
+		vals['setText'] = JSON.parse(setText);
 	if(addText != null && addText !== '')
 		vals['addText'] = addText;
 	var removeText = $formValues.find('.removeText').val();
@@ -614,7 +614,7 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	var setComment = removeComment ? null : $formValues.find('.setComment').val();
 	var addComment = $formValues.find('.addComment').val();
 	if(removeComment || setComment != null && setComment !== '')
-		vals['setComment'] = setComment;
+		vals['setComment'] = JSON.parse(setComment);
 	if(addComment != null && addComment !== '')
 		vals['addComment'] = addComment;
 	var removeComment = $formValues.find('.removeComment').val();
@@ -665,7 +665,7 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
 	var setHtmMiddle = removeHtmMiddle ? null : $formValues.find('.setHtmMiddle').val();
 	var addHtmMiddle = $formValues.find('.addHtmMiddle').val();
 	if(removeHtmMiddle || setHtmMiddle != null && setHtmMiddle !== '')
-		vals['setHtmMiddle'] = setHtmMiddle;
+		vals['setHtmMiddle'] = JSON.parse(setHtmMiddle);
 	if(addHtmMiddle != null && addHtmMiddle !== '')
 		vals['addHtmMiddle'] = addHtmMiddle;
 	var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val();
@@ -1232,7 +1232,7 @@ async function websocketSiteHtmInner(apiRequest) {
 function pageGraphSiteHtm(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -1260,55 +1260,7 @@ function pageGraphSiteHtm(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push('fuchsia');
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'HTMLs';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName

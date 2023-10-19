@@ -2,12 +2,6 @@ TrafficSimulation:
   description: >+
     A SUMO Traffic Simulation
   properties:
-    entityId:
-      type: string
-      description: >+
-        A unique ID for this Smart Data Model
-      x-ngsi:
-        type: Property
     startDateTime:
       type: string
       format: date-time
@@ -19,6 +13,12 @@ TrafficSimulation:
     simulationName:
       type: string
       required: true
+      x-ngsi:
+        type: Property
+    entityId:
+      type: string
+      description: >+
+        A unique ID for this Smart Data Model
       x-ngsi:
         type: Property
     location:

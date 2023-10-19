@@ -1651,21 +1651,37 @@ function pageGraphCrowdFlowObserved(apiRequest) {
 		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 		$.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
 			if(crowdFlowObserved.areaServed) {
-					var lat = [].concat.apply([], crowdFlowObserved.areaServed.coordinates).map(elem => elem[0]);
-					lat.push(lat[0]);
-					var lon = [].concat.apply([], crowdFlowObserved.areaServed.coordinates).map(elem => elem[1]);
-					lon.push(lon[0]);
-					data.push({
-						type: 'scattermapbox'
-						, name: crowdFlowObserved.objectTitle
-						, lat: lat
-						, lon: lon
-						, mode: 'lines+markers'
-						, line:{
-							width: 2,
-							color: 'red'
+				var shapes = [];
+				if(Array.isArray(crowdFlowObserved.areaServed))
+					shapes = shapes.concat(crowdFlowObserved.areaServed);
+				else
+					shapes.push(crowdFlowObserved.areaServed);
+				shapes.forEach(shape => {
+					var parts = [];
+					if(shape.coordinates && shape.coordinates[0].length > 0 && Array.isArray(shape.coordinates[0][0]))
+						parts = parts.concat(shape.coordinates);
+					else
+						parts.push(shape.coordinates);
+					parts.forEach(part => {
+						var lat = part.map(elem => elem[0]);
+						var lon = part.map(elem => elem[1]);
+						if(shape.type == 'Polygon') {
+							lat.push(lat[0]);
+							lon.push(lon[0]);
 						}
+						data.push({
+							type: 'scattermapbox'
+							, name: crowdFlowObserved.objectTitle
+							, lat: lat
+							, lon: lon
+							, mode: 'lines+markers'
+							, line:{
+								width: 2,
+								color: 'red'
+							}
+						});
 					});
+				});
 			}
 		});
 		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
