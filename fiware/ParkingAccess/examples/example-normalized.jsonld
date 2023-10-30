@@ -1,0 +1,5 @@
+{
+  "id" : "urn:ngsi-ld:ParkingAccess/1",
+  "type" : "ParkingAccess",
+  "@context" : [ "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/ParkingAccess/context.jsonld" ]
+}

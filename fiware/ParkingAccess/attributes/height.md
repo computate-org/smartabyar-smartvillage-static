@@ -1,0 +1,10 @@
+# ParkingAccess.height
+
+## Definition
+Height of the access point
+
+## Version
+1.0.2
+
+## Original Schema
+https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/ParkingAccess/schema.json

@@ -1,0 +1,89 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/ParkingAccess/schema.json",
+  "title" : "ParkingAccess",
+  "description" : "ApiTag.enUS: ParkingAccess",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ ],
+  "properties" : {
+    "address" : {
+      "type" : "object",
+      "description" : "The mailing address"
+    },
+    "alternateName" : {
+      "type" : "string",
+      "description" : "An alternative name for this item"
+    },
+    "areaServed" : {
+      "type" : "geo:linestring",
+      "description" : "The geographic area where a service or offered item is provided"
+    },
+    "category" : {
+      "type" : "object",
+      "description" : "Category of the access point (entrance, exit, etc.). Allowed values: Those specified by the DATEX II _AccessCategoryEnum_ or other values meaningful to the application."
+    },
+    "dataProvider" : {
+      "type" : "string",
+      "description" : "A sequence of characters identifying the provider of the harmonised data entity."
+    },
+    "dateCreated" : {
+      "type" : "string",
+      "description" : "Entity creation timestamp. This will usually be allocated by the storage platform."
+    },
+    "dateModified" : {
+      "type" : "string",
+      "description" : "Timestamp of the last modification of the entity. This will usually be allocated by the storage platform."
+    },
+    "description" : {
+      "type" : "string",
+      "description" : "A description of this item"
+    },
+    "features" : {
+      "type" : "object",
+      "description" : "Those specified by the DATEX II _essEquipmentEnum_ and by _AccessibilityEnum_ or other values meaningful to the application."
+    },
+    "height" : {
+      "type" : "number",
+      "description" : "Height of the access point"
+    },
+    "location" : {
+      "type" : "geo:point",
+      "description" : "Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "The name of this item."
+    },
+    "owner" : {
+      "type" : "object",
+      "description" : "A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
+    },
+    "refOffStreetParking" : {
+      "type" : "object",
+      "description" : "The offstreet parking site this access point gives access to."
+    },
+    "seeAlso" : {
+      "type" : "object",
+      "description" : "list of uri pointing to additional resources about the item"
+    },
+    "slope" : {
+      "type" : "number",
+      "description" : "Slope of the access point (in relative terms)"
+    },
+    "source" : {
+      "type" : "string",
+      "description" : "A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object."
+    },
+    "width" : {
+      "type" : "number",
+      "description" : "Width of the access point"
+    }
+  }
+}
