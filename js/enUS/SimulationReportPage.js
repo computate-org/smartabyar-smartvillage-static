@@ -287,6 +287,10 @@ function searchSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
+		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
+			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
 		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
 		if(filterAreaServed != null && filterAreaServed !== '')
 			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
@@ -318,10 +322,6 @@ function searchSimulationReportFilters($formFilters) {
 		var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
 		if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
 			filters.push({ name: 'fq', value: 'updatedParameters:' + filterUpdatedParameters });
-
-		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
-		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
-			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
 
 		var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
 		if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
@@ -1091,6 +1091,18 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
+	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val() === 'true';
+	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
+	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
+	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
+		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
+	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
+		vals['addUpdatedPerformance'] = addUpdatedPerformance;
+	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
+	if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
+		vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
+
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
 	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
@@ -1150,18 +1162,6 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
 	var removeUpdatedParameters = $formValues.find('.removeUpdatedParameters').val();
 	if(removeUpdatedParameters != null && removeUpdatedParameters !== '')
 		vals['removeUpdatedParameters'] = removeUpdatedParameters;
-
-	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
-	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val() === 'true';
-	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
-	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
-	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
-		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
-	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
-		vals['addUpdatedPerformance'] = addUpdatedPerformance;
-	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
-	if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
-		vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
@@ -1455,6 +1455,10 @@ function patchSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
+		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
+			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
 		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
 		if(filterAreaServed != null && filterAreaServed !== '')
 			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
@@ -1486,10 +1490,6 @@ function patchSimulationReportFilters($formFilters) {
 		var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
 		if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
 			filters.push({ name: 'fq', value: 'updatedParameters:' + filterUpdatedParameters });
-
-		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
-		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
-			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
 
 		var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
 		if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
@@ -1750,6 +1750,10 @@ async function postSimulationReport($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
+	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
+	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
+		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
+
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
@@ -1769,10 +1773,6 @@ async function postSimulationReport($formValues, success, error) {
 	var valueUpdatedParameters = $formValues.find('.valueUpdatedParameters').val();
 	if(valueUpdatedParameters != null && valueUpdatedParameters !== '')
 		vals['updatedParameters'] = JSON.parse(valueUpdatedParameters);
-
-	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
-	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
-		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
@@ -2055,6 +2055,10 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
+	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
+	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
+		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
+
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	if(valueSimulationName != null && valueSimulationName !== '')
 		vals['simulationName'] = valueSimulationName;
@@ -2074,10 +2078,6 @@ async function putcopySimulationReport($formValues, pk, success, error) {
 	var valueUpdatedParameters = $formValues.find('.valueUpdatedParameters').val();
 	if(valueUpdatedParameters != null && valueUpdatedParameters !== '')
 		vals['updatedParameters'] = JSON.parse(valueUpdatedParameters);
-
-	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
-	if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
-		vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
@@ -2743,6 +2743,18 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
+	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val() === 'true';
+	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
+	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
+	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
+		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
+	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
+		vals['addUpdatedPerformance'] = addUpdatedPerformance;
+	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
+	if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
+		vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
+
 	var valueSimulationName = $formValues.find('.valueSimulationName').val();
 	var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
 	var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
@@ -2802,18 +2814,6 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
 	var removeUpdatedParameters = $formValues.find('.removeUpdatedParameters').val();
 	if(removeUpdatedParameters != null && removeUpdatedParameters !== '')
 		vals['removeUpdatedParameters'] = removeUpdatedParameters;
-
-	var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
-	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val() === 'true';
-	var setUpdatedPerformance = removeUpdatedPerformance ? null : $formValues.find('.setUpdatedPerformance').val();
-	var addUpdatedPerformance = $formValues.find('.addUpdatedPerformance').val();
-	if(removeUpdatedPerformance || setUpdatedPerformance != null && setUpdatedPerformance !== '')
-		vals['setUpdatedPerformance'] = JSON.parse(setUpdatedPerformance);
-	if(addUpdatedPerformance != null && addUpdatedPerformance !== '')
-		vals['addUpdatedPerformance'] = addUpdatedPerformance;
-	var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
-	if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
-		vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
 
 	var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
 	var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
@@ -3107,6 +3107,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
 		if(filterId != null && filterId !== '')
 			filters.push({ name: 'fq', value: 'id:' + filterId });
 
+		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
+		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
+			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
 		var filterAreaServed = $formFilters.find('.valueAreaServed').val();
 		if(filterAreaServed != null && filterAreaServed !== '')
 			filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
@@ -3138,10 +3142,6 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
 		var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
 		if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
 			filters.push({ name: 'fq', value: 'updatedParameters:' + filterUpdatedParameters });
-
-		var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
-		if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
-			filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
 
 		var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
 		if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
@@ -3308,6 +3308,7 @@ async function websocketSimulationReportInner(apiRequest) {
 				var inputPageUrlPk = null;
 				var inputPageUrlApi = null;
 				var inputId = null;
+				var inputUpdatedPerformance = null;
 				var inputAreaServed = null;
 				var inputSimulationName = null;
 				var inputSmartTrafficLightId = null;
@@ -3316,7 +3317,6 @@ async function websocketSimulationReportInner(apiRequest) {
 				var inputParamDemandScale = null;
 				var inputParamInitialPar = null;
 				var inputUpdatedParameters = null;
-				var inputUpdatedPerformance = null;
 				var inputAverageQueueLength = null;
 
 				if(vars.includes('created'))
@@ -3449,6 +3449,8 @@ async function websocketSimulationReportInner(apiRequest) {
 					inputPageUrlApi = $response.find('#Page_pageUrlApi');
 				if(vars.includes('id'))
 					inputId = $response.find('#Page_id');
+				if(vars.includes('updatedPerformance'))
+					inputUpdatedPerformance = $response.find('#Page_updatedPerformance');
 				if(vars.includes('areaServed'))
 					inputAreaServed = $response.find('#Page_areaServed');
 				if(vars.includes('simulationName'))
@@ -3465,8 +3467,6 @@ async function websocketSimulationReportInner(apiRequest) {
 					inputParamInitialPar = $response.find('#Page_paramInitialPar');
 				if(vars.includes('updatedParameters'))
 					inputUpdatedParameters = $response.find('#Page_updatedParameters');
-				if(vars.includes('updatedPerformance'))
-					inputUpdatedPerformance = $response.find('#Page_updatedPerformance');
 				if(vars.includes('averageQueueLength'))
 					inputAverageQueueLength = $response.find('#Page_averageQueueLength');
 
@@ -3795,6 +3795,11 @@ async function websocketSimulationReportInner(apiRequest) {
 					addGlow($('#Page_id'));
 				}
 
+				if(inputUpdatedPerformance) {
+					inputUpdatedPerformance.replaceAll('#Page_updatedPerformance');
+					addGlow($('#Page_updatedPerformance'));
+				}
+
 				if(inputAreaServed) {
 					inputAreaServed.replaceAll('#Page_areaServed');
 					addGlow($('#Page_areaServed'));
@@ -3833,11 +3838,6 @@ async function websocketSimulationReportInner(apiRequest) {
 				if(inputUpdatedParameters) {
 					inputUpdatedParameters.replaceAll('#Page_updatedParameters');
 					addGlow($('#Page_updatedParameters'));
-				}
-
-				if(inputUpdatedPerformance) {
-					inputUpdatedPerformance.replaceAll('#Page_updatedPerformance');
-					addGlow($('#Page_updatedPerformance'));
 				}
 
 				if(inputAverageQueueLength) {
@@ -3949,56 +3949,47 @@ function pageGraphSimulationReport(apiRequest) {
 		}
 
 		// Graph Location
+		var map = L.map('htmBodyGraphLocationBaseModelPage');
 		var data = [];
 		var layout = {};
 		layout['showlegend'] = true;
 		layout['dragmode'] = 'zoom';
 		layout['uirevision'] = 'true';
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+
 		if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+			map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
 		else if(window['DEFAULT_MAP_ZOOM'])
-			layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+			map.setView(null, window['DEFAULT_MAP_ZOOM']);
 		else if(window['DEFAULT_MAP_LOCATION'])
-			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-		else
-			layout['mapbox'] = { style: 'open-street-map' };
+			map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
 		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 		$.each( window.listSimulationReport, function(index, simulationReport) {
 			if(simulationReport.areaServed) {
 				var shapes = [];
+				var features = [];
 				if(Array.isArray(simulationReport.areaServed))
 					shapes = shapes.concat(simulationReport.areaServed);
 				else
 					shapes.push(simulationReport.areaServed);
 				shapes.forEach(shape => {
-					var parts = [];
-					if(shape.coordinates && shape.coordinates[0].length > 0 && Array.isArray(shape.coordinates[0][0]))
-						parts = parts.concat(shape.coordinates);
-					else
-						parts.push(shape.coordinates);
-					parts.forEach(part => {
-						var lat = part.map(elem => elem[0]);
-						var lon = part.map(elem => elem[1]);
-						if(shape.type == 'Polygon') {
-							lat.push(lat[0]);
-							lon.push(lon[0]);
-						}
-						data.push({
-							type: 'scattermapbox'
-							, name: simulationReport.objectTitle
-							, lat: lat
-							, lon: lon
-							, mode: 'lines+markers'
-							, line:{
-								width: 2,
-								color: 'red'
-							}
-						});
+					features.push({
+						"type": "Feature"
+						, "properties": simulationReport
+						, "geometry": shape
 					});
 				});
+				function onEachFeature(feature, layer) {
+					let popupContent = `<p>${feature.properties.objectTitle} is a ${feature.geometry.type}</p>`;
+					layer.bindPopup(popupContent);
+				}
+				var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
 			}
 		});
-		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
 	}
 }
 

@@ -20,6 +20,8 @@ dt:after { content: ': '; }
 dd { display: inline; margin: 0; padding: 0; font-style: italic; }
 i { font-weight: normal; }
 body {  }
+.w3-modal { z-index: 2000; }
+.htmBodyGraphLocation { height: 400px; }
 .padding-right-quarter-em { padding-right: 0.25em; }
 .w3-input { padding: 2px; }
 ul.w3-bar { padding-left: 0; }

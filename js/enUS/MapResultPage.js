@@ -47,18 +47,6 @@ function searchMapResultFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-		if(filterSimulationName != null && filterSimulationName !== '')
-			filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
-		var filterSimulationKey = $formFilters.find('.valueSimulationKey').val();
-		if(filterSimulationKey != null && filterSimulationKey !== '')
-			filters.push({ name: 'fq', value: 'simulationKey:' + filterSimulationKey });
-
-		var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-		if(filterSumocfgPath != null && filterSumocfgPath !== '')
-			filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
 		var filterTime = $formFilters.find('.valueTime').val();
 		if(filterTime != null && filterTime !== '')
 			filters.push({ name: 'fq', value: 'time:' + filterTime });
@@ -193,14 +181,291 @@ async function getMapResult() {
 }
 
 async function websocketMapResult(success) {
+	window.eventBus.onopen = function () {
+
+		window.eventBus.registerHandler('websocketMapResult', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var pk = json['pk'];
+			var pkPage = $('#MapResultForm :input[name=id]').val();
+			var pks = json['pks'];
+			var empty = json['empty'];
+			var numFound = parseInt(json['numFound']);
+			var numPATCH = parseInt(json['numPATCH']);
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-quarter box-' + id + ' ').attr('id', 'box-' + id).attr('data-numPATCH', numPATCH);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-2017-shaded-spruce ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fad fa-map-location-dot w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify map results in ' + json.timeRemaining);
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-2017-shaded-spruce ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			if(numPATCH < numFound) {
+				var $old_box = $('.box-' + id);
+				if(!$old_box.size()) {
+					$('.top-box').append($box);
+				} else if($old_box && $old_box.attr('data-numPATCH') < numFound) {
+					$('.box-' + id).html($margin);
+				}
+			} else {
+				$('.box-' + id).remove();
+			}
+			if(pk && pkPage && pk == pkPage) {
+				if(success)
+					success(json);
+			}
+		});
+	}
 }
 async function websocketMapResultInner(apiRequest) {
+	var pk = apiRequest['pk'];
+	var pks = apiRequest['pks'];
+	var classes = apiRequest['classes'];
+	var vars = apiRequest['vars'];
+	var empty = apiRequest['empty'];
+
+	if(pk != null && vars.length > 0) {
+		var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+		var uri = location.pathname + queryParams;
+		$.get(uri, {}, function(data) {
+			var $response = $("<html/>").html(data);
+				var inputCreated = null;
+				var inputModified = null;
+				var inputObjectId = null;
+				var inputArchived = null;
+				var inputDeleted = null;
+				var inputTime = null;
+				var inputDateTime = null;
+				var inputStep = null;
+				var inputLocation = null;
+				var inputColor = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
+				var inputTimeStepId = null;
+				var inputX = null;
+				var inputY = null;
+
+				if(vars.includes('created'))
+					inputCreated = $response.find('#Page_created');
+				if(vars.includes('modified'))
+					inputModified = $response.find('#Page_modified');
+				if(vars.includes('objectId'))
+					inputObjectId = $response.find('#Page_objectId');
+				if(vars.includes('archived'))
+					inputArchived = $response.find('#Page_archived');
+				if(vars.includes('deleted'))
+					inputDeleted = $response.find('#Page_deleted');
+				if(vars.includes('time'))
+					inputTime = $response.find('#Page_time');
+				if(vars.includes('dateTime'))
+					inputDateTime = $response.find('#Page_dateTime');
+				if(vars.includes('step'))
+					inputStep = $response.find('#Page_step');
+				if(vars.includes('location'))
+					inputLocation = $response.find('#Page_location');
+				if(vars.includes('color'))
+					inputColor = $response.find('#Page_color');
+				if(vars.includes('inheritPk'))
+					inputInheritPk = $response.find('#Page_inheritPk');
+				if(vars.includes('classCanonicalName'))
+					inputClassCanonicalName = $response.find('#Page_classCanonicalName');
+				if(vars.includes('classSimpleName'))
+					inputClassSimpleName = $response.find('#Page_classSimpleName');
+				if(vars.includes('classCanonicalNames'))
+					inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+				if(vars.includes('sessionId'))
+					inputSessionId = $response.find('#Page_sessionId');
+				if(vars.includes('userKey'))
+					inputUserKey = $response.find('#Page_userKey');
+				if(vars.includes('saves'))
+					inputSaves = $response.find('#Page_saves');
+				if(vars.includes('objectTitle'))
+					inputObjectTitle = $response.find('#Page_objectTitle');
+				if(vars.includes('objectSuggest'))
+					inputObjectSuggest = $response.find('#Page_objectSuggest');
+				if(vars.includes('objectText'))
+					inputObjectText = $response.find('#Page_objectText');
+				if(vars.includes('pageUrlId'))
+					inputPageUrlId = $response.find('#Page_pageUrlId');
+				if(vars.includes('pageUrlPk'))
+					inputPageUrlPk = $response.find('#Page_pageUrlPk');
+				if(vars.includes('pageUrlApi'))
+					inputPageUrlApi = $response.find('#Page_pageUrlApi');
+				if(vars.includes('id'))
+					inputId = $response.find('#Page_id');
+				if(vars.includes('timeStepId'))
+					inputTimeStepId = $response.find('#Page_timeStepId');
+				if(vars.includes('x'))
+					inputX = $response.find('#Page_x');
+				if(vars.includes('y'))
+					inputY = $response.find('#Page_y');
+
+				if(inputCreated) {
+					inputCreated.replaceAll('#Page_created');
+					addGlow($('#Page_created'));
+				}
+
+				if(inputModified) {
+					inputModified.replaceAll('#Page_modified');
+					addGlow($('#Page_modified'));
+				}
+
+				if(inputObjectId) {
+					inputObjectId.replaceAll('#Page_objectId');
+					addGlow($('#Page_objectId'));
+				}
+
+				if(inputArchived) {
+					inputArchived.replaceAll('#Page_archived');
+					addGlow($('#Page_archived'));
+				}
+
+				if(inputDeleted) {
+					inputDeleted.replaceAll('#Page_deleted');
+					addGlow($('#Page_deleted'));
+				}
+
+				if(inputTime) {
+					inputTime.replaceAll('#Page_time');
+					addGlow($('#Page_time'));
+				}
+
+				if(inputDateTime) {
+					inputDateTime.replaceAll('#Page_dateTime');
+					addGlow($('#Page_dateTime'));
+				}
+
+				if(inputStep) {
+					inputStep.replaceAll('#Page_step');
+					addGlow($('#Page_step'));
+				}
+
+				if(inputLocation) {
+					inputLocation.replaceAll('#Page_location');
+					addGlow($('#Page_location'));
+				}
+
+				if(inputColor) {
+					inputColor.replaceAll('#Page_color');
+					addGlow($('#Page_color'));
+				}
+
+				if(inputInheritPk) {
+					inputInheritPk.replaceAll('#Page_inheritPk');
+					addGlow($('#Page_inheritPk'));
+				}
+
+				if(inputClassCanonicalName) {
+					inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+					addGlow($('#Page_classCanonicalName'));
+				}
+
+				if(inputClassSimpleName) {
+					inputClassSimpleName.replaceAll('#Page_classSimpleName');
+					addGlow($('#Page_classSimpleName'));
+				}
+
+				if(inputClassCanonicalNames) {
+					inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+					addGlow($('#Page_classCanonicalNames'));
+				}
+
+				if(inputSessionId) {
+					inputSessionId.replaceAll('#Page_sessionId');
+					addGlow($('#Page_sessionId'));
+				}
+
+				if(inputUserKey) {
+					inputUserKey.replaceAll('#Page_userKey');
+					addGlow($('#Page_userKey'));
+				}
+
+				if(inputSaves) {
+					inputSaves.replaceAll('#Page_saves');
+					addGlow($('#Page_saves'));
+				}
+
+				if(inputObjectTitle) {
+					inputObjectTitle.replaceAll('#Page_objectTitle');
+					addGlow($('#Page_objectTitle'));
+				}
+
+				if(inputObjectSuggest) {
+					inputObjectSuggest.replaceAll('#Page_objectSuggest');
+					addGlow($('#Page_objectSuggest'));
+				}
+
+				if(inputObjectText) {
+					inputObjectText.replaceAll('#Page_objectText');
+					addGlow($('#Page_objectText'));
+				}
+
+				if(inputPageUrlId) {
+					inputPageUrlId.replaceAll('#Page_pageUrlId');
+					addGlow($('#Page_pageUrlId'));
+				}
+
+				if(inputPageUrlPk) {
+					inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+					addGlow($('#Page_pageUrlPk'));
+				}
+
+				if(inputPageUrlApi) {
+					inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+					addGlow($('#Page_pageUrlApi'));
+				}
+
+				if(inputId) {
+					inputId.replaceAll('#Page_id');
+					addGlow($('#Page_id'));
+				}
+
+				if(inputTimeStepId) {
+					inputTimeStepId.replaceAll('#Page_timeStepId');
+					addGlow($('#Page_timeStepId'));
+				}
+
+				if(inputX) {
+					inputX.replaceAll('#Page_x');
+					addGlow($('#Page_x'));
+				}
+
+				if(inputY) {
+					inputY.replaceAll('#Page_y');
+					addGlow($('#Page_y'));
+				}
+		});
+	}
 }
 
 function pageGraphMapResult(apiRequest) {
 	var r = $('.pageForm .pageResponse').val();
 	if(r) {
-	var json = JSON.parse(r);
+		var json = JSON.parse(r);
 		if(json['facetCounts']) {
 			var facetCounts = json.facetCounts;
 			if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
@@ -228,55 +493,7 @@ function pageGraphMapResult(apiRequest) {
 				var pivot1Vals = Object.keys(pivot1Map);
 				var data = [];
 				var layout = {};
-				if(pivot1VarObj.classSimpleName === 'Point') {
-					layout['showlegend'] = true;
-					layout['dragmode'] = 'zoom';
-					layout['uirevision'] = 'true';
-					if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_ZOOM'])
-						layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
-					else if(window['DEFAULT_MAP_LOCATION'])
-						layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-					else
-						layout['mapbox'] = { style: 'open-street-map' };
-					layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-					var trace = {};
-					trace['showlegend'] = true;
-					trace['type'] = 'scattermapbox';
-					var colors = [];
-					var lat = [];
-					var lon = [];
-					var text = [];
-					var customdata = [];
-					trace['lat'] = lat;
-					trace['lon'] = lon;
-					trace['text'] = text;
-					trace['customdata'] = customdata;
-					json.response.docs.forEach((record) => {
-						var location = record.fields[pivot1VarIndexed];
-						if(location) {
-							var locationParts = location.split(',');
-							text.push('pivot1Val');
-							lat.push(parseFloat(locationParts[0]));
-							lon.push(parseFloat(locationParts[1]));
-							colors.push(record.fields[window.varsFq['color'].varIndexed]);
-							var vals = {};
-							var hovertemplate = '';
-							Object.entries(window.varsFq).forEach(([key, data]) => {
-								if(data.displayName) {
-									vals[data.var] = record.fields[data.varStored];
-									hovertemplate += '<b>' + data.displayName + ': %{customdata.' + data.var + '}</b><br>';
-								}
-								customdata.push(vals);
-							});
-							customdata.push(vals);
-							trace['hovertemplate'] = hovertemplate;
-						}
-					});
-					trace['marker'] = { color: colors, size: 10 };
-					data.push(trace);
-				} else if(range) {
+				if(range) {
 					layout['title'] = 'map results';
 					layout['xaxis'] = {
 						title: rangeVarFq.displayName

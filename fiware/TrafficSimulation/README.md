@@ -4,7 +4,7 @@
 A SUMO Traffic Simulation
 
 ## Version
-1.0.2
+2.0.0
 
 ## Original Schema
 https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficSimulation/schema.json

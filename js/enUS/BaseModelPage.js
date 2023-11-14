@@ -60,10 +60,16 @@ async function websocketBaseModelInner(apiRequest) {
 		var uri = location.pathname + queryParams;
 		$.get(uri, {}, function(data) {
 			var $response = $("<html/>").html(data);
+				var inputPk = null;
+				var inputCreated = null;
 				var inputCreated = null;
 				var inputModified = null;
+				var inputModified = null;
+				var inputObjectId = null;
 				var inputObjectId = null;
 				var inputArchived = null;
+				var inputArchived = null;
+				var inputDeleted = null;
 				var inputDeleted = null;
 				var inputPk = null;
 				var inputInheritPk = null;
@@ -80,15 +86,41 @@ async function websocketBaseModelInner(apiRequest) {
 				var inputPageUrlPk = null;
 				var inputPageUrlApi = null;
 				var inputId = null;
+				var inputInheritPk = null;
+				var inputClassCanonicalName = null;
+				var inputClassSimpleName = null;
+				var inputClassCanonicalNames = null;
+				var inputSessionId = null;
+				var inputUserKey = null;
+				var inputSaves = null;
+				var inputObjectTitle = null;
+				var inputObjectSuggest = null;
+				var inputObjectText = null;
+				var inputPageUrlId = null;
+				var inputPageUrlPk = null;
+				var inputPageUrlApi = null;
+				var inputId = null;
 
+				if(vars.includes('pk'))
+					inputPk = $response.find('#Page_pk');
+				if(vars.includes('created'))
+					inputCreated = $response.find('#Page_created');
 				if(vars.includes('created'))
 					inputCreated = $response.find('#Page_created');
 				if(vars.includes('modified'))
 					inputModified = $response.find('#Page_modified');
+				if(vars.includes('modified'))
+					inputModified = $response.find('#Page_modified');
+				if(vars.includes('objectId'))
+					inputObjectId = $response.find('#Page_objectId');
 				if(vars.includes('objectId'))
 					inputObjectId = $response.find('#Page_objectId');
 				if(vars.includes('archived'))
 					inputArchived = $response.find('#Page_archived');
+				if(vars.includes('archived'))
+					inputArchived = $response.find('#Page_archived');
+				if(vars.includes('deleted'))
+					inputDeleted = $response.find('#Page_deleted');
 				if(vars.includes('deleted'))
 					inputDeleted = $response.find('#Page_deleted');
 				if(vars.includes('pk'))
@@ -121,10 +153,53 @@ async function websocketBaseModelInner(apiRequest) {
 					inputPageUrlApi = $response.find('#Page_pageUrlApi');
 				if(vars.includes('id'))
 					inputId = $response.find('#Page_id');
+				if(vars.includes('inheritPk'))
+					inputInheritPk = $response.find('#Page_inheritPk');
+				if(vars.includes('classCanonicalName'))
+					inputClassCanonicalName = $response.find('#Page_classCanonicalName');
+				if(vars.includes('classSimpleName'))
+					inputClassSimpleName = $response.find('#Page_classSimpleName');
+				if(vars.includes('classCanonicalNames'))
+					inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+				if(vars.includes('sessionId'))
+					inputSessionId = $response.find('#Page_sessionId');
+				if(vars.includes('userKey'))
+					inputUserKey = $response.find('#Page_userKey');
+				if(vars.includes('saves'))
+					inputSaves = $response.find('#Page_saves');
+				if(vars.includes('objectTitle'))
+					inputObjectTitle = $response.find('#Page_objectTitle');
+				if(vars.includes('objectSuggest'))
+					inputObjectSuggest = $response.find('#Page_objectSuggest');
+				if(vars.includes('objectText'))
+					inputObjectText = $response.find('#Page_objectText');
+				if(vars.includes('pageUrlId'))
+					inputPageUrlId = $response.find('#Page_pageUrlId');
+				if(vars.includes('pageUrlPk'))
+					inputPageUrlPk = $response.find('#Page_pageUrlPk');
+				if(vars.includes('pageUrlApi'))
+					inputPageUrlApi = $response.find('#Page_pageUrlApi');
+				if(vars.includes('id'))
+					inputId = $response.find('#Page_id');
+
+				if(inputPk) {
+					inputPk.replaceAll('#Page_pk');
+					addGlow($('#Page_pk'));
+				}
 
 				if(inputCreated) {
 					inputCreated.replaceAll('#Page_created');
 					addGlow($('#Page_created'));
+				}
+
+				if(inputCreated) {
+					inputCreated.replaceAll('#Page_created');
+					addGlow($('#Page_created'));
+				}
+
+				if(inputModified) {
+					inputModified.replaceAll('#Page_modified');
+					addGlow($('#Page_modified'));
 				}
 
 				if(inputModified) {
@@ -137,6 +212,16 @@ async function websocketBaseModelInner(apiRequest) {
 					addGlow($('#Page_objectId'));
 				}
 
+				if(inputObjectId) {
+					inputObjectId.replaceAll('#Page_objectId');
+					addGlow($('#Page_objectId'));
+				}
+
+				if(inputArchived) {
+					inputArchived.replaceAll('#Page_archived');
+					addGlow($('#Page_archived'));
+				}
+
 				if(inputArchived) {
 					inputArchived.replaceAll('#Page_archived');
 					addGlow($('#Page_archived'));
@@ -147,9 +232,84 @@ async function websocketBaseModelInner(apiRequest) {
 					addGlow($('#Page_deleted'));
 				}
 
+				if(inputDeleted) {
+					inputDeleted.replaceAll('#Page_deleted');
+					addGlow($('#Page_deleted'));
+				}
+
 				if(inputPk) {
 					inputPk.replaceAll('#Page_pk');
 					addGlow($('#Page_pk'));
+				}
+
+				if(inputInheritPk) {
+					inputInheritPk.replaceAll('#Page_inheritPk');
+					addGlow($('#Page_inheritPk'));
+				}
+
+				if(inputClassCanonicalName) {
+					inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+					addGlow($('#Page_classCanonicalName'));
+				}
+
+				if(inputClassSimpleName) {
+					inputClassSimpleName.replaceAll('#Page_classSimpleName');
+					addGlow($('#Page_classSimpleName'));
+				}
+
+				if(inputClassCanonicalNames) {
+					inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+					addGlow($('#Page_classCanonicalNames'));
+				}
+
+				if(inputSessionId) {
+					inputSessionId.replaceAll('#Page_sessionId');
+					addGlow($('#Page_sessionId'));
+				}
+
+				if(inputUserKey) {
+					inputUserKey.replaceAll('#Page_userKey');
+					addGlow($('#Page_userKey'));
+				}
+
+				if(inputSaves) {
+					inputSaves.replaceAll('#Page_saves');
+					addGlow($('#Page_saves'));
+				}
+
+				if(inputObjectTitle) {
+					inputObjectTitle.replaceAll('#Page_objectTitle');
+					addGlow($('#Page_objectTitle'));
+				}
+
+				if(inputObjectSuggest) {
+					inputObjectSuggest.replaceAll('#Page_objectSuggest');
+					addGlow($('#Page_objectSuggest'));
+				}
+
+				if(inputObjectText) {
+					inputObjectText.replaceAll('#Page_objectText');
+					addGlow($('#Page_objectText'));
+				}
+
+				if(inputPageUrlId) {
+					inputPageUrlId.replaceAll('#Page_pageUrlId');
+					addGlow($('#Page_pageUrlId'));
+				}
+
+				if(inputPageUrlPk) {
+					inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+					addGlow($('#Page_pageUrlPk'));
+				}
+
+				if(inputPageUrlApi) {
+					inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+					addGlow($('#Page_pageUrlApi'));
+				}
+
+				if(inputId) {
+					inputId.replaceAll('#Page_id');
+					addGlow($('#Page_id'));
 				}
 
 				if(inputInheritPk) {

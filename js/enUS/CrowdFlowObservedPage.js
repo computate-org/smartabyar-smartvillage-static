@@ -1635,56 +1635,47 @@ function pageGraphCrowdFlowObserved(apiRequest) {
 		}
 
 		// Graph Location
+		var map = L.map('htmBodyGraphLocationBaseModelPage');
 		var data = [];
 		var layout = {};
 		layout['showlegend'] = true;
 		layout['dragmode'] = 'zoom';
 		layout['uirevision'] = 'true';
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+
 		if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] }, zoom: window['DEFAULT_MAP_ZOOM'] };
+			map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
 		else if(window['DEFAULT_MAP_ZOOM'])
-			layout['mapbox'] = { style: 'open-street-map', zoom: window['DEFAULT_MAP_ZOOM'] };
+			map.setView(null, window['DEFAULT_MAP_ZOOM']);
 		else if(window['DEFAULT_MAP_LOCATION'])
-			layout['mapbox'] = { style: 'open-street-map', center: { lat: window['DEFAULT_MAP_LOCATION']['lat'], lon: window['DEFAULT_MAP_LOCATION']['lon'] } };
-		else
-			layout['mapbox'] = { style: 'open-street-map' };
+			map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
 		layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
 		$.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
 			if(crowdFlowObserved.areaServed) {
 				var shapes = [];
+				var features = [];
 				if(Array.isArray(crowdFlowObserved.areaServed))
 					shapes = shapes.concat(crowdFlowObserved.areaServed);
 				else
 					shapes.push(crowdFlowObserved.areaServed);
 				shapes.forEach(shape => {
-					var parts = [];
-					if(shape.coordinates && shape.coordinates[0].length > 0 && Array.isArray(shape.coordinates[0][0]))
-						parts = parts.concat(shape.coordinates);
-					else
-						parts.push(shape.coordinates);
-					parts.forEach(part => {
-						var lat = part.map(elem => elem[0]);
-						var lon = part.map(elem => elem[1]);
-						if(shape.type == 'Polygon') {
-							lat.push(lat[0]);
-							lon.push(lon[0]);
-						}
-						data.push({
-							type: 'scattermapbox'
-							, name: crowdFlowObserved.objectTitle
-							, lat: lat
-							, lon: lon
-							, mode: 'lines+markers'
-							, line:{
-								width: 2,
-								color: 'red'
-							}
-						});
+					features.push({
+						"type": "Feature"
+						, "properties": crowdFlowObserved
+						, "geometry": shape
 					});
 				});
+				function onEachFeature(feature, layer) {
+					let popupContent = `<p>${feature.properties.objectTitle} is a ${feature.geometry.type}</p>`;
+					layer.bindPopup(popupContent);
+				}
+				var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
 			}
 		});
-		Plotly.react('htmBodyGraphLocationBaseModelPage', data, layout);
 	}
 }
 
