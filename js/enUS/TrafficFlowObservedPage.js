@@ -47,17 +47,13 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
@@ -66,6 +62,10 @@ function searchTrafficFlowObservedFilters($formFilters) {
     var filterSimulationName = $formFilters.find('.valueSimulationName').val();
     if(filterSimulationName != null && filterSimulationName !== '')
       filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterAddress = $formFilters.find('.valueAddress').val();
     if(filterAddress != null && filterAddress !== '')
@@ -411,17 +411,17 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeDeleted != null && removeDeleted !== '')
     vals['removeDeleted'] = removeDeleted;
 
-  var valueColor = $formValues.find('.valueColor').val();
-  var removeColor = $formValues.find('.removeColor').val() === 'true';
-  var setColor = removeColor ? null : $formValues.find('.setColor').val();
-  var addColor = $formValues.find('.addColor').val();
-  if(removeColor || setColor != null && setColor !== '')
-    vals['setColor'] = setColor;
-  if(addColor != null && addColor !== '')
-    vals['addColor'] = addColor;
-  var removeColor = $formValues.find('.removeColor').val();
-  if(removeColor != null && removeColor !== '')
-    vals['removeColor'] = removeColor;
+  var valueEntityId = $formValues.find('.valueEntityId').val();
+  var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
+  var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
+  var addEntityId = $formValues.find('.addEntityId').val();
+  if(removeEntityId || setEntityId != null && setEntityId !== '')
+    vals['setEntityId'] = setEntityId;
+  if(addEntityId != null && addEntityId !== '')
+    vals['addEntityId'] = addEntityId;
+  var removeEntityId = $formValues.find('.removeEntityId').val();
+  if(removeEntityId != null && removeEntityId !== '')
+    vals['removeEntityId'] = removeEntityId;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -434,18 +434,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeLocation = $formValues.find('.removeLocation').val();
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
-
-  var valueEntityId = $formValues.find('.valueEntityId').val();
-  var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
-  var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
-  var addEntityId = $formValues.find('.addEntityId').val();
-  if(removeEntityId || setEntityId != null && setEntityId !== '')
-    vals['setEntityId'] = setEntityId;
-  if(addEntityId != null && addEntityId !== '')
-    vals['addEntityId'] = addEntityId;
-  var removeEntityId = $formValues.find('.removeEntityId').val();
-  if(removeEntityId != null && removeEntityId !== '')
-    vals['removeEntityId'] = removeEntityId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
@@ -470,6 +458,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeSimulationName = $formValues.find('.removeSimulationName').val();
   if(removeSimulationName != null && removeSimulationName !== '')
     vals['removeSimulationName'] = removeSimulationName;
+
+  var valueColor = $formValues.find('.valueColor').val();
+  var removeColor = $formValues.find('.removeColor').val() === 'true';
+  var setColor = removeColor ? null : $formValues.find('.setColor').val();
+  var addColor = $formValues.find('.addColor').val();
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.find('.removeColor').val();
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
 
   var valueAddress = $formValues.find('.valueAddress').val();
   var removeAddress = $formValues.find('.removeAddress').val() === 'true';
@@ -1021,17 +1021,13 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
@@ -1040,6 +1036,10 @@ function patchTrafficFlowObservedFilters($formFilters) {
     var filterSimulationName = $formFilters.find('.valueSimulationName').val();
     if(filterSimulationName != null && filterSimulationName !== '')
       filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterAddress = $formFilters.find('.valueAddress').val();
     if(filterAddress != null && filterAddress !== '')
@@ -1324,17 +1324,13 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueDeleted != null && valueDeleted !== '')
     vals['deleted'] = valueDeleted == 'true';
 
-  var valueColor = $formValues.find('.valueColor').val();
-  if(valueColor != null && valueColor !== '')
-    vals['color'] = valueColor;
+  var valueEntityId = $formValues.find('.valueEntityId').val();
+  if(valueEntityId != null && valueEntityId !== '')
+    vals['entityId'] = valueEntityId;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = valueLocation;
-
-  var valueEntityId = $formValues.find('.valueEntityId').val();
-  if(valueEntityId != null && valueEntityId !== '')
-    vals['entityId'] = valueEntityId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
@@ -1343,6 +1339,10 @@ async function postTrafficFlowObserved($formValues, success, error) {
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
     vals['simulationName'] = valueSimulationName;
+
+  var valueColor = $formValues.find('.valueColor').val();
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
 
   var valueAddress = $formValues.find('.valueAddress').val();
   if(valueAddress != null && valueAddress !== '')
@@ -1621,11 +1621,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputObjectId = null;
         var inputArchived = null;
         var inputDeleted = null;
-        var inputColor = null;
-        var inputLocation = null;
         var inputEntityId = null;
+        var inputLocation = null;
         var inputTrafficSimulationId = null;
         var inputSimulationName = null;
+        var inputColor = null;
         var inputAddress = null;
         var inputAlternateName = null;
         var inputAreaServed = null;
@@ -1690,16 +1690,16 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputArchived = $response.find('.Page_archived');
         if(vars.includes('deleted'))
           inputDeleted = $response.find('.Page_deleted');
-        if(vars.includes('color'))
-          inputColor = $response.find('.Page_color');
-        if(vars.includes('location'))
-          inputLocation = $response.find('.Page_location');
         if(vars.includes('entityId'))
           inputEntityId = $response.find('.Page_entityId');
+        if(vars.includes('location'))
+          inputLocation = $response.find('.Page_location');
         if(vars.includes('trafficSimulationId'))
           inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('simulationName'))
           inputSimulationName = $response.find('.Page_simulationName');
+        if(vars.includes('color'))
+          inputColor = $response.find('.Page_color');
         if(vars.includes('address'))
           inputAddress = $response.find('.Page_address');
         if(vars.includes('alternateName'))
@@ -1806,12 +1806,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputId = $response.find('.Page_id');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
-
-        if(vars.includes('customMinGreenTime') || vars.includes('customMaxGreenTime')) {
-          $('#feature-' + pk + '-customMinGreenTime-slider-range').slider('values', [parseInt($response.find('.Page_customMinGreenTime').val()), parseInt($response.find('.Page_customMaxGreenTime').val())]);
-          $('#feature-' + pk + '-customMinGreenTime-slider-handle').text(parseInt($response.find('.Page_customMinGreenTime').val()));
-          $('#feature-' + pk + '-customMaxGreenTime-slider-handle').text(parseInt($response.find('.Page_customMaxGreenTime').val()));
-        }
+        jsWebsocketTrafficFlowObserved(vars, $response);
 
         window.trafficFlowObserved = JSON.parse($response.find('.pageForm .trafficFlowObserved').val());
 
@@ -1841,19 +1836,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_deleted'));
         }
 
-        if(inputColor) {
-          inputColor.replaceAll('.Page_color');
-          addGlow($('.Page_color'));
+        if(inputEntityId) {
+          inputEntityId.replaceAll('.Page_entityId');
+          addGlow($('.Page_entityId'));
         }
 
         if(inputLocation) {
           inputLocation.replaceAll('.Page_location');
           addGlow($('.Page_location'));
-        }
-
-        if(inputEntityId) {
-          inputEntityId.replaceAll('.Page_entityId');
-          addGlow($('.Page_entityId'));
         }
 
         if(inputTrafficSimulationId) {
@@ -1864,6 +1854,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         if(inputSimulationName) {
           inputSimulationName.replaceAll('.Page_simulationName');
           addGlow($('.Page_simulationName'));
+        }
+
+        if(inputColor) {
+          inputColor.replaceAll('.Page_color');
+          addGlow($('.Page_color'));
         }
 
         if(inputAddress) {
@@ -2270,7 +2265,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
           });
         });
         function onEachFeature(feature, layer) {
-          let popupContent = `<h3><i class="fa-duotone fa-map-location-dot  site-menu-icon "></i> Vehicle ${feature.properties.objectTitle}</h3> <div><span class="">Waiting time tolerance:</div> <div id="feature-${feature.properties.pk}-customMinGreenTime-slider-range">   <div id="feature-${feature.properties.pk}-customMinGreenTime-slider-handle" class="ui-slider-handle"></div>   <div id="feature-${feature.properties.pk}-customMaxGreenTime-slider-handle" class="ui-slider-handle"></div> </div> <div><span class="">Queue length threshold: </span><input type="text" placeholder="queue length threshold" title="Demand scaling factor (multiplies all vehicle demands) [1, 2]. " id="Page_customQueueLengthThreshold" class="Page_customQueueLengthThreshold setCustomQueueLengthThreshold classTrafficFlowObserved inputTrafficFlowObserved4CustomQueueLengthThreshold w3-input w3-border " name="setCustomQueueLengthThreshold" onclick="removeGlow($(this)); " onchange="patchTrafficFlowObservedVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:4' }], 'setCustomQueueLengthThreshold', $(this).val(), function() { addGlow($('#Page_customQueueLengthThreshold')); }, function() { addError($('#Page_customQueueLengthThreshold')); }); " value="${feature.properties.customQueueLengthThreshold}"></div>`;
+          let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
           layer.bindPopup(popupContent);
         }
         var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
@@ -2278,27 +2273,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
     });
     map.on('popupopen', function(e) {
       var feature = e.popup._source.feature;
-      if ($('#feature-' + feature.properties.pk + '-customMinGreenTime-slider-range').slider('instance') == undefined) {
-        $('#feature-' + feature.properties.pk + '-customMinGreenTime-slider-range').slider({
-          range: true
-          , min: 1
-          , max: 50
-          , values: [ window.trafficFlowObserved.customMinGreenTime, window.trafficFlowObserved.customMaxGreenTime ]
-          , create: function() {
-            $('#feature-' + feature.properties.pk + '-customMinGreenTime-slider-handle').text(parseInt(window.trafficFlowObserved.customMinGreenTime));
-            
-            $('#feature-' + feature.properties.pk + '-customMaxGreenTime-slider-handle').text(parseInt(window.trafficFlowObserved.customMaxGreenTime));
-          }
-          , slide: function( event, ui ) {
-            $('#feature-' + feature.properties.pk + '-customMinGreenTime-slider-handle').text(ui.values[0]);
-            $('#feature-' + feature.properties.pk + '-customMaxGreenTime-slider-handle').text(ui.values[1]);
-          }
-          , stop: function( event, ui ) {
-            patchTrafficFlowObservedVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + feature.properties.pk }], 'setCustomMinGreenTime', ui.values[0].toString(), function() { addGlow($('.Page_customMinGreenTime')); }, function() { addError($('.Page_customMinGreenTime')); }); 
-            patchTrafficFlowObservedVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + feature.properties.pk }], 'setCustomMaxGreenTime', ui.values[1].toString(), function() { addGlow($('.Page_customMaxGreenTime')); }, function() { addError($('.Page_customMaxGreenTime')); }); 
-          }
-        });
-      }
+      jsTooltipTrafficFlowObserved(e, feature);
     });
   }
 }
