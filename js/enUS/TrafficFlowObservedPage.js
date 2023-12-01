@@ -1806,7 +1806,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputId = $response.find('.Page_id');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
-        jsWebsocketTrafficFlowObserved(vars, $response);
+        jsWebsocketTrafficFlowObserved(pk, vars, $response);
 
         window.trafficFlowObserved = JSON.parse($response.find('.pageForm .trafficFlowObserved').val());
 
