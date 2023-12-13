@@ -1661,23 +1661,22 @@ function pageGraphCrowdFlowObserved(apiRequest) {
     $.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
       if(crowdFlowObserved.areaServed) {
         var shapes = [];
-        var features = [];
+        function onEachFeature(feature, layer) {
+          let popupContent = htmTooltipCrowdFlowObserved(feature, layer);
+          layer.bindPopup(popupContent);
+        };
         if(Array.isArray(crowdFlowObserved.areaServed))
           shapes = shapes.concat(crowdFlowObserved.areaServed);
         else
           shapes.push(crowdFlowObserved.areaServed);
         shapes.forEach(shape => {
-          features.push({
+          var features = [{
             "type": "Feature"
             , "properties": crowdFlowObserved
             , "geometry": shape
-          });
+          }];
+          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleCrowdFlowObserved}).addTo(map);
         });
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipCrowdFlowObserved(feature, layer);
-          layer.bindPopup(popupContent);
-        }
-        var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
       }
     });
     map.on('popupopen', function(e) {

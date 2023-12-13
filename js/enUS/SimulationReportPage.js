@@ -3975,23 +3975,22 @@ function pageGraphSimulationReport(apiRequest) {
     $.each( window.listSimulationReport, function(index, simulationReport) {
       if(simulationReport.areaServed) {
         var shapes = [];
-        var features = [];
+        function onEachFeature(feature, layer) {
+          let popupContent = htmTooltipSimulationReport(feature, layer);
+          layer.bindPopup(popupContent);
+        };
         if(Array.isArray(simulationReport.areaServed))
           shapes = shapes.concat(simulationReport.areaServed);
         else
           shapes.push(simulationReport.areaServed);
         shapes.forEach(shape => {
-          features.push({
+          var features = [{
             "type": "Feature"
             , "properties": simulationReport
             , "geometry": shape
-          });
+          }];
+          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleSimulationReport}).addTo(map);
         });
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipSimulationReport(feature, layer);
-          layer.bindPopup(popupContent);
-        }
-        var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
       }
     });
     map.on('popupopen', function(e) {

@@ -20,6 +20,9 @@
     "smartTrafficLightName" : {
       "type" : "string"
     },
+    "location" : {
+      "type" : "geo:point"
+    },
     "routeIds" : {
       "type" : "array"
     },

@@ -28,10 +28,6 @@ TrafficFlowObserved:
       type: geo:point
       x-ngsi:
         type: GeoProperty
-    simulationName:
-      type: string
-      x-ngsi:
-        type: Property
     sumocfgPath:
       type: string
       x-ngsi:

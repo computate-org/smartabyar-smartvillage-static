@@ -16,7 +16,6 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [trafficSimulationId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/trafficSimulationId.md)
 - [laneAreaDetectorId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/laneAreaDetectorId.md)
 - [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/location.md)
-- [simulationName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/simulationName.md)
 - [sumocfgPath](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/sumocfgPath.md)
 - [customTrafficLightId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/customTrafficLightId.md)
 - [address](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/TrafficFlowObserved/attributes/address.md)

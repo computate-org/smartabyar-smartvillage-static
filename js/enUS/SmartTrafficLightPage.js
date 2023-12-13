@@ -47,6 +47,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+    var filterLocation = $formFilters.find('.valueLocation').val();
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterEntityId = $formFilters.find('.valueEntityId').val();
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
@@ -211,6 +215,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
@@ -374,6 +382,18 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
   if(removeDeleted != null && removeDeleted !== '')
     vals['removeDeleted'] = removeDeleted;
+
+  var valueLocation = $formValues.find('.valueLocation').val();
+  var removeLocation = $formValues.find('.removeLocation').val() === 'true';
+  var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
+  var addLocation = $formValues.find('.addLocation').val();
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = setLocation;
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.find('.removeLocation').val();
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
 
   var valueEntityId = $formValues.find('.valueEntityId').val();
   var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
@@ -767,6 +787,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+    var filterLocation = $formFilters.find('.valueLocation').val();
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterEntityId = $formFilters.find('.valueEntityId').val();
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
@@ -931,6 +955,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
@@ -997,6 +1025,10 @@ async function postSmartTrafficLight($formValues, success, error) {
   var valueDeleted = $formValues.find('.valueDeleted').val();
   if(valueDeleted != null && valueDeleted !== '')
     vals['deleted'] = valueDeleted == 'true';
+
+  var valueLocation = $formValues.find('.valueLocation').val();
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = valueLocation;
 
   var valueEntityId = $formValues.find('.valueEntityId').val();
   if(valueEntityId != null && valueEntityId !== '')
@@ -1237,6 +1269,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputObjectId = null;
         var inputArchived = null;
         var inputDeleted = null;
+        var inputLocation = null;
         var inputEntityId = null;
         var inputSmartTrafficLightName = null;
         var inputRouteIds = null;
@@ -1278,6 +1311,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputAreaServed = null;
         var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
 
@@ -1291,6 +1325,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputArchived = $response.find('.Page_archived');
         if(vars.includes('deleted'))
           inputDeleted = $response.find('.Page_deleted');
+        if(vars.includes('location'))
+          inputLocation = $response.find('.Page_location');
         if(vars.includes('entityId'))
           inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('smartTrafficLightName'))
@@ -1373,6 +1409,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('trafficFlowObservedIds'))
           inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
@@ -1405,6 +1443,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputDeleted) {
           inputDeleted.replaceAll('.Page_deleted');
           addGlow($('.Page_deleted'));
+        }
+
+        if(inputLocation) {
+          inputLocation.replaceAll('.Page_location');
+          addGlow($('.Page_location'));
         }
 
         if(inputEntityId) {
@@ -1612,6 +1655,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputAreaServed) {
+          inputAreaServed.replaceAll('.Page_areaServed');
+          addGlow($('.Page_areaServed'));
+        }
+
         if(inputTrafficFlowObservedIds) {
           inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
           addGlow($('.Page_trafficFlowObservedIds'));
@@ -1724,6 +1772,52 @@ function pageGraphSmartTrafficLight(apiRequest) {
         Plotly.react('htmBodyGraphBaseModelPage', data, layout);
       }
     }
+
+    // Graph Location
+    var map = L.map('htmBodyGraphLocationBaseModelPage');
+    var data = [];
+    var layout = {};
+    layout['showlegend'] = true;
+    layout['dragmode'] = 'zoom';
+    layout['uirevision'] = 'true';
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+    else if(window['DEFAULT_MAP_ZOOM'])
+      map.setView(null, window['DEFAULT_MAP_ZOOM']);
+    else if(window['DEFAULT_MAP_LOCATION'])
+      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
+    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+    $.each( window.listSmartTrafficLight, function(index, smartTrafficLight) {
+      if(smartTrafficLight.areaServed) {
+        var shapes = [];
+        function onEachFeature(feature, layer) {
+          let popupContent = htmTooltipSmartTrafficLight(feature, layer);
+          layer.bindPopup(popupContent);
+        };
+        if(Array.isArray(smartTrafficLight.areaServed))
+          shapes = shapes.concat(smartTrafficLight.areaServed);
+        else
+          shapes.push(smartTrafficLight.areaServed);
+        shapes.forEach(shape => {
+          var features = [{
+            "type": "Feature"
+            , "properties": smartTrafficLight
+            , "geometry": shape
+          }];
+          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleSmartTrafficLight}).addTo(map);
+        });
+      }
+    });
+    map.on('popupopen', function(e) {
+      var feature = e.popup._source.feature;
+      jsTooltipSmartTrafficLight(e, feature);
+    });
   }
 }
 

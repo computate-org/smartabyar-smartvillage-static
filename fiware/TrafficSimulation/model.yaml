@@ -4,11 +4,9 @@ TrafficSimulation:
   properties:
     startDateTime:
       type: string
-      format: date-time
       description: >+
         The start date and time. 
       x-ngsi:
-        model: https://schema.org/DateTime
         type: Property
     simulationName:
       type: string

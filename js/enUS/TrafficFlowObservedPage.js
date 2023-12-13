@@ -2252,23 +2252,22 @@ function pageGraphTrafficFlowObserved(apiRequest) {
     $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
       if(trafficFlowObserved.areaServed) {
         var shapes = [];
-        var features = [];
+        function onEachFeature(feature, layer) {
+          let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
+          layer.bindPopup(popupContent);
+        };
         if(Array.isArray(trafficFlowObserved.areaServed))
           shapes = shapes.concat(trafficFlowObserved.areaServed);
         else
           shapes.push(trafficFlowObserved.areaServed);
         shapes.forEach(shape => {
-          features.push({
+          var features = [{
             "type": "Feature"
             , "properties": trafficFlowObserved
             , "geometry": shape
-          });
+          }];
+          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleTrafficFlowObserved}).addTo(map);
         });
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
-          layer.bindPopup(popupContent);
-        }
-        var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
       }
     });
     map.on('popupopen', function(e) {

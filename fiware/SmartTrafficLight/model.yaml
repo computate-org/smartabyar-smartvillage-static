@@ -11,6 +11,10 @@ SmartTrafficLight:
       type: string
       x-ngsi:
         type: Property
+    location:
+      type: geo:point
+      x-ngsi:
+        type: GeoProperty
     routeIds:
       type: array
       x-ngsi:

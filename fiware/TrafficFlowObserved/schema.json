@@ -31,9 +31,6 @@
     "location" : {
       "type" : "geo:point"
     },
-    "simulationName" : {
-      "type" : "string"
-    },
     "sumocfgPath" : {
       "type" : "string"
     },

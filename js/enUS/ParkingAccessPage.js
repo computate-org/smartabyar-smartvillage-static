@@ -1422,23 +1422,22 @@ function pageGraphParkingAccess(apiRequest) {
     $.each( window.listParkingAccess, function(index, parkingAccess) {
       if(parkingAccess.areaServed) {
         var shapes = [];
-        var features = [];
+        function onEachFeature(feature, layer) {
+          let popupContent = htmTooltipParkingAccess(feature, layer);
+          layer.bindPopup(popupContent);
+        };
         if(Array.isArray(parkingAccess.areaServed))
           shapes = shapes.concat(parkingAccess.areaServed);
         else
           shapes.push(parkingAccess.areaServed);
         shapes.forEach(shape => {
-          features.push({
+          var features = [{
             "type": "Feature"
             , "properties": parkingAccess
             , "geometry": shape
-          });
+          }];
+          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleParkingAccess}).addTo(map);
         });
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipParkingAccess(feature, layer);
-          layer.bindPopup(popupContent);
-        }
-        var geojsonLayer = L.geoJSON(features, {onEachFeature}).addTo(map);
       }
     });
     map.on('popupopen', function(e) {
