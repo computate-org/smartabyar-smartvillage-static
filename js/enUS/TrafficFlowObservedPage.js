@@ -55,13 +55,13 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-    if(filterSimulationName != null && filterSimulationName !== '')
-      filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
       filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
+
+    var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+    if(filterSimulationName != null && filterSimulationName !== '')
+      filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
@@ -435,18 +435,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
-  var valueSimulationName = $formValues.find('.valueSimulationName').val();
-  var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
-  var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
-  var addSimulationName = $formValues.find('.addSimulationName').val();
-  if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
-    vals['setSimulationName'] = setSimulationName;
-  if(addSimulationName != null && addSimulationName !== '')
-    vals['addSimulationName'] = addSimulationName;
-  var removeSimulationName = $formValues.find('.removeSimulationName').val();
-  if(removeSimulationName != null && removeSimulationName !== '')
-    vals['removeSimulationName'] = removeSimulationName;
-
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
   var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
@@ -458,6 +446,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
   if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
     vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
+
+  var valueSimulationName = $formValues.find('.valueSimulationName').val();
+  var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
+  var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
+  var addSimulationName = $formValues.find('.addSimulationName').val();
+  if(removeSimulationName || setSimulationName != null && setSimulationName !== '')
+    vals['setSimulationName'] = setSimulationName;
+  if(addSimulationName != null && addSimulationName !== '')
+    vals['addSimulationName'] = addSimulationName;
+  var removeSimulationName = $formValues.find('.removeSimulationName').val();
+  if(removeSimulationName != null && removeSimulationName !== '')
+    vals['removeSimulationName'] = removeSimulationName;
 
   var valueColor = $formValues.find('.valueColor').val();
   var removeColor = $formValues.find('.removeColor').val() === 'true';
@@ -1029,13 +1029,13 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterSimulationName = $formFilters.find('.valueSimulationName').val();
-    if(filterSimulationName != null && filterSimulationName !== '')
-      filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
-
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
       filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
+
+    var filterSimulationName = $formFilters.find('.valueSimulationName').val();
+    if(filterSimulationName != null && filterSimulationName !== '')
+      filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
 
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
@@ -1332,13 +1332,13 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = valueLocation;
 
-  var valueSimulationName = $formValues.find('.valueSimulationName').val();
-  if(valueSimulationName != null && valueSimulationName !== '')
-    vals['simulationName'] = valueSimulationName;
-
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
     vals['trafficSimulationId'] = valueTrafficSimulationId;
+
+  var valueSimulationName = $formValues.find('.valueSimulationName').val();
+  if(valueSimulationName != null && valueSimulationName !== '')
+    vals['simulationName'] = valueSimulationName;
 
   var valueColor = $formValues.find('.valueColor').val();
   if(valueColor != null && valueColor !== '')
@@ -1623,8 +1623,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputDeleted = null;
         var inputEntityId = null;
         var inputLocation = null;
-        var inputSimulationName = null;
         var inputTrafficSimulationId = null;
+        var inputSimulationName = null;
         var inputColor = null;
         var inputAddress = null;
         var inputAlternateName = null;
@@ -1694,10 +1694,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
-        if(vars.includes('simulationName'))
-          inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('trafficSimulationId'))
           inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
+        if(vars.includes('simulationName'))
+          inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
         if(vars.includes('address'))
@@ -1846,14 +1846,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_location'));
         }
 
-        if(inputSimulationName) {
-          inputSimulationName.replaceAll('.Page_simulationName');
-          addGlow($('.Page_simulationName'));
-        }
-
         if(inputTrafficSimulationId) {
           inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
           addGlow($('.Page_trafficSimulationId'));
+        }
+
+        if(inputSimulationName) {
+          inputSimulationName.replaceAll('.Page_simulationName');
+          addGlow($('.Page_simulationName'));
         }
 
         if(inputColor) {
