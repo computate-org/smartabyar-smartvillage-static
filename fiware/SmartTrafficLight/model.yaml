@@ -15,6 +15,15 @@ SmartTrafficLight:
       type: geo:point
       x-ngsi:
         type: GeoProperty
+    areaServed:
+      type: geo:linestring
+      description: >+
+        The geographic area where a service or offered item is provided.
+        Geojson reference to the item. It can be Point, LineString, Polygon,
+        MultiPoint, MultiLineString or MultiPolygon. 
+      required: true
+      x-ngsi:
+        type: Property
     routeIds:
       type: array
       x-ngsi:

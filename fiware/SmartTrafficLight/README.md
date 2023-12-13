@@ -11,6 +11,7 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 - [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/entityId.md)
 - [smartTrafficLightName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/smartTrafficLightName.md)
 - [location](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/location.md)
+- [areaServed](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/areaServed.md)
 - [routeIds](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/routeIds.md)
 - [routeIdNorth](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/routeIdNorth.md)
 - [routeIdEast](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/SmartTrafficLight/attributes/routeIdEast.md)

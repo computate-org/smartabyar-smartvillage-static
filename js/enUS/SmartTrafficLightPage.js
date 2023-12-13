@@ -59,6 +59,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
       filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
 
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
     var filterRouteIds = $formFilters.find('.valueRouteIds').val();
     if(filterRouteIds != null && filterRouteIds !== '')
       filters.push({ name: 'fq', value: 'routeIds:' + filterRouteIds });
@@ -214,10 +218,6 @@ function searchSmartTrafficLightFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
 
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
@@ -418,6 +418,18 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   var removeSmartTrafficLightName = $formValues.find('.removeSmartTrafficLightName').val();
   if(removeSmartTrafficLightName != null && removeSmartTrafficLightName !== '')
     vals['removeSmartTrafficLightName'] = removeSmartTrafficLightName;
+
+  var valueAreaServed = $formValues.find('.valueAreaServed').val();
+  var removeAreaServed = $formValues.find('.removeAreaServed').val() === 'true';
+  var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
+  var addAreaServed = $formValues.find('.addAreaServed').val();
+  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
+    vals['setAreaServed'] = JSON.parse(setAreaServed);
+  if(addAreaServed != null && addAreaServed !== '')
+    vals['addAreaServed'] = addAreaServed;
+  var removeAreaServed = $formValues.find('.removeAreaServed').val();
+  if(removeAreaServed != null && removeAreaServed !== '')
+    vals['removeAreaServed'] = removeAreaServed;
 
   var valueRouteIds = $formValues.find('.valueRouteIds').val();
   var removeRouteIds = $formValues.find('.removeRouteIds').val() === 'true';
@@ -799,6 +811,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterSmartTrafficLightName != null && filterSmartTrafficLightName !== '')
       filters.push({ name: 'fq', value: 'smartTrafficLightName:' + filterSmartTrafficLightName });
 
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
     var filterRouteIds = $formFilters.find('.valueRouteIds').val();
     if(filterRouteIds != null && filterRouteIds !== '')
       filters.push({ name: 'fq', value: 'routeIds:' + filterRouteIds });
@@ -955,10 +971,6 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
@@ -1037,6 +1049,10 @@ async function postSmartTrafficLight($formValues, success, error) {
   var valueSmartTrafficLightName = $formValues.find('.valueSmartTrafficLightName').val();
   if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
     vals['smartTrafficLightName'] = valueSmartTrafficLightName;
+
+  var valueAreaServed = $formValues.find('.valueAreaServed').val();
+  if(valueAreaServed != null && valueAreaServed !== '')
+    vals['areaServed'] = JSON.parse(valueAreaServed);
 
   var valueRouteIds = $formValues.find('.valueRouteIds').val();
   if(valueRouteIds != null && valueRouteIds !== '')
@@ -1272,6 +1288,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputLocation = null;
         var inputEntityId = null;
         var inputSmartTrafficLightName = null;
+        var inputAreaServed = null;
         var inputRouteIds = null;
         var inputRouteIdNorth = null;
         var inputRouteIdEast = null;
@@ -1311,7 +1328,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputAreaServed = null;
         var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
 
@@ -1331,6 +1347,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('smartTrafficLightName'))
           inputSmartTrafficLightName = $response.find('.Page_smartTrafficLightName');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('routeIds'))
           inputRouteIds = $response.find('.Page_routeIds');
         if(vars.includes('routeIdNorth'))
@@ -1409,8 +1427,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('trafficFlowObservedIds'))
           inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
@@ -1458,6 +1474,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputSmartTrafficLightName) {
           inputSmartTrafficLightName.replaceAll('.Page_smartTrafficLightName');
           addGlow($('.Page_smartTrafficLightName'));
+        }
+
+        if(inputAreaServed) {
+          inputAreaServed.replaceAll('.Page_areaServed');
+          addGlow($('.Page_areaServed'));
         }
 
         if(inputRouteIds) {
@@ -1653,11 +1674,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputAreaServed) {
-          inputAreaServed.replaceAll('.Page_areaServed');
-          addGlow($('.Page_areaServed'));
         }
 
         if(inputTrafficFlowObservedIds) {

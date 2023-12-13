@@ -11,7 +11,7 @@
   }, {
     "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
   } ],
-  "required" : [ "entityId" ],
+  "required" : [ "entityId", "areaServed" ],
   "properties" : {
     "entityId" : {
       "type" : "string",
@@ -22,6 +22,10 @@
     },
     "location" : {
       "type" : "geo:point"
+    },
+    "areaServed" : {
+      "type" : "geo:linestring",
+      "description" : "The geographic area where a service or offered item is provided. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon. "
     },
     "routeIds" : {
       "type" : "array"
