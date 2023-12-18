@@ -127,6 +127,10 @@ function searchSiteUserFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterUserKeys = $formFilters.find('.valueUserKeys').val();
+    if(filterUserKeys != null && filterUserKeys !== '')
+      filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
+
     var filterUserId = $formFilters.find('.valueUserId').val();
     if(filterUserId != null && filterUserId !== '')
       filters.push({ name: 'fq', value: 'userId:' + filterUserId });
@@ -150,10 +154,6 @@ function searchSiteUserFilters($formFilters) {
     var filterUserFullName = $formFilters.find('.valueUserFullName').val();
     if(filterUserFullName != null && filterUserFullName !== '')
       filters.push({ name: 'fq', value: 'userFullName:' + filterUserFullName });
-
-    var filterUserKeys = $formFilters.find('.valueUserKeys').val();
-    if(filterUserKeys != null && filterUserKeys !== '')
-      filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
   }
   return filters;
 }
@@ -531,6 +531,10 @@ function patchSiteUserFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterUserKeys = $formFilters.find('.valueUserKeys').val();
+    if(filterUserKeys != null && filterUserKeys !== '')
+      filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
+
     var filterUserId = $formFilters.find('.valueUserId').val();
     if(filterUserId != null && filterUserId !== '')
       filters.push({ name: 'fq', value: 'userId:' + filterUserId });
@@ -554,10 +558,6 @@ function patchSiteUserFilters($formFilters) {
     var filterUserFullName = $formFilters.find('.valueUserFullName').val();
     if(filterUserFullName != null && filterUserFullName !== '')
       filters.push({ name: 'fq', value: 'userFullName:' + filterUserFullName });
-
-    var filterUserKeys = $formFilters.find('.valueUserKeys').val();
-    if(filterUserKeys != null && filterUserKeys !== '')
-      filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
   }
   return filters;
 }
@@ -792,13 +792,13 @@ async function websocketSiteUserInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputUserKeys = null;
         var inputUserId = null;
         var inputUserName = null;
         var inputUserEmail = null;
         var inputUserFirstName = null;
         var inputUserLastName = null;
         var inputUserFullName = null;
-        var inputUserKeys = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -844,6 +844,8 @@ async function websocketSiteUserInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('userKeys'))
+          inputUserKeys = $response.find('.Page_userKeys');
         if(vars.includes('userId'))
           inputUserId = $response.find('.Page_userId');
         if(vars.includes('userName'))
@@ -856,8 +858,6 @@ async function websocketSiteUserInner(apiRequest) {
           inputUserLastName = $response.find('.Page_userLastName');
         if(vars.includes('userFullName'))
           inputUserFullName = $response.find('.Page_userFullName');
-        if(vars.includes('userKeys'))
-          inputUserKeys = $response.find('.Page_userKeys');
         jsWebsocketSiteUser(pk, vars, $response);
 
         window.siteUser = JSON.parse($response.find('.pageForm .siteUser').val());
@@ -973,6 +973,11 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputUserKeys) {
+          inputUserKeys.replaceAll('.Page_userKeys');
+          addGlow($('.Page_userKeys'));
+        }
+
         if(inputUserId) {
           inputUserId.replaceAll('.Page_userId');
           addGlow($('.Page_userId'));
@@ -1001,11 +1006,6 @@ async function websocketSiteUserInner(apiRequest) {
         if(inputUserFullName) {
           inputUserFullName.replaceAll('.Page_userFullName');
           addGlow($('.Page_userFullName'));
-        }
-
-        if(inputUserKeys) {
-          inputUserKeys.replaceAll('.Page_userKeys');
-          addGlow($('.Page_userKeys'));
         }
     });
   }

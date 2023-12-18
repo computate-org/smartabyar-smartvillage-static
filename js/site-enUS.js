@@ -278,6 +278,7 @@ function searchPage(classSimpleName, success, error) {
 	var uri = location.pathname + queryParams;
 	$.get(uri, {}, function(data) {
 		var $response = $("<html/>").html(data);
+		window['list' + classSimpleName] = JSON.parse($response.find('.pageForm .list' + classSimpleName).val());
 		$('.pageFacetField').each(function(index, facetField) {
 			var $facetField = $(facetField);
 			$facetField.replaceWith($response.find("." + $facetField.attr("id")));

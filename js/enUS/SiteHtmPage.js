@@ -139,6 +139,10 @@ function searchSiteHtmFilters($formFilters) {
     if(filterA != null && filterA !== '')
       filters.push({ name: 'fq', value: 'a:' + filterA });
 
+    var filterText = $formFilters.find('.valueText').val();
+    if(filterText != null && filterText !== '')
+      filters.push({ name: 'fq', value: 'text:' + filterText });
+
     var filterComment = $formFilters.find('.valueComment').val();
     if(filterComment != null && filterComment !== '')
       filters.push({ name: 'fq', value: 'comment:' + filterComment });
@@ -146,14 +150,6 @@ function searchSiteHtmFilters($formFilters) {
     var filterTabs = $formFilters.find('.valueTabs').val();
     if(filterTabs != null && filterTabs !== '')
       filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
-
-    var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
-    if(filterHtmMiddle != null && filterHtmMiddle !== '')
-      filters.push({ name: 'fq', value: 'htmMiddle:' + filterHtmMiddle });
-
-    var filterText = $formFilters.find('.valueText').val();
-    if(filterText != null && filterText !== '')
-      filters.push({ name: 'fq', value: 'text:' + filterText });
 
     var $filterNewLineCheckbox = $formFilters.find('input.valueNewLine[type = "checkbox"]');
     var $filterNewLineSelect = $formFilters.find('select.valueNewLine');
@@ -164,6 +160,10 @@ function searchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
+
+    var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
+    if(filterHtmMiddle != null && filterHtmMiddle !== '')
+      filters.push({ name: 'fq', value: 'htmMiddle:' + filterHtmMiddle });
   }
   return filters;
 }
@@ -305,6 +305,10 @@ async function postSiteHtm($formValues, success, error) {
   if(valueA != null && valueA !== '')
     vals['a'] = JSON.parse(valueA);
 
+  var valueText = $formValues.find('.valueText').val();
+  if(valueText != null && valueText !== '')
+    vals['text'] = JSON.parse(valueText);
+
   var valueComment = $formValues.find('.valueComment').val();
   if(valueComment != null && valueComment !== '')
     vals['comment'] = JSON.parse(valueComment);
@@ -313,14 +317,6 @@ async function postSiteHtm($formValues, success, error) {
   if(valueTabs != null && valueTabs !== '')
     vals['tabs'] = valueTabs;
 
-  var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
-  if(valueHtmMiddle != null && valueHtmMiddle !== '')
-    vals['htmMiddle'] = JSON.parse(valueHtmMiddle);
-
-  var valueText = $formValues.find('.valueText').val();
-  if(valueText != null && valueText !== '')
-    vals['text'] = JSON.parse(valueText);
-
   var valueNewLine = $formValues.find('.valueNewLine').val();
   if(valueNewLine != null && valueNewLine !== '')
     vals['newLine'] = valueNewLine == 'true';
@@ -328,6 +324,10 @@ async function postSiteHtm($formValues, success, error) {
   var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
   if(valueHtmBefore != null && valueHtmBefore !== '')
     vals['htmBefore'] = valueHtmBefore;
+
+  var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
+  if(valueHtmMiddle != null && valueHtmMiddle !== '')
+    vals['htmMiddle'] = JSON.parse(valueHtmMiddle);
 
   var valueHtmAfter = $formValues.find('.valueHtmAfter').val();
   if(valueHtmAfter != null && valueHtmAfter !== '')
@@ -597,6 +597,18 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   if(removeA != null && removeA !== '')
     vals['removeA'] = removeA;
 
+  var valueText = $formValues.find('.valueText').val();
+  var removeText = $formValues.find('.removeText').val() === 'true';
+  var setText = removeText ? null : $formValues.find('.setText').val();
+  var addText = $formValues.find('.addText').val();
+  if(removeText || setText != null && setText !== '')
+    vals['setText'] = JSON.parse(setText);
+  if(addText != null && addText !== '')
+    vals['addText'] = addText;
+  var removeText = $formValues.find('.removeText').val();
+  if(removeText != null && removeText !== '')
+    vals['removeText'] = removeText;
+
   var valueComment = $formValues.find('.valueComment').val();
   var removeComment = $formValues.find('.removeComment').val() === 'true';
   var setComment = removeComment ? null : $formValues.find('.setComment').val();
@@ -620,30 +632,6 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   var removeTabs = $formValues.find('.removeTabs').val();
   if(removeTabs != null && removeTabs !== '')
     vals['removeTabs'] = removeTabs;
-
-  var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
-  var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val() === 'true';
-  var setHtmMiddle = removeHtmMiddle ? null : $formValues.find('.setHtmMiddle').val();
-  var addHtmMiddle = $formValues.find('.addHtmMiddle').val();
-  if(removeHtmMiddle || setHtmMiddle != null && setHtmMiddle !== '')
-    vals['setHtmMiddle'] = JSON.parse(setHtmMiddle);
-  if(addHtmMiddle != null && addHtmMiddle !== '')
-    vals['addHtmMiddle'] = addHtmMiddle;
-  var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val();
-  if(removeHtmMiddle != null && removeHtmMiddle !== '')
-    vals['removeHtmMiddle'] = removeHtmMiddle;
-
-  var valueText = $formValues.find('.valueText').val();
-  var removeText = $formValues.find('.removeText').val() === 'true';
-  var setText = removeText ? null : $formValues.find('.setText').val();
-  var addText = $formValues.find('.addText').val();
-  if(removeText || setText != null && setText !== '')
-    vals['setText'] = JSON.parse(setText);
-  if(addText != null && addText !== '')
-    vals['addText'] = addText;
-  var removeText = $formValues.find('.removeText').val();
-  if(removeText != null && removeText !== '')
-    vals['removeText'] = removeText;
 
   var valueNewLine = $formValues.find('.valueNewLine').val();
   var removeNewLine = $formValues.find('.removeNewLine').val() === 'true';
@@ -671,6 +659,18 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   var removeHtmBefore = $formValues.find('.removeHtmBefore').val();
   if(removeHtmBefore != null && removeHtmBefore !== '')
     vals['removeHtmBefore'] = removeHtmBefore;
+
+  var valueHtmMiddle = $formValues.find('.valueHtmMiddle').val();
+  var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val() === 'true';
+  var setHtmMiddle = removeHtmMiddle ? null : $formValues.find('.setHtmMiddle').val();
+  var addHtmMiddle = $formValues.find('.addHtmMiddle').val();
+  if(removeHtmMiddle || setHtmMiddle != null && setHtmMiddle !== '')
+    vals['setHtmMiddle'] = JSON.parse(setHtmMiddle);
+  if(addHtmMiddle != null && addHtmMiddle !== '')
+    vals['addHtmMiddle'] = addHtmMiddle;
+  var removeHtmMiddle = $formValues.find('.removeHtmMiddle').val();
+  if(removeHtmMiddle != null && removeHtmMiddle !== '')
+    vals['removeHtmMiddle'] = removeHtmMiddle;
 
   var valueHtmAfter = $formValues.find('.valueHtmAfter').val();
   var removeHtmAfter = $formValues.find('.removeHtmAfter').val() === 'true';
@@ -816,6 +816,10 @@ function patchSiteHtmFilters($formFilters) {
     if(filterA != null && filterA !== '')
       filters.push({ name: 'fq', value: 'a:' + filterA });
 
+    var filterText = $formFilters.find('.valueText').val();
+    if(filterText != null && filterText !== '')
+      filters.push({ name: 'fq', value: 'text:' + filterText });
+
     var filterComment = $formFilters.find('.valueComment').val();
     if(filterComment != null && filterComment !== '')
       filters.push({ name: 'fq', value: 'comment:' + filterComment });
@@ -823,14 +827,6 @@ function patchSiteHtmFilters($formFilters) {
     var filterTabs = $formFilters.find('.valueTabs').val();
     if(filterTabs != null && filterTabs !== '')
       filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
-
-    var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
-    if(filterHtmMiddle != null && filterHtmMiddle !== '')
-      filters.push({ name: 'fq', value: 'htmMiddle:' + filterHtmMiddle });
-
-    var filterText = $formFilters.find('.valueText').val();
-    if(filterText != null && filterText !== '')
-      filters.push({ name: 'fq', value: 'text:' + filterText });
 
     var $filterNewLineCheckbox = $formFilters.find('input.valueNewLine[type = "checkbox"]');
     var $filterNewLineSelect = $formFilters.find('select.valueNewLine');
@@ -841,6 +837,10 @@ function patchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
+
+    var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
+    if(filterHtmMiddle != null && filterHtmMiddle !== '')
+      filters.push({ name: 'fq', value: 'htmMiddle:' + filterHtmMiddle });
   }
   return filters;
 }
@@ -933,13 +933,13 @@ async function websocketSiteHtm(success) {
   }
 }
 async function websocketSiteHtmInner(apiRequest) {
-  var pk = apiRequest['pk'];
-  var pks = apiRequest['pks'];
+  var id = apiRequest['id'];
+  var ids = apiRequest['ids'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(pk != null && vars.length > 0) {
+  if(id != null && vars.length > 0) {
     var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     $.get(uri, {}, function(data) {
@@ -972,12 +972,12 @@ async function websocketSiteHtmInner(apiRequest) {
         var inputEBefore = null;
         var inputEAfter = null;
         var inputA = null;
+        var inputText = null;
         var inputComment = null;
         var inputTabs = null;
-        var inputHtmMiddle = null;
-        var inputText = null;
         var inputNewLine = null;
         var inputHtmBefore = null;
+        var inputHtmMiddle = null;
         var inputHtmAfter = null;
 
         if(vars.includes('created'))
@@ -1036,21 +1036,21 @@ async function websocketSiteHtmInner(apiRequest) {
           inputEAfter = $response.find('.Page_eAfter');
         if(vars.includes('a'))
           inputA = $response.find('.Page_a');
+        if(vars.includes('text'))
+          inputText = $response.find('.Page_text');
         if(vars.includes('comment'))
           inputComment = $response.find('.Page_comment');
         if(vars.includes('tabs'))
           inputTabs = $response.find('.Page_tabs');
-        if(vars.includes('htmMiddle'))
-          inputHtmMiddle = $response.find('.Page_htmMiddle');
-        if(vars.includes('text'))
-          inputText = $response.find('.Page_text');
         if(vars.includes('newLine'))
           inputNewLine = $response.find('.Page_newLine');
         if(vars.includes('htmBefore'))
           inputHtmBefore = $response.find('.Page_htmBefore');
+        if(vars.includes('htmMiddle'))
+          inputHtmMiddle = $response.find('.Page_htmMiddle');
         if(vars.includes('htmAfter'))
           inputHtmAfter = $response.find('.Page_htmAfter');
-        jsWebsocketSiteHtm(, vars, $response);
+        jsWebsocketSiteHtm(id, vars, $response);
 
         window.siteHtm = JSON.parse($response.find('.pageForm .siteHtm').val());
 
@@ -1195,6 +1195,11 @@ async function websocketSiteHtmInner(apiRequest) {
           addGlow($('.Page_a'));
         }
 
+        if(inputText) {
+          inputText.replaceAll('.Page_text');
+          addGlow($('.Page_text'));
+        }
+
         if(inputComment) {
           inputComment.replaceAll('.Page_comment');
           addGlow($('.Page_comment'));
@@ -1205,16 +1210,6 @@ async function websocketSiteHtmInner(apiRequest) {
           addGlow($('.Page_tabs'));
         }
 
-        if(inputHtmMiddle) {
-          inputHtmMiddle.replaceAll('.Page_htmMiddle');
-          addGlow($('.Page_htmMiddle'));
-        }
-
-        if(inputText) {
-          inputText.replaceAll('.Page_text');
-          addGlow($('.Page_text'));
-        }
-
         if(inputNewLine) {
           inputNewLine.replaceAll('.Page_newLine');
           addGlow($('.Page_newLine'));
@@ -1223,6 +1218,11 @@ async function websocketSiteHtmInner(apiRequest) {
         if(inputHtmBefore) {
           inputHtmBefore.replaceAll('.Page_htmBefore');
           addGlow($('.Page_htmBefore'));
+        }
+
+        if(inputHtmMiddle) {
+          inputHtmMiddle.replaceAll('.Page_htmMiddle');
+          addGlow($('.Page_htmMiddle'));
         }
 
         if(inputHtmAfter) {

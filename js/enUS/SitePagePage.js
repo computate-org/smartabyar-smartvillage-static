@@ -51,13 +51,13 @@ function searchSitePageFilters($formFilters) {
     if(filterPageId != null && filterPageId !== '')
       filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
 
-    var filterUrl = $formFilters.find('.valueUrl').val();
-    if(filterUrl != null && filterUrl !== '')
-      filters.push({ name: 'fq', value: 'url:' + filterUrl });
-
     var filterUri = $formFilters.find('.valueUri').val();
     if(filterUri != null && filterUri !== '')
       filters.push({ name: 'fq', value: 'uri:' + filterUri });
+
+    var filterUrl = $formFilters.find('.valueUrl').val();
+    if(filterUrl != null && filterUrl !== '')
+      filters.push({ name: 'fq', value: 'url:' + filterUrl });
 
     var filterAuthor = $formFilters.find('.valueAuthor').val();
     if(filterAuthor != null && filterAuthor !== '')
@@ -227,13 +227,13 @@ async function postSitePage($formValues, success, error) {
   if(valuePageId != null && valuePageId !== '')
     vals['pageId'] = valuePageId;
 
-  var valueUrl = $formValues.find('.valueUrl').val();
-  if(valueUrl != null && valueUrl !== '')
-    vals['url'] = valueUrl;
-
   var valueUri = $formValues.find('.valueUri').val();
   if(valueUri != null && valueUri !== '')
     vals['uri'] = valueUri;
+
+  var valueUrl = $formValues.find('.valueUrl').val();
+  if(valueUrl != null && valueUrl !== '')
+    vals['url'] = valueUrl;
 
   var valueAuthor = $formValues.find('.valueAuthor').val();
   if(valueAuthor != null && valueAuthor !== '')
@@ -387,18 +387,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   if(removePageId != null && removePageId !== '')
     vals['removePageId'] = removePageId;
 
-  var valueUrl = $formValues.find('.valueUrl').val();
-  var removeUrl = $formValues.find('.removeUrl').val() === 'true';
-  var setUrl = removeUrl ? null : $formValues.find('.setUrl').val();
-  var addUrl = $formValues.find('.addUrl').val();
-  if(removeUrl || setUrl != null && setUrl !== '')
-    vals['setUrl'] = setUrl;
-  if(addUrl != null && addUrl !== '')
-    vals['addUrl'] = addUrl;
-  var removeUrl = $formValues.find('.removeUrl').val();
-  if(removeUrl != null && removeUrl !== '')
-    vals['removeUrl'] = removeUrl;
-
   var valueUri = $formValues.find('.valueUri').val();
   var removeUri = $formValues.find('.removeUri').val() === 'true';
   var setUri = removeUri ? null : $formValues.find('.setUri').val();
@@ -410,6 +398,18 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   var removeUri = $formValues.find('.removeUri').val();
   if(removeUri != null && removeUri !== '')
     vals['removeUri'] = removeUri;
+
+  var valueUrl = $formValues.find('.valueUrl').val();
+  var removeUrl = $formValues.find('.removeUrl').val() === 'true';
+  var setUrl = removeUrl ? null : $formValues.find('.setUrl').val();
+  var addUrl = $formValues.find('.addUrl').val();
+  if(removeUrl || setUrl != null && setUrl !== '')
+    vals['setUrl'] = setUrl;
+  if(addUrl != null && addUrl !== '')
+    vals['addUrl'] = addUrl;
+  var removeUrl = $formValues.find('.removeUrl').val();
+  if(removeUrl != null && removeUrl !== '')
+    vals['removeUrl'] = removeUrl;
 
   var valueAuthor = $formValues.find('.valueAuthor').val();
   var removeAuthor = $formValues.find('.removeAuthor').val() === 'true';
@@ -587,13 +587,13 @@ function patchSitePageFilters($formFilters) {
     if(filterPageId != null && filterPageId !== '')
       filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
 
-    var filterUrl = $formFilters.find('.valueUrl').val();
-    if(filterUrl != null && filterUrl !== '')
-      filters.push({ name: 'fq', value: 'url:' + filterUrl });
-
     var filterUri = $formFilters.find('.valueUri').val();
     if(filterUri != null && filterUri !== '')
       filters.push({ name: 'fq', value: 'uri:' + filterUri });
+
+    var filterUrl = $formFilters.find('.valueUrl').val();
+    if(filterUrl != null && filterUrl !== '')
+      filters.push({ name: 'fq', value: 'url:' + filterUrl });
 
     var filterAuthor = $formFilters.find('.valueAuthor').val();
     if(filterAuthor != null && filterAuthor !== '')
@@ -766,13 +766,13 @@ async function websocketSitePage(success) {
   }
 }
 async function websocketSitePageInner(apiRequest) {
-  var pk = apiRequest['pk'];
-  var pks = apiRequest['pks'];
+  var id = apiRequest['id'];
+  var ids = apiRequest['ids'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(pk != null && vars.length > 0) {
+  if(id != null && vars.length > 0) {
     var queryParams = "?" + $(".pageSearchVal").get().filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     $.get(uri, {}, function(data) {
@@ -783,8 +783,8 @@ async function websocketSitePageInner(apiRequest) {
         var inputArchived = null;
         var inputDeleted = null;
         var inputPageId = null;
-        var inputUrl = null;
         var inputUri = null;
+        var inputUrl = null;
         var inputAuthor = null;
         var inputPageImageUri = null;
         var inputInheritPk = null;
@@ -818,10 +818,10 @@ async function websocketSitePageInner(apiRequest) {
           inputDeleted = $response.find('.Page_deleted');
         if(vars.includes('pageId'))
           inputPageId = $response.find('.Page_pageId');
-        if(vars.includes('url'))
-          inputUrl = $response.find('.Page_url');
         if(vars.includes('uri'))
           inputUri = $response.find('.Page_uri');
+        if(vars.includes('url'))
+          inputUrl = $response.find('.Page_url');
         if(vars.includes('author'))
           inputAuthor = $response.find('.Page_author');
         if(vars.includes('pageImageUri'))
@@ -862,7 +862,7 @@ async function websocketSitePageInner(apiRequest) {
           inputH1 = $response.find('.Page_h1');
         if(vars.includes('h2'))
           inputH2 = $response.find('.Page_h2');
-        jsWebsocketSitePage(, vars, $response);
+        jsWebsocketSitePage(id, vars, $response);
 
         window.sitePage = JSON.parse($response.find('.pageForm .sitePage').val());
 
@@ -897,14 +897,14 @@ async function websocketSitePageInner(apiRequest) {
           addGlow($('.Page_pageId'));
         }
 
-        if(inputUrl) {
-          inputUrl.replaceAll('.Page_url');
-          addGlow($('.Page_url'));
-        }
-
         if(inputUri) {
           inputUri.replaceAll('.Page_uri');
           addGlow($('.Page_uri'));
+        }
+
+        if(inputUrl) {
+          inputUrl.replaceAll('.Page_url');
+          addGlow($('.Page_url'));
         }
 
         if(inputAuthor) {

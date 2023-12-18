@@ -89,6 +89,10 @@ function searchMapResultFilters($formFilters) {
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
@@ -109,18 +113,6 @@ function searchMapResultFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-    if(filterPageUrlApi != null && filterPageUrlApi !== '')
-      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-    var filterId = $formFilters.find('.valueId').val();
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
@@ -128,6 +120,14 @@ function searchMapResultFilters($formFilters) {
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+    if(filterPageUrlApi != null && filterPageUrlApi !== '')
+      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+    var filterId = $formFilters.find('.valueId').val();
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -255,16 +255,16 @@ async function websocketMapResultInner(apiRequest) {
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
+        var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
-        var inputPageUrlApi = null;
-        var inputId = null;
-        var inputSessionId = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
+        var inputPageUrlApi = null;
+        var inputId = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
@@ -297,6 +297,8 @@ async function websocketMapResultInner(apiRequest) {
           inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
@@ -307,16 +309,14 @@ async function websocketMapResultInner(apiRequest) {
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
-        if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
           inputPageUrlPk = $response.find('.Page_pageUrlPk');
+        if(vars.includes('pageUrlApi'))
+          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+        if(vars.includes('id'))
+          inputId = $response.find('.Page_id');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
@@ -398,6 +398,11 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_classCanonicalNames'));
         }
 
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
         if(inputUserKey) {
           inputUserKey.replaceAll('.Page_userKey');
           addGlow($('.Page_userKey'));
@@ -423,21 +428,6 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_objectText'));
         }
 
-        if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
-        }
-
-        if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
         if(inputPageUrlId) {
           inputPageUrlId.replaceAll('.Page_pageUrlId');
           addGlow($('.Page_pageUrlId'));
@@ -446,6 +436,16 @@ async function websocketMapResultInner(apiRequest) {
         if(inputPageUrlPk) {
           inputPageUrlPk.replaceAll('.Page_pageUrlPk');
           addGlow($('.Page_pageUrlPk'));
+        }
+
+        if(inputPageUrlApi) {
+          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
+          addGlow($('.Page_pageUrlApi'));
+        }
+
+        if(inputId) {
+          inputId.replaceAll('.Page_id');
+          addGlow($('.Page_id'));
         }
 
         if(inputTimeStepId) {

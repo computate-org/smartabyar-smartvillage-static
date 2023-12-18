@@ -55,13 +55,13 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
 
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterAverageCrowdSpeed = $formFilters.find('.valueAverageCrowdSpeed').val();
     if(filterAverageCrowdSpeed != null && filterAverageCrowdSpeed !== '')
@@ -81,13 +81,13 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
-
     var filterDataProvider = $formFilters.find('.valueDataProvider').val();
     if(filterDataProvider != null && filterDataProvider !== '')
       filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
+
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
@@ -357,18 +357,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeAlternateName != null && removeAlternateName !== '')
     vals['removeAlternateName'] = removeAlternateName;
 
-  var valueColor = $formValues.find('.valueColor').val();
-  var removeColor = $formValues.find('.removeColor').val() === 'true';
-  var setColor = removeColor ? null : $formValues.find('.setColor').val();
-  var addColor = $formValues.find('.addColor').val();
-  if(removeColor || setColor != null && setColor !== '')
-    vals['setColor'] = setColor;
-  if(addColor != null && addColor !== '')
-    vals['addColor'] = addColor;
-  var removeColor = $formValues.find('.removeColor').val();
-  if(removeColor != null && removeColor !== '')
-    vals['removeColor'] = removeColor;
-
   var valueAreaServed = $formValues.find('.valueAreaServed').val();
   var removeAreaServed = $formValues.find('.removeAreaServed').val() === 'true';
   var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
@@ -380,6 +368,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeAreaServed = $formValues.find('.removeAreaServed').val();
   if(removeAreaServed != null && removeAreaServed !== '')
     vals['removeAreaServed'] = removeAreaServed;
+
+  var valueColor = $formValues.find('.valueColor').val();
+  var removeColor = $formValues.find('.removeColor').val() === 'true';
+  var setColor = removeColor ? null : $formValues.find('.setColor').val();
+  var addColor = $formValues.find('.addColor').val();
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.find('.removeColor').val();
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
 
   var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
   var removeAverageCrowdSpeed = $formValues.find('.removeAverageCrowdSpeed').val() === 'true';
@@ -420,18 +420,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeCongested != null && removeCongested !== '')
     vals['removeCongested'] = removeCongested;
 
-  var valueEntityId = $formValues.find('.valueEntityId').val();
-  var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
-  var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
-  var addEntityId = $formValues.find('.addEntityId').val();
-  if(removeEntityId || setEntityId != null && setEntityId !== '')
-    vals['setEntityId'] = setEntityId;
-  if(addEntityId != null && addEntityId !== '')
-    vals['addEntityId'] = addEntityId;
-  var removeEntityId = $formValues.find('.removeEntityId').val();
-  if(removeEntityId != null && removeEntityId !== '')
-    vals['removeEntityId'] = removeEntityId;
-
   var valueDataProvider = $formValues.find('.valueDataProvider').val();
   var removeDataProvider = $formValues.find('.removeDataProvider').val() === 'true';
   var setDataProvider = removeDataProvider ? null : $formValues.find('.setDataProvider').val();
@@ -443,6 +431,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeDataProvider = $formValues.find('.removeDataProvider').val();
   if(removeDataProvider != null && removeDataProvider !== '')
     vals['removeDataProvider'] = removeDataProvider;
+
+  var valueEntityId = $formValues.find('.valueEntityId').val();
+  var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
+  var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
+  var addEntityId = $formValues.find('.addEntityId').val();
+  if(removeEntityId || setEntityId != null && setEntityId !== '')
+    vals['setEntityId'] = setEntityId;
+  if(addEntityId != null && addEntityId !== '')
+    vals['addEntityId'] = addEntityId;
+  var removeEntityId = $formValues.find('.removeEntityId').val();
+  if(removeEntityId != null && removeEntityId !== '')
+    vals['removeEntityId'] = removeEntityId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
@@ -732,13 +732,13 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
 
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterAverageCrowdSpeed = $formFilters.find('.valueAverageCrowdSpeed').val();
     if(filterAverageCrowdSpeed != null && filterAverageCrowdSpeed !== '')
@@ -758,13 +758,13 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
-
     var filterDataProvider = $formFilters.find('.valueDataProvider').val();
     if(filterDataProvider != null && filterDataProvider !== '')
       filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
+
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
     var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
     if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
@@ -957,13 +957,13 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueAlternateName != null && valueAlternateName !== '')
     vals['alternateName'] = valueAlternateName;
 
-  var valueColor = $formValues.find('.valueColor').val();
-  if(valueColor != null && valueColor !== '')
-    vals['color'] = valueColor;
-
   var valueAreaServed = $formValues.find('.valueAreaServed').val();
   if(valueAreaServed != null && valueAreaServed !== '')
     vals['areaServed'] = JSON.parse(valueAreaServed);
+
+  var valueColor = $formValues.find('.valueColor').val();
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
 
   var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
   if(valueAverageCrowdSpeed != null && valueAverageCrowdSpeed !== '')
@@ -977,13 +977,13 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueCongested != null && valueCongested !== '')
     vals['congested'] = valueCongested == 'true';
 
-  var valueEntityId = $formValues.find('.valueEntityId').val();
-  if(valueEntityId != null && valueEntityId !== '')
-    vals['entityId'] = valueEntityId;
-
   var valueDataProvider = $formValues.find('.valueDataProvider').val();
   if(valueDataProvider != null && valueDataProvider !== '')
     vals['dataProvider'] = valueDataProvider;
+
+  var valueEntityId = $formValues.find('.valueEntityId').val();
+  if(valueEntityId != null && valueEntityId !== '')
+    vals['entityId'] = valueEntityId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
@@ -1176,13 +1176,13 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputDeleted = null;
         var inputWalkingAreaId = null;
         var inputAlternateName = null;
-        var inputColor = null;
         var inputAreaServed = null;
+        var inputColor = null;
         var inputAverageCrowdSpeed = null;
         var inputAverageHeadwayTime = null;
         var inputCongested = null;
-        var inputEntityId = null;
         var inputDataProvider = null;
+        var inputEntityId = null;
         var inputTrafficSimulationId = null;
         var inputDateCreated = null;
         var inputDateModified = null;
@@ -1229,20 +1229,20 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputWalkingAreaId = $response.find('.Page_walkingAreaId');
         if(vars.includes('alternateName'))
           inputAlternateName = $response.find('.Page_alternateName');
-        if(vars.includes('color'))
-          inputColor = $response.find('.Page_color');
         if(vars.includes('areaServed'))
           inputAreaServed = $response.find('.Page_areaServed');
+        if(vars.includes('color'))
+          inputColor = $response.find('.Page_color');
         if(vars.includes('averageCrowdSpeed'))
           inputAverageCrowdSpeed = $response.find('.Page_averageCrowdSpeed');
         if(vars.includes('averageHeadwayTime'))
           inputAverageHeadwayTime = $response.find('.Page_averageHeadwayTime');
         if(vars.includes('congested'))
           inputCongested = $response.find('.Page_congested');
-        if(vars.includes('entityId'))
-          inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('dataProvider'))
           inputDataProvider = $response.find('.Page_dataProvider');
+        if(vars.includes('entityId'))
+          inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('trafficSimulationId'))
           inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('dateCreated'))
@@ -1345,14 +1345,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_alternateName'));
         }
 
-        if(inputColor) {
-          inputColor.replaceAll('.Page_color');
-          addGlow($('.Page_color'));
-        }
-
         if(inputAreaServed) {
           inputAreaServed.replaceAll('.Page_areaServed');
           addGlow($('.Page_areaServed'));
+        }
+
+        if(inputColor) {
+          inputColor.replaceAll('.Page_color');
+          addGlow($('.Page_color'));
         }
 
         if(inputAverageCrowdSpeed) {
@@ -1370,14 +1370,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_congested'));
         }
 
-        if(inputEntityId) {
-          inputEntityId.replaceAll('.Page_entityId');
-          addGlow($('.Page_entityId'));
-        }
-
         if(inputDataProvider) {
           inputDataProvider.replaceAll('.Page_dataProvider');
           addGlow($('.Page_dataProvider'));
+        }
+
+        if(inputEntityId) {
+          inputEntityId.replaceAll('.Page_entityId');
+          addGlow($('.Page_entityId'));
         }
 
         if(inputTrafficSimulationId) {
