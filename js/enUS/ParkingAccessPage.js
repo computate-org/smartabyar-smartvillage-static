@@ -167,10 +167,6 @@ function searchParkingAccessFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -178,6 +174,10 @@ function searchParkingAccessFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
   }
   return filters;
 }
@@ -723,10 +723,6 @@ function patchParkingAccessFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -734,6 +730,10 @@ function patchParkingAccessFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
   }
   return filters;
 }
@@ -1021,9 +1021,9 @@ async function websocketParkingAccessInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1095,15 +1095,16 @@ async function websocketParkingAccessInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         jsWebsocketParkingAccess(pk, vars, $response);
 
         window.parkingAccess = JSON.parse($response.find('.pageForm .parkingAccess').val());
+        window.listParkingAccess = JSON.parse($response.find('.pageForm .listParkingAccess').val());
 
 
         if(inputCreated) {
@@ -1281,11 +1282,6 @@ async function websocketParkingAccessInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -1295,6 +1291,13 @@ async function websocketParkingAccessInner(apiRequest) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
         }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
+        pageGraphParkingAccess();
     });
   }
 }
@@ -1400,50 +1403,84 @@ function pageGraphParkingAccess(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipParkingAccess(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapParkingAccess) {
+      window.geoJSONLayerGroupParkingAccess.clearLayers();
+      $.each( window.listParkingAccess, function(index, parkingAccess) {
+        if(parkingAccess.areaServed) {
+          var shapes = [];
+          if(Array.isArray(parkingAccess.areaServed))
+            shapes = shapes.concat(parkingAccess.areaServed);
+          else
+            shapes.push(parkingAccess.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": parkingAccess
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupParkingAccess.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleParkingAccess
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleParkingAccess(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapParkingAccess = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapParkingAccess);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapParkingAccess.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapParkingAccess.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapParkingAccess.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listParkingAccess, function(index, parkingAccess) {
-      if(parkingAccess.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipParkingAccess(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(parkingAccess.areaServed))
-          shapes = shapes.concat(parkingAccess.areaServed);
-        else
-          shapes.push(parkingAccess.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": parkingAccess
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleParkingAccess}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipParkingAccess(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupParkingAccess = L.geoJSON().addTo(window.mapParkingAccess);
+      $.each( window.listParkingAccess, function(index, parkingAccess) {
+        if(parkingAccess.areaServed) {
+          var shapes = [];
+          if(Array.isArray(parkingAccess.areaServed))
+            shapes = shapes.concat(parkingAccess.areaServed);
+          else
+            shapes.push(parkingAccess.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": parkingAccess
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupParkingAccess.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleParkingAccess
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleParkingAccess(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapParkingAccess.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipParkingAccess(e, feature);
+      });
+    }
   }
 }
 

@@ -115,10 +115,6 @@ function searchSiteUserFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -126,6 +122,10 @@ function searchSiteUserFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterUserKeys = $formFilters.find('.valueUserKeys').val();
     if(filterUserKeys != null && filterUserKeys !== '')
@@ -519,10 +519,6 @@ function patchSiteUserFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -530,6 +526,10 @@ function patchSiteUserFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterUserKeys = $formFilters.find('.valueUserKeys').val();
     if(filterUserKeys != null && filterUserKeys !== '')
@@ -789,9 +789,9 @@ async function websocketSiteUserInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
         var inputUserKeys = null;
         var inputUserId = null;
         var inputUserName = null;
@@ -838,12 +838,12 @@ async function websocketSiteUserInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('userKeys'))
           inputUserKeys = $response.find('.Page_userKeys');
         if(vars.includes('userId'))
@@ -861,6 +861,7 @@ async function websocketSiteUserInner(apiRequest) {
         jsWebsocketSiteUser(pk, vars, $response);
 
         window.siteUser = JSON.parse($response.find('.pageForm .siteUser').val());
+        window.listSiteUser = JSON.parse($response.find('.pageForm .listSiteUser').val());
 
 
         if(inputCreated) {
@@ -958,11 +959,6 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -971,6 +967,11 @@ async function websocketSiteUserInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
         }
 
         if(inputUserKeys) {
@@ -1007,6 +1008,8 @@ async function websocketSiteUserInner(apiRequest) {
           inputUserFullName.replaceAll('.Page_userFullName');
           addGlow($('.Page_userFullName'));
         }
+
+        pageGraphSiteUser();
     });
   }
 }

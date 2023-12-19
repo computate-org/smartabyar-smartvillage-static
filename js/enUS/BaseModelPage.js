@@ -77,9 +77,9 @@ async function websocketBaseModelInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -115,15 +115,16 @@ async function websocketBaseModelInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         jsWebsocketBaseModel(pk, vars, $response);
 
         window.baseModel = JSON.parse($response.find('.pageForm .baseModel').val());
+        window.listBaseModel = JSON.parse($response.find('.pageForm .listBaseModel').val());
 
 
         if(inputCreated) {
@@ -211,11 +212,6 @@ async function websocketBaseModelInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -225,6 +221,13 @@ async function websocketBaseModelInner(apiRequest) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
         }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
+        pageGraphBaseModel();
     });
   }
 }

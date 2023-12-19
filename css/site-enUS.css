@@ -22,6 +22,7 @@ i { font-weight: normal; }
 body {  }
 .w3-modal { z-index: 2000; }
 .siteSidebarToggle { z-index: 1001; }
+.w3-dropdown-content { z-index: 1001; }
 .htmBodyGraphLocation { height: 400px; }
 .padding-right-quarter-em { padding-right: 0.25em; }
 .w3-input { padding: 2px; }

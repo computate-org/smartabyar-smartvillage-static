@@ -275,10 +275,6 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -286,6 +282,10 @@ function searchTrafficFlowObservedFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
@@ -1249,10 +1249,6 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -1260,6 +1256,10 @@ function patchTrafficFlowObservedFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
@@ -1675,9 +1675,9 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
         var inputSumocfgPath = null;
 
         if(vars.includes('created'))
@@ -1798,17 +1798,18 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
         jsWebsocketTrafficFlowObserved(pk, vars, $response);
 
         window.trafficFlowObserved = JSON.parse($response.find('.pageForm .trafficFlowObserved').val());
+        window.listTrafficFlowObserved = JSON.parse($response.find('.pageForm .listTrafficFlowObserved').val());
 
 
         if(inputCreated) {
@@ -2106,11 +2107,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -2121,10 +2117,17 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
         if(inputSumocfgPath) {
           inputSumocfgPath.replaceAll('.Page_sumocfgPath');
           addGlow($('.Page_sumocfgPath'));
         }
+
+        pageGraphTrafficFlowObserved();
     });
   }
 }
@@ -2230,50 +2233,84 @@ function pageGraphTrafficFlowObserved(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapTrafficFlowObserved) {
+      window.geoJSONLayerGroupTrafficFlowObserved.clearLayers();
+      $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
+        if(trafficFlowObserved.areaServed) {
+          var shapes = [];
+          if(Array.isArray(trafficFlowObserved.areaServed))
+            shapes = shapes.concat(trafficFlowObserved.areaServed);
+          else
+            shapes.push(trafficFlowObserved.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficFlowObserved
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficFlowObserved
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapTrafficFlowObserved = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapTrafficFlowObserved);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficFlowObserved.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficFlowObserved.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapTrafficFlowObserved.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
-      if(trafficFlowObserved.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(trafficFlowObserved.areaServed))
-          shapes = shapes.concat(trafficFlowObserved.areaServed);
-        else
-          shapes.push(trafficFlowObserved.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": trafficFlowObserved
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleTrafficFlowObserved}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipTrafficFlowObserved(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupTrafficFlowObserved = L.geoJSON().addTo(window.mapTrafficFlowObserved);
+      $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
+        if(trafficFlowObserved.areaServed) {
+          var shapes = [];
+          if(Array.isArray(trafficFlowObserved.areaServed))
+            shapes = shapes.concat(trafficFlowObserved.areaServed);
+          else
+            shapes.push(trafficFlowObserved.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficFlowObserved
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficFlowObserved
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapTrafficFlowObserved.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipTrafficFlowObserved(e, feature);
+      });
+    }
   }
 }
 

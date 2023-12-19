@@ -1748,6 +1748,7 @@ async function websocketIotNodeInner(apiRequest) {
         jsWebsocketIotNode(id, vars, $response);
 
         window.iotNode = JSON.parse($response.find('.pageForm .iotNode').val());
+        window.listIotNode = JSON.parse($response.find('.pageForm .listIotNode').val());
 
 
         if(inputCreated) {
@@ -2044,6 +2045,8 @@ async function websocketIotNodeInner(apiRequest) {
           inputJson.replaceAll('.Page_json');
           addGlow($('.Page_json'));
         }
+
+        pageGraphIotNode();
     });
   }
 }

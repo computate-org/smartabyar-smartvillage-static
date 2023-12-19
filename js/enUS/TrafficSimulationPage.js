@@ -115,10 +115,6 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -127,29 +123,13 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
-    if(filterFcdFilePath != null && filterFcdFilePath !== '')
-      filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
-
-    var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-    if(filterStartSeconds != null && filterStartSeconds !== '')
-      filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
     if(filterEndSeconds != null && filterEndSeconds !== '')
       filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-    if(filterSumocfgPath != null && filterSumocfgPath !== '')
-      filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
-    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-    if(filterNetFilePath != null && filterNetFilePath !== '')
-      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 
     var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
     if(filterStepSeconds != null && filterStepSeconds !== '')
@@ -163,10 +143,6 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
       filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
 
-    var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
-    if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
-      filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
-
     var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
     if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
       filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
@@ -178,10 +154,6 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
     if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
       filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
-
-    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
-    if(filterParamDemandScale != null && filterParamDemandScale !== '')
-      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
 
     var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
     if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
@@ -198,10 +170,6 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
     if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
       filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
-
-    var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-    if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
-      filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
 
     var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
     if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
@@ -230,14 +198,6 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
     if(filterParamRunTime != null && filterParamRunTime !== '')
       filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
-    var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
-    if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
-      filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
-
-    var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
-    if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
-      filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
 
     var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
     if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
@@ -270,6 +230,46 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
     if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
       filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
+
+    var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
+    if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
+      filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
+
+    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
+    if(filterParamDemandScale != null && filterParamDemandScale !== '')
+      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+    var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+    if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
+      filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
+
+    var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
+    if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
+      filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
+
+    var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
+    if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
+      filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
+
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+    if(filterSumocfgPath != null && filterSumocfgPath !== '')
+      filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+    var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
+    if(filterFcdFilePath != null && filterFcdFilePath !== '')
+      filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
+
+    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+    if(filterNetFilePath != null && filterNetFilePath !== '')
+      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+
+    var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
+    if(filterStartSeconds != null && filterStartSeconds !== '')
+      filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
   }
   return filters;
 }
@@ -527,30 +527,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueFcdFilePath = $formValues.find('.valueFcdFilePath').val();
-  var removeFcdFilePath = $formValues.find('.removeFcdFilePath').val() === 'true';
-  var setFcdFilePath = removeFcdFilePath ? null : $formValues.find('.setFcdFilePath').val();
-  var addFcdFilePath = $formValues.find('.addFcdFilePath').val();
-  if(removeFcdFilePath || setFcdFilePath != null && setFcdFilePath !== '')
-    vals['setFcdFilePath'] = setFcdFilePath;
-  if(addFcdFilePath != null && addFcdFilePath !== '')
-    vals['addFcdFilePath'] = addFcdFilePath;
-  var removeFcdFilePath = $formValues.find('.removeFcdFilePath').val();
-  if(removeFcdFilePath != null && removeFcdFilePath !== '')
-    vals['removeFcdFilePath'] = removeFcdFilePath;
-
-  var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
-  var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
-  var setStartSeconds = removeStartSeconds ? null : $formValues.find('.setStartSeconds').val();
-  var addStartSeconds = $formValues.find('.addStartSeconds').val();
-  if(removeStartSeconds || setStartSeconds != null && setStartSeconds !== '')
-    vals['setStartSeconds'] = setStartSeconds;
-  if(addStartSeconds != null && addStartSeconds !== '')
-    vals['addStartSeconds'] = addStartSeconds;
-  var removeStartSeconds = $formValues.find('.removeStartSeconds').val();
-  if(removeStartSeconds != null && removeStartSeconds !== '')
-    vals['removeStartSeconds'] = removeStartSeconds;
-
   var valueEndSeconds = $formValues.find('.valueEndSeconds').val();
   var removeEndSeconds = $formValues.find('.removeEndSeconds').val() === 'true';
   var setEndSeconds = removeEndSeconds ? null : $formValues.find('.setEndSeconds').val();
@@ -562,30 +538,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeEndSeconds = $formValues.find('.removeEndSeconds').val();
   if(removeEndSeconds != null && removeEndSeconds !== '')
     vals['removeEndSeconds'] = removeEndSeconds;
-
-  var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
-  var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
-  var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
-  var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
-  if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
-    vals['setSumocfgPath'] = setSumocfgPath;
-  if(addSumocfgPath != null && addSumocfgPath !== '')
-    vals['addSumocfgPath'] = addSumocfgPath;
-  var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
-  if(removeSumocfgPath != null && removeSumocfgPath !== '')
-    vals['removeSumocfgPath'] = removeSumocfgPath;
-
-  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-  var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
-  var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
-  var addNetFilePath = $formValues.find('.addNetFilePath').val();
-  if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
-    vals['setNetFilePath'] = setNetFilePath;
-  if(addNetFilePath != null && addNetFilePath !== '')
-    vals['addNetFilePath'] = addNetFilePath;
-  var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
-  if(removeNetFilePath != null && removeNetFilePath !== '')
-    vals['removeNetFilePath'] = removeNetFilePath;
 
   var valueStepSeconds = $formValues.find('.valueStepSeconds').val();
   var removeStepSeconds = $formValues.find('.removeStepSeconds').val() === 'true';
@@ -623,18 +575,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   if(removeParamAvgVehiclePerMinFromSouthToNorth != null && removeParamAvgVehiclePerMinFromSouthToNorth !== '')
     vals['removeParamAvgVehiclePerMinFromSouthToNorth'] = removeParamAvgVehiclePerMinFromSouthToNorth;
 
-  var valueParamVehicleDemandScalingFactor = $formValues.find('.valueParamVehicleDemandScalingFactor').val();
-  var removeParamVehicleDemandScalingFactor = $formValues.find('.removeParamVehicleDemandScalingFactor').val() === 'true';
-  var setParamVehicleDemandScalingFactor = removeParamVehicleDemandScalingFactor ? null : $formValues.find('.setParamVehicleDemandScalingFactor').val();
-  var addParamVehicleDemandScalingFactor = $formValues.find('.addParamVehicleDemandScalingFactor').val();
-  if(removeParamVehicleDemandScalingFactor || setParamVehicleDemandScalingFactor != null && setParamVehicleDemandScalingFactor !== '')
-    vals['setParamVehicleDemandScalingFactor'] = setParamVehicleDemandScalingFactor;
-  if(addParamVehicleDemandScalingFactor != null && addParamVehicleDemandScalingFactor !== '')
-    vals['addParamVehicleDemandScalingFactor'] = addParamVehicleDemandScalingFactor;
-  var removeParamVehicleDemandScalingFactor = $formValues.find('.removeParamVehicleDemandScalingFactor').val();
-  if(removeParamVehicleDemandScalingFactor != null && removeParamVehicleDemandScalingFactor !== '')
-    vals['removeParamVehicleDemandScalingFactor'] = removeParamVehicleDemandScalingFactor;
-
   var valueParamAvgPedestrianPerMinFromWestToEast = $formValues.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
   var removeParamAvgPedestrianPerMinFromWestToEast = $formValues.find('.removeParamAvgPedestrianPerMinFromWestToEast').val() === 'true';
   var setParamAvgPedestrianPerMinFromWestToEast = removeParamAvgPedestrianPerMinFromWestToEast ? null : $formValues.find('.setParamAvgPedestrianPerMinFromWestToEast').val();
@@ -670,18 +610,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeParamPedestrianDemandScalingFactor = $formValues.find('.removeParamPedestrianDemandScalingFactor').val();
   if(removeParamPedestrianDemandScalingFactor != null && removeParamPedestrianDemandScalingFactor !== '')
     vals['removeParamPedestrianDemandScalingFactor'] = removeParamPedestrianDemandScalingFactor;
-
-  var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
-  var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
-  var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
-  var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
-  if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
-    vals['setParamDemandScale'] = JSON.parse(setParamDemandScale);
-  if(addParamDemandScale != null && addParamDemandScale !== '')
-    vals['addParamDemandScale'] = addParamDemandScale;
-  var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
-  if(removeParamDemandScale != null && removeParamDemandScale !== '')
-    vals['removeParamDemandScale'] = removeParamDemandScale;
 
   var valueParamMinGreenTimeSecWestEast = $formValues.find('.valueParamMinGreenTimeSecWestEast').val();
   var removeParamMinGreenTimeSecWestEast = $formValues.find('.removeParamMinGreenTimeSecWestEast').val() === 'true';
@@ -730,18 +658,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeParamMaxGreenTimeSecSouthNorth = $formValues.find('.removeParamMaxGreenTimeSecSouthNorth').val();
   if(removeParamMaxGreenTimeSecSouthNorth != null && removeParamMaxGreenTimeSecSouthNorth !== '')
     vals['removeParamMaxGreenTimeSecSouthNorth'] = removeParamMaxGreenTimeSecSouthNorth;
-
-  var valueParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-  var removeParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.removeParamPedestrianWaitThresholdSecNorthSouth').val() === 'true';
-  var setParamPedestrianWaitThresholdSecNorthSouth = removeParamPedestrianWaitThresholdSecNorthSouth ? null : $formValues.find('.setParamPedestrianWaitThresholdSecNorthSouth').val();
-  var addParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.addParamPedestrianWaitThresholdSecNorthSouth').val();
-  if(removeParamPedestrianWaitThresholdSecNorthSouth || setParamPedestrianWaitThresholdSecNorthSouth != null && setParamPedestrianWaitThresholdSecNorthSouth !== '')
-    vals['setParamPedestrianWaitThresholdSecNorthSouth'] = setParamPedestrianWaitThresholdSecNorthSouth;
-  if(addParamPedestrianWaitThresholdSecNorthSouth != null && addParamPedestrianWaitThresholdSecNorthSouth !== '')
-    vals['addParamPedestrianWaitThresholdSecNorthSouth'] = addParamPedestrianWaitThresholdSecNorthSouth;
-  var removeParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.removeParamPedestrianWaitThresholdSecNorthSouth').val();
-  if(removeParamPedestrianWaitThresholdSecNorthSouth != null && removeParamPedestrianWaitThresholdSecNorthSouth !== '')
-    vals['removeParamPedestrianWaitThresholdSecNorthSouth'] = removeParamPedestrianWaitThresholdSecNorthSouth;
 
   var valueParamPedestrianWaitThresholdSecWestEast = $formValues.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
   var removeParamPedestrianWaitThresholdSecWestEast = $formValues.find('.removeParamPedestrianWaitThresholdSecWestEast').val() === 'true';
@@ -826,30 +742,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeParamRunTime = $formValues.find('.removeParamRunTime').val();
   if(removeParamRunTime != null && removeParamRunTime !== '')
     vals['removeParamRunTime'] = removeParamRunTime;
-
-  var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
-  var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val() === 'true';
-  var setParamItersPerPar = removeParamItersPerPar ? null : $formValues.find('.setParamItersPerPar').val();
-  var addParamItersPerPar = $formValues.find('.addParamItersPerPar').val();
-  if(removeParamItersPerPar || setParamItersPerPar != null && setParamItersPerPar !== '')
-    vals['setParamItersPerPar'] = setParamItersPerPar;
-  if(addParamItersPerPar != null && addParamItersPerPar !== '')
-    vals['addParamItersPerPar'] = addParamItersPerPar;
-  var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val();
-  if(removeParamItersPerPar != null && removeParamItersPerPar !== '')
-    vals['removeParamItersPerPar'] = removeParamItersPerPar;
-
-  var valueParamTotalIterNum = $formValues.find('.valueParamTotalIterNum').val();
-  var removeParamTotalIterNum = $formValues.find('.removeParamTotalIterNum').val() === 'true';
-  var setParamTotalIterNum = removeParamTotalIterNum ? null : $formValues.find('.setParamTotalIterNum').val();
-  var addParamTotalIterNum = $formValues.find('.addParamTotalIterNum').val();
-  if(removeParamTotalIterNum || setParamTotalIterNum != null && setParamTotalIterNum !== '')
-    vals['setParamTotalIterNum'] = setParamTotalIterNum;
-  if(addParamTotalIterNum != null && addParamTotalIterNum !== '')
-    vals['addParamTotalIterNum'] = addParamTotalIterNum;
-  var removeParamTotalIterNum = $formValues.find('.removeParamTotalIterNum').val();
-  if(removeParamTotalIterNum != null && removeParamTotalIterNum !== '')
-    vals['removeParamTotalIterNum'] = removeParamTotalIterNum;
 
   var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
   var removeLaneAreaDetectorIds = $formValues.find('.removeLaneAreaDetectorIds').val() === 'true';
@@ -946,6 +838,114 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeWalkingAreaLanes = $formValues.find('.removeWalkingAreaLanes').val();
   if(removeWalkingAreaLanes != null && removeWalkingAreaLanes !== '')
     vals['removeWalkingAreaLanes'] = removeWalkingAreaLanes;
+
+  var valueParamVehicleDemandScalingFactor = $formValues.find('.valueParamVehicleDemandScalingFactor').val();
+  var removeParamVehicleDemandScalingFactor = $formValues.find('.removeParamVehicleDemandScalingFactor').val() === 'true';
+  var setParamVehicleDemandScalingFactor = removeParamVehicleDemandScalingFactor ? null : $formValues.find('.setParamVehicleDemandScalingFactor').val();
+  var addParamVehicleDemandScalingFactor = $formValues.find('.addParamVehicleDemandScalingFactor').val();
+  if(removeParamVehicleDemandScalingFactor || setParamVehicleDemandScalingFactor != null && setParamVehicleDemandScalingFactor !== '')
+    vals['setParamVehicleDemandScalingFactor'] = setParamVehicleDemandScalingFactor;
+  if(addParamVehicleDemandScalingFactor != null && addParamVehicleDemandScalingFactor !== '')
+    vals['addParamVehicleDemandScalingFactor'] = addParamVehicleDemandScalingFactor;
+  var removeParamVehicleDemandScalingFactor = $formValues.find('.removeParamVehicleDemandScalingFactor').val();
+  if(removeParamVehicleDemandScalingFactor != null && removeParamVehicleDemandScalingFactor !== '')
+    vals['removeParamVehicleDemandScalingFactor'] = removeParamVehicleDemandScalingFactor;
+
+  var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
+  var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
+  var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
+  var addParamDemandScale = $formValues.find('.addParamDemandScale').val();
+  if(removeParamDemandScale || setParamDemandScale != null && setParamDemandScale !== '')
+    vals['setParamDemandScale'] = JSON.parse(setParamDemandScale);
+  if(addParamDemandScale != null && addParamDemandScale !== '')
+    vals['addParamDemandScale'] = addParamDemandScale;
+  var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val();
+  if(removeParamDemandScale != null && removeParamDemandScale !== '')
+    vals['removeParamDemandScale'] = removeParamDemandScale;
+
+  var valueParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+  var removeParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.removeParamPedestrianWaitThresholdSecNorthSouth').val() === 'true';
+  var setParamPedestrianWaitThresholdSecNorthSouth = removeParamPedestrianWaitThresholdSecNorthSouth ? null : $formValues.find('.setParamPedestrianWaitThresholdSecNorthSouth').val();
+  var addParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.addParamPedestrianWaitThresholdSecNorthSouth').val();
+  if(removeParamPedestrianWaitThresholdSecNorthSouth || setParamPedestrianWaitThresholdSecNorthSouth != null && setParamPedestrianWaitThresholdSecNorthSouth !== '')
+    vals['setParamPedestrianWaitThresholdSecNorthSouth'] = setParamPedestrianWaitThresholdSecNorthSouth;
+  if(addParamPedestrianWaitThresholdSecNorthSouth != null && addParamPedestrianWaitThresholdSecNorthSouth !== '')
+    vals['addParamPedestrianWaitThresholdSecNorthSouth'] = addParamPedestrianWaitThresholdSecNorthSouth;
+  var removeParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.removeParamPedestrianWaitThresholdSecNorthSouth').val();
+  if(removeParamPedestrianWaitThresholdSecNorthSouth != null && removeParamPedestrianWaitThresholdSecNorthSouth !== '')
+    vals['removeParamPedestrianWaitThresholdSecNorthSouth'] = removeParamPedestrianWaitThresholdSecNorthSouth;
+
+  var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
+  var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val() === 'true';
+  var setParamItersPerPar = removeParamItersPerPar ? null : $formValues.find('.setParamItersPerPar').val();
+  var addParamItersPerPar = $formValues.find('.addParamItersPerPar').val();
+  if(removeParamItersPerPar || setParamItersPerPar != null && setParamItersPerPar !== '')
+    vals['setParamItersPerPar'] = setParamItersPerPar;
+  if(addParamItersPerPar != null && addParamItersPerPar !== '')
+    vals['addParamItersPerPar'] = addParamItersPerPar;
+  var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val();
+  if(removeParamItersPerPar != null && removeParamItersPerPar !== '')
+    vals['removeParamItersPerPar'] = removeParamItersPerPar;
+
+  var valueParamTotalIterNum = $formValues.find('.valueParamTotalIterNum').val();
+  var removeParamTotalIterNum = $formValues.find('.removeParamTotalIterNum').val() === 'true';
+  var setParamTotalIterNum = removeParamTotalIterNum ? null : $formValues.find('.setParamTotalIterNum').val();
+  var addParamTotalIterNum = $formValues.find('.addParamTotalIterNum').val();
+  if(removeParamTotalIterNum || setParamTotalIterNum != null && setParamTotalIterNum !== '')
+    vals['setParamTotalIterNum'] = setParamTotalIterNum;
+  if(addParamTotalIterNum != null && addParamTotalIterNum !== '')
+    vals['addParamTotalIterNum'] = addParamTotalIterNum;
+  var removeParamTotalIterNum = $formValues.find('.removeParamTotalIterNum').val();
+  if(removeParamTotalIterNum != null && removeParamTotalIterNum !== '')
+    vals['removeParamTotalIterNum'] = removeParamTotalIterNum;
+
+  var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+  var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
+  var setSumocfgPath = removeSumocfgPath ? null : $formValues.find('.setSumocfgPath').val();
+  var addSumocfgPath = $formValues.find('.addSumocfgPath').val();
+  if(removeSumocfgPath || setSumocfgPath != null && setSumocfgPath !== '')
+    vals['setSumocfgPath'] = setSumocfgPath;
+  if(addSumocfgPath != null && addSumocfgPath !== '')
+    vals['addSumocfgPath'] = addSumocfgPath;
+  var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val();
+  if(removeSumocfgPath != null && removeSumocfgPath !== '')
+    vals['removeSumocfgPath'] = removeSumocfgPath;
+
+  var valueFcdFilePath = $formValues.find('.valueFcdFilePath').val();
+  var removeFcdFilePath = $formValues.find('.removeFcdFilePath').val() === 'true';
+  var setFcdFilePath = removeFcdFilePath ? null : $formValues.find('.setFcdFilePath').val();
+  var addFcdFilePath = $formValues.find('.addFcdFilePath').val();
+  if(removeFcdFilePath || setFcdFilePath != null && setFcdFilePath !== '')
+    vals['setFcdFilePath'] = setFcdFilePath;
+  if(addFcdFilePath != null && addFcdFilePath !== '')
+    vals['addFcdFilePath'] = addFcdFilePath;
+  var removeFcdFilePath = $formValues.find('.removeFcdFilePath').val();
+  if(removeFcdFilePath != null && removeFcdFilePath !== '')
+    vals['removeFcdFilePath'] = removeFcdFilePath;
+
+  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+  var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
+  var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
+  var addNetFilePath = $formValues.find('.addNetFilePath').val();
+  if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
+    vals['setNetFilePath'] = setNetFilePath;
+  if(addNetFilePath != null && addNetFilePath !== '')
+    vals['addNetFilePath'] = addNetFilePath;
+  var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
+  if(removeNetFilePath != null && removeNetFilePath !== '')
+    vals['removeNetFilePath'] = removeNetFilePath;
+
+  var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
+  var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
+  var setStartSeconds = removeStartSeconds ? null : $formValues.find('.setStartSeconds').val();
+  var addStartSeconds = $formValues.find('.addStartSeconds').val();
+  if(removeStartSeconds || setStartSeconds != null && setStartSeconds !== '')
+    vals['setStartSeconds'] = setStartSeconds;
+  if(addStartSeconds != null && addStartSeconds !== '')
+    vals['addStartSeconds'] = addStartSeconds;
+  var removeStartSeconds = $formValues.find('.removeStartSeconds').val();
+  if(removeStartSeconds != null && removeStartSeconds !== '')
+    vals['removeStartSeconds'] = removeStartSeconds;
 
   patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -1055,10 +1055,6 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -1067,29 +1063,13 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
-    if(filterFcdFilePath != null && filterFcdFilePath !== '')
-      filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
-
-    var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
-    if(filterStartSeconds != null && filterStartSeconds !== '')
-      filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterEndSeconds = $formFilters.find('.valueEndSeconds').val();
     if(filterEndSeconds != null && filterEndSeconds !== '')
       filters.push({ name: 'fq', value: 'endSeconds:' + filterEndSeconds });
-
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
-    if(filterSumocfgPath != null && filterSumocfgPath !== '')
-      filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
-
-    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-    if(filterNetFilePath != null && filterNetFilePath !== '')
-      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
 
     var filterStepSeconds = $formFilters.find('.valueStepSeconds').val();
     if(filterStepSeconds != null && filterStepSeconds !== '')
@@ -1103,10 +1083,6 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterParamAvgVehiclePerMinFromSouthToNorth != null && filterParamAvgVehiclePerMinFromSouthToNorth !== '')
       filters.push({ name: 'fq', value: 'paramAvgVehiclePerMinFromSouthToNorth:' + filterParamAvgVehiclePerMinFromSouthToNorth });
 
-    var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
-    if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
-      filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
-
     var filterParamAvgPedestrianPerMinFromWestToEast = $formFilters.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
     if(filterParamAvgPedestrianPerMinFromWestToEast != null && filterParamAvgPedestrianPerMinFromWestToEast !== '')
       filters.push({ name: 'fq', value: 'paramAvgPedestrianPerMinFromWestToEast:' + filterParamAvgPedestrianPerMinFromWestToEast });
@@ -1118,10 +1094,6 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterParamPedestrianDemandScalingFactor = $formFilters.find('.valueParamPedestrianDemandScalingFactor').val();
     if(filterParamPedestrianDemandScalingFactor != null && filterParamPedestrianDemandScalingFactor !== '')
       filters.push({ name: 'fq', value: 'paramPedestrianDemandScalingFactor:' + filterParamPedestrianDemandScalingFactor });
-
-    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
-    if(filterParamDemandScale != null && filterParamDemandScale !== '')
-      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
 
     var filterParamMinGreenTimeSecWestEast = $formFilters.find('.valueParamMinGreenTimeSecWestEast').val();
     if(filterParamMinGreenTimeSecWestEast != null && filterParamMinGreenTimeSecWestEast !== '')
@@ -1138,10 +1110,6 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterParamMaxGreenTimeSecSouthNorth = $formFilters.find('.valueParamMaxGreenTimeSecSouthNorth').val();
     if(filterParamMaxGreenTimeSecSouthNorth != null && filterParamMaxGreenTimeSecSouthNorth !== '')
       filters.push({ name: 'fq', value: 'paramMaxGreenTimeSecSouthNorth:' + filterParamMaxGreenTimeSecSouthNorth });
-
-    var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-    if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
-      filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
 
     var filterParamPedestrianWaitThresholdSecWestEast = $formFilters.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
     if(filterParamPedestrianWaitThresholdSecWestEast != null && filterParamPedestrianWaitThresholdSecWestEast !== '')
@@ -1170,14 +1138,6 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
     if(filterParamRunTime != null && filterParamRunTime !== '')
       filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
-    var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
-    if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
-      filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
-
-    var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
-    if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
-      filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
 
     var filterLaneAreaDetectorIds = $formFilters.find('.valueLaneAreaDetectorIds').val();
     if(filterLaneAreaDetectorIds != null && filterLaneAreaDetectorIds !== '')
@@ -1210,6 +1170,46 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
     if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
       filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
+
+    var filterParamVehicleDemandScalingFactor = $formFilters.find('.valueParamVehicleDemandScalingFactor').val();
+    if(filterParamVehicleDemandScalingFactor != null && filterParamVehicleDemandScalingFactor !== '')
+      filters.push({ name: 'fq', value: 'paramVehicleDemandScalingFactor:' + filterParamVehicleDemandScalingFactor });
+
+    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
+    if(filterParamDemandScale != null && filterParamDemandScale !== '')
+      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+    var filterParamPedestrianWaitThresholdSecNorthSouth = $formFilters.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+    if(filterParamPedestrianWaitThresholdSecNorthSouth != null && filterParamPedestrianWaitThresholdSecNorthSouth !== '')
+      filters.push({ name: 'fq', value: 'paramPedestrianWaitThresholdSecNorthSouth:' + filterParamPedestrianWaitThresholdSecNorthSouth });
+
+    var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
+    if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
+      filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
+
+    var filterParamTotalIterNum = $formFilters.find('.valueParamTotalIterNum').val();
+    if(filterParamTotalIterNum != null && filterParamTotalIterNum !== '')
+      filters.push({ name: 'fq', value: 'paramTotalIterNum:' + filterParamTotalIterNum });
+
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
+    if(filterSumocfgPath != null && filterSumocfgPath !== '')
+      filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+    var filterFcdFilePath = $formFilters.find('.valueFcdFilePath').val();
+    if(filterFcdFilePath != null && filterFcdFilePath !== '')
+      filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
+
+    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+    if(filterNetFilePath != null && filterNetFilePath !== '')
+      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+
+    var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
+    if(filterStartSeconds != null && filterStartSeconds !== '')
+      filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
   }
   return filters;
 }
@@ -1309,25 +1309,9 @@ async function postTrafficSimulation($formValues, success, error) {
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueFcdFilePath = $formValues.find('.valueFcdFilePath').val();
-  if(valueFcdFilePath != null && valueFcdFilePath !== '')
-    vals['fcdFilePath'] = valueFcdFilePath;
-
-  var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
-  if(valueStartSeconds != null && valueStartSeconds !== '')
-    vals['startSeconds'] = valueStartSeconds;
-
   var valueEndSeconds = $formValues.find('.valueEndSeconds').val();
   if(valueEndSeconds != null && valueEndSeconds !== '')
     vals['endSeconds'] = valueEndSeconds;
-
-  var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
-  if(valueSumocfgPath != null && valueSumocfgPath !== '')
-    vals['sumocfgPath'] = valueSumocfgPath;
-
-  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-  if(valueNetFilePath != null && valueNetFilePath !== '')
-    vals['netFilePath'] = valueNetFilePath;
 
   var valueStepSeconds = $formValues.find('.valueStepSeconds').val();
   if(valueStepSeconds != null && valueStepSeconds !== '')
@@ -1341,10 +1325,6 @@ async function postTrafficSimulation($formValues, success, error) {
   if(valueParamAvgVehiclePerMinFromSouthToNorth != null && valueParamAvgVehiclePerMinFromSouthToNorth !== '')
     vals['paramAvgVehiclePerMinFromSouthToNorth'] = valueParamAvgVehiclePerMinFromSouthToNorth;
 
-  var valueParamVehicleDemandScalingFactor = $formValues.find('.valueParamVehicleDemandScalingFactor').val();
-  if(valueParamVehicleDemandScalingFactor != null && valueParamVehicleDemandScalingFactor !== '')
-    vals['paramVehicleDemandScalingFactor'] = valueParamVehicleDemandScalingFactor;
-
   var valueParamAvgPedestrianPerMinFromWestToEast = $formValues.find('.valueParamAvgPedestrianPerMinFromWestToEast').val();
   if(valueParamAvgPedestrianPerMinFromWestToEast != null && valueParamAvgPedestrianPerMinFromWestToEast !== '')
     vals['paramAvgPedestrianPerMinFromWestToEast'] = valueParamAvgPedestrianPerMinFromWestToEast;
@@ -1356,10 +1336,6 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueParamPedestrianDemandScalingFactor = $formValues.find('.valueParamPedestrianDemandScalingFactor').val();
   if(valueParamPedestrianDemandScalingFactor != null && valueParamPedestrianDemandScalingFactor !== '')
     vals['paramPedestrianDemandScalingFactor'] = valueParamPedestrianDemandScalingFactor;
-
-  var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
-  if(valueParamDemandScale != null && valueParamDemandScale !== '')
-    vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
 
   var valueParamMinGreenTimeSecWestEast = $formValues.find('.valueParamMinGreenTimeSecWestEast').val();
   if(valueParamMinGreenTimeSecWestEast != null && valueParamMinGreenTimeSecWestEast !== '')
@@ -1376,10 +1352,6 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueParamMaxGreenTimeSecSouthNorth = $formValues.find('.valueParamMaxGreenTimeSecSouthNorth').val();
   if(valueParamMaxGreenTimeSecSouthNorth != null && valueParamMaxGreenTimeSecSouthNorth !== '')
     vals['paramMaxGreenTimeSecSouthNorth'] = valueParamMaxGreenTimeSecSouthNorth;
-
-  var valueParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
-  if(valueParamPedestrianWaitThresholdSecNorthSouth != null && valueParamPedestrianWaitThresholdSecNorthSouth !== '')
-    vals['paramPedestrianWaitThresholdSecNorthSouth'] = valueParamPedestrianWaitThresholdSecNorthSouth;
 
   var valueParamPedestrianWaitThresholdSecWestEast = $formValues.find('.valueParamPedestrianWaitThresholdSecWestEast').val();
   if(valueParamPedestrianWaitThresholdSecWestEast != null && valueParamPedestrianWaitThresholdSecWestEast !== '')
@@ -1408,14 +1380,6 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
   if(valueParamRunTime != null && valueParamRunTime !== '')
     vals['paramRunTime'] = valueParamRunTime;
-
-  var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
-  if(valueParamItersPerPar != null && valueParamItersPerPar !== '')
-    vals['paramItersPerPar'] = valueParamItersPerPar;
-
-  var valueParamTotalIterNum = $formValues.find('.valueParamTotalIterNum').val();
-  if(valueParamTotalIterNum != null && valueParamTotalIterNum !== '')
-    vals['paramTotalIterNum'] = valueParamTotalIterNum;
 
   var valueLaneAreaDetectorIds = $formValues.find('.valueLaneAreaDetectorIds').val();
   if(valueLaneAreaDetectorIds != null && valueLaneAreaDetectorIds !== '')
@@ -1448,6 +1412,42 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueWalkingAreaLanes = $formValues.find('.valueWalkingAreaLanes').val();
   if(valueWalkingAreaLanes != null && valueWalkingAreaLanes !== '')
     vals['walkingAreaLanes'] = JSON.parse(valueWalkingAreaLanes);
+
+  var valueParamVehicleDemandScalingFactor = $formValues.find('.valueParamVehicleDemandScalingFactor').val();
+  if(valueParamVehicleDemandScalingFactor != null && valueParamVehicleDemandScalingFactor !== '')
+    vals['paramVehicleDemandScalingFactor'] = valueParamVehicleDemandScalingFactor;
+
+  var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
+  if(valueParamDemandScale != null && valueParamDemandScale !== '')
+    vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
+
+  var valueParamPedestrianWaitThresholdSecNorthSouth = $formValues.find('.valueParamPedestrianWaitThresholdSecNorthSouth').val();
+  if(valueParamPedestrianWaitThresholdSecNorthSouth != null && valueParamPedestrianWaitThresholdSecNorthSouth !== '')
+    vals['paramPedestrianWaitThresholdSecNorthSouth'] = valueParamPedestrianWaitThresholdSecNorthSouth;
+
+  var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
+  if(valueParamItersPerPar != null && valueParamItersPerPar !== '')
+    vals['paramItersPerPar'] = valueParamItersPerPar;
+
+  var valueParamTotalIterNum = $formValues.find('.valueParamTotalIterNum').val();
+  if(valueParamTotalIterNum != null && valueParamTotalIterNum !== '')
+    vals['paramTotalIterNum'] = valueParamTotalIterNum;
+
+  var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
+  if(valueSumocfgPath != null && valueSumocfgPath !== '')
+    vals['sumocfgPath'] = valueSumocfgPath;
+
+  var valueFcdFilePath = $formValues.find('.valueFcdFilePath').val();
+  if(valueFcdFilePath != null && valueFcdFilePath !== '')
+    vals['fcdFilePath'] = valueFcdFilePath;
+
+  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+  if(valueNetFilePath != null && valueNetFilePath !== '')
+    vals['netFilePath'] = valueNetFilePath;
+
+  var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
+  if(valueStartSeconds != null && valueStartSeconds !== '')
+    vals['startSeconds'] = valueStartSeconds;
 
   $.ajax({
     url: '/api/traffic-simulation'
@@ -1582,28 +1582,20 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputFcdFilePath = null;
-        var inputStartSeconds = null;
+        var inputPageUrlPk = null;
         var inputEndSeconds = null;
-        var inputAreaServed = null;
-        var inputSumocfgPath = null;
-        var inputNetFilePath = null;
         var inputStepSeconds = null;
         var inputParamAvgVehiclePerMinFromWestToEast = null;
         var inputParamAvgVehiclePerMinFromSouthToNorth = null;
-        var inputParamVehicleDemandScalingFactor = null;
         var inputParamAvgPedestrianPerMinFromWestToEast = null;
         var inputParamAvgPedestrianPerMinFromSouthToNorth = null;
         var inputParamPedestrianDemandScalingFactor = null;
-        var inputParamDemandScale = null;
         var inputParamMinGreenTimeSecWestEast = null;
         var inputParamMaxGreenTimeSecWestEast = null;
         var inputParamMinGreenTimeSecSouthNorth = null;
         var inputParamMaxGreenTimeSecSouthNorth = null;
-        var inputParamPedestrianWaitThresholdSecNorthSouth = null;
         var inputParamPedestrianWaitThresholdSecWestEast = null;
         var inputParamVehicleQueueThresholdWestEast = null;
         var inputParamVehicleQueueThresholdSouthNorth = null;
@@ -1611,8 +1603,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputParamPedestrianQueueThresholdWestEast = null;
         var inputParamStepSize = null;
         var inputParamRunTime = null;
-        var inputParamItersPerPar = null;
-        var inputParamTotalIterNum = null;
         var inputLaneAreaDetectorIds = null;
         var inputLaneAreaDetectorLanes = null;
         var inputLaneAreaDetectorPaths = null;
@@ -1621,6 +1611,16 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputE1DetectorPaths = null;
         var inputWalkingAreaIds = null;
         var inputWalkingAreaLanes = null;
+        var inputParamVehicleDemandScalingFactor = null;
+        var inputParamDemandScale = null;
+        var inputParamPedestrianWaitThresholdSecNorthSouth = null;
+        var inputParamItersPerPar = null;
+        var inputParamTotalIterNum = null;
+        var inputAreaServed = null;
+        var inputSumocfgPath = null;
+        var inputFcdFilePath = null;
+        var inputNetFilePath = null;
+        var inputStartSeconds = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1666,40 +1666,26 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('fcdFilePath'))
-          inputFcdFilePath = $response.find('.Page_fcdFilePath');
-        if(vars.includes('startSeconds'))
-          inputStartSeconds = $response.find('.Page_startSeconds');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('endSeconds'))
           inputEndSeconds = $response.find('.Page_endSeconds');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.find('.Page_areaServed');
-        if(vars.includes('sumocfgPath'))
-          inputSumocfgPath = $response.find('.Page_sumocfgPath');
-        if(vars.includes('netFilePath'))
-          inputNetFilePath = $response.find('.Page_netFilePath');
         if(vars.includes('stepSeconds'))
           inputStepSeconds = $response.find('.Page_stepSeconds');
         if(vars.includes('paramAvgVehiclePerMinFromWestToEast'))
           inputParamAvgVehiclePerMinFromWestToEast = $response.find('.Page_paramAvgVehiclePerMinFromWestToEast');
         if(vars.includes('paramAvgVehiclePerMinFromSouthToNorth'))
           inputParamAvgVehiclePerMinFromSouthToNorth = $response.find('.Page_paramAvgVehiclePerMinFromSouthToNorth');
-        if(vars.includes('paramVehicleDemandScalingFactor'))
-          inputParamVehicleDemandScalingFactor = $response.find('.Page_paramVehicleDemandScalingFactor');
         if(vars.includes('paramAvgPedestrianPerMinFromWestToEast'))
           inputParamAvgPedestrianPerMinFromWestToEast = $response.find('.Page_paramAvgPedestrianPerMinFromWestToEast');
         if(vars.includes('paramAvgPedestrianPerMinFromSouthToNorth'))
           inputParamAvgPedestrianPerMinFromSouthToNorth = $response.find('.Page_paramAvgPedestrianPerMinFromSouthToNorth');
         if(vars.includes('paramPedestrianDemandScalingFactor'))
           inputParamPedestrianDemandScalingFactor = $response.find('.Page_paramPedestrianDemandScalingFactor');
-        if(vars.includes('paramDemandScale'))
-          inputParamDemandScale = $response.find('.Page_paramDemandScale');
         if(vars.includes('paramMinGreenTimeSecWestEast'))
           inputParamMinGreenTimeSecWestEast = $response.find('.Page_paramMinGreenTimeSecWestEast');
         if(vars.includes('paramMaxGreenTimeSecWestEast'))
@@ -1708,8 +1694,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputParamMinGreenTimeSecSouthNorth = $response.find('.Page_paramMinGreenTimeSecSouthNorth');
         if(vars.includes('paramMaxGreenTimeSecSouthNorth'))
           inputParamMaxGreenTimeSecSouthNorth = $response.find('.Page_paramMaxGreenTimeSecSouthNorth');
-        if(vars.includes('paramPedestrianWaitThresholdSecNorthSouth'))
-          inputParamPedestrianWaitThresholdSecNorthSouth = $response.find('.Page_paramPedestrianWaitThresholdSecNorthSouth');
         if(vars.includes('paramPedestrianWaitThresholdSecWestEast'))
           inputParamPedestrianWaitThresholdSecWestEast = $response.find('.Page_paramPedestrianWaitThresholdSecWestEast');
         if(vars.includes('paramVehicleQueueThresholdWestEast'))
@@ -1724,10 +1708,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputParamStepSize = $response.find('.Page_paramStepSize');
         if(vars.includes('paramRunTime'))
           inputParamRunTime = $response.find('.Page_paramRunTime');
-        if(vars.includes('paramItersPerPar'))
-          inputParamItersPerPar = $response.find('.Page_paramItersPerPar');
-        if(vars.includes('paramTotalIterNum'))
-          inputParamTotalIterNum = $response.find('.Page_paramTotalIterNum');
         if(vars.includes('laneAreaDetectorIds'))
           inputLaneAreaDetectorIds = $response.find('.Page_laneAreaDetectorIds');
         if(vars.includes('laneAreaDetectorLanes'))
@@ -1744,9 +1724,30 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputWalkingAreaIds = $response.find('.Page_walkingAreaIds');
         if(vars.includes('walkingAreaLanes'))
           inputWalkingAreaLanes = $response.find('.Page_walkingAreaLanes');
+        if(vars.includes('paramVehicleDemandScalingFactor'))
+          inputParamVehicleDemandScalingFactor = $response.find('.Page_paramVehicleDemandScalingFactor');
+        if(vars.includes('paramDemandScale'))
+          inputParamDemandScale = $response.find('.Page_paramDemandScale');
+        if(vars.includes('paramPedestrianWaitThresholdSecNorthSouth'))
+          inputParamPedestrianWaitThresholdSecNorthSouth = $response.find('.Page_paramPedestrianWaitThresholdSecNorthSouth');
+        if(vars.includes('paramItersPerPar'))
+          inputParamItersPerPar = $response.find('.Page_paramItersPerPar');
+        if(vars.includes('paramTotalIterNum'))
+          inputParamTotalIterNum = $response.find('.Page_paramTotalIterNum');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.find('.Page_areaServed');
+        if(vars.includes('sumocfgPath'))
+          inputSumocfgPath = $response.find('.Page_sumocfgPath');
+        if(vars.includes('fcdFilePath'))
+          inputFcdFilePath = $response.find('.Page_fcdFilePath');
+        if(vars.includes('netFilePath'))
+          inputNetFilePath = $response.find('.Page_netFilePath');
+        if(vars.includes('startSeconds'))
+          inputStartSeconds = $response.find('.Page_startSeconds');
         jsWebsocketTrafficSimulation(pk, vars, $response);
 
         window.trafficSimulation = JSON.parse($response.find('.pageForm .trafficSimulation').val());
+        window.listTrafficSimulation = JSON.parse($response.find('.pageForm .listTrafficSimulation').val());
 
 
         if(inputCreated) {
@@ -1859,11 +1860,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -1874,34 +1870,14 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputFcdFilePath) {
-          inputFcdFilePath.replaceAll('.Page_fcdFilePath');
-          addGlow($('.Page_fcdFilePath'));
-        }
-
-        if(inputStartSeconds) {
-          inputStartSeconds.replaceAll('.Page_startSeconds');
-          addGlow($('.Page_startSeconds'));
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
         }
 
         if(inputEndSeconds) {
           inputEndSeconds.replaceAll('.Page_endSeconds');
           addGlow($('.Page_endSeconds'));
-        }
-
-        if(inputAreaServed) {
-          inputAreaServed.replaceAll('.Page_areaServed');
-          addGlow($('.Page_areaServed'));
-        }
-
-        if(inputSumocfgPath) {
-          inputSumocfgPath.replaceAll('.Page_sumocfgPath');
-          addGlow($('.Page_sumocfgPath'));
-        }
-
-        if(inputNetFilePath) {
-          inputNetFilePath.replaceAll('.Page_netFilePath');
-          addGlow($('.Page_netFilePath'));
         }
 
         if(inputStepSeconds) {
@@ -1919,11 +1895,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_paramAvgVehiclePerMinFromSouthToNorth'));
         }
 
-        if(inputParamVehicleDemandScalingFactor) {
-          inputParamVehicleDemandScalingFactor.replaceAll('.Page_paramVehicleDemandScalingFactor');
-          addGlow($('.Page_paramVehicleDemandScalingFactor'));
-        }
-
         if(inputParamAvgPedestrianPerMinFromWestToEast) {
           inputParamAvgPedestrianPerMinFromWestToEast.replaceAll('.Page_paramAvgPedestrianPerMinFromWestToEast');
           addGlow($('.Page_paramAvgPedestrianPerMinFromWestToEast'));
@@ -1937,11 +1908,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputParamPedestrianDemandScalingFactor) {
           inputParamPedestrianDemandScalingFactor.replaceAll('.Page_paramPedestrianDemandScalingFactor');
           addGlow($('.Page_paramPedestrianDemandScalingFactor'));
-        }
-
-        if(inputParamDemandScale) {
-          inputParamDemandScale.replaceAll('.Page_paramDemandScale');
-          addGlow($('.Page_paramDemandScale'));
         }
 
         if(inputParamMinGreenTimeSecWestEast) {
@@ -1962,11 +1928,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputParamMaxGreenTimeSecSouthNorth) {
           inputParamMaxGreenTimeSecSouthNorth.replaceAll('.Page_paramMaxGreenTimeSecSouthNorth');
           addGlow($('.Page_paramMaxGreenTimeSecSouthNorth'));
-        }
-
-        if(inputParamPedestrianWaitThresholdSecNorthSouth) {
-          inputParamPedestrianWaitThresholdSecNorthSouth.replaceAll('.Page_paramPedestrianWaitThresholdSecNorthSouth');
-          addGlow($('.Page_paramPedestrianWaitThresholdSecNorthSouth'));
         }
 
         if(inputParamPedestrianWaitThresholdSecWestEast) {
@@ -2002,16 +1963,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputParamRunTime) {
           inputParamRunTime.replaceAll('.Page_paramRunTime');
           addGlow($('.Page_paramRunTime'));
-        }
-
-        if(inputParamItersPerPar) {
-          inputParamItersPerPar.replaceAll('.Page_paramItersPerPar');
-          addGlow($('.Page_paramItersPerPar'));
-        }
-
-        if(inputParamTotalIterNum) {
-          inputParamTotalIterNum.replaceAll('.Page_paramTotalIterNum');
-          addGlow($('.Page_paramTotalIterNum'));
         }
 
         if(inputLaneAreaDetectorIds) {
@@ -2053,6 +2004,58 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputWalkingAreaLanes.replaceAll('.Page_walkingAreaLanes');
           addGlow($('.Page_walkingAreaLanes'));
         }
+
+        if(inputParamVehicleDemandScalingFactor) {
+          inputParamVehicleDemandScalingFactor.replaceAll('.Page_paramVehicleDemandScalingFactor');
+          addGlow($('.Page_paramVehicleDemandScalingFactor'));
+        }
+
+        if(inputParamDemandScale) {
+          inputParamDemandScale.replaceAll('.Page_paramDemandScale');
+          addGlow($('.Page_paramDemandScale'));
+        }
+
+        if(inputParamPedestrianWaitThresholdSecNorthSouth) {
+          inputParamPedestrianWaitThresholdSecNorthSouth.replaceAll('.Page_paramPedestrianWaitThresholdSecNorthSouth');
+          addGlow($('.Page_paramPedestrianWaitThresholdSecNorthSouth'));
+        }
+
+        if(inputParamItersPerPar) {
+          inputParamItersPerPar.replaceAll('.Page_paramItersPerPar');
+          addGlow($('.Page_paramItersPerPar'));
+        }
+
+        if(inputParamTotalIterNum) {
+          inputParamTotalIterNum.replaceAll('.Page_paramTotalIterNum');
+          addGlow($('.Page_paramTotalIterNum'));
+        }
+
+        if(inputAreaServed) {
+          inputAreaServed.replaceAll('.Page_areaServed');
+          addGlow($('.Page_areaServed'));
+        }
+
+        if(inputSumocfgPath) {
+          inputSumocfgPath.replaceAll('.Page_sumocfgPath');
+          addGlow($('.Page_sumocfgPath'));
+        }
+
+        if(inputFcdFilePath) {
+          inputFcdFilePath.replaceAll('.Page_fcdFilePath');
+          addGlow($('.Page_fcdFilePath'));
+        }
+
+        if(inputNetFilePath) {
+          inputNetFilePath.replaceAll('.Page_netFilePath');
+          addGlow($('.Page_netFilePath'));
+        }
+
+        if(inputStartSeconds) {
+          inputStartSeconds.replaceAll('.Page_startSeconds');
+          addGlow($('.Page_startSeconds'));
+        }
+
+        pageGraphTrafficSimulation();
     });
   }
 }
@@ -2158,50 +2161,84 @@ function pageGraphTrafficSimulation(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipTrafficSimulation(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapTrafficSimulation) {
+      window.geoJSONLayerGroupTrafficSimulation.clearLayers();
+      $.each( window.listTrafficSimulation, function(index, trafficSimulation) {
+        if(trafficSimulation.areaServed) {
+          var shapes = [];
+          if(Array.isArray(trafficSimulation.areaServed))
+            shapes = shapes.concat(trafficSimulation.areaServed);
+          else
+            shapes.push(trafficSimulation.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficSimulation
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficSimulation.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficSimulation
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficSimulation(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapTrafficSimulation = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapTrafficSimulation);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficSimulation.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficSimulation.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapTrafficSimulation.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listTrafficSimulation, function(index, trafficSimulation) {
-      if(trafficSimulation.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipTrafficSimulation(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(trafficSimulation.areaServed))
-          shapes = shapes.concat(trafficSimulation.areaServed);
-        else
-          shapes.push(trafficSimulation.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": trafficSimulation
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleTrafficSimulation}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipTrafficSimulation(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupTrafficSimulation = L.geoJSON().addTo(window.mapTrafficSimulation);
+      $.each( window.listTrafficSimulation, function(index, trafficSimulation) {
+        if(trafficSimulation.areaServed) {
+          var shapes = [];
+          if(Array.isArray(trafficSimulation.areaServed))
+            shapes = shapes.concat(trafficSimulation.areaServed);
+          else
+            shapes.push(trafficSimulation.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficSimulation
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficSimulation.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficSimulation
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficSimulation(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapTrafficSimulation.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipTrafficSimulation(e, feature);
+      });
+    }
   }
 }
 

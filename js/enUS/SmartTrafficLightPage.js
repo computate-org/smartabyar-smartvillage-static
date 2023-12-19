@@ -207,10 +207,6 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -218,6 +214,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
@@ -959,10 +959,6 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -970,6 +966,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
@@ -1325,9 +1325,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
         var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
 
@@ -1421,12 +1421,12 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('trafficFlowObservedIds'))
           inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
@@ -1434,6 +1434,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         jsWebsocketSmartTrafficLight(pk, vars, $response);
 
         window.smartTrafficLight = JSON.parse($response.find('.pageForm .smartTrafficLight').val());
+        window.listSmartTrafficLight = JSON.parse($response.find('.pageForm .listSmartTrafficLight').val());
 
 
         if(inputCreated) {
@@ -1661,11 +1662,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -1674,6 +1670,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
         }
 
         if(inputTrafficFlowObservedIds) {
@@ -1685,6 +1686,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputParamDemandScale.replaceAll('.Page_paramDemandScale');
           addGlow($('.Page_paramDemandScale'));
         }
+
+        pageGraphSmartTrafficLight();
     });
   }
 }
@@ -1790,50 +1793,84 @@ function pageGraphSmartTrafficLight(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipSmartTrafficLight(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapSmartTrafficLight) {
+      window.geoJSONLayerGroupSmartTrafficLight.clearLayers();
+      $.each( window.listSmartTrafficLight, function(index, smartTrafficLight) {
+        if(smartTrafficLight.areaServed) {
+          var shapes = [];
+          if(Array.isArray(smartTrafficLight.areaServed))
+            shapes = shapes.concat(smartTrafficLight.areaServed);
+          else
+            shapes.push(smartTrafficLight.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": smartTrafficLight
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupSmartTrafficLight.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleSmartTrafficLight
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleSmartTrafficLight(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapSmartTrafficLight = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapSmartTrafficLight);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapSmartTrafficLight.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapSmartTrafficLight.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapSmartTrafficLight.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listSmartTrafficLight, function(index, smartTrafficLight) {
-      if(smartTrafficLight.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipSmartTrafficLight(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(smartTrafficLight.areaServed))
-          shapes = shapes.concat(smartTrafficLight.areaServed);
-        else
-          shapes.push(smartTrafficLight.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": smartTrafficLight
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleSmartTrafficLight}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipSmartTrafficLight(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupSmartTrafficLight = L.geoJSON().addTo(window.mapSmartTrafficLight);
+      $.each( window.listSmartTrafficLight, function(index, smartTrafficLight) {
+        if(smartTrafficLight.areaServed) {
+          var shapes = [];
+          if(Array.isArray(smartTrafficLight.areaServed))
+            shapes = shapes.concat(smartTrafficLight.areaServed);
+          else
+            shapes.push(smartTrafficLight.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": smartTrafficLight
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupSmartTrafficLight.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleSmartTrafficLight
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleSmartTrafficLight(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapSmartTrafficLight.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipSmartTrafficLight(e, feature);
+      });
+    }
   }
 }
 

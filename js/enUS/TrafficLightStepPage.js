@@ -1054,6 +1054,7 @@ async function websocketTrafficLightStepInner(apiRequest) {
         jsWebsocketTrafficLightStep(id, vars, $response);
 
         window.trafficLightStep = JSON.parse($response.find('.pageForm .trafficLightStep').val());
+        window.listTrafficLightStep = JSON.parse($response.find('.pageForm .listTrafficLightStep').val());
 
 
         if(inputCreated) {
@@ -1230,6 +1231,8 @@ async function websocketTrafficLightStepInner(apiRequest) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
         }
+
+        pageGraphTrafficLightStep();
     });
   }
 }
@@ -1332,6 +1335,86 @@ function pageGraphTrafficLightStep(apiRequest) {
         }
         Plotly.react('htmBodyGraphMapResultPage', data, layout);
       }
+    }
+
+    // Graph Location
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipTrafficLightStep(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapTrafficLightStep) {
+      window.geoJSONLayerGroupTrafficLightStep.clearLayers();
+      $.each( window.listTrafficLightStep, function(index, trafficLightStep) {
+        if(trafficLightStep.location) {
+          var shapes = [];
+          if(Array.isArray(trafficLightStep.location))
+            shapes = shapes.concat(trafficLightStep.location);
+          else
+            shapes.push(trafficLightStep.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficLightStep
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficLightStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficLightStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficLightStep(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapTrafficLightStep = L.map('htmBodyGraphLocationMapResultPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapTrafficLightStep);
+
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficLightStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficLightStep.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapTrafficLightStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupTrafficLightStep = L.geoJSON().addTo(window.mapTrafficLightStep);
+      $.each( window.listTrafficLightStep, function(index, trafficLightStep) {
+        if(trafficLightStep.location) {
+          var shapes = [];
+          if(Array.isArray(trafficLightStep.location))
+            shapes = shapes.concat(trafficLightStep.location);
+          else
+            shapes.push(trafficLightStep.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficLightStep
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficLightStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficLightStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficLightStep(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapTrafficLightStep.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipTrafficLightStep(e, feature);
+      });
     }
   }
 }

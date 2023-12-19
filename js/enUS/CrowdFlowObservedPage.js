@@ -89,13 +89,13 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
@@ -201,10 +201,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -212,6 +208,10 @@ function searchCrowdFlowObservedFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
   }
   return filters;
 }
@@ -444,18 +444,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeEntityId != null && removeEntityId !== '')
     vals['removeEntityId'] = removeEntityId;
 
-  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
-  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
-  var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
-  var addTrafficSimulationId = $formValues.find('.addTrafficSimulationId').val();
-  if(removeTrafficSimulationId || setTrafficSimulationId != null && setTrafficSimulationId !== '')
-    vals['setTrafficSimulationId'] = setTrafficSimulationId;
-  if(addTrafficSimulationId != null && addTrafficSimulationId !== '')
-    vals['addTrafficSimulationId'] = addTrafficSimulationId;
-  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
-  if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
-    vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
-
   var valueDateCreated = $formValues.find('.valueDateCreated').val();
   var removeDateCreated = $formValues.find('.removeDateCreated').val() === 'true';
   var setDateCreated = removeDateCreated ? null : $formValues.find('.setDateCreated').val();
@@ -467,6 +455,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeDateCreated = $formValues.find('.removeDateCreated').val();
   if(removeDateCreated != null && removeDateCreated !== '')
     vals['removeDateCreated'] = removeDateCreated;
+
+  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
+  var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
+  var addTrafficSimulationId = $formValues.find('.addTrafficSimulationId').val();
+  if(removeTrafficSimulationId || setTrafficSimulationId != null && setTrafficSimulationId !== '')
+    vals['setTrafficSimulationId'] = setTrafficSimulationId;
+  if(addTrafficSimulationId != null && addTrafficSimulationId !== '')
+    vals['addTrafficSimulationId'] = addTrafficSimulationId;
+  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
+  if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
+    vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
 
   var valueDateModified = $formValues.find('.valueDateModified').val();
   var removeDateModified = $formValues.find('.removeDateModified').val() === 'true';
@@ -766,13 +766,13 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
@@ -878,10 +878,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -889,6 +885,10 @@ function patchCrowdFlowObservedFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
   }
   return filters;
 }
@@ -985,13 +985,13 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueEntityId != null && valueEntityId !== '')
     vals['entityId'] = valueEntityId;
 
-  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
-  if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
-    vals['trafficSimulationId'] = valueTrafficSimulationId;
-
   var valueDateCreated = $formValues.find('.valueDateCreated').val();
   if(valueDateCreated != null && valueDateCreated !== '')
     vals['dateCreated'] = valueDateCreated;
+
+  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+  if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
+    vals['trafficSimulationId'] = valueTrafficSimulationId;
 
   var valueDateModified = $formValues.find('.valueDateModified').val();
   if(valueDateModified != null && valueDateModified !== '')
@@ -1183,8 +1183,8 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputCongested = null;
         var inputDataProvider = null;
         var inputEntityId = null;
-        var inputTrafficSimulationId = null;
         var inputDateCreated = null;
+        var inputTrafficSimulationId = null;
         var inputDateModified = null;
         var inputDateObserved = null;
         var inputDateObservedFrom = null;
@@ -1211,9 +1211,9 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1243,10 +1243,10 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputDataProvider = $response.find('.Page_dataProvider');
         if(vars.includes('entityId'))
           inputEntityId = $response.find('.Page_entityId');
-        if(vars.includes('trafficSimulationId'))
-          inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('dateCreated'))
           inputDateCreated = $response.find('.Page_dateCreated');
+        if(vars.includes('trafficSimulationId'))
+          inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('dateModified'))
           inputDateModified = $response.find('.Page_dateModified');
         if(vars.includes('dateObserved'))
@@ -1299,15 +1299,16 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
+        window.listCrowdFlowObserved = JSON.parse($response.find('.pageForm .listCrowdFlowObserved').val());
 
 
         if(inputCreated) {
@@ -1380,14 +1381,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_entityId'));
         }
 
-        if(inputTrafficSimulationId) {
-          inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
-          addGlow($('.Page_trafficSimulationId'));
-        }
-
         if(inputDateCreated) {
           inputDateCreated.replaceAll('.Page_dateCreated');
           addGlow($('.Page_dateCreated'));
+        }
+
+        if(inputTrafficSimulationId) {
+          inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
+          addGlow($('.Page_trafficSimulationId'));
         }
 
         if(inputDateModified) {
@@ -1520,11 +1521,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -1534,6 +1530,13 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
         }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
+        pageGraphCrowdFlowObserved();
     });
   }
 }
@@ -1639,50 +1642,84 @@ function pageGraphCrowdFlowObserved(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipCrowdFlowObserved(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapCrowdFlowObserved) {
+      window.geoJSONLayerGroupCrowdFlowObserved.clearLayers();
+      $.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
+        if(crowdFlowObserved.areaServed) {
+          var shapes = [];
+          if(Array.isArray(crowdFlowObserved.areaServed))
+            shapes = shapes.concat(crowdFlowObserved.areaServed);
+          else
+            shapes.push(crowdFlowObserved.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": crowdFlowObserved
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupCrowdFlowObserved.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleCrowdFlowObserved
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleCrowdFlowObserved(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapCrowdFlowObserved = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapCrowdFlowObserved);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapCrowdFlowObserved.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapCrowdFlowObserved.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapCrowdFlowObserved.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
-      if(crowdFlowObserved.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipCrowdFlowObserved(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(crowdFlowObserved.areaServed))
-          shapes = shapes.concat(crowdFlowObserved.areaServed);
-        else
-          shapes.push(crowdFlowObserved.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": crowdFlowObserved
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleCrowdFlowObserved}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipCrowdFlowObserved(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupCrowdFlowObserved = L.geoJSON().addTo(window.mapCrowdFlowObserved);
+      $.each( window.listCrowdFlowObserved, function(index, crowdFlowObserved) {
+        if(crowdFlowObserved.areaServed) {
+          var shapes = [];
+          if(Array.isArray(crowdFlowObserved.areaServed))
+            shapes = shapes.concat(crowdFlowObserved.areaServed);
+          else
+            shapes.push(crowdFlowObserved.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": crowdFlowObserved
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupCrowdFlowObserved.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleCrowdFlowObserved
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleCrowdFlowObserved(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapCrowdFlowObserved.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipCrowdFlowObserved(e, feature);
+      });
+    }
   }
 }
 

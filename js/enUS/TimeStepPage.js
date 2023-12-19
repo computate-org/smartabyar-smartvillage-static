@@ -731,6 +731,7 @@ async function websocketTimeStepInner(apiRequest) {
         jsWebsocketTimeStep(id, vars, $response);
 
         window.timeStep = JSON.parse($response.find('.pageForm .timeStep').val());
+        window.listTimeStep = JSON.parse($response.find('.pageForm .listTimeStep').val());
 
 
         if(inputCreated) {
@@ -847,6 +848,8 @@ async function websocketTimeStepInner(apiRequest) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
         }
+
+        pageGraphTimeStep();
     });
   }
 }

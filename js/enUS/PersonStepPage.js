@@ -1054,6 +1054,7 @@ async function websocketPersonStepInner(apiRequest) {
         jsWebsocketPersonStep(id, vars, $response);
 
         window.personStep = JSON.parse($response.find('.pageForm .personStep').val());
+        window.listPersonStep = JSON.parse($response.find('.pageForm .listPersonStep').val());
 
 
         if(inputCreated) {
@@ -1230,6 +1231,8 @@ async function websocketPersonStepInner(apiRequest) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
         }
+
+        pageGraphPersonStep();
     });
   }
 }
@@ -1332,6 +1335,86 @@ function pageGraphPersonStep(apiRequest) {
         }
         Plotly.react('htmBodyGraphMapResultPage', data, layout);
       }
+    }
+
+    // Graph Location
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipPersonStep(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapPersonStep) {
+      window.geoJSONLayerGroupPersonStep.clearLayers();
+      $.each( window.listPersonStep, function(index, personStep) {
+        if(personStep.location) {
+          var shapes = [];
+          if(Array.isArray(personStep.location))
+            shapes = shapes.concat(personStep.location);
+          else
+            shapes.push(personStep.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": personStep
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupPersonStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStylePersonStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStylePersonStep(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapPersonStep = L.map('htmBodyGraphLocationMapResultPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapPersonStep);
+
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapPersonStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapPersonStep.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapPersonStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupPersonStep = L.geoJSON().addTo(window.mapPersonStep);
+      $.each( window.listPersonStep, function(index, personStep) {
+        if(personStep.location) {
+          var shapes = [];
+          if(Array.isArray(personStep.location))
+            shapes = shapes.concat(personStep.location);
+          else
+            shapes.push(personStep.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": personStep
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupPersonStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStylePersonStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStylePersonStep(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapPersonStep.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipPersonStep(e, feature);
+      });
     }
   }
 }

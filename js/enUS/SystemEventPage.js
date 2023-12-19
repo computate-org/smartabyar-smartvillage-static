@@ -63,6 +63,10 @@ function searchSystemEventFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
@@ -110,10 +114,6 @@ function searchSystemEventFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
   }
   return filters;
 }
@@ -511,6 +511,10 @@ function patchSystemEventFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
@@ -558,10 +562,6 @@ function patchSystemEventFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
   }
   return filters;
 }
@@ -676,6 +676,7 @@ async function websocketSystemEventInner(apiRequest) {
         var inputCompleted = null;
         var inputPageImageUri = null;
         var inputInheritPk = null;
+        var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
@@ -688,7 +689,6 @@ async function websocketSystemEventInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassCanonicalName = null;
 
         if(vars.includes('modified'))
           inputModified = $response.find('.Page_modified');
@@ -712,6 +712,8 @@ async function websocketSystemEventInner(apiRequest) {
           inputPageImageUri = $response.find('.Page_pageImageUri');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
@@ -736,11 +738,10 @@ async function websocketSystemEventInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         jsWebsocketSystemEvent(id, vars, $response);
 
         window.systemEvent = JSON.parse($response.find('.pageForm .systemEvent').val());
+        window.listSystemEvent = JSON.parse($response.find('.pageForm .listSystemEvent').val());
 
 
         if(inputModified) {
@@ -796,6 +797,11 @@ async function websocketSystemEventInner(apiRequest) {
         if(inputInheritPk) {
           inputInheritPk.replaceAll('.Page_inheritPk');
           addGlow($('.Page_inheritPk'));
+        }
+
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
@@ -858,10 +864,7 @@ async function websocketSystemEventInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
+        pageGraphSystemEvent();
     });
   }
 }

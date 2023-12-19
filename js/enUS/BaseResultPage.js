@@ -121,6 +121,7 @@ async function websocketBaseResultInner(apiRequest) {
         jsWebsocketBaseResult(id, vars, $response);
 
         window.baseResult = JSON.parse($response.find('.pageForm .baseResult').val());
+        window.listBaseResult = JSON.parse($response.find('.pageForm .listBaseResult').val());
 
 
         if(inputCreated) {
@@ -217,6 +218,8 @@ async function websocketBaseResultInner(apiRequest) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
         }
+
+        pageGraphBaseResult();
     });
   }
 }

@@ -1000,6 +1000,7 @@ async function websocketTrafficLightInner(apiRequest) {
         jsWebsocketTrafficLight(id, vars, $response);
 
         window.trafficLight = JSON.parse($response.find('.pageForm .trafficLight').val());
+        window.listTrafficLight = JSON.parse($response.find('.pageForm .listTrafficLight').val());
 
 
         if(inputCreated) {
@@ -1166,6 +1167,8 @@ async function websocketTrafficLightInner(apiRequest) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
         }
+
+        pageGraphTrafficLight();
     });
   }
 }
@@ -1268,6 +1271,86 @@ function pageGraphTrafficLight(apiRequest) {
         }
         Plotly.react('htmBodyGraphMapResultPage', data, layout);
       }
+    }
+
+    // Graph Location
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipTrafficLight(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapTrafficLight) {
+      window.geoJSONLayerGroupTrafficLight.clearLayers();
+      $.each( window.listTrafficLight, function(index, trafficLight) {
+        if(trafficLight.location) {
+          var shapes = [];
+          if(Array.isArray(trafficLight.location))
+            shapes = shapes.concat(trafficLight.location);
+          else
+            shapes.push(trafficLight.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficLight
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficLight.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficLight
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficLight(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapTrafficLight = L.map('htmBodyGraphLocationMapResultPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapTrafficLight);
+
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficLight.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapTrafficLight.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapTrafficLight.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupTrafficLight = L.geoJSON().addTo(window.mapTrafficLight);
+      $.each( window.listTrafficLight, function(index, trafficLight) {
+        if(trafficLight.location) {
+          var shapes = [];
+          if(Array.isArray(trafficLight.location))
+            shapes = shapes.concat(trafficLight.location);
+          else
+            shapes.push(trafficLight.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": trafficLight
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupTrafficLight.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleTrafficLight
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleTrafficLight(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapTrafficLight.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipTrafficLight(e, feature);
+      });
     }
   }
 }

@@ -1054,6 +1054,7 @@ async function websocketVehicleStepInner(apiRequest) {
         jsWebsocketVehicleStep(id, vars, $response);
 
         window.vehicleStep = JSON.parse($response.find('.pageForm .vehicleStep').val());
+        window.listVehicleStep = JSON.parse($response.find('.pageForm .listVehicleStep').val());
 
 
         if(inputCreated) {
@@ -1230,6 +1231,8 @@ async function websocketVehicleStepInner(apiRequest) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
         }
+
+        pageGraphVehicleStep();
     });
   }
 }
@@ -1354,7 +1357,13 @@ function pageGraphVehicleStep(apiRequest) {
               , "properties": vehicleStep
               , "geometry": shape
             }];
-            window.geoJSONLayerGroupVehicleStep.addLayer(L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleVehicleStep}));
+            window.geoJSONLayerGroupVehicleStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleVehicleStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleVehicleStep(feature));
+              }
+            }));
           });
         }
       });
@@ -1392,7 +1401,13 @@ function pageGraphVehicleStep(apiRequest) {
               , "properties": vehicleStep
               , "geometry": shape
             }];
-            window.geoJSONLayerGroupVehicleStep.addLayer(L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleVehicleStep}));
+            window.geoJSONLayerGroupVehicleStep.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleVehicleStep
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleVehicleStep(feature));
+              }
+            }));
           });
         }
       });

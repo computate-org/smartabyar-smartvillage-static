@@ -326,6 +326,7 @@ async function websocketMapResultInner(apiRequest) {
         jsWebsocketMapResult(id, vars, $response);
 
         window.mapResult = JSON.parse($response.find('.pageForm .mapResult').val());
+        window.listMapResult = JSON.parse($response.find('.pageForm .listMapResult').val());
 
 
         if(inputCreated) {
@@ -462,6 +463,8 @@ async function websocketMapResultInner(apiRequest) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
         }
+
+        pageGraphMapResult();
     });
   }
 }
@@ -567,50 +570,84 @@ function pageGraphMapResult(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseResultPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipMapResult(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapMapResult) {
+      window.geoJSONLayerGroupMapResult.clearLayers();
+      $.each( window.listMapResult, function(index, mapResult) {
+        if(mapResult.location) {
+          var shapes = [];
+          if(Array.isArray(mapResult.location))
+            shapes = shapes.concat(mapResult.location);
+          else
+            shapes.push(mapResult.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": mapResult
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupMapResult.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleMapResult
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleMapResult(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapMapResult = L.map('htmBodyGraphLocationBaseResultPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapMapResult);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapMapResult.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapMapResult.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapMapResult.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listMapResult, function(index, mapResult) {
-      if(mapResult.location) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipMapResult(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(mapResult.location))
-          shapes = shapes.concat(mapResult.location);
-        else
-          shapes.push(mapResult.location);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": mapResult
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleMapResult}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipMapResult(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupMapResult = L.geoJSON().addTo(window.mapMapResult);
+      $.each( window.listMapResult, function(index, mapResult) {
+        if(mapResult.location) {
+          var shapes = [];
+          if(Array.isArray(mapResult.location))
+            shapes = shapes.concat(mapResult.location);
+          else
+            shapes.push(mapResult.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": mapResult
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupMapResult.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleMapResult
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleMapResult(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapMapResult.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipMapResult(e, feature);
+      });
+    }
   }
 }
 

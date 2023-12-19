@@ -275,10 +275,6 @@ function searchSimulationReportFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -286,6 +282,10 @@ function searchSimulationReportFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
@@ -1443,10 +1443,6 @@ function patchSimulationReportFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -1454,6 +1450,10 @@ function patchSimulationReportFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
@@ -3095,10 +3095,6 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -3106,6 +3102,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
@@ -3305,9 +3305,9 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputPageUrlPk = null;
         var inputAreaServed = null;
         var inputSimulationName = null;
         var inputSmartTrafficLightId = null;
@@ -3443,12 +3443,12 @@ async function websocketSimulationReportInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('areaServed'))
           inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('simulationName'))
@@ -3472,6 +3472,7 @@ async function websocketSimulationReportInner(apiRequest) {
         jsWebsocketSimulationReport(pk, vars, $response);
 
         window.simulationReport = JSON.parse($response.find('.pageForm .simulationReport').val());
+        window.listSimulationReport = JSON.parse($response.find('.pageForm .listSimulationReport').val());
 
 
         if(inputCreated) {
@@ -3784,11 +3785,6 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -3797,6 +3793,11 @@ async function websocketSimulationReportInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
         }
 
         if(inputAreaServed) {
@@ -3848,6 +3849,8 @@ async function websocketSimulationReportInner(apiRequest) {
           inputAverageQueueLength.replaceAll('.Page_averageQueueLength');
           addGlow($('.Page_averageQueueLength'));
         }
+
+        pageGraphSimulationReport();
     });
   }
 }
@@ -3953,50 +3956,84 @@ function pageGraphSimulationReport(apiRequest) {
     }
 
     // Graph Location
-    var map = L.map('htmBodyGraphLocationBaseModelPage');
-    var data = [];
-    var layout = {};
-    layout['showlegend'] = true;
-    layout['dragmode'] = 'zoom';
-    layout['uirevision'] = 'true';
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipSimulationReport(feature, layer);
+      layer.bindPopup(popupContent);
+    };
+    if(window.mapSimulationReport) {
+      window.geoJSONLayerGroupSimulationReport.clearLayers();
+      $.each( window.listSimulationReport, function(index, simulationReport) {
+        if(simulationReport.areaServed) {
+          var shapes = [];
+          if(Array.isArray(simulationReport.areaServed))
+            shapes = shapes.concat(simulationReport.areaServed);
+          else
+            shapes.push(simulationReport.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": simulationReport
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupSimulationReport.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleSimulationReport
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleSimulationReport(feature));
+              }
+            }));
+          });
+        }
+      });
+    } else {
+      window.mapSimulationReport = L.map('htmBodyGraphLocationBaseModelPage');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapSimulationReport);
 
-    if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_ZOOM'])
-      map.setView(null, window['DEFAULT_MAP_ZOOM']);
-    else if(window['DEFAULT_MAP_LOCATION'])
-      map.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
+      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+        window.mapSimulationReport.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']], window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_ZOOM'])
+        window.mapSimulationReport.setView(null, window['DEFAULT_MAP_ZOOM']);
+      else if(window['DEFAULT_MAP_LOCATION'])
+        window.mapSimulationReport.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
-    layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-    $.each( window.listSimulationReport, function(index, simulationReport) {
-      if(simulationReport.areaServed) {
-        var shapes = [];
-        function onEachFeature(feature, layer) {
-          let popupContent = htmTooltipSimulationReport(feature, layer);
-          layer.bindPopup(popupContent);
-        };
-        if(Array.isArray(simulationReport.areaServed))
-          shapes = shapes.concat(simulationReport.areaServed);
-        else
-          shapes.push(simulationReport.areaServed);
-        shapes.forEach(shape => {
-          var features = [{
-            "type": "Feature"
-            , "properties": simulationReport
-            , "geometry": shape
-          }];
-          L.geoJSON(features, {onEachFeature: onEachFeature, style: jsStyleSimulationReport}).addTo(map);
-        });
-      }
-    });
-    map.on('popupopen', function(e) {
-      var feature = e.popup._source.feature;
-      jsTooltipSimulationReport(e, feature);
-    });
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONLayerGroupSimulationReport = L.geoJSON().addTo(window.mapSimulationReport);
+      $.each( window.listSimulationReport, function(index, simulationReport) {
+        if(simulationReport.areaServed) {
+          var shapes = [];
+          if(Array.isArray(simulationReport.areaServed))
+            shapes = shapes.concat(simulationReport.areaServed);
+          else
+            shapes.push(simulationReport.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": simulationReport
+              , "geometry": shape
+            }];
+            window.geoJSONLayerGroupSimulationReport.addLayer(L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleSimulationReport
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleSimulationReport(feature));
+              }
+            }));
+          });
+        }
+      });
+      window.mapSimulationReport.on('popupopen', function(e) {
+        var feature = e.popup._source.feature;
+        jsTooltipSimulationReport(e, feature);
+      });
+    }
   }
 }
 
