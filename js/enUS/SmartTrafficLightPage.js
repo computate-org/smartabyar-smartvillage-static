@@ -219,6 +219,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
@@ -971,6 +975,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
@@ -1328,6 +1336,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
+        var inputAreaServedColors = null;
         var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
 
@@ -1427,6 +1436,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.find('.Page_areaServedColors');
         if(vars.includes('trafficFlowObservedIds'))
           inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
@@ -1675,6 +1686,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputInheritPk) {
           inputInheritPk.replaceAll('.Page_inheritPk');
           addGlow($('.Page_inheritPk'));
+        }
+
+        if(inputAreaServedColors) {
+          inputAreaServedColors.replaceAll('.Page_areaServedColors');
+          addGlow($('.Page_areaServedColors'));
         }
 
         if(inputTrafficFlowObservedIds) {
