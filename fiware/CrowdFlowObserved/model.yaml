@@ -2,6 +2,18 @@ CrowdFlowObserved:
   description: >+
     ApiTag.enUS: CrowdFlowObserved
   properties:
+    customTrafficLightId:
+      type: string
+      description: >+
+        The Smart Traffic Light ID
+      x-ngsi:
+        type: Property
+    trafficSimulationId:
+      type: string
+      description: >+
+        The Traffic Simulation ID
+      x-ngsi:
+        type: Property
     color:
       type: string
       x-ngsi:
@@ -10,12 +22,6 @@ CrowdFlowObserved:
       type: string
       description: >+
         A unique ID for this Smart Data Model
-      x-ngsi:
-        type: Property
-    trafficSimulationId:
-      type: string
-      description: >+
-        The Traffic Simulation ID
       x-ngsi:
         type: Property
     walkingAreaId:

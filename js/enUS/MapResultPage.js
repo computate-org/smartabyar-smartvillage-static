@@ -97,10 +97,6 @@ function searchMapResultFilters($formFilters) {
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -128,6 +124,10 @@ function searchMapResultFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -257,7 +257,6 @@ async function websocketMapResultInner(apiRequest) {
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
-        var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
@@ -265,6 +264,7 @@ async function websocketMapResultInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputSaves = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
@@ -301,8 +301,6 @@ async function websocketMapResultInner(apiRequest) {
           inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
@@ -317,6 +315,8 @@ async function websocketMapResultInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
@@ -409,11 +409,6 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_userKey'));
         }
 
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
         if(inputObjectTitle) {
           inputObjectTitle.replaceAll('.Page_objectTitle');
           addGlow($('.Page_objectTitle'));
@@ -447,6 +442,11 @@ async function websocketMapResultInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
         }
 
         if(inputTimeStepId) {
@@ -583,11 +583,12 @@ function pageGraphMapResult(apiRequest) {
             shapes = shapes.concat(mapResult.location);
           else
             shapes.push(mapResult.location);
-          shapes.forEach(shape => {
+          shapes.forEach(function(shape, index) {
             var features = [{
               "type": "Feature"
               , "properties": mapResult
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupMapResult.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature
@@ -632,6 +633,7 @@ function pageGraphMapResult(apiRequest) {
               "type": "Feature"
               , "properties": mapResult
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupMapResult.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature

@@ -13,16 +13,20 @@
   } ],
   "required" : [ ],
   "properties" : {
+    "customTrafficLightId" : {
+      "type" : "string",
+      "description" : "The Smart Traffic Light ID"
+    },
+    "trafficSimulationId" : {
+      "type" : "string",
+      "description" : "The Traffic Simulation ID"
+    },
     "color" : {
       "type" : "string"
     },
     "entityId" : {
       "type" : "string",
       "description" : "A unique ID for this Smart Data Model"
-    },
-    "trafficSimulationId" : {
-      "type" : "string",
-      "description" : "The Traffic Simulation ID"
     },
     "walkingAreaId" : {
       "type" : "string",

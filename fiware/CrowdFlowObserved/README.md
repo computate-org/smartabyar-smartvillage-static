@@ -11,9 +11,10 @@ https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware
 
 ## Attributes of the entity
 
+- [customTrafficLightId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/customTrafficLightId.md)
+- [trafficSimulationId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/trafficSimulationId.md)
 - [color](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/color.md)
 - [entityId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/entityId.md)
-- [trafficSimulationId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/trafficSimulationId.md)
 - [walkingAreaId](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/walkingAreaId.md)
 - [alternateName](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/alternateName.md)
 - [areaServed](https://github.com/computate-org/smartabyar-smartvillage-static/blob/main/fiware/CrowdFlowObserved/attributes/areaServed.md)

@@ -67,22 +67,6 @@ function searchSitePageFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
-    var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-    if(filterCourseNum != null && filterCourseNum !== '')
-      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-    var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-    if(filterLessonNum != null && filterLessonNum !== '')
-      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-    var filterH1 = $formFilters.find('.valueH1').val();
-    if(filterH1 != null && filterH1 !== '')
-      filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-    var filterH2 = $formFilters.find('.valueH2').val();
-    if(filterH2 != null && filterH2 !== '')
-      filters.push({ name: 'fq', value: 'h2:' + filterH2 });
-
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -138,6 +122,22 @@ function searchSitePageFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+    if(filterCourseNum != null && filterCourseNum !== '')
+      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+    var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+    if(filterLessonNum != null && filterLessonNum !== '')
+      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
+    var filterH1 = $formFilters.find('.valueH1').val();
+    if(filterH1 != null && filterH1 !== '')
+      filters.push({ name: 'fq', value: 'h1:' + filterH1 });
+
+    var filterH2 = $formFilters.find('.valueH2').val();
+    if(filterH2 != null && filterH2 !== '')
+      filters.push({ name: 'fq', value: 'h2:' + filterH2 });
   }
   return filters;
 }
@@ -243,22 +243,6 @@ async function postSitePage($formValues, success, error) {
   if(valuePageImageUri != null && valuePageImageUri !== '')
     vals['pageImageUri'] = valuePageImageUri;
 
-  var valueCourseNum = $formValues.find('.valueCourseNum').val();
-  if(valueCourseNum != null && valueCourseNum !== '')
-    vals['courseNum'] = valueCourseNum;
-
-  var valueLessonNum = $formValues.find('.valueLessonNum').val();
-  if(valueLessonNum != null && valueLessonNum !== '')
-    vals['lessonNum'] = valueLessonNum;
-
-  var valueH1 = $formValues.find('.valueH1').val();
-  if(valueH1 != null && valueH1 !== '')
-    vals['h1'] = valueH1;
-
-  var valueH2 = $formValues.find('.valueH2').val();
-  if(valueH2 != null && valueH2 !== '')
-    vals['h2'] = valueH2;
-
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
@@ -278,6 +262,22 @@ async function postSitePage($formValues, success, error) {
   var valueId = $formValues.find('.valueId').val();
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
+
+  var valueCourseNum = $formValues.find('.valueCourseNum').val();
+  if(valueCourseNum != null && valueCourseNum !== '')
+    vals['courseNum'] = valueCourseNum;
+
+  var valueLessonNum = $formValues.find('.valueLessonNum').val();
+  if(valueLessonNum != null && valueLessonNum !== '')
+    vals['lessonNum'] = valueLessonNum;
+
+  var valueH1 = $formValues.find('.valueH1').val();
+  if(valueH1 != null && valueH1 !== '')
+    vals['h1'] = valueH1;
+
+  var valueH2 = $formValues.find('.valueH2').val();
+  if(valueH2 != null && valueH2 !== '')
+    vals['h2'] = valueH2;
 
   $.ajax({
     url: '/api/page'
@@ -435,54 +435,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   if(removePageImageUri != null && removePageImageUri !== '')
     vals['removePageImageUri'] = removePageImageUri;
 
-  var valueCourseNum = $formValues.find('.valueCourseNum').val();
-  var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
-  var setCourseNum = removeCourseNum ? null : $formValues.find('.setCourseNum').val();
-  var addCourseNum = $formValues.find('.addCourseNum').val();
-  if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
-    vals['setCourseNum'] = setCourseNum;
-  if(addCourseNum != null && addCourseNum !== '')
-    vals['addCourseNum'] = addCourseNum;
-  var removeCourseNum = $formValues.find('.removeCourseNum').val();
-  if(removeCourseNum != null && removeCourseNum !== '')
-    vals['removeCourseNum'] = removeCourseNum;
-
-  var valueLessonNum = $formValues.find('.valueLessonNum').val();
-  var removeLessonNum = $formValues.find('.removeLessonNum').val() === 'true';
-  var setLessonNum = removeLessonNum ? null : $formValues.find('.setLessonNum').val();
-  var addLessonNum = $formValues.find('.addLessonNum').val();
-  if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
-    vals['setLessonNum'] = setLessonNum;
-  if(addLessonNum != null && addLessonNum !== '')
-    vals['addLessonNum'] = addLessonNum;
-  var removeLessonNum = $formValues.find('.removeLessonNum').val();
-  if(removeLessonNum != null && removeLessonNum !== '')
-    vals['removeLessonNum'] = removeLessonNum;
-
-  var valueH1 = $formValues.find('.valueH1').val();
-  var removeH1 = $formValues.find('.removeH1').val() === 'true';
-  var setH1 = removeH1 ? null : $formValues.find('.setH1').val();
-  var addH1 = $formValues.find('.addH1').val();
-  if(removeH1 || setH1 != null && setH1 !== '')
-    vals['setH1'] = setH1;
-  if(addH1 != null && addH1 !== '')
-    vals['addH1'] = addH1;
-  var removeH1 = $formValues.find('.removeH1').val();
-  if(removeH1 != null && removeH1 !== '')
-    vals['removeH1'] = removeH1;
-
-  var valueH2 = $formValues.find('.valueH2').val();
-  var removeH2 = $formValues.find('.removeH2').val() === 'true';
-  var setH2 = removeH2 ? null : $formValues.find('.setH2').val();
-  var addH2 = $formValues.find('.addH2').val();
-  if(removeH2 || setH2 != null && setH2 !== '')
-    vals['setH2'] = setH2;
-  if(addH2 != null && addH2 !== '')
-    vals['addH2'] = addH2;
-  var removeH2 = $formValues.find('.removeH2').val();
-  if(removeH2 != null && removeH2 !== '')
-    vals['removeH2'] = removeH2;
-
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
   var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -542,6 +494,54 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   var removeId = $formValues.find('.removeId').val();
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
+
+  var valueCourseNum = $formValues.find('.valueCourseNum').val();
+  var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
+  var setCourseNum = removeCourseNum ? null : $formValues.find('.setCourseNum').val();
+  var addCourseNum = $formValues.find('.addCourseNum').val();
+  if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
+    vals['setCourseNum'] = setCourseNum;
+  if(addCourseNum != null && addCourseNum !== '')
+    vals['addCourseNum'] = addCourseNum;
+  var removeCourseNum = $formValues.find('.removeCourseNum').val();
+  if(removeCourseNum != null && removeCourseNum !== '')
+    vals['removeCourseNum'] = removeCourseNum;
+
+  var valueLessonNum = $formValues.find('.valueLessonNum').val();
+  var removeLessonNum = $formValues.find('.removeLessonNum').val() === 'true';
+  var setLessonNum = removeLessonNum ? null : $formValues.find('.setLessonNum').val();
+  var addLessonNum = $formValues.find('.addLessonNum').val();
+  if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
+    vals['setLessonNum'] = setLessonNum;
+  if(addLessonNum != null && addLessonNum !== '')
+    vals['addLessonNum'] = addLessonNum;
+  var removeLessonNum = $formValues.find('.removeLessonNum').val();
+  if(removeLessonNum != null && removeLessonNum !== '')
+    vals['removeLessonNum'] = removeLessonNum;
+
+  var valueH1 = $formValues.find('.valueH1').val();
+  var removeH1 = $formValues.find('.removeH1').val() === 'true';
+  var setH1 = removeH1 ? null : $formValues.find('.setH1').val();
+  var addH1 = $formValues.find('.addH1').val();
+  if(removeH1 || setH1 != null && setH1 !== '')
+    vals['setH1'] = setH1;
+  if(addH1 != null && addH1 !== '')
+    vals['addH1'] = addH1;
+  var removeH1 = $formValues.find('.removeH1').val();
+  if(removeH1 != null && removeH1 !== '')
+    vals['removeH1'] = removeH1;
+
+  var valueH2 = $formValues.find('.valueH2').val();
+  var removeH2 = $formValues.find('.removeH2').val() === 'true';
+  var setH2 = removeH2 ? null : $formValues.find('.setH2').val();
+  var addH2 = $formValues.find('.addH2').val();
+  if(removeH2 || setH2 != null && setH2 !== '')
+    vals['setH2'] = setH2;
+  if(addH2 != null && addH2 !== '')
+    vals['addH2'] = addH2;
+  var removeH2 = $formValues.find('.removeH2').val();
+  if(removeH2 != null && removeH2 !== '')
+    vals['removeH2'] = removeH2;
 
   patchSitePageVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -603,22 +603,6 @@ function patchSitePageFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
-    var filterCourseNum = $formFilters.find('.valueCourseNum').val();
-    if(filterCourseNum != null && filterCourseNum !== '')
-      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
-    var filterLessonNum = $formFilters.find('.valueLessonNum').val();
-    if(filterLessonNum != null && filterLessonNum !== '')
-      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-    var filterH1 = $formFilters.find('.valueH1').val();
-    if(filterH1 != null && filterH1 !== '')
-      filters.push({ name: 'fq', value: 'h1:' + filterH1 });
-
-    var filterH2 = $formFilters.find('.valueH2').val();
-    if(filterH2 != null && filterH2 !== '')
-      filters.push({ name: 'fq', value: 'h2:' + filterH2 });
-
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -674,6 +658,22 @@ function patchSitePageFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterCourseNum = $formFilters.find('.valueCourseNum').val();
+    if(filterCourseNum != null && filterCourseNum !== '')
+      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+    var filterLessonNum = $formFilters.find('.valueLessonNum').val();
+    if(filterLessonNum != null && filterLessonNum !== '')
+      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
+    var filterH1 = $formFilters.find('.valueH1').val();
+    if(filterH1 != null && filterH1 !== '')
+      filters.push({ name: 'fq', value: 'h1:' + filterH1 });
+
+    var filterH2 = $formFilters.find('.valueH2').val();
+    if(filterH2 != null && filterH2 !== '')
+      filters.push({ name: 'fq', value: 'h2:' + filterH2 });
   }
   return filters;
 }
@@ -787,10 +787,6 @@ async function websocketSitePageInner(apiRequest) {
         var inputUri = null;
         var inputAuthor = null;
         var inputPageImageUri = null;
-        var inputCourseNum = null;
-        var inputLessonNum = null;
-        var inputH1 = null;
-        var inputH2 = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
@@ -805,6 +801,10 @@ async function websocketSitePageInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputCourseNum = null;
+        var inputLessonNum = null;
+        var inputH1 = null;
+        var inputH2 = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -826,14 +826,6 @@ async function websocketSitePageInner(apiRequest) {
           inputAuthor = $response.find('.Page_author');
         if(vars.includes('pageImageUri'))
           inputPageImageUri = $response.find('.Page_pageImageUri');
-        if(vars.includes('courseNum'))
-          inputCourseNum = $response.find('.Page_courseNum');
-        if(vars.includes('lessonNum'))
-          inputLessonNum = $response.find('.Page_lessonNum');
-        if(vars.includes('h1'))
-          inputH1 = $response.find('.Page_h1');
-        if(vars.includes('h2'))
-          inputH2 = $response.find('.Page_h2');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
@@ -862,6 +854,14 @@ async function websocketSitePageInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('courseNum'))
+          inputCourseNum = $response.find('.Page_courseNum');
+        if(vars.includes('lessonNum'))
+          inputLessonNum = $response.find('.Page_lessonNum');
+        if(vars.includes('h1'))
+          inputH1 = $response.find('.Page_h1');
+        if(vars.includes('h2'))
+          inputH2 = $response.find('.Page_h2');
         jsWebsocketSitePage(id, vars, $response);
 
         window.sitePage = JSON.parse($response.find('.pageForm .sitePage').val());
@@ -916,26 +916,6 @@ async function websocketSitePageInner(apiRequest) {
         if(inputPageImageUri) {
           inputPageImageUri.replaceAll('.Page_pageImageUri');
           addGlow($('.Page_pageImageUri'));
-        }
-
-        if(inputCourseNum) {
-          inputCourseNum.replaceAll('.Page_courseNum');
-          addGlow($('.Page_courseNum'));
-        }
-
-        if(inputLessonNum) {
-          inputLessonNum.replaceAll('.Page_lessonNum');
-          addGlow($('.Page_lessonNum'));
-        }
-
-        if(inputH1) {
-          inputH1.replaceAll('.Page_h1');
-          addGlow($('.Page_h1'));
-        }
-
-        if(inputH2) {
-          inputH2.replaceAll('.Page_h2');
-          addGlow($('.Page_h2'));
         }
 
         if(inputInheritPk) {
@@ -1006,6 +986,26 @@ async function websocketSitePageInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputCourseNum) {
+          inputCourseNum.replaceAll('.Page_courseNum');
+          addGlow($('.Page_courseNum'));
+        }
+
+        if(inputLessonNum) {
+          inputLessonNum.replaceAll('.Page_lessonNum');
+          addGlow($('.Page_lessonNum'));
+        }
+
+        if(inputH1) {
+          inputH1.replaceAll('.Page_h1');
+          addGlow($('.Page_h1'));
+        }
+
+        if(inputH2) {
+          inputH2.replaceAll('.Page_h2');
+          addGlow($('.Page_h2'));
         }
 
         pageGraphSitePage();
