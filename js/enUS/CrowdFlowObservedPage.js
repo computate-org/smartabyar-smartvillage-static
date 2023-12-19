@@ -47,6 +47,78 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
+    var filterCustomTrafficLightId = $formFilters.find('.valueCustomTrafficLightId').val();
+    if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
+      filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
+
+    var filterLocation = $formFilters.find('.valueLocation').val();
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterDateObserved = $formFilters.find('.valueDateObserved').val();
+    if(filterDateObserved != null && filterDateObserved !== '')
+      filters.push({ name: 'fq', value: 'dateObserved:' + filterDateObserved });
+
+    var filterDateObservedFrom = $formFilters.find('.valueDateObservedFrom').val();
+    if(filterDateObservedFrom != null && filterDateObservedFrom !== '')
+      filters.push({ name: 'fq', value: 'dateObservedFrom:' + filterDateObservedFrom });
+
+    var filterDateObservedTo = $formFilters.find('.valueDateObservedTo').val();
+    if(filterDateObservedTo != null && filterDateObservedTo !== '')
+      filters.push({ name: 'fq', value: 'dateObservedTo:' + filterDateObservedTo });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterDescription = $formFilters.find('.valueDescription').val();
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterName = $formFilters.find('.valueName').val();
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDirection = $formFilters.find('.valueDirection').val();
+    if(filterDirection != null && filterDirection !== '')
+      filters.push({ name: 'fq', value: 'direction:' + filterDirection });
+
+    var filterOccupancy = $formFilters.find('.valueOccupancy').val();
+    if(filterOccupancy != null && filterOccupancy !== '')
+      filters.push({ name: 'fq', value: 'occupancy:' + filterOccupancy });
+
+    var filterPeopleCount = $formFilters.find('.valuePeopleCount').val();
+    if(filterPeopleCount != null && filterPeopleCount !== '')
+      filters.push({ name: 'fq', value: 'peopleCount:' + filterPeopleCount });
+
+    var filterRefRoadSegment = $formFilters.find('.valueRefRoadSegment').val();
+    if(filterRefRoadSegment != null && filterRefRoadSegment !== '')
+      filters.push({ name: 'fq', value: 'refRoadSegment:' + filterRefRoadSegment });
+
+    var filterSeeAlso = $formFilters.find('.valueSeeAlso').val();
+    if(filterSeeAlso != null && filterSeeAlso !== '')
+      filters.push({ name: 'fq', value: 'seeAlso:' + filterSeeAlso });
+
+    var filterOwner = $formFilters.find('.valueOwner').val();
+    if(filterOwner != null && filterOwner !== '')
+      filters.push({ name: 'fq', value: 'owner:' + filterOwner });
+
+    var filterSource = $formFilters.find('.valueSource').val();
+    if(filterSource != null && filterSource !== '')
+      filters.push({ name: 'fq', value: 'source:' + filterSource });
+
     var filterWalkingAreaId = $formFilters.find('.valueWalkingAreaId').val();
     if(filterWalkingAreaId != null && filterWalkingAreaId !== '')
       filters.push({ name: 'fq', value: 'walkingAreaId:' + filterWalkingAreaId });
@@ -55,17 +127,13 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
 
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
     var filterAverageCrowdSpeed = $formFilters.find('.valueAverageCrowdSpeed').val();
     if(filterAverageCrowdSpeed != null && filterAverageCrowdSpeed !== '')
       filters.push({ name: 'fq', value: 'averageCrowdSpeed:' + filterAverageCrowdSpeed });
+
+    var filterDataProvider = $formFilters.find('.valueDataProvider').val();
+    if(filterDataProvider != null && filterDataProvider !== '')
+      filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
 
     var filterAverageHeadwayTime = $formFilters.find('.valueAverageHeadwayTime').val();
     if(filterAverageHeadwayTime != null && filterAverageHeadwayTime !== '')
@@ -80,86 +148,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
       filterCongested = filterCongestedSelectVal == 'true';
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
-
-    var filterDataProvider = $formFilters.find('.valueDataProvider').val();
-    if(filterDataProvider != null && filterDataProvider !== '')
-      filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
-
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
-
-    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
-    if(filterDateCreated != null && filterDateCreated !== '')
-      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
-
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
-    var filterDateModified = $formFilters.find('.valueDateModified').val();
-    if(filterDateModified != null && filterDateModified !== '')
-      filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
-
-    var filterDateObserved = $formFilters.find('.valueDateObserved').val();
-    if(filterDateObserved != null && filterDateObserved !== '')
-      filters.push({ name: 'fq', value: 'dateObserved:' + filterDateObserved });
-
-    var filterDateObservedFrom = $formFilters.find('.valueDateObservedFrom').val();
-    if(filterDateObservedFrom != null && filterDateObservedFrom !== '')
-      filters.push({ name: 'fq', value: 'dateObservedFrom:' + filterDateObservedFrom });
-
-    var filterDateObservedTo = $formFilters.find('.valueDateObservedTo').val();
-    if(filterDateObservedTo != null && filterDateObservedTo !== '')
-      filters.push({ name: 'fq', value: 'dateObservedTo:' + filterDateObservedTo });
-
-    var filterDescription = $formFilters.find('.valueDescription').val();
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterDirection = $formFilters.find('.valueDirection').val();
-    if(filterDirection != null && filterDirection !== '')
-      filters.push({ name: 'fq', value: 'direction:' + filterDirection });
-
-    var filterLocation = $formFilters.find('.valueLocation').val();
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterName = $formFilters.find('.valueName').val();
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterOccupancy = $formFilters.find('.valueOccupancy').val();
-    if(filterOccupancy != null && filterOccupancy !== '')
-      filters.push({ name: 'fq', value: 'occupancy:' + filterOccupancy });
-
-    var filterOwner = $formFilters.find('.valueOwner').val();
-    if(filterOwner != null && filterOwner !== '')
-      filters.push({ name: 'fq', value: 'owner:' + filterOwner });
-
-    var filterPeopleCount = $formFilters.find('.valuePeopleCount').val();
-    if(filterPeopleCount != null && filterPeopleCount !== '')
-      filters.push({ name: 'fq', value: 'peopleCount:' + filterPeopleCount });
-
-    var filterRefRoadSegment = $formFilters.find('.valueRefRoadSegment').val();
-    if(filterRefRoadSegment != null && filterRefRoadSegment !== '')
-      filters.push({ name: 'fq', value: 'refRoadSegment:' + filterRefRoadSegment });
-
-    var filterSeeAlso = $formFilters.find('.valueSeeAlso').val();
-    if(filterSeeAlso != null && filterSeeAlso !== '')
-      filters.push({ name: 'fq', value: 'seeAlso:' + filterSeeAlso });
-
-    var filterSource = $formFilters.find('.valueSource').val();
-    if(filterSource != null && filterSource !== '')
-      filters.push({ name: 'fq', value: 'source:' + filterSource });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -201,6 +189,10 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -209,9 +201,21 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
+    if(filterDateCreated != null && filterDateCreated !== '')
+      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
+
+    var filterDateModified = $formFilters.find('.valueDateModified').val();
+    if(filterDateModified != null && filterDateModified !== '')
+      filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
   }
   return filters;
 }
@@ -333,105 +337,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeDeleted != null && removeDeleted !== '')
     vals['removeDeleted'] = removeDeleted;
 
-  var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
-  var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val() === 'true';
-  var setWalkingAreaId = removeWalkingAreaId ? null : $formValues.find('.setWalkingAreaId').val();
-  var addWalkingAreaId = $formValues.find('.addWalkingAreaId').val();
-  if(removeWalkingAreaId || setWalkingAreaId != null && setWalkingAreaId !== '')
-    vals['setWalkingAreaId'] = setWalkingAreaId;
-  if(addWalkingAreaId != null && addWalkingAreaId !== '')
-    vals['addWalkingAreaId'] = addWalkingAreaId;
-  var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val();
-  if(removeWalkingAreaId != null && removeWalkingAreaId !== '')
-    vals['removeWalkingAreaId'] = removeWalkingAreaId;
-
-  var valueAlternateName = $formValues.find('.valueAlternateName').val();
-  var removeAlternateName = $formValues.find('.removeAlternateName').val() === 'true';
-  var setAlternateName = removeAlternateName ? null : $formValues.find('.setAlternateName').val();
-  var addAlternateName = $formValues.find('.addAlternateName').val();
-  if(removeAlternateName || setAlternateName != null && setAlternateName !== '')
-    vals['setAlternateName'] = setAlternateName;
-  if(addAlternateName != null && addAlternateName !== '')
-    vals['addAlternateName'] = addAlternateName;
-  var removeAlternateName = $formValues.find('.removeAlternateName').val();
-  if(removeAlternateName != null && removeAlternateName !== '')
-    vals['removeAlternateName'] = removeAlternateName;
-
-  var valueAreaServed = $formValues.find('.valueAreaServed').val();
-  var removeAreaServed = $formValues.find('.removeAreaServed').val() === 'true';
-  var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
-  var addAreaServed = $formValues.find('.addAreaServed').val();
-  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-    vals['setAreaServed'] = JSON.parse(setAreaServed);
-  if(addAreaServed != null && addAreaServed !== '')
-    vals['addAreaServed'] = addAreaServed;
-  var removeAreaServed = $formValues.find('.removeAreaServed').val();
-  if(removeAreaServed != null && removeAreaServed !== '')
-    vals['removeAreaServed'] = removeAreaServed;
-
-  var valueColor = $formValues.find('.valueColor').val();
-  var removeColor = $formValues.find('.removeColor').val() === 'true';
-  var setColor = removeColor ? null : $formValues.find('.setColor').val();
-  var addColor = $formValues.find('.addColor').val();
-  if(removeColor || setColor != null && setColor !== '')
-    vals['setColor'] = setColor;
-  if(addColor != null && addColor !== '')
-    vals['addColor'] = addColor;
-  var removeColor = $formValues.find('.removeColor').val();
-  if(removeColor != null && removeColor !== '')
-    vals['removeColor'] = removeColor;
-
-  var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
-  var removeAverageCrowdSpeed = $formValues.find('.removeAverageCrowdSpeed').val() === 'true';
-  var setAverageCrowdSpeed = removeAverageCrowdSpeed ? null : $formValues.find('.setAverageCrowdSpeed').val();
-  var addAverageCrowdSpeed = $formValues.find('.addAverageCrowdSpeed').val();
-  if(removeAverageCrowdSpeed || setAverageCrowdSpeed != null && setAverageCrowdSpeed !== '')
-    vals['setAverageCrowdSpeed'] = setAverageCrowdSpeed;
-  if(addAverageCrowdSpeed != null && addAverageCrowdSpeed !== '')
-    vals['addAverageCrowdSpeed'] = addAverageCrowdSpeed;
-  var removeAverageCrowdSpeed = $formValues.find('.removeAverageCrowdSpeed').val();
-  if(removeAverageCrowdSpeed != null && removeAverageCrowdSpeed !== '')
-    vals['removeAverageCrowdSpeed'] = removeAverageCrowdSpeed;
-
-  var valueAverageHeadwayTime = $formValues.find('.valueAverageHeadwayTime').val();
-  var removeAverageHeadwayTime = $formValues.find('.removeAverageHeadwayTime').val() === 'true';
-  var setAverageHeadwayTime = removeAverageHeadwayTime ? null : $formValues.find('.setAverageHeadwayTime').val();
-  var addAverageHeadwayTime = $formValues.find('.addAverageHeadwayTime').val();
-  if(removeAverageHeadwayTime || setAverageHeadwayTime != null && setAverageHeadwayTime !== '')
-    vals['setAverageHeadwayTime'] = setAverageHeadwayTime;
-  if(addAverageHeadwayTime != null && addAverageHeadwayTime !== '')
-    vals['addAverageHeadwayTime'] = addAverageHeadwayTime;
-  var removeAverageHeadwayTime = $formValues.find('.removeAverageHeadwayTime').val();
-  if(removeAverageHeadwayTime != null && removeAverageHeadwayTime !== '')
-    vals['removeAverageHeadwayTime'] = removeAverageHeadwayTime;
-
-  var valueCongested = $formValues.find('.valueCongested').val();
-  var removeCongested = $formValues.find('.removeCongested').val() === 'true';
-  var valueCongestedSelectVal = $formValues.find('select.setCongested').val();
-  if(valueCongestedSelectVal != null && valueCongestedSelectVal !== '')
-    valueCongested = valueCongestedSelectVal == 'true';
-  var setCongested = removeCongested ? null : valueCongested;
-  var addCongested = $formValues.find('.addCongested').prop('checked');
-  if(removeCongested || setCongested != null && setCongested !== '')
-    vals['setCongested'] = setCongested;
-  if(addCongested != null && addCongested !== '')
-    vals['addCongested'] = addCongested;
-  var removeCongested = $formValues.find('.removeCongested').prop('checked');
-  if(removeCongested != null && removeCongested !== '')
-    vals['removeCongested'] = removeCongested;
-
-  var valueDataProvider = $formValues.find('.valueDataProvider').val();
-  var removeDataProvider = $formValues.find('.removeDataProvider').val() === 'true';
-  var setDataProvider = removeDataProvider ? null : $formValues.find('.setDataProvider').val();
-  var addDataProvider = $formValues.find('.addDataProvider').val();
-  if(removeDataProvider || setDataProvider != null && setDataProvider !== '')
-    vals['setDataProvider'] = setDataProvider;
-  if(addDataProvider != null && addDataProvider !== '')
-    vals['addDataProvider'] = addDataProvider;
-  var removeDataProvider = $formValues.find('.removeDataProvider').val();
-  if(removeDataProvider != null && removeDataProvider !== '')
-    vals['removeDataProvider'] = removeDataProvider;
-
   var valueEntityId = $formValues.find('.valueEntityId').val();
   var removeEntityId = $formValues.find('.removeEntityId').val() === 'true';
   var setEntityId = removeEntityId ? null : $formValues.find('.setEntityId').val();
@@ -444,17 +349,17 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeEntityId != null && removeEntityId !== '')
     vals['removeEntityId'] = removeEntityId;
 
-  var valueDateCreated = $formValues.find('.valueDateCreated').val();
-  var removeDateCreated = $formValues.find('.removeDateCreated').val() === 'true';
-  var setDateCreated = removeDateCreated ? null : $formValues.find('.setDateCreated').val();
-  var addDateCreated = $formValues.find('.addDateCreated').val();
-  if(removeDateCreated || setDateCreated != null && setDateCreated !== '')
-    vals['setDateCreated'] = setDateCreated;
-  if(addDateCreated != null && addDateCreated !== '')
-    vals['addDateCreated'] = addDateCreated;
-  var removeDateCreated = $formValues.find('.removeDateCreated').val();
-  if(removeDateCreated != null && removeDateCreated !== '')
-    vals['removeDateCreated'] = removeDateCreated;
+  var valueCustomTrafficLightId = $formValues.find('.valueCustomTrafficLightId').val();
+  var removeCustomTrafficLightId = $formValues.find('.removeCustomTrafficLightId').val() === 'true';
+  var setCustomTrafficLightId = removeCustomTrafficLightId ? null : $formValues.find('.setCustomTrafficLightId').val();
+  var addCustomTrafficLightId = $formValues.find('.addCustomTrafficLightId').val();
+  if(removeCustomTrafficLightId || setCustomTrafficLightId != null && setCustomTrafficLightId !== '')
+    vals['setCustomTrafficLightId'] = setCustomTrafficLightId;
+  if(addCustomTrafficLightId != null && addCustomTrafficLightId !== '')
+    vals['addCustomTrafficLightId'] = addCustomTrafficLightId;
+  var removeCustomTrafficLightId = $formValues.find('.removeCustomTrafficLightId').val();
+  if(removeCustomTrafficLightId != null && removeCustomTrafficLightId !== '')
+    vals['removeCustomTrafficLightId'] = removeCustomTrafficLightId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
@@ -468,17 +373,29 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
     vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
 
-  var valueDateModified = $formValues.find('.valueDateModified').val();
-  var removeDateModified = $formValues.find('.removeDateModified').val() === 'true';
-  var setDateModified = removeDateModified ? null : $formValues.find('.setDateModified').val();
-  var addDateModified = $formValues.find('.addDateModified').val();
-  if(removeDateModified || setDateModified != null && setDateModified !== '')
-    vals['setDateModified'] = setDateModified;
-  if(addDateModified != null && addDateModified !== '')
-    vals['addDateModified'] = addDateModified;
-  var removeDateModified = $formValues.find('.removeDateModified').val();
-  if(removeDateModified != null && removeDateModified !== '')
-    vals['removeDateModified'] = removeDateModified;
+  var valueLocation = $formValues.find('.valueLocation').val();
+  var removeLocation = $formValues.find('.removeLocation').val() === 'true';
+  var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
+  var addLocation = $formValues.find('.addLocation').val();
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = setLocation;
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.find('.removeLocation').val();
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
+  var valueAreaServed = $formValues.find('.valueAreaServed').val();
+  var removeAreaServed = $formValues.find('.removeAreaServed').val() === 'true';
+  var setAreaServed = removeAreaServed ? null : $formValues.find('.setAreaServed').val();
+  var addAreaServed = $formValues.find('.addAreaServed').val();
+  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
+    vals['setAreaServed'] = JSON.parse(setAreaServed);
+  if(addAreaServed != null && addAreaServed !== '')
+    vals['addAreaServed'] = addAreaServed;
+  var removeAreaServed = $formValues.find('.removeAreaServed').val();
+  if(removeAreaServed != null && removeAreaServed !== '')
+    vals['removeAreaServed'] = removeAreaServed;
 
   var valueDateObserved = $formValues.find('.valueDateObserved').val();
   var removeDateObserved = $formValues.find('.removeDateObserved').val() === 'true';
@@ -516,6 +433,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeDateObservedTo != null && removeDateObservedTo !== '')
     vals['removeDateObservedTo'] = removeDateObservedTo;
 
+  var valueColor = $formValues.find('.valueColor').val();
+  var removeColor = $formValues.find('.removeColor').val() === 'true';
+  var setColor = removeColor ? null : $formValues.find('.setColor').val();
+  var addColor = $formValues.find('.addColor').val();
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.find('.removeColor').val();
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
+
   var valueDescription = $formValues.find('.valueDescription').val();
   var removeDescription = $formValues.find('.removeDescription').val() === 'true';
   var setDescription = removeDescription ? null : $formValues.find('.setDescription').val();
@@ -527,30 +456,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeDescription = $formValues.find('.removeDescription').val();
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
-
-  var valueDirection = $formValues.find('.valueDirection').val();
-  var removeDirection = $formValues.find('.removeDirection').val() === 'true';
-  var setDirection = removeDirection ? null : $formValues.find('.setDirection').val();
-  var addDirection = $formValues.find('.addDirection').val();
-  if(removeDirection || setDirection != null && setDirection !== '')
-    vals['setDirection'] = setDirection;
-  if(addDirection != null && addDirection !== '')
-    vals['addDirection'] = addDirection;
-  var removeDirection = $formValues.find('.removeDirection').val();
-  if(removeDirection != null && removeDirection !== '')
-    vals['removeDirection'] = removeDirection;
-
-  var valueLocation = $formValues.find('.valueLocation').val();
-  var removeLocation = $formValues.find('.removeLocation').val() === 'true';
-  var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
-  var addLocation = $formValues.find('.addLocation').val();
-  if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = setLocation;
-  if(addLocation != null && addLocation !== '')
-    vals['addLocation'] = addLocation;
-  var removeLocation = $formValues.find('.removeLocation').val();
-  if(removeLocation != null && removeLocation !== '')
-    vals['removeLocation'] = removeLocation;
 
   var valueName = $formValues.find('.valueName').val();
   var removeName = $formValues.find('.removeName').val() === 'true';
@@ -564,6 +469,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
 
+  var valueDirection = $formValues.find('.valueDirection').val();
+  var removeDirection = $formValues.find('.removeDirection').val() === 'true';
+  var setDirection = removeDirection ? null : $formValues.find('.setDirection').val();
+  var addDirection = $formValues.find('.addDirection').val();
+  if(removeDirection || setDirection != null && setDirection !== '')
+    vals['setDirection'] = setDirection;
+  if(addDirection != null && addDirection !== '')
+    vals['addDirection'] = addDirection;
+  var removeDirection = $formValues.find('.removeDirection').val();
+  if(removeDirection != null && removeDirection !== '')
+    vals['removeDirection'] = removeDirection;
+
   var valueOccupancy = $formValues.find('.valueOccupancy').val();
   var removeOccupancy = $formValues.find('.removeOccupancy').val() === 'true';
   var setOccupancy = removeOccupancy ? null : $formValues.find('.setOccupancy').val();
@@ -575,18 +492,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeOccupancy = $formValues.find('.removeOccupancy').val();
   if(removeOccupancy != null && removeOccupancy !== '')
     vals['removeOccupancy'] = removeOccupancy;
-
-  var valueOwner = $formValues.find('.valueOwner').val();
-  var removeOwner = $formValues.find('.removeOwner').val() === 'true';
-  var setOwner = removeOwner ? null : $formValues.find('.setOwner').val();
-  var addOwner = $formValues.find('.addOwner').val();
-  if(removeOwner || setOwner != null && setOwner !== '')
-    vals['setOwner'] = JSON.parse(setOwner);
-  if(addOwner != null && addOwner !== '')
-    vals['addOwner'] = addOwner;
-  var removeOwner = $formValues.find('.removeOwner').val();
-  if(removeOwner != null && removeOwner !== '')
-    vals['removeOwner'] = removeOwner;
 
   var valuePeopleCount = $formValues.find('.valuePeopleCount').val();
   var removePeopleCount = $formValues.find('.removePeopleCount').val() === 'true';
@@ -624,6 +529,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeSeeAlso != null && removeSeeAlso !== '')
     vals['removeSeeAlso'] = removeSeeAlso;
 
+  var valueOwner = $formValues.find('.valueOwner').val();
+  var removeOwner = $formValues.find('.removeOwner').val() === 'true';
+  var setOwner = removeOwner ? null : $formValues.find('.setOwner').val();
+  var addOwner = $formValues.find('.addOwner').val();
+  if(removeOwner || setOwner != null && setOwner !== '')
+    vals['setOwner'] = JSON.parse(setOwner);
+  if(addOwner != null && addOwner !== '')
+    vals['addOwner'] = addOwner;
+  var removeOwner = $formValues.find('.removeOwner').val();
+  if(removeOwner != null && removeOwner !== '')
+    vals['removeOwner'] = removeOwner;
+
   var valueSource = $formValues.find('.valueSource').val();
   var removeSource = $formValues.find('.removeSource').val() === 'true';
   var setSource = removeSource ? null : $formValues.find('.setSource').val();
@@ -636,17 +553,80 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeSource != null && removeSource !== '')
     vals['removeSource'] = removeSource;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
+  var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
+  var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val() === 'true';
+  var setWalkingAreaId = removeWalkingAreaId ? null : $formValues.find('.setWalkingAreaId').val();
+  var addWalkingAreaId = $formValues.find('.addWalkingAreaId').val();
+  if(removeWalkingAreaId || setWalkingAreaId != null && setWalkingAreaId !== '')
+    vals['setWalkingAreaId'] = setWalkingAreaId;
+  if(addWalkingAreaId != null && addWalkingAreaId !== '')
+    vals['addWalkingAreaId'] = addWalkingAreaId;
+  var removeWalkingAreaId = $formValues.find('.removeWalkingAreaId').val();
+  if(removeWalkingAreaId != null && removeWalkingAreaId !== '')
+    vals['removeWalkingAreaId'] = removeWalkingAreaId;
+
+  var valueAlternateName = $formValues.find('.valueAlternateName').val();
+  var removeAlternateName = $formValues.find('.removeAlternateName').val() === 'true';
+  var setAlternateName = removeAlternateName ? null : $formValues.find('.setAlternateName').val();
+  var addAlternateName = $formValues.find('.addAlternateName').val();
+  if(removeAlternateName || setAlternateName != null && setAlternateName !== '')
+    vals['setAlternateName'] = setAlternateName;
+  if(addAlternateName != null && addAlternateName !== '')
+    vals['addAlternateName'] = addAlternateName;
+  var removeAlternateName = $formValues.find('.removeAlternateName').val();
+  if(removeAlternateName != null && removeAlternateName !== '')
+    vals['removeAlternateName'] = removeAlternateName;
+
+  var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
+  var removeAverageCrowdSpeed = $formValues.find('.removeAverageCrowdSpeed').val() === 'true';
+  var setAverageCrowdSpeed = removeAverageCrowdSpeed ? null : $formValues.find('.setAverageCrowdSpeed').val();
+  var addAverageCrowdSpeed = $formValues.find('.addAverageCrowdSpeed').val();
+  if(removeAverageCrowdSpeed || setAverageCrowdSpeed != null && setAverageCrowdSpeed !== '')
+    vals['setAverageCrowdSpeed'] = setAverageCrowdSpeed;
+  if(addAverageCrowdSpeed != null && addAverageCrowdSpeed !== '')
+    vals['addAverageCrowdSpeed'] = addAverageCrowdSpeed;
+  var removeAverageCrowdSpeed = $formValues.find('.removeAverageCrowdSpeed').val();
+  if(removeAverageCrowdSpeed != null && removeAverageCrowdSpeed !== '')
+    vals['removeAverageCrowdSpeed'] = removeAverageCrowdSpeed;
+
+  var valueDataProvider = $formValues.find('.valueDataProvider').val();
+  var removeDataProvider = $formValues.find('.removeDataProvider').val() === 'true';
+  var setDataProvider = removeDataProvider ? null : $formValues.find('.setDataProvider').val();
+  var addDataProvider = $formValues.find('.addDataProvider').val();
+  if(removeDataProvider || setDataProvider != null && setDataProvider !== '')
+    vals['setDataProvider'] = setDataProvider;
+  if(addDataProvider != null && addDataProvider !== '')
+    vals['addDataProvider'] = addDataProvider;
+  var removeDataProvider = $formValues.find('.removeDataProvider').val();
+  if(removeDataProvider != null && removeDataProvider !== '')
+    vals['removeDataProvider'] = removeDataProvider;
+
+  var valueAverageHeadwayTime = $formValues.find('.valueAverageHeadwayTime').val();
+  var removeAverageHeadwayTime = $formValues.find('.removeAverageHeadwayTime').val() === 'true';
+  var setAverageHeadwayTime = removeAverageHeadwayTime ? null : $formValues.find('.setAverageHeadwayTime').val();
+  var addAverageHeadwayTime = $formValues.find('.addAverageHeadwayTime').val();
+  if(removeAverageHeadwayTime || setAverageHeadwayTime != null && setAverageHeadwayTime !== '')
+    vals['setAverageHeadwayTime'] = setAverageHeadwayTime;
+  if(addAverageHeadwayTime != null && addAverageHeadwayTime !== '')
+    vals['addAverageHeadwayTime'] = addAverageHeadwayTime;
+  var removeAverageHeadwayTime = $formValues.find('.removeAverageHeadwayTime').val();
+  if(removeAverageHeadwayTime != null && removeAverageHeadwayTime !== '')
+    vals['removeAverageHeadwayTime'] = removeAverageHeadwayTime;
+
+  var valueCongested = $formValues.find('.valueCongested').val();
+  var removeCongested = $formValues.find('.removeCongested').val() === 'true';
+  var valueCongestedSelectVal = $formValues.find('select.setCongested').val();
+  if(valueCongestedSelectVal != null && valueCongestedSelectVal !== '')
+    valueCongested = valueCongestedSelectVal == 'true';
+  var setCongested = removeCongested ? null : valueCongested;
+  var addCongested = $formValues.find('.addCongested').prop('checked');
+  if(removeCongested || setCongested != null && setCongested !== '')
+    vals['setCongested'] = setCongested;
+  if(addCongested != null && addCongested !== '')
+    vals['addCongested'] = addCongested;
+  var removeCongested = $formValues.find('.removeCongested').prop('checked');
+  if(removeCongested != null && removeCongested !== '')
+    vals['removeCongested'] = removeCongested;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -683,6 +663,42 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
+  var valueDateCreated = $formValues.find('.valueDateCreated').val();
+  var removeDateCreated = $formValues.find('.removeDateCreated').val() === 'true';
+  var setDateCreated = removeDateCreated ? null : $formValues.find('.setDateCreated').val();
+  var addDateCreated = $formValues.find('.addDateCreated').val();
+  if(removeDateCreated || setDateCreated != null && setDateCreated !== '')
+    vals['setDateCreated'] = setDateCreated;
+  if(addDateCreated != null && addDateCreated !== '')
+    vals['addDateCreated'] = addDateCreated;
+  var removeDateCreated = $formValues.find('.removeDateCreated').val();
+  if(removeDateCreated != null && removeDateCreated !== '')
+    vals['removeDateCreated'] = removeDateCreated;
+
+  var valueDateModified = $formValues.find('.valueDateModified').val();
+  var removeDateModified = $formValues.find('.removeDateModified').val() === 'true';
+  var setDateModified = removeDateModified ? null : $formValues.find('.setDateModified').val();
+  var addDateModified = $formValues.find('.addDateModified').val();
+  if(removeDateModified || setDateModified != null && setDateModified !== '')
+    vals['setDateModified'] = setDateModified;
+  if(addDateModified != null && addDateModified !== '')
+    vals['addDateModified'] = addDateModified;
+  var removeDateModified = $formValues.find('.removeDateModified').val();
+  if(removeDateModified != null && removeDateModified !== '')
+    vals['removeDateModified'] = removeDateModified;
 
   patchCrowdFlowObservedVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -724,6 +740,78 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterDeleted != null && filterDeleted === true)
       filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+    var filterEntityId = $formFilters.find('.valueEntityId').val();
+    if(filterEntityId != null && filterEntityId !== '')
+      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
+
+    var filterCustomTrafficLightId = $formFilters.find('.valueCustomTrafficLightId').val();
+    if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
+      filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
+
+    var filterLocation = $formFilters.find('.valueLocation').val();
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterDateObserved = $formFilters.find('.valueDateObserved').val();
+    if(filterDateObserved != null && filterDateObserved !== '')
+      filters.push({ name: 'fq', value: 'dateObserved:' + filterDateObserved });
+
+    var filterDateObservedFrom = $formFilters.find('.valueDateObservedFrom').val();
+    if(filterDateObservedFrom != null && filterDateObservedFrom !== '')
+      filters.push({ name: 'fq', value: 'dateObservedFrom:' + filterDateObservedFrom });
+
+    var filterDateObservedTo = $formFilters.find('.valueDateObservedTo').val();
+    if(filterDateObservedTo != null && filterDateObservedTo !== '')
+      filters.push({ name: 'fq', value: 'dateObservedTo:' + filterDateObservedTo });
+
+    var filterColor = $formFilters.find('.valueColor').val();
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterDescription = $formFilters.find('.valueDescription').val();
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterName = $formFilters.find('.valueName').val();
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDirection = $formFilters.find('.valueDirection').val();
+    if(filterDirection != null && filterDirection !== '')
+      filters.push({ name: 'fq', value: 'direction:' + filterDirection });
+
+    var filterOccupancy = $formFilters.find('.valueOccupancy').val();
+    if(filterOccupancy != null && filterOccupancy !== '')
+      filters.push({ name: 'fq', value: 'occupancy:' + filterOccupancy });
+
+    var filterPeopleCount = $formFilters.find('.valuePeopleCount').val();
+    if(filterPeopleCount != null && filterPeopleCount !== '')
+      filters.push({ name: 'fq', value: 'peopleCount:' + filterPeopleCount });
+
+    var filterRefRoadSegment = $formFilters.find('.valueRefRoadSegment').val();
+    if(filterRefRoadSegment != null && filterRefRoadSegment !== '')
+      filters.push({ name: 'fq', value: 'refRoadSegment:' + filterRefRoadSegment });
+
+    var filterSeeAlso = $formFilters.find('.valueSeeAlso').val();
+    if(filterSeeAlso != null && filterSeeAlso !== '')
+      filters.push({ name: 'fq', value: 'seeAlso:' + filterSeeAlso });
+
+    var filterOwner = $formFilters.find('.valueOwner').val();
+    if(filterOwner != null && filterOwner !== '')
+      filters.push({ name: 'fq', value: 'owner:' + filterOwner });
+
+    var filterSource = $formFilters.find('.valueSource').val();
+    if(filterSource != null && filterSource !== '')
+      filters.push({ name: 'fq', value: 'source:' + filterSource });
+
     var filterWalkingAreaId = $formFilters.find('.valueWalkingAreaId').val();
     if(filterWalkingAreaId != null && filterWalkingAreaId !== '')
       filters.push({ name: 'fq', value: 'walkingAreaId:' + filterWalkingAreaId });
@@ -732,17 +820,13 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
 
-    var filterAreaServed = $formFilters.find('.valueAreaServed').val();
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterColor = $formFilters.find('.valueColor').val();
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
     var filterAverageCrowdSpeed = $formFilters.find('.valueAverageCrowdSpeed').val();
     if(filterAverageCrowdSpeed != null && filterAverageCrowdSpeed !== '')
       filters.push({ name: 'fq', value: 'averageCrowdSpeed:' + filterAverageCrowdSpeed });
+
+    var filterDataProvider = $formFilters.find('.valueDataProvider').val();
+    if(filterDataProvider != null && filterDataProvider !== '')
+      filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
 
     var filterAverageHeadwayTime = $formFilters.find('.valueAverageHeadwayTime').val();
     if(filterAverageHeadwayTime != null && filterAverageHeadwayTime !== '')
@@ -757,86 +841,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
       filterCongested = filterCongestedSelectVal == 'true';
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
-
-    var filterDataProvider = $formFilters.find('.valueDataProvider').val();
-    if(filterDataProvider != null && filterDataProvider !== '')
-      filters.push({ name: 'fq', value: 'dataProvider:' + filterDataProvider });
-
-    var filterEntityId = $formFilters.find('.valueEntityId').val();
-    if(filterEntityId != null && filterEntityId !== '')
-      filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
-
-    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
-    if(filterDateCreated != null && filterDateCreated !== '')
-      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
-
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
-    var filterDateModified = $formFilters.find('.valueDateModified').val();
-    if(filterDateModified != null && filterDateModified !== '')
-      filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
-
-    var filterDateObserved = $formFilters.find('.valueDateObserved').val();
-    if(filterDateObserved != null && filterDateObserved !== '')
-      filters.push({ name: 'fq', value: 'dateObserved:' + filterDateObserved });
-
-    var filterDateObservedFrom = $formFilters.find('.valueDateObservedFrom').val();
-    if(filterDateObservedFrom != null && filterDateObservedFrom !== '')
-      filters.push({ name: 'fq', value: 'dateObservedFrom:' + filterDateObservedFrom });
-
-    var filterDateObservedTo = $formFilters.find('.valueDateObservedTo').val();
-    if(filterDateObservedTo != null && filterDateObservedTo !== '')
-      filters.push({ name: 'fq', value: 'dateObservedTo:' + filterDateObservedTo });
-
-    var filterDescription = $formFilters.find('.valueDescription').val();
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterDirection = $formFilters.find('.valueDirection').val();
-    if(filterDirection != null && filterDirection !== '')
-      filters.push({ name: 'fq', value: 'direction:' + filterDirection });
-
-    var filterLocation = $formFilters.find('.valueLocation').val();
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterName = $formFilters.find('.valueName').val();
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterOccupancy = $formFilters.find('.valueOccupancy').val();
-    if(filterOccupancy != null && filterOccupancy !== '')
-      filters.push({ name: 'fq', value: 'occupancy:' + filterOccupancy });
-
-    var filterOwner = $formFilters.find('.valueOwner').val();
-    if(filterOwner != null && filterOwner !== '')
-      filters.push({ name: 'fq', value: 'owner:' + filterOwner });
-
-    var filterPeopleCount = $formFilters.find('.valuePeopleCount').val();
-    if(filterPeopleCount != null && filterPeopleCount !== '')
-      filters.push({ name: 'fq', value: 'peopleCount:' + filterPeopleCount });
-
-    var filterRefRoadSegment = $formFilters.find('.valueRefRoadSegment').val();
-    if(filterRefRoadSegment != null && filterRefRoadSegment !== '')
-      filters.push({ name: 'fq', value: 'refRoadSegment:' + filterRefRoadSegment });
-
-    var filterSeeAlso = $formFilters.find('.valueSeeAlso').val();
-    if(filterSeeAlso != null && filterSeeAlso !== '')
-      filters.push({ name: 'fq', value: 'seeAlso:' + filterSeeAlso });
-
-    var filterSource = $formFilters.find('.valueSource').val();
-    if(filterSource != null && filterSource !== '')
-      filters.push({ name: 'fq', value: 'source:' + filterSource });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -878,6 +882,10 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -886,9 +894,21 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
+    if(filterDateCreated != null && filterDateCreated !== '')
+      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
+
+    var filterDateModified = $formFilters.find('.valueDateModified').val();
+    if(filterDateModified != null && filterDateModified !== '')
+      filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
   }
   return filters;
 }
@@ -949,53 +969,25 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueDeleted != null && valueDeleted !== '')
     vals['deleted'] = valueDeleted == 'true';
 
-  var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
-  if(valueWalkingAreaId != null && valueWalkingAreaId !== '')
-    vals['walkingAreaId'] = valueWalkingAreaId;
-
-  var valueAlternateName = $formValues.find('.valueAlternateName').val();
-  if(valueAlternateName != null && valueAlternateName !== '')
-    vals['alternateName'] = valueAlternateName;
-
-  var valueAreaServed = $formValues.find('.valueAreaServed').val();
-  if(valueAreaServed != null && valueAreaServed !== '')
-    vals['areaServed'] = JSON.parse(valueAreaServed);
-
-  var valueColor = $formValues.find('.valueColor').val();
-  if(valueColor != null && valueColor !== '')
-    vals['color'] = valueColor;
-
-  var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
-  if(valueAverageCrowdSpeed != null && valueAverageCrowdSpeed !== '')
-    vals['averageCrowdSpeed'] = valueAverageCrowdSpeed;
-
-  var valueAverageHeadwayTime = $formValues.find('.valueAverageHeadwayTime').val();
-  if(valueAverageHeadwayTime != null && valueAverageHeadwayTime !== '')
-    vals['averageHeadwayTime'] = valueAverageHeadwayTime;
-
-  var valueCongested = $formValues.find('.valueCongested').val();
-  if(valueCongested != null && valueCongested !== '')
-    vals['congested'] = valueCongested == 'true';
-
-  var valueDataProvider = $formValues.find('.valueDataProvider').val();
-  if(valueDataProvider != null && valueDataProvider !== '')
-    vals['dataProvider'] = valueDataProvider;
-
   var valueEntityId = $formValues.find('.valueEntityId').val();
   if(valueEntityId != null && valueEntityId !== '')
     vals['entityId'] = valueEntityId;
 
-  var valueDateCreated = $formValues.find('.valueDateCreated').val();
-  if(valueDateCreated != null && valueDateCreated !== '')
-    vals['dateCreated'] = valueDateCreated;
+  var valueCustomTrafficLightId = $formValues.find('.valueCustomTrafficLightId').val();
+  if(valueCustomTrafficLightId != null && valueCustomTrafficLightId !== '')
+    vals['customTrafficLightId'] = valueCustomTrafficLightId;
 
   var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
   if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
     vals['trafficSimulationId'] = valueTrafficSimulationId;
 
-  var valueDateModified = $formValues.find('.valueDateModified').val();
-  if(valueDateModified != null && valueDateModified !== '')
-    vals['dateModified'] = valueDateModified;
+  var valueLocation = $formValues.find('.valueLocation').val();
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = valueLocation;
+
+  var valueAreaServed = $formValues.find('.valueAreaServed').val();
+  if(valueAreaServed != null && valueAreaServed !== '')
+    vals['areaServed'] = JSON.parse(valueAreaServed);
 
   var valueDateObserved = $formValues.find('.valueDateObserved').val();
   if(valueDateObserved != null && valueDateObserved !== '')
@@ -1009,29 +1001,25 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueDateObservedTo != null && valueDateObservedTo !== '')
     vals['dateObservedTo'] = valueDateObservedTo;
 
+  var valueColor = $formValues.find('.valueColor').val();
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
+
   var valueDescription = $formValues.find('.valueDescription').val();
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
-
-  var valueDirection = $formValues.find('.valueDirection').val();
-  if(valueDirection != null && valueDirection !== '')
-    vals['direction'] = valueDirection;
-
-  var valueLocation = $formValues.find('.valueLocation').val();
-  if(valueLocation != null && valueLocation !== '')
-    vals['location'] = valueLocation;
 
   var valueName = $formValues.find('.valueName').val();
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
 
+  var valueDirection = $formValues.find('.valueDirection').val();
+  if(valueDirection != null && valueDirection !== '')
+    vals['direction'] = valueDirection;
+
   var valueOccupancy = $formValues.find('.valueOccupancy').val();
   if(valueOccupancy != null && valueOccupancy !== '')
     vals['occupancy'] = valueOccupancy;
-
-  var valueOwner = $formValues.find('.valueOwner').val();
-  if(valueOwner != null && valueOwner !== '')
-    vals['owner'] = JSON.parse(valueOwner);
 
   var valuePeopleCount = $formValues.find('.valuePeopleCount').val();
   if(valuePeopleCount != null && valuePeopleCount !== '')
@@ -1045,13 +1033,37 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueSeeAlso != null && valueSeeAlso !== '')
     vals['seeAlso'] = JSON.parse(valueSeeAlso);
 
+  var valueOwner = $formValues.find('.valueOwner').val();
+  if(valueOwner != null && valueOwner !== '')
+    vals['owner'] = JSON.parse(valueOwner);
+
   var valueSource = $formValues.find('.valueSource').val();
   if(valueSource != null && valueSource !== '')
     vals['source'] = valueSource;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
+  var valueWalkingAreaId = $formValues.find('.valueWalkingAreaId').val();
+  if(valueWalkingAreaId != null && valueWalkingAreaId !== '')
+    vals['walkingAreaId'] = valueWalkingAreaId;
+
+  var valueAlternateName = $formValues.find('.valueAlternateName').val();
+  if(valueAlternateName != null && valueAlternateName !== '')
+    vals['alternateName'] = valueAlternateName;
+
+  var valueAverageCrowdSpeed = $formValues.find('.valueAverageCrowdSpeed').val();
+  if(valueAverageCrowdSpeed != null && valueAverageCrowdSpeed !== '')
+    vals['averageCrowdSpeed'] = valueAverageCrowdSpeed;
+
+  var valueDataProvider = $formValues.find('.valueDataProvider').val();
+  if(valueDataProvider != null && valueDataProvider !== '')
+    vals['dataProvider'] = valueDataProvider;
+
+  var valueAverageHeadwayTime = $formValues.find('.valueAverageHeadwayTime').val();
+  if(valueAverageHeadwayTime != null && valueAverageHeadwayTime !== '')
+    vals['averageHeadwayTime'] = valueAverageHeadwayTime;
+
+  var valueCongested = $formValues.find('.valueCongested').val();
+  if(valueCongested != null && valueCongested !== '')
+    vals['congested'] = valueCongested == 'true';
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
@@ -1064,6 +1076,18 @@ async function postCrowdFlowObserved($formValues, success, error) {
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
+  var valueDateCreated = $formValues.find('.valueDateCreated').val();
+  if(valueDateCreated != null && valueDateCreated !== '')
+    vals['dateCreated'] = valueDateCreated;
+
+  var valueDateModified = $formValues.find('.valueDateModified').val();
+  if(valueDateModified != null && valueDateModified !== '')
+    vals['dateModified'] = valueDateModified;
 
   $.ajax({
     url: '/api/crowd-flow-observed'
@@ -1174,33 +1198,30 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputObjectId = null;
         var inputArchived = null;
         var inputDeleted = null;
-        var inputWalkingAreaId = null;
-        var inputAlternateName = null;
-        var inputAreaServed = null;
-        var inputColor = null;
-        var inputAverageCrowdSpeed = null;
-        var inputAverageHeadwayTime = null;
-        var inputCongested = null;
-        var inputDataProvider = null;
         var inputEntityId = null;
-        var inputDateCreated = null;
+        var inputCustomTrafficLightId = null;
         var inputTrafficSimulationId = null;
-        var inputDateModified = null;
+        var inputLocation = null;
+        var inputAreaServed = null;
         var inputDateObserved = null;
         var inputDateObservedFrom = null;
         var inputDateObservedTo = null;
+        var inputColor = null;
         var inputDescription = null;
-        var inputDirection = null;
-        var inputLocation = null;
         var inputName = null;
+        var inputDirection = null;
         var inputOccupancy = null;
-        var inputOwner = null;
         var inputPeopleCount = null;
         var inputRefRoadSegment = null;
         var inputSeeAlso = null;
+        var inputOwner = null;
         var inputSource = null;
-        var inputPk = null;
-        var inputInheritPk = null;
+        var inputWalkingAreaId = null;
+        var inputAlternateName = null;
+        var inputAverageCrowdSpeed = null;
+        var inputDataProvider = null;
+        var inputAverageHeadwayTime = null;
+        var inputCongested = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1211,9 +1232,13 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
+        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputPageUrlPk = null;
+        var inputPk = null;
+        var inputInheritPk = null;
+        var inputDateCreated = null;
+        var inputDateModified = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1225,60 +1250,54 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputArchived = $response.find('.Page_archived');
         if(vars.includes('deleted'))
           inputDeleted = $response.find('.Page_deleted');
-        if(vars.includes('walkingAreaId'))
-          inputWalkingAreaId = $response.find('.Page_walkingAreaId');
-        if(vars.includes('alternateName'))
-          inputAlternateName = $response.find('.Page_alternateName');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.find('.Page_areaServed');
-        if(vars.includes('color'))
-          inputColor = $response.find('.Page_color');
-        if(vars.includes('averageCrowdSpeed'))
-          inputAverageCrowdSpeed = $response.find('.Page_averageCrowdSpeed');
-        if(vars.includes('averageHeadwayTime'))
-          inputAverageHeadwayTime = $response.find('.Page_averageHeadwayTime');
-        if(vars.includes('congested'))
-          inputCongested = $response.find('.Page_congested');
-        if(vars.includes('dataProvider'))
-          inputDataProvider = $response.find('.Page_dataProvider');
         if(vars.includes('entityId'))
           inputEntityId = $response.find('.Page_entityId');
-        if(vars.includes('dateCreated'))
-          inputDateCreated = $response.find('.Page_dateCreated');
+        if(vars.includes('customTrafficLightId'))
+          inputCustomTrafficLightId = $response.find('.Page_customTrafficLightId');
         if(vars.includes('trafficSimulationId'))
           inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
-        if(vars.includes('dateModified'))
-          inputDateModified = $response.find('.Page_dateModified');
+        if(vars.includes('location'))
+          inputLocation = $response.find('.Page_location');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('dateObserved'))
           inputDateObserved = $response.find('.Page_dateObserved');
         if(vars.includes('dateObservedFrom'))
           inputDateObservedFrom = $response.find('.Page_dateObservedFrom');
         if(vars.includes('dateObservedTo'))
           inputDateObservedTo = $response.find('.Page_dateObservedTo');
+        if(vars.includes('color'))
+          inputColor = $response.find('.Page_color');
         if(vars.includes('description'))
           inputDescription = $response.find('.Page_description');
-        if(vars.includes('direction'))
-          inputDirection = $response.find('.Page_direction');
-        if(vars.includes('location'))
-          inputLocation = $response.find('.Page_location');
         if(vars.includes('name'))
           inputName = $response.find('.Page_name');
+        if(vars.includes('direction'))
+          inputDirection = $response.find('.Page_direction');
         if(vars.includes('occupancy'))
           inputOccupancy = $response.find('.Page_occupancy');
-        if(vars.includes('owner'))
-          inputOwner = $response.find('.Page_owner');
         if(vars.includes('peopleCount'))
           inputPeopleCount = $response.find('.Page_peopleCount');
         if(vars.includes('refRoadSegment'))
           inputRefRoadSegment = $response.find('.Page_refRoadSegment');
         if(vars.includes('seeAlso'))
           inputSeeAlso = $response.find('.Page_seeAlso');
+        if(vars.includes('owner'))
+          inputOwner = $response.find('.Page_owner');
         if(vars.includes('source'))
           inputSource = $response.find('.Page_source');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('walkingAreaId'))
+          inputWalkingAreaId = $response.find('.Page_walkingAreaId');
+        if(vars.includes('alternateName'))
+          inputAlternateName = $response.find('.Page_alternateName');
+        if(vars.includes('averageCrowdSpeed'))
+          inputAverageCrowdSpeed = $response.find('.Page_averageCrowdSpeed');
+        if(vars.includes('dataProvider'))
+          inputDataProvider = $response.find('.Page_dataProvider');
+        if(vars.includes('averageHeadwayTime'))
+          inputAverageHeadwayTime = $response.find('.Page_averageHeadwayTime');
+        if(vars.includes('congested'))
+          inputCongested = $response.find('.Page_congested');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1299,12 +1318,20 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+        if(vars.includes('pk'))
+          inputPk = $response.find('.Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('dateCreated'))
+          inputDateCreated = $response.find('.Page_dateCreated');
+        if(vars.includes('dateModified'))
+          inputDateModified = $response.find('.Page_dateModified');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
@@ -1336,54 +1363,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_deleted'));
         }
 
-        if(inputWalkingAreaId) {
-          inputWalkingAreaId.replaceAll('.Page_walkingAreaId');
-          addGlow($('.Page_walkingAreaId'));
-        }
-
-        if(inputAlternateName) {
-          inputAlternateName.replaceAll('.Page_alternateName');
-          addGlow($('.Page_alternateName'));
-        }
-
-        if(inputAreaServed) {
-          inputAreaServed.replaceAll('.Page_areaServed');
-          addGlow($('.Page_areaServed'));
-        }
-
-        if(inputColor) {
-          inputColor.replaceAll('.Page_color');
-          addGlow($('.Page_color'));
-        }
-
-        if(inputAverageCrowdSpeed) {
-          inputAverageCrowdSpeed.replaceAll('.Page_averageCrowdSpeed');
-          addGlow($('.Page_averageCrowdSpeed'));
-        }
-
-        if(inputAverageHeadwayTime) {
-          inputAverageHeadwayTime.replaceAll('.Page_averageHeadwayTime');
-          addGlow($('.Page_averageHeadwayTime'));
-        }
-
-        if(inputCongested) {
-          inputCongested.replaceAll('.Page_congested');
-          addGlow($('.Page_congested'));
-        }
-
-        if(inputDataProvider) {
-          inputDataProvider.replaceAll('.Page_dataProvider');
-          addGlow($('.Page_dataProvider'));
-        }
-
         if(inputEntityId) {
           inputEntityId.replaceAll('.Page_entityId');
           addGlow($('.Page_entityId'));
         }
 
-        if(inputDateCreated) {
-          inputDateCreated.replaceAll('.Page_dateCreated');
-          addGlow($('.Page_dateCreated'));
+        if(inputCustomTrafficLightId) {
+          inputCustomTrafficLightId.replaceAll('.Page_customTrafficLightId');
+          addGlow($('.Page_customTrafficLightId'));
         }
 
         if(inputTrafficSimulationId) {
@@ -1391,9 +1378,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_trafficSimulationId'));
         }
 
-        if(inputDateModified) {
-          inputDateModified.replaceAll('.Page_dateModified');
-          addGlow($('.Page_dateModified'));
+        if(inputLocation) {
+          inputLocation.replaceAll('.Page_location');
+          addGlow($('.Page_location'));
+        }
+
+        if(inputAreaServed) {
+          inputAreaServed.replaceAll('.Page_areaServed');
+          addGlow($('.Page_areaServed'));
         }
 
         if(inputDateObserved) {
@@ -1411,19 +1403,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_dateObservedTo'));
         }
 
+        if(inputColor) {
+          inputColor.replaceAll('.Page_color');
+          addGlow($('.Page_color'));
+        }
+
         if(inputDescription) {
           inputDescription.replaceAll('.Page_description');
           addGlow($('.Page_description'));
-        }
-
-        if(inputDirection) {
-          inputDirection.replaceAll('.Page_direction');
-          addGlow($('.Page_direction'));
-        }
-
-        if(inputLocation) {
-          inputLocation.replaceAll('.Page_location');
-          addGlow($('.Page_location'));
         }
 
         if(inputName) {
@@ -1431,14 +1418,14 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_name'));
         }
 
+        if(inputDirection) {
+          inputDirection.replaceAll('.Page_direction');
+          addGlow($('.Page_direction'));
+        }
+
         if(inputOccupancy) {
           inputOccupancy.replaceAll('.Page_occupancy');
           addGlow($('.Page_occupancy'));
-        }
-
-        if(inputOwner) {
-          inputOwner.replaceAll('.Page_owner');
-          addGlow($('.Page_owner'));
         }
 
         if(inputPeopleCount) {
@@ -1456,19 +1443,44 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_seeAlso'));
         }
 
+        if(inputOwner) {
+          inputOwner.replaceAll('.Page_owner');
+          addGlow($('.Page_owner'));
+        }
+
         if(inputSource) {
           inputSource.replaceAll('.Page_source');
           addGlow($('.Page_source'));
         }
 
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
+        if(inputWalkingAreaId) {
+          inputWalkingAreaId.replaceAll('.Page_walkingAreaId');
+          addGlow($('.Page_walkingAreaId'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+        if(inputAlternateName) {
+          inputAlternateName.replaceAll('.Page_alternateName');
+          addGlow($('.Page_alternateName'));
+        }
+
+        if(inputAverageCrowdSpeed) {
+          inputAverageCrowdSpeed.replaceAll('.Page_averageCrowdSpeed');
+          addGlow($('.Page_averageCrowdSpeed'));
+        }
+
+        if(inputDataProvider) {
+          inputDataProvider.replaceAll('.Page_dataProvider');
+          addGlow($('.Page_dataProvider'));
+        }
+
+        if(inputAverageHeadwayTime) {
+          inputAverageHeadwayTime.replaceAll('.Page_averageHeadwayTime');
+          addGlow($('.Page_averageHeadwayTime'));
+        }
+
+        if(inputCongested) {
+          inputCongested.replaceAll('.Page_congested');
+          addGlow($('.Page_congested'));
         }
 
         if(inputClassCanonicalName) {
@@ -1521,6 +1533,11 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -1531,9 +1548,24 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
+        if(inputPk) {
+          inputPk.replaceAll('.Page_pk');
+          addGlow($('.Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
+        if(inputDateCreated) {
+          inputDateCreated.replaceAll('.Page_dateCreated');
+          addGlow($('.Page_dateCreated'));
+        }
+
+        if(inputDateModified) {
+          inputDateModified.replaceAll('.Page_dateModified');
+          addGlow($('.Page_dateModified'));
         }
 
         pageGraphCrowdFlowObserved();
@@ -1655,11 +1687,12 @@ function pageGraphCrowdFlowObserved(apiRequest) {
             shapes = shapes.concat(crowdFlowObserved.areaServed);
           else
             shapes.push(crowdFlowObserved.areaServed);
-          shapes.forEach(shape => {
+          shapes.forEach(function(shape, index) {
             var features = [{
               "type": "Feature"
               , "properties": crowdFlowObserved
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupCrowdFlowObserved.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature
@@ -1704,6 +1737,7 @@ function pageGraphCrowdFlowObserved(apiRequest) {
               "type": "Feature"
               , "properties": crowdFlowObserved
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupCrowdFlowObserved.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature

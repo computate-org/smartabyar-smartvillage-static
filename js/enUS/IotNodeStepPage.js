@@ -245,10 +245,6 @@ function searchIotNodeStepFilters($formFilters) {
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -276,6 +272,10 @@ function searchIotNodeStepFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterJson = $formFilters.find('.valueJson').val();
     if(filterJson != null && filterJson !== '')
@@ -1188,10 +1188,6 @@ function patchIotNodeStepFilters($formFilters) {
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -1219,6 +1215,10 @@ function patchIotNodeStepFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterJson = $formFilters.find('.valueJson').val();
     if(filterJson != null && filterJson !== '')
@@ -1617,7 +1617,6 @@ async function websocketIotNodeStepInner(apiRequest) {
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
-        var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
@@ -1625,6 +1624,7 @@ async function websocketIotNodeStepInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputSaves = null;
         var inputJson = null;
 
         if(vars.includes('created'))
@@ -1727,8 +1727,6 @@ async function websocketIotNodeStepInner(apiRequest) {
           inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
@@ -1743,6 +1741,8 @@ async function websocketIotNodeStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('json'))
           inputJson = $response.find('.Page_json');
         jsWebsocketIotNodeStep(id, vars, $response);
@@ -2001,11 +2001,6 @@ async function websocketIotNodeStepInner(apiRequest) {
           addGlow($('.Page_userKey'));
         }
 
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
         if(inputObjectTitle) {
           inputObjectTitle.replaceAll('.Page_objectTitle');
           addGlow($('.Page_objectTitle'));
@@ -2039,6 +2034,11 @@ async function websocketIotNodeStepInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
         }
 
         if(inputJson) {

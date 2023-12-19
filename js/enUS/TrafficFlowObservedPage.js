@@ -55,13 +55,13 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
     var filterSimulationName = $formFilters.find('.valueSimulationName').val();
     if(filterSimulationName != null && filterSimulationName !== '')
       filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
@@ -187,13 +187,13 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterVehicleType != null && filterVehicleType !== '')
       filters.push({ name: 'fq', value: 'vehicleType:' + filterVehicleType });
 
-    var filterLaneAreaDetectorId = $formFilters.find('.valueLaneAreaDetectorId').val();
-    if(filterLaneAreaDetectorId != null && filterLaneAreaDetectorId !== '')
-      filters.push({ name: 'fq', value: 'laneAreaDetectorId:' + filterLaneAreaDetectorId });
-
     var filterCustomSigma = $formFilters.find('.valueCustomSigma').val();
     if(filterCustomSigma != null && filterCustomSigma !== '')
       filters.push({ name: 'fq', value: 'customSigma:' + filterCustomSigma });
+
+    var filterLaneAreaDetectorId = $formFilters.find('.valueLaneAreaDetectorId').val();
+    if(filterLaneAreaDetectorId != null && filterLaneAreaDetectorId !== '')
+      filters.push({ name: 'fq', value: 'laneAreaDetectorId:' + filterLaneAreaDetectorId });
 
     var filterCustomAcceleration = $formFilters.find('.valueCustomAcceleration').val();
     if(filterCustomAcceleration != null && filterCustomAcceleration !== '')
@@ -226,14 +226,6 @@ function searchTrafficFlowObservedFilters($formFilters) {
     var filterCustomTrafficLightId = $formFilters.find('.valueCustomTrafficLightId').val();
     if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
       filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -275,6 +267,10 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -283,9 +279,13 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
@@ -435,18 +435,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
-  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
-  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
-  var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
-  var addTrafficSimulationId = $formValues.find('.addTrafficSimulationId').val();
-  if(removeTrafficSimulationId || setTrafficSimulationId != null && setTrafficSimulationId !== '')
-    vals['setTrafficSimulationId'] = setTrafficSimulationId;
-  if(addTrafficSimulationId != null && addTrafficSimulationId !== '')
-    vals['addTrafficSimulationId'] = addTrafficSimulationId;
-  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
-  if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
-    vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
-
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
   var setSimulationName = removeSimulationName ? null : $formValues.find('.setSimulationName').val();
@@ -458,6 +446,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeSimulationName = $formValues.find('.removeSimulationName').val();
   if(removeSimulationName != null && removeSimulationName !== '')
     vals['removeSimulationName'] = removeSimulationName;
+
+  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val() === 'true';
+  var setTrafficSimulationId = removeTrafficSimulationId ? null : $formValues.find('.setTrafficSimulationId').val();
+  var addTrafficSimulationId = $formValues.find('.addTrafficSimulationId').val();
+  if(removeTrafficSimulationId || setTrafficSimulationId != null && setTrafficSimulationId !== '')
+    vals['setTrafficSimulationId'] = setTrafficSimulationId;
+  if(addTrafficSimulationId != null && addTrafficSimulationId !== '')
+    vals['addTrafficSimulationId'] = addTrafficSimulationId;
+  var removeTrafficSimulationId = $formValues.find('.removeTrafficSimulationId').val();
+  if(removeTrafficSimulationId != null && removeTrafficSimulationId !== '')
+    vals['removeTrafficSimulationId'] = removeTrafficSimulationId;
 
   var valueColor = $formValues.find('.valueColor').val();
   var removeColor = $formValues.find('.removeColor').val() === 'true';
@@ -801,18 +801,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeVehicleType != null && removeVehicleType !== '')
     vals['removeVehicleType'] = removeVehicleType;
 
-  var valueLaneAreaDetectorId = $formValues.find('.valueLaneAreaDetectorId').val();
-  var removeLaneAreaDetectorId = $formValues.find('.removeLaneAreaDetectorId').val() === 'true';
-  var setLaneAreaDetectorId = removeLaneAreaDetectorId ? null : $formValues.find('.setLaneAreaDetectorId').val();
-  var addLaneAreaDetectorId = $formValues.find('.addLaneAreaDetectorId').val();
-  if(removeLaneAreaDetectorId || setLaneAreaDetectorId != null && setLaneAreaDetectorId !== '')
-    vals['setLaneAreaDetectorId'] = setLaneAreaDetectorId;
-  if(addLaneAreaDetectorId != null && addLaneAreaDetectorId !== '')
-    vals['addLaneAreaDetectorId'] = addLaneAreaDetectorId;
-  var removeLaneAreaDetectorId = $formValues.find('.removeLaneAreaDetectorId').val();
-  if(removeLaneAreaDetectorId != null && removeLaneAreaDetectorId !== '')
-    vals['removeLaneAreaDetectorId'] = removeLaneAreaDetectorId;
-
   var valueCustomSigma = $formValues.find('.valueCustomSigma').val();
   var removeCustomSigma = $formValues.find('.removeCustomSigma').val() === 'true';
   var setCustomSigma = removeCustomSigma ? null : $formValues.find('.setCustomSigma').val();
@@ -824,6 +812,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeCustomSigma = $formValues.find('.removeCustomSigma').val();
   if(removeCustomSigma != null && removeCustomSigma !== '')
     vals['removeCustomSigma'] = removeCustomSigma;
+
+  var valueLaneAreaDetectorId = $formValues.find('.valueLaneAreaDetectorId').val();
+  var removeLaneAreaDetectorId = $formValues.find('.removeLaneAreaDetectorId').val() === 'true';
+  var setLaneAreaDetectorId = removeLaneAreaDetectorId ? null : $formValues.find('.setLaneAreaDetectorId').val();
+  var addLaneAreaDetectorId = $formValues.find('.addLaneAreaDetectorId').val();
+  if(removeLaneAreaDetectorId || setLaneAreaDetectorId != null && setLaneAreaDetectorId !== '')
+    vals['setLaneAreaDetectorId'] = setLaneAreaDetectorId;
+  if(addLaneAreaDetectorId != null && addLaneAreaDetectorId !== '')
+    vals['addLaneAreaDetectorId'] = addLaneAreaDetectorId;
+  var removeLaneAreaDetectorId = $formValues.find('.removeLaneAreaDetectorId').val();
+  if(removeLaneAreaDetectorId != null && removeLaneAreaDetectorId !== '')
+    vals['removeLaneAreaDetectorId'] = removeLaneAreaDetectorId;
 
   var valueCustomAcceleration = $formValues.find('.valueCustomAcceleration').val();
   var removeCustomAcceleration = $formValues.find('.removeCustomAcceleration').val() === 'true';
@@ -921,18 +921,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeCustomTrafficLightId != null && removeCustomTrafficLightId !== '')
     vals['removeCustomTrafficLightId'] = removeCustomTrafficLightId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -968,6 +956,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -1029,13 +1029,13 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
-    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
-      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
-
     var filterSimulationName = $formFilters.find('.valueSimulationName').val();
     if(filterSimulationName != null && filterSimulationName !== '')
       filters.push({ name: 'fq', value: 'simulationName:' + filterSimulationName });
+
+    var filterTrafficSimulationId = $formFilters.find('.valueTrafficSimulationId').val();
+    if(filterTrafficSimulationId != null && filterTrafficSimulationId !== '')
+      filters.push({ name: 'fq', value: 'trafficSimulationId:' + filterTrafficSimulationId });
 
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
@@ -1161,13 +1161,13 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterVehicleType != null && filterVehicleType !== '')
       filters.push({ name: 'fq', value: 'vehicleType:' + filterVehicleType });
 
-    var filterLaneAreaDetectorId = $formFilters.find('.valueLaneAreaDetectorId').val();
-    if(filterLaneAreaDetectorId != null && filterLaneAreaDetectorId !== '')
-      filters.push({ name: 'fq', value: 'laneAreaDetectorId:' + filterLaneAreaDetectorId });
-
     var filterCustomSigma = $formFilters.find('.valueCustomSigma').val();
     if(filterCustomSigma != null && filterCustomSigma !== '')
       filters.push({ name: 'fq', value: 'customSigma:' + filterCustomSigma });
+
+    var filterLaneAreaDetectorId = $formFilters.find('.valueLaneAreaDetectorId').val();
+    if(filterLaneAreaDetectorId != null && filterLaneAreaDetectorId !== '')
+      filters.push({ name: 'fq', value: 'laneAreaDetectorId:' + filterLaneAreaDetectorId });
 
     var filterCustomAcceleration = $formFilters.find('.valueCustomAcceleration').val();
     if(filterCustomAcceleration != null && filterCustomAcceleration !== '')
@@ -1200,14 +1200,6 @@ function patchTrafficFlowObservedFilters($formFilters) {
     var filterCustomTrafficLightId = $formFilters.find('.valueCustomTrafficLightId').val();
     if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
       filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -1249,6 +1241,10 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
       filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
@@ -1257,9 +1253,13 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
@@ -1332,13 +1332,13 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = valueLocation;
 
-  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
-  if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
-    vals['trafficSimulationId'] = valueTrafficSimulationId;
-
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
     vals['simulationName'] = valueSimulationName;
+
+  var valueTrafficSimulationId = $formValues.find('.valueTrafficSimulationId').val();
+  if(valueTrafficSimulationId != null && valueTrafficSimulationId !== '')
+    vals['trafficSimulationId'] = valueTrafficSimulationId;
 
   var valueColor = $formValues.find('.valueColor').val();
   if(valueColor != null && valueColor !== '')
@@ -1452,13 +1452,13 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueVehicleType != null && valueVehicleType !== '')
     vals['vehicleType'] = valueVehicleType;
 
-  var valueLaneAreaDetectorId = $formValues.find('.valueLaneAreaDetectorId').val();
-  if(valueLaneAreaDetectorId != null && valueLaneAreaDetectorId !== '')
-    vals['laneAreaDetectorId'] = valueLaneAreaDetectorId;
-
   var valueCustomSigma = $formValues.find('.valueCustomSigma').val();
   if(valueCustomSigma != null && valueCustomSigma !== '')
     vals['customSigma'] = valueCustomSigma;
+
+  var valueLaneAreaDetectorId = $formValues.find('.valueLaneAreaDetectorId').val();
+  if(valueLaneAreaDetectorId != null && valueLaneAreaDetectorId !== '')
+    vals['laneAreaDetectorId'] = valueLaneAreaDetectorId;
 
   var valueCustomAcceleration = $formValues.find('.valueCustomAcceleration').val();
   if(valueCustomAcceleration != null && valueCustomAcceleration !== '')
@@ -1492,10 +1492,6 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueCustomTrafficLightId != null && valueCustomTrafficLightId !== '')
     vals['customTrafficLightId'] = valueCustomTrafficLightId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1507,6 +1503,10 @@ async function postTrafficFlowObserved($formValues, success, error) {
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
@@ -1623,8 +1623,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputDeleted = null;
         var inputEntityId = null;
         var inputLocation = null;
-        var inputTrafficSimulationId = null;
         var inputSimulationName = null;
+        var inputTrafficSimulationId = null;
         var inputColor = null;
         var inputAddress = null;
         var inputAlternateName = null;
@@ -1653,8 +1653,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputSource = null;
         var inputVehicleSubType = null;
         var inputVehicleType = null;
-        var inputLaneAreaDetectorId = null;
         var inputCustomSigma = null;
+        var inputLaneAreaDetectorId = null;
         var inputCustomAcceleration = null;
         var inputCustomDeceleration = null;
         var inputCustomMinGreenTime = null;
@@ -1663,8 +1663,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputCustomDemandScalingFactor = null;
         var inputCustomQueueLengthThreshold = null;
         var inputCustomTrafficLightId = null;
-        var inputPk = null;
-        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1675,9 +1673,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
+        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputPageUrlPk = null;
+        var inputPk = null;
+        var inputInheritPk = null;
         var inputSumocfgPath = null;
 
         if(vars.includes('created'))
@@ -1694,10 +1694,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputEntityId = $response.find('.Page_entityId');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
-        if(vars.includes('trafficSimulationId'))
-          inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('simulationName'))
           inputSimulationName = $response.find('.Page_simulationName');
+        if(vars.includes('trafficSimulationId'))
+          inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
         if(vars.includes('address'))
@@ -1754,10 +1754,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputVehicleSubType = $response.find('.Page_vehicleSubType');
         if(vars.includes('vehicleType'))
           inputVehicleType = $response.find('.Page_vehicleType');
-        if(vars.includes('laneAreaDetectorId'))
-          inputLaneAreaDetectorId = $response.find('.Page_laneAreaDetectorId');
         if(vars.includes('customSigma'))
           inputCustomSigma = $response.find('.Page_customSigma');
+        if(vars.includes('laneAreaDetectorId'))
+          inputLaneAreaDetectorId = $response.find('.Page_laneAreaDetectorId');
         if(vars.includes('customAcceleration'))
           inputCustomAcceleration = $response.find('.Page_customAcceleration');
         if(vars.includes('customDeceleration'))
@@ -1774,10 +1774,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputCustomQueueLengthThreshold = $response.find('.Page_customQueueLengthThreshold');
         if(vars.includes('customTrafficLightId'))
           inputCustomTrafficLightId = $response.find('.Page_customTrafficLightId');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1798,12 +1794,16 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+        if(vars.includes('pk'))
+          inputPk = $response.find('.Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
         jsWebsocketTrafficFlowObserved(pk, vars, $response);
@@ -1847,14 +1847,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_location'));
         }
 
-        if(inputTrafficSimulationId) {
-          inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
-          addGlow($('.Page_trafficSimulationId'));
-        }
-
         if(inputSimulationName) {
           inputSimulationName.replaceAll('.Page_simulationName');
           addGlow($('.Page_simulationName'));
+        }
+
+        if(inputTrafficSimulationId) {
+          inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
+          addGlow($('.Page_trafficSimulationId'));
         }
 
         if(inputColor) {
@@ -1997,14 +1997,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_vehicleType'));
         }
 
-        if(inputLaneAreaDetectorId) {
-          inputLaneAreaDetectorId.replaceAll('.Page_laneAreaDetectorId');
-          addGlow($('.Page_laneAreaDetectorId'));
-        }
-
         if(inputCustomSigma) {
           inputCustomSigma.replaceAll('.Page_customSigma');
           addGlow($('.Page_customSigma'));
+        }
+
+        if(inputLaneAreaDetectorId) {
+          inputLaneAreaDetectorId.replaceAll('.Page_laneAreaDetectorId');
+          addGlow($('.Page_laneAreaDetectorId'));
         }
 
         if(inputCustomAcceleration) {
@@ -2045,16 +2045,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         if(inputCustomTrafficLightId) {
           inputCustomTrafficLightId.replaceAll('.Page_customTrafficLightId');
           addGlow($('.Page_customTrafficLightId'));
-        }
-
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
         }
 
         if(inputClassCanonicalName) {
@@ -2107,6 +2097,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
         if(inputPageUrlApi) {
           inputPageUrlApi.replaceAll('.Page_pageUrlApi');
           addGlow($('.Page_pageUrlApi'));
@@ -2117,9 +2112,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
+        if(inputPk) {
+          inputPk.replaceAll('.Page_pk');
+          addGlow($('.Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
         if(inputSumocfgPath) {
@@ -2246,11 +2246,12 @@ function pageGraphTrafficFlowObserved(apiRequest) {
             shapes = shapes.concat(trafficFlowObserved.areaServed);
           else
             shapes.push(trafficFlowObserved.areaServed);
-          shapes.forEach(shape => {
+          shapes.forEach(function(shape, index) {
             var features = [{
               "type": "Feature"
               , "properties": trafficFlowObserved
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature
@@ -2295,6 +2296,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
               "type": "Feature"
               , "properties": trafficFlowObserved
               , "geometry": shape
+              , "index": index
             }];
             window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
               onEachFeature: onEachFeature
