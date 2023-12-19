@@ -69,13 +69,13 @@ function searchBicycleStepFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterBicycleId = $formFilters.find('.valueBicycleId').val();
-    if(filterBicycleId != null && filterBicycleId !== '')
-      filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
-
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterBicycleId = $formFilters.find('.valueBicycleId').val();
+    if(filterBicycleId != null && filterBicycleId !== '')
+      filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
 
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
@@ -100,6 +100,10 @@ function searchBicycleStepFilters($formFilters) {
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -128,10 +132,6 @@ function searchBicycleStepFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -308,18 +308,6 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
-  var valueBicycleId = $formValues.find('.valueBicycleId').val();
-  var removeBicycleId = $formValues.find('.removeBicycleId').val() === 'true';
-  var setBicycleId = removeBicycleId ? null : $formValues.find('.setBicycleId').val();
-  var addBicycleId = $formValues.find('.addBicycleId').val();
-  if(removeBicycleId || setBicycleId != null && setBicycleId !== '')
-    vals['setBicycleId'] = setBicycleId;
-  if(addBicycleId != null && addBicycleId !== '')
-    vals['addBicycleId'] = addBicycleId;
-  var removeBicycleId = $formValues.find('.removeBicycleId').val();
-  if(removeBicycleId != null && removeBicycleId !== '')
-    vals['removeBicycleId'] = removeBicycleId;
-
   var valueColor = $formValues.find('.valueColor').val();
   var removeColor = $formValues.find('.removeColor').val() === 'true';
   var setColor = removeColor ? null : $formValues.find('.setColor').val();
@@ -331,6 +319,18 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
   var removeColor = $formValues.find('.removeColor').val();
   if(removeColor != null && removeColor !== '')
     vals['removeColor'] = removeColor;
+
+  var valueBicycleId = $formValues.find('.valueBicycleId').val();
+  var removeBicycleId = $formValues.find('.removeBicycleId').val() === 'true';
+  var setBicycleId = removeBicycleId ? null : $formValues.find('.setBicycleId').val();
+  var addBicycleId = $formValues.find('.addBicycleId').val();
+  if(removeBicycleId || setBicycleId != null && setBicycleId !== '')
+    vals['setBicycleId'] = setBicycleId;
+  if(addBicycleId != null && addBicycleId !== '')
+    vals['addBicycleId'] = addBicycleId;
+  var removeBicycleId = $formValues.find('.removeBicycleId').val();
+  if(removeBicycleId != null && removeBicycleId !== '')
+    vals['removeBicycleId'] = removeBicycleId;
 
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
@@ -490,13 +490,13 @@ function patchBicycleStepFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterBicycleId = $formFilters.find('.valueBicycleId').val();
-    if(filterBicycleId != null && filterBicycleId !== '')
-      filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
-
     var filterColor = $formFilters.find('.valueColor').val();
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterBicycleId = $formFilters.find('.valueBicycleId').val();
+    if(filterBicycleId != null && filterBicycleId !== '')
+      filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
 
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
@@ -521,6 +521,10 @@ function patchBicycleStepFilters($formFilters) {
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -549,10 +553,6 @@ function patchBicycleStepFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -633,13 +633,13 @@ async function postBicycleStep($formValues, success, error) {
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = valueLocation;
 
-  var valueBicycleId = $formValues.find('.valueBicycleId').val();
-  if(valueBicycleId != null && valueBicycleId !== '')
-    vals['bicycleId'] = valueBicycleId;
-
   var valueColor = $formValues.find('.valueColor').val();
   if(valueColor != null && valueColor !== '')
     vals['color'] = valueColor;
+
+  var valueBicycleId = $formValues.find('.valueBicycleId').val();
+  if(valueBicycleId != null && valueBicycleId !== '')
+    vals['bicycleId'] = valueBicycleId;
 
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   if(valueInheritPk != null && valueInheritPk !== '')
@@ -786,14 +786,15 @@ async function websocketBicycleStepInner(apiRequest) {
         var inputDateTime = null;
         var inputStep = null;
         var inputLocation = null;
-        var inputBicycleId = null;
         var inputColor = null;
+        var inputBicycleId = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
+        var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
@@ -801,7 +802,6 @@ async function websocketBicycleStepInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputSaves = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
@@ -824,10 +824,10 @@ async function websocketBicycleStepInner(apiRequest) {
           inputStep = $response.find('.Page_step');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
-        if(vars.includes('bicycleId'))
-          inputBicycleId = $response.find('.Page_bicycleId');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
+        if(vars.includes('bicycleId'))
+          inputBicycleId = $response.find('.Page_bicycleId');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
@@ -840,6 +840,8 @@ async function websocketBicycleStepInner(apiRequest) {
           inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
@@ -854,8 +856,6 @@ async function websocketBicycleStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
@@ -913,14 +913,14 @@ async function websocketBicycleStepInner(apiRequest) {
           addGlow($('.Page_location'));
         }
 
-        if(inputBicycleId) {
-          inputBicycleId.replaceAll('.Page_bicycleId');
-          addGlow($('.Page_bicycleId'));
-        }
-
         if(inputColor) {
           inputColor.replaceAll('.Page_color');
           addGlow($('.Page_color'));
+        }
+
+        if(inputBicycleId) {
+          inputBicycleId.replaceAll('.Page_bicycleId');
+          addGlow($('.Page_bicycleId'));
         }
 
         if(inputInheritPk) {
@@ -951,6 +951,11 @@ async function websocketBicycleStepInner(apiRequest) {
         if(inputUserKey) {
           inputUserKey.replaceAll('.Page_userKey');
           addGlow($('.Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
         }
 
         if(inputObjectTitle) {
@@ -986,11 +991,6 @@ async function websocketBicycleStepInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
         }
 
         if(inputTimeStepId) {
