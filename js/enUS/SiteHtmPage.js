@@ -99,14 +99,6 @@ function searchSiteHtmFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -118,6 +110,14 @@ function searchSiteHtmFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
     if(filterHtmGroup != null && filterHtmGroup !== '')
@@ -131,14 +131,6 @@ function searchSiteHtmFilters($formFilters) {
     if(filterEBefore != null && filterEBefore !== '')
       filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
 
-    var filterEAfter = $formFilters.find('.valueEAfter').val();
-    if(filterEAfter != null && filterEAfter !== '')
-      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
-
-    var filterA = $formFilters.find('.valueA').val();
-    if(filterA != null && filterA !== '')
-      filters.push({ name: 'fq', value: 'a:' + filterA });
-
     var filterText = $formFilters.find('.valueText').val();
     if(filterText != null && filterText !== '')
       filters.push({ name: 'fq', value: 'text:' + filterText });
@@ -147,9 +139,13 @@ function searchSiteHtmFilters($formFilters) {
     if(filterComment != null && filterComment !== '')
       filters.push({ name: 'fq', value: 'comment:' + filterComment });
 
-    var filterTabs = $formFilters.find('.valueTabs').val();
-    if(filterTabs != null && filterTabs !== '')
-      filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
+    var filterA = $formFilters.find('.valueA').val();
+    if(filterA != null && filterA !== '')
+      filters.push({ name: 'fq', value: 'a:' + filterA });
+
+    var filterEAfter = $formFilters.find('.valueEAfter').val();
+    if(filterEAfter != null && filterEAfter !== '')
+      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var $filterNewLineCheckbox = $formFilters.find('input.valueNewLine[type = "checkbox"]');
     var $filterNewLineSelect = $formFilters.find('select.valueNewLine');
@@ -160,6 +156,10 @@ function searchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
+
+    var filterTabs = $formFilters.find('.valueTabs').val();
+    if(filterTabs != null && filterTabs !== '')
+      filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
 
     var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
     if(filterHtmMiddle != null && filterHtmMiddle !== '')
@@ -297,14 +297,6 @@ async function postSiteHtm($formValues, success, error) {
   if(valueEBefore != null && valueEBefore !== '')
     vals['eBefore'] = valueEBefore;
 
-  var valueEAfter = $formValues.find('.valueEAfter').val();
-  if(valueEAfter != null && valueEAfter !== '')
-    vals['eAfter'] = valueEAfter;
-
-  var valueA = $formValues.find('.valueA').val();
-  if(valueA != null && valueA !== '')
-    vals['a'] = JSON.parse(valueA);
-
   var valueText = $formValues.find('.valueText').val();
   if(valueText != null && valueText !== '')
     vals['text'] = JSON.parse(valueText);
@@ -313,13 +305,21 @@ async function postSiteHtm($formValues, success, error) {
   if(valueComment != null && valueComment !== '')
     vals['comment'] = JSON.parse(valueComment);
 
-  var valueTabs = $formValues.find('.valueTabs').val();
-  if(valueTabs != null && valueTabs !== '')
-    vals['tabs'] = valueTabs;
+  var valueA = $formValues.find('.valueA').val();
+  if(valueA != null && valueA !== '')
+    vals['a'] = JSON.parse(valueA);
+
+  var valueEAfter = $formValues.find('.valueEAfter').val();
+  if(valueEAfter != null && valueEAfter !== '')
+    vals['eAfter'] = valueEAfter;
 
   var valueNewLine = $formValues.find('.valueNewLine').val();
   if(valueNewLine != null && valueNewLine !== '')
     vals['newLine'] = valueNewLine == 'true';
+
+  var valueTabs = $formValues.find('.valueTabs').val();
+  if(valueTabs != null && valueTabs !== '')
+    vals['tabs'] = valueTabs;
 
   var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
   if(valueHtmBefore != null && valueHtmBefore !== '')
@@ -573,30 +573,6 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   if(removeEBefore != null && removeEBefore !== '')
     vals['removeEBefore'] = removeEBefore;
 
-  var valueEAfter = $formValues.find('.valueEAfter').val();
-  var removeEAfter = $formValues.find('.removeEAfter').val() === 'true';
-  var setEAfter = removeEAfter ? null : $formValues.find('.setEAfter').val();
-  var addEAfter = $formValues.find('.addEAfter').val();
-  if(removeEAfter || setEAfter != null && setEAfter !== '')
-    vals['setEAfter'] = setEAfter;
-  if(addEAfter != null && addEAfter !== '')
-    vals['addEAfter'] = addEAfter;
-  var removeEAfter = $formValues.find('.removeEAfter').val();
-  if(removeEAfter != null && removeEAfter !== '')
-    vals['removeEAfter'] = removeEAfter;
-
-  var valueA = $formValues.find('.valueA').val();
-  var removeA = $formValues.find('.removeA').val() === 'true';
-  var setA = removeA ? null : $formValues.find('.setA').val();
-  var addA = $formValues.find('.addA').val();
-  if(removeA || setA != null && setA !== '')
-    vals['setA'] = JSON.parse(setA);
-  if(addA != null && addA !== '')
-    vals['addA'] = addA;
-  var removeA = $formValues.find('.removeA').val();
-  if(removeA != null && removeA !== '')
-    vals['removeA'] = removeA;
-
   var valueText = $formValues.find('.valueText').val();
   var removeText = $formValues.find('.removeText').val() === 'true';
   var setText = removeText ? null : $formValues.find('.setText').val();
@@ -621,17 +597,29 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   if(removeComment != null && removeComment !== '')
     vals['removeComment'] = removeComment;
 
-  var valueTabs = $formValues.find('.valueTabs').val();
-  var removeTabs = $formValues.find('.removeTabs').val() === 'true';
-  var setTabs = removeTabs ? null : $formValues.find('.setTabs').val();
-  var addTabs = $formValues.find('.addTabs').val();
-  if(removeTabs || setTabs != null && setTabs !== '')
-    vals['setTabs'] = setTabs;
-  if(addTabs != null && addTabs !== '')
-    vals['addTabs'] = addTabs;
-  var removeTabs = $formValues.find('.removeTabs').val();
-  if(removeTabs != null && removeTabs !== '')
-    vals['removeTabs'] = removeTabs;
+  var valueA = $formValues.find('.valueA').val();
+  var removeA = $formValues.find('.removeA').val() === 'true';
+  var setA = removeA ? null : $formValues.find('.setA').val();
+  var addA = $formValues.find('.addA').val();
+  if(removeA || setA != null && setA !== '')
+    vals['setA'] = JSON.parse(setA);
+  if(addA != null && addA !== '')
+    vals['addA'] = addA;
+  var removeA = $formValues.find('.removeA').val();
+  if(removeA != null && removeA !== '')
+    vals['removeA'] = removeA;
+
+  var valueEAfter = $formValues.find('.valueEAfter').val();
+  var removeEAfter = $formValues.find('.removeEAfter').val() === 'true';
+  var setEAfter = removeEAfter ? null : $formValues.find('.setEAfter').val();
+  var addEAfter = $formValues.find('.addEAfter').val();
+  if(removeEAfter || setEAfter != null && setEAfter !== '')
+    vals['setEAfter'] = setEAfter;
+  if(addEAfter != null && addEAfter !== '')
+    vals['addEAfter'] = addEAfter;
+  var removeEAfter = $formValues.find('.removeEAfter').val();
+  if(removeEAfter != null && removeEAfter !== '')
+    vals['removeEAfter'] = removeEAfter;
 
   var valueNewLine = $formValues.find('.valueNewLine').val();
   var removeNewLine = $formValues.find('.removeNewLine').val() === 'true';
@@ -647,6 +635,18 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   var removeNewLine = $formValues.find('.removeNewLine').prop('checked');
   if(removeNewLine != null && removeNewLine !== '')
     vals['removeNewLine'] = removeNewLine;
+
+  var valueTabs = $formValues.find('.valueTabs').val();
+  var removeTabs = $formValues.find('.removeTabs').val() === 'true';
+  var setTabs = removeTabs ? null : $formValues.find('.setTabs').val();
+  var addTabs = $formValues.find('.addTabs').val();
+  if(removeTabs || setTabs != null && setTabs !== '')
+    vals['setTabs'] = setTabs;
+  if(addTabs != null && addTabs !== '')
+    vals['addTabs'] = addTabs;
+  var removeTabs = $formValues.find('.removeTabs').val();
+  if(removeTabs != null && removeTabs !== '')
+    vals['removeTabs'] = removeTabs;
 
   var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
   var removeHtmBefore = $formValues.find('.removeHtmBefore').val() === 'true';
@@ -776,14 +776,6 @@ function patchSiteHtmFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -795,6 +787,14 @@ function patchSiteHtmFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
     if(filterHtmGroup != null && filterHtmGroup !== '')
@@ -808,14 +808,6 @@ function patchSiteHtmFilters($formFilters) {
     if(filterEBefore != null && filterEBefore !== '')
       filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
 
-    var filterEAfter = $formFilters.find('.valueEAfter').val();
-    if(filterEAfter != null && filterEAfter !== '')
-      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
-
-    var filterA = $formFilters.find('.valueA').val();
-    if(filterA != null && filterA !== '')
-      filters.push({ name: 'fq', value: 'a:' + filterA });
-
     var filterText = $formFilters.find('.valueText').val();
     if(filterText != null && filterText !== '')
       filters.push({ name: 'fq', value: 'text:' + filterText });
@@ -824,9 +816,13 @@ function patchSiteHtmFilters($formFilters) {
     if(filterComment != null && filterComment !== '')
       filters.push({ name: 'fq', value: 'comment:' + filterComment });
 
-    var filterTabs = $formFilters.find('.valueTabs').val();
-    if(filterTabs != null && filterTabs !== '')
-      filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
+    var filterA = $formFilters.find('.valueA').val();
+    if(filterA != null && filterA !== '')
+      filters.push({ name: 'fq', value: 'a:' + filterA });
+
+    var filterEAfter = $formFilters.find('.valueEAfter').val();
+    if(filterEAfter != null && filterEAfter !== '')
+      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var $filterNewLineCheckbox = $formFilters.find('input.valueNewLine[type = "checkbox"]');
     var $filterNewLineSelect = $formFilters.find('select.valueNewLine');
@@ -837,6 +833,10 @@ function patchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
+
+    var filterTabs = $formFilters.find('.valueTabs').val();
+    if(filterTabs != null && filterTabs !== '')
+      filters.push({ name: 'fq', value: 'tabs:' + filterTabs });
 
     var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
     if(filterHtmMiddle != null && filterHtmMiddle !== '')
@@ -962,20 +962,20 @@ async function websocketSiteHtmInner(apiRequest) {
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
-        var inputObjectText = null;
-        var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputObjectText = null;
+        var inputPageUrlId = null;
         var inputHtmGroup = null;
         var inputLabels = null;
         var inputEBefore = null;
-        var inputEAfter = null;
-        var inputA = null;
         var inputText = null;
         var inputComment = null;
-        var inputTabs = null;
+        var inputA = null;
+        var inputEAfter = null;
         var inputNewLine = null;
+        var inputTabs = null;
         var inputHtmBefore = null;
         var inputHtmMiddle = null;
         var inputHtmAfter = null;
@@ -1016,34 +1016,34 @@ async function websocketSiteHtmInner(apiRequest) {
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
           inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('.Page_objectText');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('htmGroup'))
           inputHtmGroup = $response.find('.Page_htmGroup');
         if(vars.includes('labels'))
           inputLabels = $response.find('.Page_labels');
         if(vars.includes('eBefore'))
           inputEBefore = $response.find('.Page_eBefore');
-        if(vars.includes('eAfter'))
-          inputEAfter = $response.find('.Page_eAfter');
-        if(vars.includes('a'))
-          inputA = $response.find('.Page_a');
         if(vars.includes('text'))
           inputText = $response.find('.Page_text');
         if(vars.includes('comment'))
           inputComment = $response.find('.Page_comment');
-        if(vars.includes('tabs'))
-          inputTabs = $response.find('.Page_tabs');
+        if(vars.includes('a'))
+          inputA = $response.find('.Page_a');
+        if(vars.includes('eAfter'))
+          inputEAfter = $response.find('.Page_eAfter');
         if(vars.includes('newLine'))
           inputNewLine = $response.find('.Page_newLine');
+        if(vars.includes('tabs'))
+          inputTabs = $response.find('.Page_tabs');
         if(vars.includes('htmBefore'))
           inputHtmBefore = $response.find('.Page_htmBefore');
         if(vars.includes('htmMiddle'))
@@ -1146,16 +1146,6 @@ async function websocketSiteHtmInner(apiRequest) {
           addGlow($('.Page_objectSuggest'));
         }
 
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
-        }
-
         if(inputPageUrlPk) {
           inputPageUrlPk.replaceAll('.Page_pageUrlPk');
           addGlow($('.Page_pageUrlPk'));
@@ -1169,6 +1159,16 @@ async function websocketSiteHtmInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('.Page_objectText');
+          addGlow($('.Page_objectText'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('.Page_pageUrlId');
+          addGlow($('.Page_pageUrlId'));
         }
 
         if(inputHtmGroup) {
@@ -1186,16 +1186,6 @@ async function websocketSiteHtmInner(apiRequest) {
           addGlow($('.Page_eBefore'));
         }
 
-        if(inputEAfter) {
-          inputEAfter.replaceAll('.Page_eAfter');
-          addGlow($('.Page_eAfter'));
-        }
-
-        if(inputA) {
-          inputA.replaceAll('.Page_a');
-          addGlow($('.Page_a'));
-        }
-
         if(inputText) {
           inputText.replaceAll('.Page_text');
           addGlow($('.Page_text'));
@@ -1206,14 +1196,24 @@ async function websocketSiteHtmInner(apiRequest) {
           addGlow($('.Page_comment'));
         }
 
-        if(inputTabs) {
-          inputTabs.replaceAll('.Page_tabs');
-          addGlow($('.Page_tabs'));
+        if(inputA) {
+          inputA.replaceAll('.Page_a');
+          addGlow($('.Page_a'));
+        }
+
+        if(inputEAfter) {
+          inputEAfter.replaceAll('.Page_eAfter');
+          addGlow($('.Page_eAfter'));
         }
 
         if(inputNewLine) {
           inputNewLine.replaceAll('.Page_newLine');
           addGlow($('.Page_newLine'));
+        }
+
+        if(inputTabs) {
+          inputTabs.replaceAll('.Page_tabs');
+          addGlow($('.Page_tabs'));
         }
 
         if(inputHtmBefore) {

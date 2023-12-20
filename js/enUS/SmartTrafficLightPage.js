@@ -219,17 +219,17 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
-    if(filterParamDemandScale != null && filterParamDemandScale !== '')
-      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
-    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
+    if(filterParamDemandScale != null && filterParamDemandScale !== '')
+      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
   }
   return filters;
 }
@@ -975,17 +975,17 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
-    if(filterParamDemandScale != null && filterParamDemandScale !== '')
-      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
     var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
     if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
       filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
-    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+    var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
+    if(filterParamDemandScale != null && filterParamDemandScale !== '')
+      filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
   }
   return filters;
 }
@@ -1336,9 +1336,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
-        var inputParamDemandScale = null;
-        var inputTrafficFlowObservedIds = null;
         var inputAreaServedColors = null;
+        var inputTrafficFlowObservedIds = null;
+        var inputParamDemandScale = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1436,12 +1436,12 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('paramDemandScale'))
-          inputParamDemandScale = $response.find('.Page_paramDemandScale');
-        if(vars.includes('trafficFlowObservedIds'))
-          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.find('.Page_areaServedColors');
+        if(vars.includes('trafficFlowObservedIds'))
+          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
+        if(vars.includes('paramDemandScale'))
+          inputParamDemandScale = $response.find('.Page_paramDemandScale');
         jsWebsocketSmartTrafficLight(pk, vars, $response);
 
         window.smartTrafficLight = JSON.parse($response.find('.pageForm .smartTrafficLight').val());
@@ -1688,9 +1688,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
-        if(inputParamDemandScale) {
-          inputParamDemandScale.replaceAll('.Page_paramDemandScale');
-          addGlow($('.Page_paramDemandScale'));
+        if(inputAreaServedColors) {
+          inputAreaServedColors.replaceAll('.Page_areaServedColors');
+          addGlow($('.Page_areaServedColors'));
         }
 
         if(inputTrafficFlowObservedIds) {
@@ -1698,9 +1698,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_trafficFlowObservedIds'));
         }
 
-        if(inputAreaServedColors) {
-          inputAreaServedColors.replaceAll('.Page_areaServedColors');
-          addGlow($('.Page_areaServedColors'));
+        if(inputParamDemandScale) {
+          inputParamDemandScale.replaceAll('.Page_paramDemandScale');
+          addGlow($('.Page_paramDemandScale'));
         }
 
         pageGraphSmartTrafficLight();

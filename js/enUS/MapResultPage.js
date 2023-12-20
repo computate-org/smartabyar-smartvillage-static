@@ -73,6 +73,10 @@ function searchMapResultFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -96,6 +100,10 @@ function searchMapResultFilters($formFilters) {
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -124,14 +132,6 @@ function searchMapResultFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
   }
   return filters;
 }
@@ -251,12 +251,16 @@ async function websocketMapResultInner(apiRequest) {
         var inputStep = null;
         var inputLocation = null;
         var inputColor = null;
+        var inputTimeStepId = null;
+        var inputX = null;
+        var inputY = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
+        var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
@@ -264,10 +268,6 @@ async function websocketMapResultInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputSaves = null;
-        var inputTimeStepId = null;
-        var inputX = null;
-        var inputY = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -289,6 +289,12 @@ async function websocketMapResultInner(apiRequest) {
           inputLocation = $response.find('.Page_location');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
+        if(vars.includes('timeStepId'))
+          inputTimeStepId = $response.find('.Page_timeStepId');
+        if(vars.includes('x'))
+          inputX = $response.find('.Page_x');
+        if(vars.includes('y'))
+          inputY = $response.find('.Page_y');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
@@ -301,6 +307,8 @@ async function websocketMapResultInner(apiRequest) {
           inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
@@ -315,14 +323,6 @@ async function websocketMapResultInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('timeStepId'))
-          inputTimeStepId = $response.find('.Page_timeStepId');
-        if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
-        if(vars.includes('y'))
-          inputY = $response.find('.Page_y');
         jsWebsocketMapResult(id, vars, $response);
 
         window.mapResult = JSON.parse($response.find('.pageForm .mapResult').val());
@@ -379,6 +379,21 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_color'));
         }
 
+        if(inputTimeStepId) {
+          inputTimeStepId.replaceAll('.Page_timeStepId');
+          addGlow($('.Page_timeStepId'));
+        }
+
+        if(inputX) {
+          inputX.replaceAll('.Page_x');
+          addGlow($('.Page_x'));
+        }
+
+        if(inputY) {
+          inputY.replaceAll('.Page_y');
+          addGlow($('.Page_y'));
+        }
+
         if(inputInheritPk) {
           inputInheritPk.replaceAll('.Page_inheritPk');
           addGlow($('.Page_inheritPk'));
@@ -407,6 +422,11 @@ async function websocketMapResultInner(apiRequest) {
         if(inputUserKey) {
           inputUserKey.replaceAll('.Page_userKey');
           addGlow($('.Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
         }
 
         if(inputObjectTitle) {
@@ -442,26 +462,6 @@ async function websocketMapResultInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputTimeStepId) {
-          inputTimeStepId.replaceAll('.Page_timeStepId');
-          addGlow($('.Page_timeStepId'));
-        }
-
-        if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
-        }
-
-        if(inputY) {
-          inputY.replaceAll('.Page_y');
-          addGlow($('.Page_y'));
         }
 
         pageGraphMapResult();
