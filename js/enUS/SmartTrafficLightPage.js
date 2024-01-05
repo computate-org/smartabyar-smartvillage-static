@@ -183,6 +183,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -190,18 +194,6 @@ function searchSmartTrafficLightFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
@@ -215,9 +207,21 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
+    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
+      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -227,9 +231,13 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
-    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
-      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
 
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
@@ -743,18 +751,6 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   if(removeSessionId != null && removeSessionId !== '')
     vals['removeSessionId'] = removeSessionId;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueUserKey = $formValues.find('.valueUserKey').val();
   var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
   var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
@@ -766,6 +762,18 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   patchSmartTrafficLightVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -943,6 +951,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -950,18 +962,6 @@ function patchSmartTrafficLightFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
@@ -975,9 +975,21 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
+    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
+      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -987,9 +999,13 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
-    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
-      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
 
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
@@ -1177,13 +1193,13 @@ async function postSmartTrafficLight($formValues, success, error) {
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   $.ajax({
     url: '/api/smart-traffic-light'
@@ -1335,18 +1351,20 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
-        var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputUserKey = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
+        var inputPageUrlId = null;
+        var inputTrafficFlowObservedIds = null;
         var inputEntityShortId = null;
         var inputAreaServedColors = null;
-        var inputTrafficFlowObservedIds = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
         var inputParamDemandScale = null;
 
         if(vars.includes('created'))
@@ -1427,30 +1445,34 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
           inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('.Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('.Page_objectText');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('.Page_pageUrlId');
+        if(vars.includes('trafficFlowObservedIds'))
+          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.find('.Page_areaServedColors');
-        if(vars.includes('trafficFlowObservedIds'))
-          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.find('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.find('.Page_areaServedLinks');
         if(vars.includes('paramDemandScale'))
           inputParamDemandScale = $response.find('.Page_paramDemandScale');
         jsWebsocketSmartTrafficLight(pk, vars, $response);
@@ -1654,6 +1676,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_sessionId'));
         }
 
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -1662,21 +1689,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputObjectTitle) {
           inputObjectTitle.replaceAll('.Page_objectTitle');
           addGlow($('.Page_objectTitle'));
-        }
-
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
         }
 
         if(inputPageUrlPk) {
@@ -1694,9 +1706,24 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('.Page_objectSuggest');
+          addGlow($('.Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('.Page_objectText');
+          addGlow($('.Page_objectText'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('.Page_pageUrlId');
+          addGlow($('.Page_pageUrlId'));
+        }
+
+        if(inputTrafficFlowObservedIds) {
+          inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
+          addGlow($('.Page_trafficFlowObservedIds'));
         }
 
         if(inputEntityShortId) {
@@ -1709,9 +1736,14 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_areaServedColors'));
         }
 
-        if(inputTrafficFlowObservedIds) {
-          inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
-          addGlow($('.Page_trafficFlowObservedIds'));
+        if(inputAreaServedTitles) {
+          inputAreaServedTitles.replaceAll('.Page_areaServedTitles');
+          addGlow($('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          inputAreaServedLinks.replaceAll('.Page_areaServedLinks');
+          addGlow($('.Page_areaServedLinks'));
         }
 
         if(inputParamDemandScale) {
@@ -1847,7 +1879,7 @@ function pageGraphSmartTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleSmartTrafficLight
               , pointToLayer: function(feature, latlng) {
@@ -1867,7 +1899,7 @@ function pageGraphSmartTrafficLight(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendSmartTrafficLight;
-      legend.addTo(window.mapSmartTrafficLight);
+      //legend.addTo(window.mapSmartTrafficLight);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1896,7 +1928,7 @@ function pageGraphSmartTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleSmartTrafficLight
               , pointToLayer: function(feature, latlng) {

@@ -185,18 +185,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -209,9 +197,17 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
@@ -220,6 +216,10 @@ function searchCrowdFlowObservedFilters($formFilters) {
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
+
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -882,18 +882,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-    if(filterPageUrlId != null && filterPageUrlId !== '')
-      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -906,9 +894,17 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+    if(filterPageUrlId != null && filterPageUrlId !== '')
+      filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
@@ -917,6 +913,10 @@ function patchCrowdFlowObservedFilters($formFilters) {
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
+
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -1239,15 +1239,15 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
-        var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputEntityShortId = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
+        var inputPageUrlId = null;
         var inputDateCreated = null;
         var inputDateModified = null;
+        var inputEntityShortId = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1325,24 +1325,24 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
           inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.find('.Page_entityShortId');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('.Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('.Page_objectText');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('dateCreated'))
           inputDateCreated = $response.find('.Page_dateCreated');
         if(vars.includes('dateModified'))
           inputDateModified = $response.find('.Page_dateModified');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.find('.Page_entityShortId');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
@@ -1539,21 +1539,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_objectTitle'));
         }
 
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
-        }
-
         if(inputPageUrlPk) {
           inputPageUrlPk.replaceAll('.Page_pageUrlPk');
           addGlow($('.Page_pageUrlPk'));
@@ -1569,9 +1554,19 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputEntityShortId) {
-          inputEntityShortId.replaceAll('.Page_entityShortId');
-          addGlow($('.Page_entityShortId'));
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('.Page_objectSuggest');
+          addGlow($('.Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('.Page_objectText');
+          addGlow($('.Page_objectText'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('.Page_pageUrlId');
+          addGlow($('.Page_pageUrlId'));
         }
 
         if(inputDateCreated) {
@@ -1582,6 +1577,11 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         if(inputDateModified) {
           inputDateModified.replaceAll('.Page_dateModified');
           addGlow($('.Page_dateModified'));
+        }
+
+        if(inputEntityShortId) {
+          inputEntityShortId.replaceAll('.Page_entityShortId');
+          addGlow($('.Page_entityShortId'));
         }
 
         pageGraphCrowdFlowObserved();
@@ -1712,7 +1712,7 @@ function pageGraphCrowdFlowObserved(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleCrowdFlowObserved
               , pointToLayer: function(feature, latlng) {
@@ -1732,7 +1732,7 @@ function pageGraphCrowdFlowObserved(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendCrowdFlowObserved;
-      legend.addTo(window.mapCrowdFlowObserved);
+      //legend.addTo(window.mapCrowdFlowObserved);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1761,7 +1761,7 @@ function pageGraphCrowdFlowObserved(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleCrowdFlowObserved
               , pointToLayer: function(feature, latlng) {

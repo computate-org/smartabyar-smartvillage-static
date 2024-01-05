@@ -55,10 +55,6 @@ function searchTrafficLightFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
-
     var filterDateTime = $formFilters.find('.valueDateTime').val();
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -72,6 +68,10 @@ function searchTrafficLightFilters($formFilters) {
       filterStep = filterStepSelectVal == 'true';
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -97,9 +97,9 @@ function searchTrafficLightFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
@@ -149,13 +149,13 @@ function searchTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -301,18 +301,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   if(removeSumocfgPath != null && removeSumocfgPath !== '')
     vals['removeSumocfgPath'] = removeSumocfgPath;
 
-  var valueTime = $formValues.find('.valueTime').val();
-  var removeTime = $formValues.find('.removeTime').val() === 'true';
-  var setTime = removeTime ? null : $formValues.find('.setTime').val();
-  var addTime = $formValues.find('.addTime').val();
-  if(removeTime || setTime != null && setTime !== '')
-    vals['setTime'] = setTime;
-  if(addTime != null && addTime !== '')
-    vals['addTime'] = addTime;
-  var removeTime = $formValues.find('.removeTime').val();
-  if(removeTime != null && removeTime !== '')
-    vals['removeTime'] = removeTime;
-
   var valueDateTime = $formValues.find('.valueDateTime').val();
   var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
   var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
@@ -339,6 +327,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   var removeStep = $formValues.find('.removeStep').prop('checked');
   if(removeStep != null && removeStep !== '')
     vals['removeStep'] = removeStep;
+
+  var valueTime = $formValues.find('.valueTime').val();
+  var removeTime = $formValues.find('.removeTime').val() === 'true';
+  var setTime = removeTime ? null : $formValues.find('.setTime').val();
+  var addTime = $formValues.find('.addTime').val();
+  if(removeTime || setTime != null && setTime !== '')
+    vals['setTime'] = setTime;
+  if(addTime != null && addTime !== '')
+    vals['addTime'] = addTime;
+  var removeTime = $formValues.find('.removeTime').val();
+  if(removeTime != null && removeTime !== '')
+    vals['removeTime'] = removeTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -411,6 +411,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   var removeColor = $formValues.find('.removeColor').val();
   if(removeColor != null && removeColor !== '')
     vals['removeColor'] = removeColor;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -496,18 +508,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   if(removeY != null && removeY !== '')
     vals['removeY'] = removeY;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
-
   patchTrafficLightVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
 
@@ -556,10 +556,6 @@ function patchTrafficLightFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
-
     var filterDateTime = $formFilters.find('.valueDateTime').val();
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -573,6 +569,10 @@ function patchTrafficLightFilters($formFilters) {
       filterStep = filterStepSelectVal == 'true';
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
+
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -598,9 +598,9 @@ function patchTrafficLightFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
@@ -650,13 +650,13 @@ function patchTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -725,10 +725,6 @@ async function postTrafficLight($formValues, success, error) {
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
     vals['sumocfgPath'] = valueSumocfgPath;
 
-  var valueTime = $formValues.find('.valueTime').val();
-  if(valueTime != null && valueTime !== '')
-    vals['time'] = valueTime;
-
   var valueDateTime = $formValues.find('.valueDateTime').val();
   if(valueDateTime != null && valueDateTime !== '')
     vals['dateTime'] = valueDateTime;
@@ -736,6 +732,10 @@ async function postTrafficLight($formValues, success, error) {
   var valueStep = $formValues.find('.valueStep').val();
   if(valueStep != null && valueStep !== '')
     vals['step'] = valueStep == 'true';
+
+  var valueTime = $formValues.find('.valueTime').val();
+  if(valueTime != null && valueTime !== '')
+    vals['time'] = valueTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
@@ -760,6 +760,10 @@ async function postTrafficLight($formValues, success, error) {
   var valueColor = $formValues.find('.valueColor').val();
   if(valueColor != null && valueColor !== '')
     vals['color'] = valueColor;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
@@ -788,10 +792,6 @@ async function postTrafficLight($formValues, success, error) {
   var valueY = $formValues.find('.valueY').val();
   if(valueY != null && valueY !== '')
     vals['y'] = valueY;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
 
   $.ajax({
     url: '/api/traffic-light'
@@ -904,16 +904,16 @@ async function websocketTrafficLightInner(apiRequest) {
         var inputDeleted = null;
         var inputSimulationName = null;
         var inputSumocfgPath = null;
-        var inputTime = null;
         var inputDateTime = null;
         var inputStep = null;
+        var inputTime = null;
         var inputLocation = null;
         var inputColor = null;
         var inputTrafficLightId = null;
         var inputTrafficLightType = null;
         var inputAngle = null;
         var inputColor = null;
-        var inputClassCanonicalName = null;
+        var inputInheritPk = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
@@ -926,10 +926,10 @@ async function websocketTrafficLightInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputClassCanonicalName = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
-        var inputInheritPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -945,12 +945,12 @@ async function websocketTrafficLightInner(apiRequest) {
           inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
-        if(vars.includes('time'))
-          inputTime = $response.find('.Page_time');
         if(vars.includes('dateTime'))
           inputDateTime = $response.find('.Page_dateTime');
         if(vars.includes('step'))
           inputStep = $response.find('.Page_step');
+        if(vars.includes('time'))
+          inputTime = $response.find('.Page_time');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
         if(vars.includes('color'))
@@ -963,8 +963,8 @@ async function websocketTrafficLightInner(apiRequest) {
           inputAngle = $response.find('.Page_angle');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
@@ -989,14 +989,14 @@ async function websocketTrafficLightInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
           inputX = $response.find('.Page_x');
         if(vars.includes('y'))
           inputY = $response.find('.Page_y');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         jsWebsocketTrafficLight(id, vars, $response);
 
         window.trafficLight = JSON.parse($response.find('.pageForm .trafficLight').val());
@@ -1038,11 +1038,6 @@ async function websocketTrafficLightInner(apiRequest) {
           addGlow($('.Page_sumocfgPath'));
         }
 
-        if(inputTime) {
-          inputTime.replaceAll('.Page_time');
-          addGlow($('.Page_time'));
-        }
-
         if(inputDateTime) {
           inputDateTime.replaceAll('.Page_dateTime');
           addGlow($('.Page_dateTime'));
@@ -1051,6 +1046,11 @@ async function websocketTrafficLightInner(apiRequest) {
         if(inputStep) {
           inputStep.replaceAll('.Page_step');
           addGlow($('.Page_step'));
+        }
+
+        if(inputTime) {
+          inputTime.replaceAll('.Page_time');
+          addGlow($('.Page_time'));
         }
 
         if(inputLocation) {
@@ -1083,9 +1083,9 @@ async function websocketTrafficLightInner(apiRequest) {
           addGlow($('.Page_color'));
         }
 
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
         if(inputClassSimpleName) {
@@ -1148,6 +1148,11 @@ async function websocketTrafficLightInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
+        }
+
         if(inputTimeStepId) {
           inputTimeStepId.replaceAll('.Page_timeStepId');
           addGlow($('.Page_timeStepId'));
@@ -1161,11 +1166,6 @@ async function websocketTrafficLightInner(apiRequest) {
         if(inputY) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
         }
 
         pageGraphTrafficLight();
@@ -1296,7 +1296,7 @@ function pageGraphTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLight
               , pointToLayer: function(feature, latlng) {
@@ -1316,7 +1316,7 @@ function pageGraphTrafficLight(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendTrafficLight;
-      legend.addTo(window.mapTrafficLight);
+      //legend.addTo(window.mapTrafficLight);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1345,7 +1345,7 @@ function pageGraphTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLight
               , pointToLayer: function(feature, latlng) {

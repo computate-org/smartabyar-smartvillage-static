@@ -1136,7 +1136,7 @@ function pageGraphBicycleStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleBicycleStep
               , pointToLayer: function(feature, latlng) {
@@ -1156,7 +1156,7 @@ function pageGraphBicycleStep(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendBicycleStep;
-      legend.addTo(window.mapBicycleStep);
+      //legend.addTo(window.mapBicycleStep);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1185,7 +1185,7 @@ function pageGraphBicycleStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleBicycleStep
               , pointToLayer: function(feature, latlng) {
