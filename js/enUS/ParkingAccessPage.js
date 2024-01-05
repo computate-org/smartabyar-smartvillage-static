@@ -119,6 +119,14 @@ function searchParkingAccessFilters($formFilters) {
     if(filterWidth != null && filterWidth !== '')
       filters.push({ name: 'fq', value: 'width:' + filterWidth });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -170,14 +178,6 @@ function searchParkingAccessFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -515,6 +515,18 @@ async function patchParkingAccess($formFilters, $formValues, pk, success, error)
   if(removeWidth != null && removeWidth !== '')
     vals['removeWidth'] = removeWidth;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -550,18 +562,6 @@ async function patchParkingAccess($formFilters, $formValues, pk, success, error)
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
 
   patchParkingAccessVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -675,6 +675,14 @@ function patchParkingAccessFilters($formFilters) {
     if(filterWidth != null && filterWidth !== '')
       filters.push({ name: 'fq', value: 'width:' + filterWidth });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -726,14 +734,6 @@ function patchParkingAccessFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -866,6 +866,10 @@ async function postParkingAccess($formValues, success, error) {
   if(valueWidth != null && valueWidth !== '')
     vals['width'] = valueWidth;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -877,10 +881,6 @@ async function postParkingAccess($formValues, success, error) {
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
 
   $.ajax({
     url: '/api/parking-access'
@@ -1009,6 +1009,8 @@ async function websocketParkingAccessInner(apiRequest) {
         var inputSlope = null;
         var inputSource = null;
         var inputWidth = null;
+        var inputPk = null;
+        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1022,8 +1024,6 @@ async function websocketParkingAccessInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputPk = null;
-        var inputInheritPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1071,6 +1071,10 @@ async function websocketParkingAccessInner(apiRequest) {
           inputSource = $response.find('.Page_source');
         if(vars.includes('width'))
           inputWidth = $response.find('.Page_width');
+        if(vars.includes('pk'))
+          inputPk = $response.find('.Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1097,10 +1101,6 @@ async function websocketParkingAccessInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         jsWebsocketParkingAccess(pk, vars, $response);
 
         window.parkingAccess = JSON.parse($response.find('.pageForm .parkingAccess').val());
@@ -1222,6 +1222,16 @@ async function websocketParkingAccessInner(apiRequest) {
           addGlow($('.Page_width'));
         }
 
+        if(inputPk) {
+          inputPk.replaceAll('.Page_pk');
+          addGlow($('.Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -1285,16 +1295,6 @@ async function websocketParkingAccessInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
         }
 
         pageGraphParkingAccess();
@@ -1403,9 +1403,11 @@ function pageGraphParkingAccess(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipParkingAccess(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapParkingAccess) {
       window.geoJSONLayerGroupParkingAccess.clearLayers();
@@ -1423,23 +1425,27 @@ function pageGraphParkingAccess(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupParkingAccess.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleParkingAccess
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleParkingAccess(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupParkingAccess.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapParkingAccess = L.map('htmBodyGraphLocationBaseModelPage');
+      window.mapParkingAccess = L.map('htmBodyGraphLocationParkingAccessPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendParkingAccess;
+      legend.addTo(window.mapParkingAccess);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1468,13 +1474,14 @@ function pageGraphParkingAccess(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupParkingAccess.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleParkingAccess
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleParkingAccess(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupParkingAccess.addLayer(layer);
           });
         }
       });

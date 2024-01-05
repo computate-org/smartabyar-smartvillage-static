@@ -159,6 +159,14 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterReportKeys != null && filterReportKeys !== '')
       filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -174,10 +182,6 @@ function searchSmartTrafficLightFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -211,13 +215,9 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -719,6 +719,18 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   if(valueReportKeys != null && valueReportKeys !== '')
     vals['addReportKeys'] = valueReportKeys;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -730,18 +742,6 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   var removeSessionId = $formValues.find('.removeSessionId').val();
   if(removeSessionId != null && removeSessionId !== '')
     vals['removeSessionId'] = removeSessionId;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
-  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
-  var addUserKey = $formValues.find('.addUserKey').val();
-  if(removeUserKey || setUserKey != null && setUserKey !== '')
-    vals['setUserKey'] = setUserKey;
-  if(addUserKey != null && addUserKey !== '')
-    vals['addUserKey'] = addUserKey;
-  var removeUserKey = $formValues.find('.removeUserKey').val();
-  if(removeUserKey != null && removeUserKey !== '')
-    vals['removeUserKey'] = removeUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
@@ -755,17 +755,17 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
+  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+  var addUserKey = $formValues.find('.addUserKey').val();
+  if(removeUserKey || setUserKey != null && setUserKey !== '')
+    vals['setUserKey'] = setUserKey;
+  if(addUserKey != null && addUserKey !== '')
+    vals['addUserKey'] = addUserKey;
+  var removeUserKey = $formValues.find('.removeUserKey').val();
+  if(removeUserKey != null && removeUserKey !== '')
+    vals['removeUserKey'] = removeUserKey;
 
   patchSmartTrafficLightVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -919,6 +919,14 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterReportKeys != null && filterReportKeys !== '')
       filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -934,10 +942,6 @@ function patchSmartTrafficLightFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -971,13 +975,9 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1169,21 +1169,21 @@ async function postSmartTrafficLight($formValues, success, error) {
   if(valueReportKeys.length > 0)
     vals['reportKeys'] = valueReportKeys;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  if(valueUserKey != null && valueUserKey !== '')
-    vals['userKey'] = valueUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  if(valueUserKey != null && valueUserKey !== '')
+    vals['userKey'] = valueUserKey;
 
   $.ajax({
     url: '/api/smart-traffic-light'
@@ -1329,11 +1329,12 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputParamItersPerPar = null;
         var inputParamTotalIterNum = null;
         var inputReportKeys = null;
+        var inputPk = null;
+        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
-        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -1342,8 +1343,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputPk = null;
-        var inputInheritPk = null;
+        var inputUserKey = null;
         var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputTrafficFlowObservedIds = null;
@@ -1415,6 +1415,10 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputParamTotalIterNum = $response.find('.Page_paramTotalIterNum');
         if(vars.includes('reportKeys'))
           inputReportKeys = $response.find('.Page_reportKeys');
+        if(vars.includes('pk'))
+          inputPk = $response.find('.Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1423,8 +1427,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -1441,10 +1443,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
@@ -1624,6 +1624,16 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_reportKeys'));
         }
 
+        if(inputPk) {
+          inputPk.replaceAll('.Page_pk');
+          addGlow($('.Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -1642,11 +1652,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputSessionId) {
           inputSessionId.replaceAll('.Page_sessionId');
           addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
         }
 
         if(inputSaves) {
@@ -1689,14 +1694,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
         }
 
         if(inputEntityShortId) {
@@ -1825,9 +1825,11 @@ function pageGraphSmartTrafficLight(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipSmartTrafficLight(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapSmartTrafficLight) {
       window.geoJSONLayerGroupSmartTrafficLight.clearLayers();
@@ -1845,13 +1847,14 @@ function pageGraphSmartTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupSmartTrafficLight.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleSmartTrafficLight
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleSmartTrafficLight(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupSmartTrafficLight.addLayer(layer);
           });
         }
       });
@@ -1893,13 +1896,14 @@ function pageGraphSmartTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupSmartTrafficLight.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleSmartTrafficLight
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleSmartTrafficLight(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupSmartTrafficLight.addLayer(layer);
           });
         }
       });

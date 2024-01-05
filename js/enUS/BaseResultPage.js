@@ -65,7 +65,6 @@ async function websocketBaseResultInner(apiRequest) {
         var inputObjectId = null;
         var inputArchived = null;
         var inputDeleted = null;
-        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -73,12 +72,13 @@ async function websocketBaseResultInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputInheritPk = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -90,8 +90,6 @@ async function websocketBaseResultInner(apiRequest) {
           inputArchived = $response.find('.Page_archived');
         if(vars.includes('deleted'))
           inputDeleted = $response.find('.Page_deleted');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -106,10 +104,6 @@ async function websocketBaseResultInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
@@ -118,6 +112,12 @@ async function websocketBaseResultInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('.Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('.Page_objectText');
         jsWebsocketBaseResult(id, vars, $response);
 
         window.baseResult = JSON.parse($response.find('.pageForm .baseResult').val());
@@ -147,11 +147,6 @@ async function websocketBaseResultInner(apiRequest) {
         if(inputDeleted) {
           inputDeleted.replaceAll('.Page_deleted');
           addGlow($('.Page_deleted'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
         }
 
         if(inputClassCanonicalName) {
@@ -189,16 +184,6 @@ async function websocketBaseResultInner(apiRequest) {
           addGlow($('.Page_objectTitle'));
         }
 
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
         if(inputPageUrlId) {
           inputPageUrlId.replaceAll('.Page_pageUrlId');
           addGlow($('.Page_pageUrlId'));
@@ -217,6 +202,21 @@ async function websocketBaseResultInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('.Page_objectSuggest');
+          addGlow($('.Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('.Page_objectText');
+          addGlow($('.Page_objectText'));
         }
 
         pageGraphBaseResult();

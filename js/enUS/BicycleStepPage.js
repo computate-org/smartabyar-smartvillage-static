@@ -77,9 +77,9 @@ function searchBicycleStepFilters($formFilters) {
     if(filterBicycleId != null && filterBicycleId !== '')
       filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -133,9 +133,9 @@ function searchBicycleStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -332,17 +332,41 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
   if(removeBicycleId != null && removeBicycleId !== '')
     vals['removeBicycleId'] = removeBicycleId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+  var addTimeStepId = $formValues.find('.addTimeStepId').val();
+  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+    vals['setTimeStepId'] = setTimeStepId;
+  if(addTimeStepId != null && addTimeStepId !== '')
+    vals['addTimeStepId'] = addTimeStepId;
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+  if(removeTimeStepId != null && removeTimeStepId !== '')
+    vals['removeTimeStepId'] = removeTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  var removeX = $formValues.find('.removeX').val() === 'true';
+  var setX = removeX ? null : $formValues.find('.setX').val();
+  var addX = $formValues.find('.addX').val();
+  if(removeX || setX != null && setX !== '')
+    vals['setX'] = setX;
+  if(addX != null && addX !== '')
+    vals['addX'] = addX;
+  var removeX = $formValues.find('.removeX').val();
+  if(removeX != null && removeX !== '')
+    vals['removeX'] = removeX;
+
+  var valueY = $formValues.find('.valueY').val();
+  var removeY = $formValues.find('.removeY').val() === 'true';
+  var setY = removeY ? null : $formValues.find('.setY').val();
+  var addY = $formValues.find('.addY').val();
+  if(removeY || setY != null && setY !== '')
+    vals['setY'] = setY;
+  if(addY != null && addY !== '')
+    vals['addY'] = addY;
+  var removeY = $formValues.find('.removeY').val();
+  if(removeY != null && removeY !== '')
+    vals['removeY'] = removeY;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -392,41 +416,17 @@ async function patchBicycleStep($formFilters, $formValues, id, success, error) {
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-  var addTimeStepId = $formValues.find('.addTimeStepId').val();
-  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-    vals['setTimeStepId'] = setTimeStepId;
-  if(addTimeStepId != null && addTimeStepId !== '')
-    vals['addTimeStepId'] = addTimeStepId;
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-  if(removeTimeStepId != null && removeTimeStepId !== '')
-    vals['removeTimeStepId'] = removeTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  var removeX = $formValues.find('.removeX').val() === 'true';
-  var setX = removeX ? null : $formValues.find('.setX').val();
-  var addX = $formValues.find('.addX').val();
-  if(removeX || setX != null && setX !== '')
-    vals['setX'] = setX;
-  if(addX != null && addX !== '')
-    vals['addX'] = addX;
-  var removeX = $formValues.find('.removeX').val();
-  if(removeX != null && removeX !== '')
-    vals['removeX'] = removeX;
-
-  var valueY = $formValues.find('.valueY').val();
-  var removeY = $formValues.find('.removeY').val() === 'true';
-  var setY = removeY ? null : $formValues.find('.setY').val();
-  var addY = $formValues.find('.addY').val();
-  if(removeY || setY != null && setY !== '')
-    vals['setY'] = setY;
-  if(addY != null && addY !== '')
-    vals['addY'] = addY;
-  var removeY = $formValues.find('.removeY').val();
-  if(removeY != null && removeY !== '')
-    vals['removeY'] = removeY;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   patchBicycleStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -498,9 +498,9 @@ function patchBicycleStepFilters($formFilters) {
     if(filterBicycleId != null && filterBicycleId !== '')
       filters.push({ name: 'fq', value: 'bicycleId:' + filterBicycleId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
 
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -554,9 +554,9 @@ function patchBicycleStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -641,9 +641,17 @@ async function postBicycleStep($formValues, success, error) {
   if(valueBicycleId != null && valueBicycleId !== '')
     vals['bicycleId'] = valueBicycleId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  if(valueTimeStepId != null && valueTimeStepId !== '')
+    vals['timeStepId'] = valueTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  if(valueX != null && valueX !== '')
+    vals['x'] = valueX;
+
+  var valueY = $formValues.find('.valueY').val();
+  if(valueY != null && valueY !== '')
+    vals['y'] = valueY;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
@@ -661,17 +669,9 @@ async function postBicycleStep($formValues, success, error) {
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  if(valueTimeStepId != null && valueTimeStepId !== '')
-    vals['timeStepId'] = valueTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  if(valueX != null && valueX !== '')
-    vals['x'] = valueX;
-
-  var valueY = $formValues.find('.valueY').val();
-  if(valueY != null && valueY !== '')
-    vals['y'] = valueY;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   $.ajax({
     url: '/api/bicycle-step'
@@ -788,7 +788,9 @@ async function websocketBicycleStepInner(apiRequest) {
         var inputLocation = null;
         var inputColor = null;
         var inputBicycleId = null;
-        var inputInheritPk = null;
+        var inputTimeStepId = null;
+        var inputX = null;
+        var inputY = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -802,9 +804,7 @@ async function websocketBicycleStepInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputTimeStepId = null;
-        var inputX = null;
-        var inputY = null;
+        var inputInheritPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -828,8 +828,12 @@ async function websocketBicycleStepInner(apiRequest) {
           inputColor = $response.find('.Page_color');
         if(vars.includes('bicycleId'))
           inputBicycleId = $response.find('.Page_bicycleId');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('timeStepId'))
+          inputTimeStepId = $response.find('.Page_timeStepId');
+        if(vars.includes('x'))
+          inputX = $response.find('.Page_x');
+        if(vars.includes('y'))
+          inputY = $response.find('.Page_y');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -856,12 +860,8 @@ async function websocketBicycleStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('timeStepId'))
-          inputTimeStepId = $response.find('.Page_timeStepId');
-        if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
-        if(vars.includes('y'))
-          inputY = $response.find('.Page_y');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         jsWebsocketBicycleStep(id, vars, $response);
 
         window.bicycleStep = JSON.parse($response.find('.pageForm .bicycleStep').val());
@@ -923,9 +923,19 @@ async function websocketBicycleStepInner(apiRequest) {
           addGlow($('.Page_bicycleId'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+        if(inputTimeStepId) {
+          inputTimeStepId.replaceAll('.Page_timeStepId');
+          addGlow($('.Page_timeStepId'));
+        }
+
+        if(inputX) {
+          inputX.replaceAll('.Page_x');
+          addGlow($('.Page_x'));
+        }
+
+        if(inputY) {
+          inputY.replaceAll('.Page_y');
+          addGlow($('.Page_y'));
         }
 
         if(inputClassCanonicalName) {
@@ -993,19 +1003,9 @@ async function websocketBicycleStepInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputTimeStepId) {
-          inputTimeStepId.replaceAll('.Page_timeStepId');
-          addGlow($('.Page_timeStepId'));
-        }
-
-        if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
-        }
-
-        if(inputY) {
-          inputY.replaceAll('.Page_y');
-          addGlow($('.Page_y'));
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
         pageGraphBicycleStep();
@@ -1114,9 +1114,11 @@ function pageGraphBicycleStep(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipBicycleStep(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapBicycleStep) {
       window.geoJSONLayerGroupBicycleStep.clearLayers();
@@ -1134,23 +1136,27 @@ function pageGraphBicycleStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupBicycleStep.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleBicycleStep
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleBicycleStep(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupBicycleStep.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapBicycleStep = L.map('htmBodyGraphLocationMapResultPage');
+      window.mapBicycleStep = L.map('htmBodyGraphLocationBicycleStepPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendBicycleStep;
+      legend.addTo(window.mapBicycleStep);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1179,13 +1185,14 @@ function pageGraphBicycleStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupBicycleStep.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleBicycleStep
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleBicycleStep(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupBicycleStep.addLayer(layer);
           });
         }
       });

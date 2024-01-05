@@ -105,10 +105,6 @@ function searchTrafficLightStepFilters($formFilters) {
     if(filterPhase != null && filterPhase !== '')
       filters.push({ name: 'fq', value: 'phase:' + filterPhase });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -164,6 +160,10 @@ function searchTrafficLightStepFilters($formFilters) {
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -444,18 +444,6 @@ async function patchTrafficLightStep($formFilters, $formValues, id, success, err
   if(removePhase != null && removePhase !== '')
     vals['removePhase'] = removePhase;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -539,6 +527,18 @@ async function patchTrafficLightStep($formFilters, $formValues, id, success, err
   var removeY = $formValues.find('.removeY').val();
   if(removeY != null && removeY !== '')
     vals['removeY'] = removeY;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   patchTrafficLightStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -638,10 +638,6 @@ function patchTrafficLightStepFilters($formFilters) {
     if(filterPhase != null && filterPhase !== '')
       filters.push({ name: 'fq', value: 'phase:' + filterPhase });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -697,6 +693,10 @@ function patchTrafficLightStepFilters($formFilters) {
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -809,10 +809,6 @@ async function postTrafficLightStep($formValues, success, error) {
   if(valuePhase != null && valuePhase !== '')
     vals['phase'] = valuePhase;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -840,6 +836,10 @@ async function postTrafficLightStep($formValues, success, error) {
   var valueY = $formValues.find('.valueY').val();
   if(valueY != null && valueY !== '')
     vals['y'] = valueY;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   $.ajax({
     url: '/api/traffic-light-step'
@@ -963,7 +963,6 @@ async function websocketTrafficLightStepInner(apiRequest) {
         var inputState = null;
         var inputProgramId = null;
         var inputPhase = null;
-        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -980,6 +979,7 @@ async function websocketTrafficLightStepInner(apiRequest) {
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
+        var inputInheritPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1017,8 +1017,6 @@ async function websocketTrafficLightStepInner(apiRequest) {
           inputProgramId = $response.find('.Page_programId');
         if(vars.includes('phase'))
           inputPhase = $response.find('.Page_phase');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1051,6 +1049,8 @@ async function websocketTrafficLightStepInner(apiRequest) {
           inputX = $response.find('.Page_x');
         if(vars.includes('y'))
           inputY = $response.find('.Page_y');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         jsWebsocketTrafficLightStep(id, vars, $response);
 
         window.trafficLightStep = JSON.parse($response.find('.pageForm .trafficLightStep').val());
@@ -1147,11 +1147,6 @@ async function websocketTrafficLightStepInner(apiRequest) {
           addGlow($('.Page_phase'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -1230,6 +1225,11 @@ async function websocketTrafficLightStepInner(apiRequest) {
         if(inputY) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
         pageGraphTrafficLightStep();
@@ -1338,9 +1338,11 @@ function pageGraphTrafficLightStep(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipTrafficLightStep(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapTrafficLightStep) {
       window.geoJSONLayerGroupTrafficLightStep.clearLayers();
@@ -1358,23 +1360,27 @@ function pageGraphTrafficLightStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficLightStep.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLightStep
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficLightStep(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficLightStep.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapTrafficLightStep = L.map('htmBodyGraphLocationMapResultPage');
+      window.mapTrafficLightStep = L.map('htmBodyGraphLocationTrafficLightStepPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendTrafficLightStep;
+      legend.addTo(window.mapTrafficLightStep);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1403,13 +1409,14 @@ function pageGraphTrafficLightStep(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficLightStep.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLightStep
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficLightStep(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficLightStep.addLayer(layer);
           });
         }
       });

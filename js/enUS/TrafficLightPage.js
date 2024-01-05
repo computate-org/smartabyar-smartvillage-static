@@ -97,10 +97,6 @@ function searchTrafficLightFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -156,6 +152,10 @@ function searchTrafficLightFilters($formFilters) {
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -412,18 +412,6 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   if(removeColor != null && removeColor !== '')
     vals['removeColor'] = removeColor;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -507,6 +495,18 @@ async function patchTrafficLight($formFilters, $formValues, id, success, error) 
   var removeY = $formValues.find('.removeY').val();
   if(removeY != null && removeY !== '')
     vals['removeY'] = removeY;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   patchTrafficLightVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -598,10 +598,6 @@ function patchTrafficLightFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -657,6 +653,10 @@ function patchTrafficLightFilters($formFilters) {
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
   }
   return filters;
 }
@@ -761,10 +761,6 @@ async function postTrafficLight($formValues, success, error) {
   if(valueColor != null && valueColor !== '')
     vals['color'] = valueColor;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -792,6 +788,10 @@ async function postTrafficLight($formValues, success, error) {
   var valueY = $formValues.find('.valueY').val();
   if(valueY != null && valueY !== '')
     vals['y'] = valueY;
+
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   $.ajax({
     url: '/api/traffic-light'
@@ -913,7 +913,6 @@ async function websocketTrafficLightInner(apiRequest) {
         var inputTrafficLightType = null;
         var inputAngle = null;
         var inputColor = null;
-        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -930,6 +929,7 @@ async function websocketTrafficLightInner(apiRequest) {
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
+        var inputInheritPk = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -963,8 +963,6 @@ async function websocketTrafficLightInner(apiRequest) {
           inputAngle = $response.find('.Page_angle');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -997,6 +995,8 @@ async function websocketTrafficLightInner(apiRequest) {
           inputX = $response.find('.Page_x');
         if(vars.includes('y'))
           inputY = $response.find('.Page_y');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         jsWebsocketTrafficLight(id, vars, $response);
 
         window.trafficLight = JSON.parse($response.find('.pageForm .trafficLight').val());
@@ -1083,11 +1083,6 @@ async function websocketTrafficLightInner(apiRequest) {
           addGlow($('.Page_color'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -1166,6 +1161,11 @@ async function websocketTrafficLightInner(apiRequest) {
         if(inputY) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
         pageGraphTrafficLight();
@@ -1274,9 +1274,11 @@ function pageGraphTrafficLight(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipTrafficLight(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapTrafficLight) {
       window.geoJSONLayerGroupTrafficLight.clearLayers();
@@ -1294,23 +1296,27 @@ function pageGraphTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficLight.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLight
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficLight(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficLight.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapTrafficLight = L.map('htmBodyGraphLocationMapResultPage');
+      window.mapTrafficLight = L.map('htmBodyGraphLocationTrafficLightPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendTrafficLight;
+      legend.addTo(window.mapTrafficLight);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1339,13 +1345,14 @@ function pageGraphTrafficLight(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficLight.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficLight
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficLight(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficLight.addLayer(layer);
           });
         }
       });

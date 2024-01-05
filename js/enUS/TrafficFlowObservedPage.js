@@ -227,6 +227,14 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
       filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -242,10 +250,6 @@ function searchTrafficFlowObservedFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -279,13 +283,9 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -925,6 +925,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeCustomTrafficLightId != null && removeCustomTrafficLightId !== '')
     vals['removeCustomTrafficLightId'] = removeCustomTrafficLightId;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -936,18 +948,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeSessionId = $formValues.find('.removeSessionId').val();
   if(removeSessionId != null && removeSessionId !== '')
     vals['removeSessionId'] = removeSessionId;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
-  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
-  var addUserKey = $formValues.find('.addUserKey').val();
-  if(removeUserKey || setUserKey != null && setUserKey !== '')
-    vals['setUserKey'] = setUserKey;
-  if(addUserKey != null && addUserKey !== '')
-    vals['addUserKey'] = addUserKey;
-  var removeUserKey = $formValues.find('.removeUserKey').val();
-  if(removeUserKey != null && removeUserKey !== '')
-    vals['removeUserKey'] = removeUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
@@ -961,17 +961,17 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
+  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+  var addUserKey = $formValues.find('.addUserKey').val();
+  if(removeUserKey || setUserKey != null && setUserKey !== '')
+    vals['setUserKey'] = setUserKey;
+  if(addUserKey != null && addUserKey !== '')
+    vals['addUserKey'] = addUserKey;
+  var removeUserKey = $formValues.find('.removeUserKey').val();
+  if(removeUserKey != null && removeUserKey !== '')
+    vals['removeUserKey'] = removeUserKey;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -1205,6 +1205,14 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterCustomTrafficLightId != null && filterCustomTrafficLightId !== '')
       filters.push({ name: 'fq', value: 'customTrafficLightId:' + filterCustomTrafficLightId });
 
+    var filterPk = $formFilters.find('.valuePk').val();
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -1220,10 +1228,6 @@ function patchTrafficFlowObservedFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -1257,13 +1261,9 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterPk = $formFilters.find('.valuePk').val();
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1500,21 +1500,21 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueCustomTrafficLightId != null && valueCustomTrafficLightId !== '')
     vals['customTrafficLightId'] = valueCustomTrafficLightId;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  if(valueUserKey != null && valueUserKey !== '')
-    vals['userKey'] = valueUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  if(valueUserKey != null && valueUserKey !== '')
+    vals['userKey'] = valueUserKey;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
@@ -1671,11 +1671,12 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputCustomDemandScalingFactor = null;
         var inputCustomQueueLengthThreshold = null;
         var inputCustomTrafficLightId = null;
+        var inputPk = null;
+        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
-        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -1684,8 +1685,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputPk = null;
-        var inputInheritPk = null;
+        var inputUserKey = null;
         var inputEntityShortId = null;
         var inputSumocfgPath = null;
 
@@ -1783,6 +1783,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputCustomQueueLengthThreshold = $response.find('.Page_customQueueLengthThreshold');
         if(vars.includes('customTrafficLightId'))
           inputCustomTrafficLightId = $response.find('.Page_customTrafficLightId');
+        if(vars.includes('pk'))
+          inputPk = $response.find('.Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1791,8 +1795,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -1809,10 +1811,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('sumocfgPath'))
@@ -2058,6 +2058,16 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_customTrafficLightId'));
         }
 
+        if(inputPk) {
+          inputPk.replaceAll('.Page_pk');
+          addGlow($('.Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -2076,11 +2086,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         if(inputSessionId) {
           inputSessionId.replaceAll('.Page_sessionId');
           addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
         }
 
         if(inputSaves) {
@@ -2123,14 +2128,9 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
         }
 
         if(inputEntityShortId) {
@@ -2249,9 +2249,11 @@ function pageGraphTrafficFlowObserved(apiRequest) {
     }
 
     // Graph Location
+    window.mapLayers = {};
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
       layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer._leaflet_id;
     };
     if(window.mapTrafficFlowObserved) {
       window.geoJSONLayerGroupTrafficFlowObserved.clearLayers();
@@ -2269,13 +2271,14 @@ function pageGraphTrafficFlowObserved(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficFlowObserved
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(layer);
           });
         }
       });
@@ -2317,13 +2320,14 @@ function pageGraphTrafficFlowObserved(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(L.geoJSON(features, {
+            L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleTrafficFlowObserved
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
               }
-            }));
+            });
+            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(layer);
           });
         }
       });
