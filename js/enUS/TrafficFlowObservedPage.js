@@ -287,6 +287,10 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
@@ -1261,6 +1265,10 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
@@ -1678,6 +1686,7 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
+        var inputEntityShortId = null;
         var inputSumocfgPath = null;
 
         if(vars.includes('created'))
@@ -1804,6 +1813,8 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
         jsWebsocketTrafficFlowObserved(pk, vars, $response);
@@ -2122,6 +2133,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
+        if(inputEntityShortId) {
+          inputEntityShortId.replaceAll('.Page_entityShortId');
+          addGlow($('.Page_entityShortId'));
+        }
+
         if(inputSumocfgPath) {
           inputSumocfgPath.replaceAll('.Page_sumocfgPath');
           addGlow($('.Page_sumocfgPath'));
@@ -2264,12 +2280,15 @@ function pageGraphTrafficFlowObserved(apiRequest) {
         }
       });
     } else {
-      window.mapTrafficFlowObserved = L.map('htmBodyGraphLocationBaseModelPage');
+      window.mapTrafficFlowObserved = L.map('htmBodyGraphLocationTrafficFlowObservedPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendTrafficFlowObserved;
+      legend.addTo(window.mapTrafficFlowObserved);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

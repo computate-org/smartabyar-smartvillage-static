@@ -219,6 +219,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -975,6 +979,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -1336,6 +1344,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
+        var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
@@ -1436,6 +1445,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.find('.Page_areaServedColors');
         if(vars.includes('trafficFlowObservedIds'))
@@ -1688,6 +1699,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
+        if(inputEntityShortId) {
+          inputEntityShortId.replaceAll('.Page_entityShortId');
+          addGlow($('.Page_entityShortId'));
+        }
+
         if(inputAreaServedColors) {
           inputAreaServedColors.replaceAll('.Page_areaServedColors');
           addGlow($('.Page_areaServedColors'));
@@ -1840,12 +1856,15 @@ function pageGraphSmartTrafficLight(apiRequest) {
         }
       });
     } else {
-      window.mapSmartTrafficLight = L.map('htmBodyGraphLocationBaseModelPage');
+      window.mapSmartTrafficLight = L.map('htmBodyGraphLocationSmartTrafficLightPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendSmartTrafficLight;
+      legend.addTo(window.mapSmartTrafficLight);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

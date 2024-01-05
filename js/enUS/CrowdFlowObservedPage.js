@@ -209,6 +209,10 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
@@ -902,6 +906,10 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
@@ -1237,6 +1245,7 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
+        var inputEntityShortId = null;
         var inputDateCreated = null;
         var inputDateModified = null;
 
@@ -1328,6 +1337,8 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('dateCreated'))
           inputDateCreated = $response.find('.Page_dateCreated');
         if(vars.includes('dateModified'))
@@ -1558,6 +1569,11 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
+        if(inputEntityShortId) {
+          inputEntityShortId.replaceAll('.Page_entityShortId');
+          addGlow($('.Page_entityShortId'));
+        }
+
         if(inputDateCreated) {
           inputDateCreated.replaceAll('.Page_dateCreated');
           addGlow($('.Page_dateCreated'));
@@ -1705,12 +1721,15 @@ function pageGraphCrowdFlowObserved(apiRequest) {
         }
       });
     } else {
-      window.mapCrowdFlowObserved = L.map('htmBodyGraphLocationBaseModelPage');
+      window.mapCrowdFlowObserved = L.map('htmBodyGraphLocationCrowdFlowObservedPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendCrowdFlowObserved;
+      legend.addTo(window.mapCrowdFlowObserved);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

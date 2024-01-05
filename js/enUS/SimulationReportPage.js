@@ -287,6 +287,10 @@ function searchSimulationReportFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
@@ -1454,6 +1458,10 @@ function patchSimulationReportFilters($formFilters) {
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
@@ -3107,6 +3115,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
     var filterAreaServed = $formFilters.find('.valueAreaServed').val();
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
@@ -3308,6 +3320,7 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputId = null;
         var inputPk = null;
         var inputInheritPk = null;
+        var inputAreaServedColors = null;
         var inputAreaServed = null;
         var inputSimulationName = null;
         var inputSmartTrafficLightId = null;
@@ -3449,6 +3462,8 @@ async function websocketSimulationReportInner(apiRequest) {
           inputPk = $response.find('.Page_pk');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.find('.Page_areaServedColors');
         if(vars.includes('areaServed'))
           inputAreaServed = $response.find('.Page_areaServed');
         if(vars.includes('simulationName'))
@@ -3800,6 +3815,11 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
+        if(inputAreaServedColors) {
+          inputAreaServedColors.replaceAll('.Page_areaServedColors');
+          addGlow($('.Page_areaServedColors'));
+        }
+
         if(inputAreaServed) {
           inputAreaServed.replaceAll('.Page_areaServed');
           addGlow($('.Page_areaServed'));
@@ -3987,12 +4007,15 @@ function pageGraphSimulationReport(apiRequest) {
         }
       });
     } else {
-      window.mapSimulationReport = L.map('htmBodyGraphLocationBaseModelPage');
+      window.mapSimulationReport = L.map('htmBodyGraphLocationSimulationReportPage');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendSimulationReport;
+      legend.addTo(window.mapSimulationReport);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
