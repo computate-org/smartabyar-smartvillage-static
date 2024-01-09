@@ -73,6 +73,10 @@ function searchMapResultFilters($formFilters) {
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -80,14 +84,6 @@ function searchMapResultFilters($formFilters) {
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
@@ -97,9 +93,13 @@ function searchMapResultFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -117,17 +117,17 @@ function searchMapResultFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -251,23 +251,23 @@ async function websocketMapResultInner(apiRequest) {
         var inputStep = null;
         var inputLocation = null;
         var inputColor = null;
+        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputObjectTitle = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputInheritPk = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputObjectTitle = null;
         var inputTimeStepId = null;
-        var inputX = null;
         var inputY = null;
+        var inputX = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -289,20 +289,20 @@ async function websocketMapResultInner(apiRequest) {
           inputLocation = $response.find('.Page_location');
         if(vars.includes('color'))
           inputColor = $response.find('.Page_color');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('.Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
@@ -311,18 +311,18 @@ async function websocketMapResultInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
-        if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
         if(vars.includes('y'))
           inputY = $response.find('.Page_y');
+        if(vars.includes('x'))
+          inputX = $response.find('.Page_x');
         jsWebsocketMapResult(id, vars, $response);
 
         window.mapResult = JSON.parse($response.find('.pageForm .mapResult').val());
@@ -379,6 +379,11 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_color'));
         }
 
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -387,16 +392,6 @@ async function websocketMapResultInner(apiRequest) {
         if(inputClassSimpleName) {
           inputClassSimpleName.replaceAll('.Page_classSimpleName');
           addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
         }
 
         if(inputUserKey) {
@@ -409,9 +404,14 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_saves'));
         }
 
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('.Page_objectSuggest');
+          addGlow($('.Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('.Page_objectText');
+          addGlow($('.Page_objectText'));
         }
 
         if(inputPageUrlId) {
@@ -434,19 +434,19 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
         }
 
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
         }
 
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('.Page_objectTitle');
+          addGlow($('.Page_objectTitle'));
         }
 
         if(inputTimeStepId) {
@@ -454,14 +454,14 @@ async function websocketMapResultInner(apiRequest) {
           addGlow($('.Page_timeStepId'));
         }
 
-        if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
-        }
-
         if(inputY) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
+        }
+
+        if(inputX) {
+          inputX.replaceAll('.Page_x');
+          addGlow($('.Page_x'));
         }
 
         pageGraphMapResult();
@@ -592,7 +592,7 @@ function pageGraphMapResult(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapResult
               , pointToLayer: function(feature, latlng) {
@@ -612,7 +612,7 @@ function pageGraphMapResult(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendMapResult;
-      legend.addTo(window.mapMapResult);
+      //legend.addTo(window.mapMapResult);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -641,7 +641,7 @@ function pageGraphMapResult(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            L.geoJSON(features, {
+            var layer = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapResult
               , pointToLayer: function(feature, latlng) {

@@ -67,10 +67,6 @@ function searchSystemEventFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -90,6 +86,10 @@ function searchSystemEventFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -515,10 +515,6 @@ function patchSystemEventFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -538,6 +534,10 @@ function patchSystemEventFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -677,12 +677,12 @@ async function websocketSystemEventInner(apiRequest) {
         var inputPageImageUri = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
+        var inputClassSimpleName = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
@@ -714,8 +714,6 @@ async function websocketSystemEventInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
@@ -726,6 +724,8 @@ async function websocketSystemEventInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -804,11 +804,6 @@ async function websocketSystemEventInner(apiRequest) {
           addGlow($('.Page_classCanonicalName'));
         }
 
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
         if(inputClassCanonicalNames) {
           inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
           addGlow($('.Page_classCanonicalNames'));
@@ -832,6 +827,11 @@ async function websocketSystemEventInner(apiRequest) {
         if(inputObjectTitle) {
           inputObjectTitle.replaceAll('.Page_objectTitle');
           addGlow($('.Page_objectTitle'));
+        }
+
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
         }
 
         if(inputObjectSuggest) {

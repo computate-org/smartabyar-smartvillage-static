@@ -67,6 +67,10 @@ function searchSitePageFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -79,17 +83,9 @@ function searchSitePageFilters($formFilters) {
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -107,6 +103,14 @@ function searchSitePageFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -118,10 +122,6 @@ function searchSitePageFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterCourseNum = $formFilters.find('.valueCourseNum').val();
     if(filterCourseNum != null && filterCourseNum !== '')
@@ -243,9 +243,9 @@ async function postSitePage($formValues, success, error) {
   if(valuePageImageUri != null && valuePageImageUri !== '')
     vals['pageImageUri'] = valuePageImageUri;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  if(valueSessionId != null && valueSessionId !== '')
-    vals['sessionId'] = valueSessionId;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
@@ -255,13 +255,13 @@ async function postSitePage($formValues, success, error) {
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  if(valueSessionId != null && valueSessionId !== '')
+    vals['sessionId'] = valueSessionId;
+
   var valueId = $formValues.find('.valueId').val();
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
 
   var valueCourseNum = $formValues.find('.valueCourseNum').val();
   if(valueCourseNum != null && valueCourseNum !== '')
@@ -435,17 +435,17 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   if(removePageImageUri != null && removePageImageUri !== '')
     vals['removePageImageUri'] = removePageImageUri;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
-  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
-  var addSessionId = $formValues.find('.addSessionId').val();
-  if(removeSessionId || setSessionId != null && setSessionId !== '')
-    vals['setSessionId'] = setSessionId;
-  if(addSessionId != null && addSessionId !== '')
-    vals['addSessionId'] = addSessionId;
-  var removeSessionId = $formValues.find('.removeSessionId').val();
-  if(removeSessionId != null && removeSessionId !== '')
-    vals['removeSessionId'] = removeSessionId;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   var valueUserKey = $formValues.find('.valueUserKey').val();
   var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
@@ -471,6 +471,18 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
+  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+  var addSessionId = $formValues.find('.addSessionId').val();
+  if(removeSessionId || setSessionId != null && setSessionId !== '')
+    vals['setSessionId'] = setSessionId;
+  if(addSessionId != null && addSessionId !== '')
+    vals['addSessionId'] = addSessionId;
+  var removeSessionId = $formValues.find('.removeSessionId').val();
+  if(removeSessionId != null && removeSessionId !== '')
+    vals['removeSessionId'] = removeSessionId;
+
   var valueId = $formValues.find('.valueId').val();
   var removeId = $formValues.find('.removeId').val() === 'true';
   var setId = removeId ? null : $formValues.find('.setId').val();
@@ -482,18 +494,6 @@ async function patchSitePage($formFilters, $formValues, id, success, error) {
   var removeId = $formValues.find('.removeId').val();
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
 
   var valueCourseNum = $formValues.find('.valueCourseNum').val();
   var removeCourseNum = $formValues.find('.removeCourseNum').val() === 'true';
@@ -603,6 +603,10 @@ function patchSitePageFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -615,17 +619,9 @@ function patchSitePageFilters($formFilters) {
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -643,6 +639,14 @@ function patchSitePageFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
     var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
     if(filterPageUrlPk != null && filterPageUrlPk !== '')
       filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -654,10 +658,6 @@ function patchSitePageFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
     var filterCourseNum = $formFilters.find('.valueCourseNum').val();
     if(filterCourseNum != null && filterCourseNum !== '')
@@ -787,20 +787,20 @@ async function websocketSitePageInner(apiRequest) {
         var inputUri = null;
         var inputAuthor = null;
         var inputPageImageUri = null;
+        var inputInheritPk = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
-        var inputSessionId = null;
         var inputUserKey = null;
-        var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
+        var inputSessionId = null;
+        var inputSaves = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputInheritPk = null;
         var inputCourseNum = null;
         var inputLessonNum = null;
         var inputH1 = null;
@@ -826,18 +826,16 @@ async function websocketSitePageInner(apiRequest) {
           inputAuthor = $response.find('.Page_author');
         if(vars.includes('pageImageUri'))
           inputPageImageUri = $response.find('.Page_pageImageUri');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
@@ -846,14 +844,16 @@ async function websocketSitePageInner(apiRequest) {
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('pageUrlPk'))
           inputPageUrlPk = $response.find('.Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('courseNum'))
           inputCourseNum = $response.find('.Page_courseNum');
         if(vars.includes('lessonNum'))
@@ -918,6 +918,11 @@ async function websocketSitePageInner(apiRequest) {
           addGlow($('.Page_pageImageUri'));
         }
 
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
@@ -933,19 +938,9 @@ async function websocketSitePageInner(apiRequest) {
           addGlow($('.Page_classCanonicalNames'));
         }
 
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
         if(inputUserKey) {
           inputUserKey.replaceAll('.Page_userKey');
           addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
         }
 
         if(inputObjectTitle) {
@@ -968,6 +963,16 @@ async function websocketSitePageInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
+        }
+
         if(inputPageUrlPk) {
           inputPageUrlPk.replaceAll('.Page_pageUrlPk');
           addGlow($('.Page_pageUrlPk'));
@@ -981,11 +986,6 @@ async function websocketSitePageInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
         }
 
         if(inputCourseNum) {

@@ -71,6 +71,7 @@ async function websocketBaseModelInner(apiRequest) {
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -79,7 +80,6 @@ async function websocketBaseModelInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputUserKey = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -103,6 +103,8 @@ async function websocketBaseModelInner(apiRequest) {
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -119,8 +121,6 @@ async function websocketBaseModelInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         jsWebsocketBaseModel(pk, vars, $response);
 
         window.baseModel = JSON.parse($response.find('.pageForm .baseModel').val());
@@ -182,6 +182,11 @@ async function websocketBaseModelInner(apiRequest) {
           addGlow($('.Page_sessionId'));
         }
 
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -220,11 +225,6 @@ async function websocketBaseModelInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
         }
 
         pageGraphBaseModel();
