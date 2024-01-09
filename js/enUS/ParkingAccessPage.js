@@ -155,18 +155,6 @@ function searchParkingAccessFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
-    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-    if(filterPageUrlApi != null && filterPageUrlApi !== '')
-      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-    var filterId = $formFilters.find('.valueId').val();
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -178,6 +166,18 @@ function searchParkingAccessFilters($formFilters) {
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+    if(filterPageUrlApi != null && filterPageUrlApi !== '')
+      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+    var filterId = $formFilters.find('.valueId').val();
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
   }
   return filters;
 }
@@ -711,18 +711,6 @@ function patchParkingAccessFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
-    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-    if(filterPageUrlApi != null && filterPageUrlApi !== '')
-      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-    var filterId = $formFilters.find('.valueId').val();
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -734,6 +722,18 @@ function patchParkingAccessFilters($formFilters) {
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+    if(filterPageUrlApi != null && filterPageUrlApi !== '')
+      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+    var filterId = $formFilters.find('.valueId').val();
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
   }
   return filters;
 }
@@ -1018,12 +1018,12 @@ async function websocketParkingAccessInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputPageUrlPk = null;
-        var inputPageUrlApi = null;
-        var inputId = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
+        var inputPageUrlPk = null;
+        var inputPageUrlApi = null;
+        var inputId = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1089,18 +1089,18 @@ async function websocketParkingAccessInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
-        if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
-        if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+        if(vars.includes('pageUrlApi'))
+          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+        if(vars.includes('id'))
+          inputId = $response.find('.Page_id');
         jsWebsocketParkingAccess(pk, vars, $response);
 
         window.parkingAccess = JSON.parse($response.find('.pageForm .parkingAccess').val());
@@ -1267,21 +1267,6 @@ async function websocketParkingAccessInner(apiRequest) {
           addGlow($('.Page_objectTitle'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
-        if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
-        }
-
-        if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
-        }
-
         if(inputObjectSuggest) {
           inputObjectSuggest.replaceAll('.Page_objectSuggest');
           addGlow($('.Page_objectSuggest'));
@@ -1295,6 +1280,21 @@ async function websocketParkingAccessInner(apiRequest) {
         if(inputPageUrlId) {
           inputPageUrlId.replaceAll('.Page_pageUrlId');
           addGlow($('.Page_pageUrlId'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
+        if(inputPageUrlApi) {
+          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
+          addGlow($('.Page_pageUrlApi'));
+        }
+
+        if(inputId) {
+          inputId.replaceAll('.Page_id');
+          addGlow($('.Page_id'));
         }
 
         pageGraphParkingAccess();

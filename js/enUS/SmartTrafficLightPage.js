@@ -195,18 +195,6 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
-    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-    if(filterPageUrlApi != null && filterPageUrlApi !== '')
-      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-    var filterId = $formFilters.find('.valueId').val();
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -219,9 +207,17 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
-    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
-      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+    if(filterPageUrlApi != null && filterPageUrlApi !== '')
+      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+    var filterId = $formFilters.find('.valueId').val();
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -238,6 +234,10 @@ function searchSmartTrafficLightFilters($formFilters) {
     var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
+    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
+      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
@@ -963,18 +963,6 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
-
-    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
-    if(filterPageUrlApi != null && filterPageUrlApi !== '')
-      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
-
-    var filterId = $formFilters.find('.valueId').val();
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -987,9 +975,17 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
-    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
-      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+    var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+    if(filterPageUrlApi != null && filterPageUrlApi !== '')
+      filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+    var filterId = $formFilters.find('.valueId').val();
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1006,6 +1002,10 @@ function patchSmartTrafficLightFilters($formFilters) {
     var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterTrafficFlowObservedIds = $formFilters.find('.valueTrafficFlowObservedIds').val();
+    if(filterTrafficFlowObservedIds != null && filterTrafficFlowObservedIds !== '')
+      filters.push({ name: 'fq', value: 'trafficFlowObservedIds:' + filterTrafficFlowObservedIds });
 
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
@@ -1354,17 +1354,17 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputPageUrlPk = null;
-        var inputPageUrlApi = null;
-        var inputId = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputTrafficFlowObservedIds = null;
+        var inputPageUrlPk = null;
+        var inputPageUrlApi = null;
+        var inputId = null;
         var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
         var inputAreaServedLinks = null;
+        var inputTrafficFlowObservedIds = null;
         var inputParamDemandScale = null;
 
         if(vars.includes('created'))
@@ -1451,20 +1451,18 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
-        if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
-        if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.find('.Page_objectText');
         if(vars.includes('pageUrlId'))
           inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('trafficFlowObservedIds'))
-          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+        if(vars.includes('pageUrlApi'))
+          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+        if(vars.includes('id'))
+          inputId = $response.find('.Page_id');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
@@ -1473,6 +1471,8 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           inputAreaServedTitles = $response.find('.Page_areaServedTitles');
         if(vars.includes('areaServedLinks'))
           inputAreaServedLinks = $response.find('.Page_areaServedLinks');
+        if(vars.includes('trafficFlowObservedIds'))
+          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
           inputParamDemandScale = $response.find('.Page_paramDemandScale');
         jsWebsocketSmartTrafficLight(pk, vars, $response);
@@ -1691,21 +1691,6 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_objectTitle'));
         }
 
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
-        if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
-        }
-
-        if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
-        }
-
         if(inputObjectSuggest) {
           inputObjectSuggest.replaceAll('.Page_objectSuggest');
           addGlow($('.Page_objectSuggest'));
@@ -1721,9 +1706,19 @@ async function websocketSmartTrafficLightInner(apiRequest) {
           addGlow($('.Page_pageUrlId'));
         }
 
-        if(inputTrafficFlowObservedIds) {
-          inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
-          addGlow($('.Page_trafficFlowObservedIds'));
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
+          addGlow($('.Page_pageUrlPk'));
+        }
+
+        if(inputPageUrlApi) {
+          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
+          addGlow($('.Page_pageUrlApi'));
+        }
+
+        if(inputId) {
+          inputId.replaceAll('.Page_id');
+          addGlow($('.Page_id'));
         }
 
         if(inputEntityShortId) {
@@ -1744,6 +1739,11 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         if(inputAreaServedLinks) {
           inputAreaServedLinks.replaceAll('.Page_areaServedLinks');
           addGlow($('.Page_areaServedLinks'));
+        }
+
+        if(inputTrafficFlowObservedIds) {
+          inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
+          addGlow($('.Page_trafficFlowObservedIds'));
         }
 
         if(inputParamDemandScale) {
