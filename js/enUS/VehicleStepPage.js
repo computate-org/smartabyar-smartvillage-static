@@ -55,9 +55,9 @@ function searchVehicleStepFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-    var filterDateTime = $formFilters.find('.valueDateTime').val();
-    if(filterDateTime != null && filterDateTime !== '')
-      filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
     var $filterStepSelect = $formFilters.find('select.valueStep');
@@ -69,9 +69,9 @@ function searchVehicleStepFilters($formFilters) {
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
 
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
+    var filterDateTime = $formFilters.find('.valueDateTime').val();
+    if(filterDateTime != null && filterDateTime !== '')
+      filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -109,17 +109,13 @@ function searchVehicleStepFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
@@ -128,10 +124,6 @@ function searchVehicleStepFilters($formFilters) {
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -157,9 +149,17 @@ function searchVehicleStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -309,17 +309,17 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   if(removeSumocfgPath != null && removeSumocfgPath !== '')
     vals['removeSumocfgPath'] = removeSumocfgPath;
 
-  var valueDateTime = $formValues.find('.valueDateTime').val();
-  var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
-  var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
-  var addDateTime = $formValues.find('.addDateTime').val();
-  if(removeDateTime || setDateTime != null && setDateTime !== '')
-    vals['setDateTime'] = setDateTime;
-  if(addDateTime != null && addDateTime !== '')
-    vals['addDateTime'] = addDateTime;
-  var removeDateTime = $formValues.find('.removeDateTime').val();
-  if(removeDateTime != null && removeDateTime !== '')
-    vals['removeDateTime'] = removeDateTime;
+  var valueTime = $formValues.find('.valueTime').val();
+  var removeTime = $formValues.find('.removeTime').val() === 'true';
+  var setTime = removeTime ? null : $formValues.find('.setTime').val();
+  var addTime = $formValues.find('.addTime').val();
+  if(removeTime || setTime != null && setTime !== '')
+    vals['setTime'] = setTime;
+  if(addTime != null && addTime !== '')
+    vals['addTime'] = addTime;
+  var removeTime = $formValues.find('.removeTime').val();
+  if(removeTime != null && removeTime !== '')
+    vals['removeTime'] = removeTime;
 
   var valueStep = $formValues.find('.valueStep').val();
   var removeStep = $formValues.find('.removeStep').val() === 'true';
@@ -336,17 +336,17 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   if(removeStep != null && removeStep !== '')
     vals['removeStep'] = removeStep;
 
-  var valueTime = $formValues.find('.valueTime').val();
-  var removeTime = $formValues.find('.removeTime').val() === 'true';
-  var setTime = removeTime ? null : $formValues.find('.setTime').val();
-  var addTime = $formValues.find('.addTime').val();
-  if(removeTime || setTime != null && setTime !== '')
-    vals['setTime'] = setTime;
-  if(addTime != null && addTime !== '')
-    vals['addTime'] = addTime;
-  var removeTime = $formValues.find('.removeTime').val();
-  if(removeTime != null && removeTime !== '')
-    vals['removeTime'] = removeTime;
+  var valueDateTime = $formValues.find('.valueDateTime').val();
+  var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
+  var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
+  var addDateTime = $formValues.find('.addDateTime').val();
+  if(removeDateTime || setDateTime != null && setDateTime !== '')
+    vals['setDateTime'] = setDateTime;
+  if(addDateTime != null && addDateTime !== '')
+    vals['addDateTime'] = addDateTime;
+  var removeDateTime = $formValues.find('.removeDateTime').val();
+  if(removeDateTime != null && removeDateTime !== '')
+    vals['removeDateTime'] = removeDateTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -456,18 +456,6 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
-  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
-  var addSessionId = $formValues.find('.addSessionId').val();
-  if(removeSessionId || setSessionId != null && setSessionId !== '')
-    vals['setSessionId'] = setSessionId;
-  if(addSessionId != null && addSessionId !== '')
-    vals['addSessionId'] = addSessionId;
-  var removeSessionId = $formValues.find('.removeSessionId').val();
-  if(removeSessionId != null && removeSessionId !== '')
-    vals['removeSessionId'] = removeSessionId;
-
   var valueUserKey = $formValues.find('.valueUserKey').val();
   var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
   var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
@@ -480,18 +468,6 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueId = $formValues.find('.valueId').val();
   var removeId = $formValues.find('.removeId').val() === 'true';
   var setId = removeId ? null : $formValues.find('.setId').val();
@@ -503,6 +479,30 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   var removeId = $formValues.find('.removeId').val();
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
+
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
+  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+  var addSessionId = $formValues.find('.addSessionId').val();
+  if(removeSessionId || setSessionId != null && setSessionId !== '')
+    vals['setSessionId'] = setSessionId;
+  if(addSessionId != null && addSessionId !== '')
+    vals['addSessionId'] = addSessionId;
+  var removeSessionId = $formValues.find('.removeSessionId').val();
+  if(removeSessionId != null && removeSessionId !== '')
+    vals['removeSessionId'] = removeSessionId;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
   var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
@@ -588,9 +588,9 @@ function patchVehicleStepFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
-    var filterDateTime = $formFilters.find('.valueDateTime').val();
-    if(filterDateTime != null && filterDateTime !== '')
-      filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var $filterStepCheckbox = $formFilters.find('input.valueStep[type = "checkbox"]');
     var $filterStepSelect = $formFilters.find('select.valueStep');
@@ -602,9 +602,9 @@ function patchVehicleStepFilters($formFilters) {
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
 
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
+    var filterDateTime = $formFilters.find('.valueDateTime').val();
+    if(filterDateTime != null && filterDateTime !== '')
+      filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -642,17 +642,13 @@ function patchVehicleStepFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
@@ -661,10 +657,6 @@ function patchVehicleStepFilters($formFilters) {
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -690,9 +682,17 @@ function patchVehicleStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
@@ -765,17 +765,17 @@ async function postVehicleStep($formValues, success, error) {
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
     vals['sumocfgPath'] = valueSumocfgPath;
 
-  var valueDateTime = $formValues.find('.valueDateTime').val();
-  if(valueDateTime != null && valueDateTime !== '')
-    vals['dateTime'] = valueDateTime;
+  var valueTime = $formValues.find('.valueTime').val();
+  if(valueTime != null && valueTime !== '')
+    vals['time'] = valueTime;
 
   var valueStep = $formValues.find('.valueStep').val();
   if(valueStep != null && valueStep !== '')
     vals['step'] = valueStep == 'true';
 
-  var valueTime = $formValues.find('.valueTime').val();
-  if(valueTime != null && valueTime !== '')
-    vals['time'] = valueTime;
+  var valueDateTime = $formValues.find('.valueDateTime').val();
+  if(valueDateTime != null && valueDateTime !== '')
+    vals['dateTime'] = valueDateTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
@@ -813,21 +813,21 @@ async function postVehicleStep($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  if(valueSessionId != null && valueSessionId !== '')
-    vals['sessionId'] = valueSessionId;
-
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueId = $formValues.find('.valueId').val();
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
+
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  if(valueSessionId != null && valueSessionId !== '')
+    vals['sessionId'] = valueSessionId;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
   if(valueTimeStepId != null && valueTimeStepId !== '')
@@ -952,9 +952,9 @@ async function websocketVehicleStepInner(apiRequest) {
         var inputDeleted = null;
         var inputSimulationName = null;
         var inputSumocfgPath = null;
-        var inputDateTime = null;
-        var inputStep = null;
         var inputTime = null;
+        var inputStep = null;
+        var inputDateTime = null;
         var inputLocation = null;
         var inputColor = null;
         var inputVehicleId = null;
@@ -964,19 +964,19 @@ async function websocketVehicleStepInner(apiRequest) {
         var inputPos = null;
         var inputSlope = null;
         var inputInheritPk = null;
+        var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassCanonicalName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputObjectTitle = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
@@ -995,12 +995,12 @@ async function websocketVehicleStepInner(apiRequest) {
           inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
-        if(vars.includes('dateTime'))
-          inputDateTime = $response.find('.Page_dateTime');
-        if(vars.includes('step'))
-          inputStep = $response.find('.Page_step');
         if(vars.includes('time'))
           inputTime = $response.find('.Page_time');
+        if(vars.includes('step'))
+          inputStep = $response.find('.Page_step');
+        if(vars.includes('dateTime'))
+          inputDateTime = $response.find('.Page_dateTime');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
         if(vars.includes('color'))
@@ -1019,18 +1019,14 @@ async function websocketVehicleStepInner(apiRequest) {
           inputSlope = $response.find('.Page_slope');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1043,8 +1039,12 @@ async function websocketVehicleStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
@@ -1092,9 +1092,9 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_sumocfgPath'));
         }
 
-        if(inputDateTime) {
-          inputDateTime.replaceAll('.Page_dateTime');
-          addGlow($('.Page_dateTime'));
+        if(inputTime) {
+          inputTime.replaceAll('.Page_time');
+          addGlow($('.Page_time'));
         }
 
         if(inputStep) {
@@ -1102,9 +1102,9 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_step'));
         }
 
-        if(inputTime) {
-          inputTime.replaceAll('.Page_time');
-          addGlow($('.Page_time'));
+        if(inputDateTime) {
+          inputDateTime.replaceAll('.Page_dateTime');
+          addGlow($('.Page_dateTime'));
         }
 
         if(inputLocation) {
@@ -1152,19 +1152,14 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
+        }
+
         if(inputClassSimpleName) {
           inputClassSimpleName.replaceAll('.Page_classSimpleName');
           addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
         }
 
         if(inputUserKey) {
@@ -1175,11 +1170,6 @@ async function websocketVehicleStepInner(apiRequest) {
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
         }
 
         if(inputObjectSuggest) {
@@ -1212,9 +1202,19 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('.Page_objectTitle');
+          addGlow($('.Page_objectTitle'));
         }
 
         if(inputTimeStepId) {
