@@ -63,26 +63,6 @@ function searchTimeStepFilters($formFilters) {
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -107,6 +87,18 @@ function searchTimeStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -114,6 +106,14 @@ function searchTimeStepFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -287,30 +287,6 @@ async function patchTimeStep($formFilters, $formValues, id, success, error) {
   if(removeDateTime != null && removeDateTime !== '')
     vals['removeDateTime'] = removeDateTime;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
-  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
-  var addUserKey = $formValues.find('.addUserKey').val();
-  if(removeUserKey || setUserKey != null && setUserKey !== '')
-    vals['setUserKey'] = setUserKey;
-  if(addUserKey != null && addUserKey !== '')
-    vals['addUserKey'] = addUserKey;
-  var removeUserKey = $formValues.find('.removeUserKey').val();
-  if(removeUserKey != null && removeUserKey !== '')
-    vals['removeUserKey'] = removeUserKey;
-
   var valueId = $formValues.find('.valueId').val();
   var removeId = $formValues.find('.removeId').val() === 'true';
   var setId = removeId ? null : $formValues.find('.setId').val();
@@ -323,6 +299,18 @@ async function patchTimeStep($formFilters, $formValues, id, success, error) {
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -334,6 +322,18 @@ async function patchTimeStep($formFilters, $formValues, id, success, error) {
   var removeSessionId = $formValues.find('.removeSessionId').val();
   if(removeSessionId != null && removeSessionId !== '')
     vals['removeSessionId'] = removeSessionId;
+
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
+  var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+  var addUserKey = $formValues.find('.addUserKey').val();
+  if(removeUserKey || setUserKey != null && setUserKey !== '')
+    vals['setUserKey'] = setUserKey;
+  if(addUserKey != null && addUserKey !== '')
+    vals['addUserKey'] = addUserKey;
+  var removeUserKey = $formValues.find('.removeUserKey').val();
+  if(removeUserKey != null && removeUserKey !== '')
+    vals['removeUserKey'] = removeUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
@@ -403,26 +403,6 @@ function patchTimeStepFilters($formFilters) {
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -447,6 +427,18 @@ function patchTimeStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -454,6 +446,14 @@ function patchTimeStepFilters($formFilters) {
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -534,21 +534,21 @@ async function postTimeStep($formValues, success, error) {
   if(valueDateTime != null && valueDateTime !== '')
     vals['dateTime'] = valueDateTime;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
-
-  var valueUserKey = $formValues.find('.valueUserKey').val();
-  if(valueUserKey != null && valueUserKey !== '')
-    vals['userKey'] = valueUserKey;
-
   var valueId = $formValues.find('.valueId').val();
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
+
+  var valueUserKey = $formValues.find('.valueUserKey').val();
+  if(valueUserKey != null && valueUserKey !== '')
+    vals['userKey'] = valueUserKey;
 
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -667,19 +667,19 @@ async function websocketTimeStepInner(apiRequest) {
         var inputPath = null;
         var inputTime = null;
         var inputDateTime = null;
-        var inputInheritPk = null;
-        var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
-        var inputUserKey = null;
-        var inputSaves = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputInheritPk = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
+        var inputUserKey = null;
+        var inputSaves = null;
         var inputObjectTitle = null;
 
         if(vars.includes('created'))
@@ -700,16 +700,6 @@ async function websocketTimeStepInner(apiRequest) {
           inputTime = $response.find('.Page_time');
         if(vars.includes('dateTime'))
           inputDateTime = $response.find('.Page_dateTime');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -722,10 +712,20 @@ async function websocketTimeStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
           inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
         jsWebsocketTimeStep(id, vars, $response);
@@ -779,31 +779,6 @@ async function websocketTimeStepInner(apiRequest) {
           addGlow($('.Page_dateTime'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
-
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
         if(inputObjectSuggest) {
           inputObjectSuggest.replaceAll('.Page_objectSuggest');
           addGlow($('.Page_objectSuggest'));
@@ -834,6 +809,21 @@ async function websocketTimeStepInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
+        }
+
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
         if(inputClassCanonicalNames) {
           inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
           addGlow($('.Page_classCanonicalNames'));
@@ -842,6 +832,16 @@ async function websocketTimeStepInner(apiRequest) {
         if(inputSessionId) {
           inputSessionId.replaceAll('.Page_sessionId');
           addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
         }
 
         if(inputObjectTitle) {

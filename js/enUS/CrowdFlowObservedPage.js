@@ -209,6 +209,10 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
@@ -216,10 +220,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
-
-    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -382,7 +382,7 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
   var addLocation = $formValues.find('.addLocation').val();
   if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = setLocation;
+    vals['setLocation'] = JSON.parse(setLocation);
   if(addLocation != null && addLocation !== '')
     vals['addLocation'] = addLocation;
   var removeLocation = $formValues.find('.removeLocation').val();
@@ -906,6 +906,10 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterDateCreated = $formFilters.find('.valueDateCreated').val();
     if(filterDateCreated != null && filterDateCreated !== '')
       filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
@@ -913,10 +917,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
-
-    var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -991,7 +991,7 @@ async function postCrowdFlowObserved($formValues, success, error) {
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
-    vals['location'] = valueLocation;
+    vals['location'] = JSON.parse(valueLocation);
 
   var valueAreaServed = $formValues.find('.valueAreaServed').val();
   if(valueAreaServed != null && valueAreaServed !== '')
@@ -1245,9 +1245,9 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputEntityShortId = null;
         var inputDateCreated = null;
         var inputDateModified = null;
-        var inputEntityShortId = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1337,12 +1337,12 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('dateCreated'))
           inputDateCreated = $response.find('.Page_dateCreated');
         if(vars.includes('dateModified'))
           inputDateModified = $response.find('.Page_dateModified');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.find('.Page_entityShortId');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
@@ -1569,6 +1569,11 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputEntityShortId) {
+          inputEntityShortId.replaceAll('.Page_entityShortId');
+          addGlow($('.Page_entityShortId'));
+        }
+
         if(inputDateCreated) {
           inputDateCreated.replaceAll('.Page_dateCreated');
           addGlow($('.Page_dateCreated'));
@@ -1577,11 +1582,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         if(inputDateModified) {
           inputDateModified.replaceAll('.Page_dateModified');
           addGlow($('.Page_dateModified'));
-        }
-
-        if(inputEntityShortId) {
-          inputEntityShortId.replaceAll('.Page_entityShortId');
-          addGlow($('.Page_entityShortId'));
         }
 
         pageGraphCrowdFlowObserved();

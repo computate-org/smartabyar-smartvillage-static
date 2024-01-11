@@ -404,7 +404,7 @@ async function patchSmartTrafficLight($formFilters, $formValues, pk, success, er
   var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
   var addLocation = $formValues.find('.addLocation').val();
   if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = setLocation;
+    vals['setLocation'] = JSON.parse(setLocation);
   if(addLocation != null && addLocation !== '')
     vals['addLocation'] = addLocation;
   var removeLocation = $formValues.find('.removeLocation').val();
@@ -1072,7 +1072,7 @@ async function postSmartTrafficLight($formValues, success, error) {
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
-    vals['location'] = valueLocation;
+    vals['location'] = JSON.parse(valueLocation);
 
   var valueEntityId = $formValues.find('.valueEntityId').val();
   if(valueEntityId != null && valueEntityId !== '')

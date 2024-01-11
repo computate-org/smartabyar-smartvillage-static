@@ -155,10 +155,6 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterFcdFilePath != null && filterFcdFilePath !== '')
       filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
 
-    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-    if(filterNetFilePath != null && filterNetFilePath !== '')
-      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
-
     var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
     if(filterStartSeconds != null && filterStartSeconds !== '')
       filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
@@ -243,10 +239,6 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterParamStepSize != null && filterParamStepSize !== '')
       filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
 
-    var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
-    if(filterParamRunTime != null && filterParamRunTime !== '')
-      filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
     var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
     if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
       filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
@@ -286,6 +278,14 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
     if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
       filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
+
+    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+    if(filterNetFilePath != null && filterNetFilePath !== '')
+      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+
+    var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
+    if(filterParamRunTime != null && filterParamRunTime !== '')
+      filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
   }
   return filters;
 }
@@ -484,7 +484,7 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
   var addLocation = $formValues.find('.addLocation').val();
   if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = setLocation;
+    vals['setLocation'] = JSON.parse(setLocation);
   if(addLocation != null && addLocation !== '')
     vals['addLocation'] = addLocation;
   var removeLocation = $formValues.find('.removeLocation').val();
@@ -566,18 +566,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeFcdFilePath = $formValues.find('.removeFcdFilePath').val();
   if(removeFcdFilePath != null && removeFcdFilePath !== '')
     vals['removeFcdFilePath'] = removeFcdFilePath;
-
-  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-  var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
-  var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
-  var addNetFilePath = $formValues.find('.addNetFilePath').val();
-  if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
-    vals['setNetFilePath'] = setNetFilePath;
-  if(addNetFilePath != null && addNetFilePath !== '')
-    vals['addNetFilePath'] = addNetFilePath;
-  var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
-  if(removeNetFilePath != null && removeNetFilePath !== '')
-    vals['removeNetFilePath'] = removeNetFilePath;
 
   var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
   var removeStartSeconds = $formValues.find('.removeStartSeconds').val() === 'true';
@@ -831,18 +819,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   if(removeParamStepSize != null && removeParamStepSize !== '')
     vals['removeParamStepSize'] = removeParamStepSize;
 
-  var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
-  var removeParamRunTime = $formValues.find('.removeParamRunTime').val() === 'true';
-  var setParamRunTime = removeParamRunTime ? null : $formValues.find('.setParamRunTime').val();
-  var addParamRunTime = $formValues.find('.addParamRunTime').val();
-  if(removeParamRunTime || setParamRunTime != null && setParamRunTime !== '')
-    vals['setParamRunTime'] = setParamRunTime;
-  if(addParamRunTime != null && addParamRunTime !== '')
-    vals['addParamRunTime'] = addParamRunTime;
-  var removeParamRunTime = $formValues.find('.removeParamRunTime').val();
-  if(removeParamRunTime != null && removeParamRunTime !== '')
-    vals['removeParamRunTime'] = removeParamRunTime;
-
   var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
   var removeParamItersPerPar = $formValues.find('.removeParamItersPerPar').val() === 'true';
   var setParamItersPerPar = removeParamItersPerPar ? null : $formValues.find('.setParamItersPerPar').val();
@@ -962,6 +938,30 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeWalkingAreaLanes = $formValues.find('.removeWalkingAreaLanes').val();
   if(removeWalkingAreaLanes != null && removeWalkingAreaLanes !== '')
     vals['removeWalkingAreaLanes'] = removeWalkingAreaLanes;
+
+  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+  var removeNetFilePath = $formValues.find('.removeNetFilePath').val() === 'true';
+  var setNetFilePath = removeNetFilePath ? null : $formValues.find('.setNetFilePath').val();
+  var addNetFilePath = $formValues.find('.addNetFilePath').val();
+  if(removeNetFilePath || setNetFilePath != null && setNetFilePath !== '')
+    vals['setNetFilePath'] = setNetFilePath;
+  if(addNetFilePath != null && addNetFilePath !== '')
+    vals['addNetFilePath'] = addNetFilePath;
+  var removeNetFilePath = $formValues.find('.removeNetFilePath').val();
+  if(removeNetFilePath != null && removeNetFilePath !== '')
+    vals['removeNetFilePath'] = removeNetFilePath;
+
+  var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
+  var removeParamRunTime = $formValues.find('.removeParamRunTime').val() === 'true';
+  var setParamRunTime = removeParamRunTime ? null : $formValues.find('.setParamRunTime').val();
+  var addParamRunTime = $formValues.find('.addParamRunTime').val();
+  if(removeParamRunTime || setParamRunTime != null && setParamRunTime !== '')
+    vals['setParamRunTime'] = setParamRunTime;
+  if(addParamRunTime != null && addParamRunTime !== '')
+    vals['addParamRunTime'] = addParamRunTime;
+  var removeParamRunTime = $formValues.find('.removeParamRunTime').val();
+  if(removeParamRunTime != null && removeParamRunTime !== '')
+    vals['removeParamRunTime'] = removeParamRunTime;
 
   patchTrafficSimulationVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -1111,10 +1111,6 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterFcdFilePath != null && filterFcdFilePath !== '')
       filters.push({ name: 'fq', value: 'fcdFilePath:' + filterFcdFilePath });
 
-    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
-    if(filterNetFilePath != null && filterNetFilePath !== '')
-      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
-
     var filterStartSeconds = $formFilters.find('.valueStartSeconds').val();
     if(filterStartSeconds != null && filterStartSeconds !== '')
       filters.push({ name: 'fq', value: 'startSeconds:' + filterStartSeconds });
@@ -1199,10 +1195,6 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterParamStepSize != null && filterParamStepSize !== '')
       filters.push({ name: 'fq', value: 'paramStepSize:' + filterParamStepSize });
 
-    var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
-    if(filterParamRunTime != null && filterParamRunTime !== '')
-      filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
-
     var filterParamItersPerPar = $formFilters.find('.valueParamItersPerPar').val();
     if(filterParamItersPerPar != null && filterParamItersPerPar !== '')
       filters.push({ name: 'fq', value: 'paramItersPerPar:' + filterParamItersPerPar });
@@ -1242,6 +1234,14 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterWalkingAreaLanes = $formFilters.find('.valueWalkingAreaLanes').val();
     if(filterWalkingAreaLanes != null && filterWalkingAreaLanes !== '')
       filters.push({ name: 'fq', value: 'walkingAreaLanes:' + filterWalkingAreaLanes });
+
+    var filterNetFilePath = $formFilters.find('.valueNetFilePath').val();
+    if(filterNetFilePath != null && filterNetFilePath !== '')
+      filters.push({ name: 'fq', value: 'netFilePath:' + filterNetFilePath });
+
+    var filterParamRunTime = $formFilters.find('.valueParamRunTime').val();
+    if(filterParamRunTime != null && filterParamRunTime !== '')
+      filters.push({ name: 'fq', value: 'paramRunTime:' + filterParamRunTime });
   }
   return filters;
 }
@@ -1316,7 +1316,7 @@ async function postTrafficSimulation($formValues, success, error) {
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
-    vals['location'] = valueLocation;
+    vals['location'] = JSON.parse(valueLocation);
 
   var valueReportKeys = [];
   $formValues.find('input.valueReportKeys:checked').each(function(index) {
@@ -1348,10 +1348,6 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueFcdFilePath = $formValues.find('.valueFcdFilePath').val();
   if(valueFcdFilePath != null && valueFcdFilePath !== '')
     vals['fcdFilePath'] = valueFcdFilePath;
-
-  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
-  if(valueNetFilePath != null && valueNetFilePath !== '')
-    vals['netFilePath'] = valueNetFilePath;
 
   var valueStartSeconds = $formValues.find('.valueStartSeconds').val();
   if(valueStartSeconds != null && valueStartSeconds !== '')
@@ -1437,10 +1433,6 @@ async function postTrafficSimulation($formValues, success, error) {
   if(valueParamStepSize != null && valueParamStepSize !== '')
     vals['paramStepSize'] = valueParamStepSize;
 
-  var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
-  if(valueParamRunTime != null && valueParamRunTime !== '')
-    vals['paramRunTime'] = valueParamRunTime;
-
   var valueParamItersPerPar = $formValues.find('.valueParamItersPerPar').val();
   if(valueParamItersPerPar != null && valueParamItersPerPar !== '')
     vals['paramItersPerPar'] = valueParamItersPerPar;
@@ -1480,6 +1472,14 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueWalkingAreaLanes = $formValues.find('.valueWalkingAreaLanes').val();
   if(valueWalkingAreaLanes != null && valueWalkingAreaLanes !== '')
     vals['walkingAreaLanes'] = JSON.parse(valueWalkingAreaLanes);
+
+  var valueNetFilePath = $formValues.find('.valueNetFilePath').val();
+  if(valueNetFilePath != null && valueNetFilePath !== '')
+    vals['netFilePath'] = valueNetFilePath;
+
+  var valueParamRunTime = $formValues.find('.valueParamRunTime').val();
+  if(valueParamRunTime != null && valueParamRunTime !== '')
+    vals['paramRunTime'] = valueParamRunTime;
 
   $.ajax({
     url: '/api/traffic-simulation'
@@ -1624,7 +1624,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputAreaServed = null;
         var inputSumocfgPath = null;
         var inputFcdFilePath = null;
-        var inputNetFilePath = null;
         var inputStartSeconds = null;
         var inputEndSeconds = null;
         var inputStepSeconds = null;
@@ -1646,7 +1645,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputParamPedestrianQueueThresholdNorthSouth = null;
         var inputParamPedestrianQueueThresholdWestEast = null;
         var inputParamStepSize = null;
-        var inputParamRunTime = null;
         var inputParamItersPerPar = null;
         var inputParamTotalIterNum = null;
         var inputLaneAreaDetectorIds = null;
@@ -1657,6 +1655,8 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputE1DetectorPaths = null;
         var inputWalkingAreaIds = null;
         var inputWalkingAreaLanes = null;
+        var inputNetFilePath = null;
+        var inputParamRunTime = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1722,8 +1722,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
         if(vars.includes('fcdFilePath'))
           inputFcdFilePath = $response.find('.Page_fcdFilePath');
-        if(vars.includes('netFilePath'))
-          inputNetFilePath = $response.find('.Page_netFilePath');
         if(vars.includes('startSeconds'))
           inputStartSeconds = $response.find('.Page_startSeconds');
         if(vars.includes('endSeconds'))
@@ -1766,8 +1764,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputParamPedestrianQueueThresholdWestEast = $response.find('.Page_paramPedestrianQueueThresholdWestEast');
         if(vars.includes('paramStepSize'))
           inputParamStepSize = $response.find('.Page_paramStepSize');
-        if(vars.includes('paramRunTime'))
-          inputParamRunTime = $response.find('.Page_paramRunTime');
         if(vars.includes('paramItersPerPar'))
           inputParamItersPerPar = $response.find('.Page_paramItersPerPar');
         if(vars.includes('paramTotalIterNum'))
@@ -1788,6 +1784,10 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputWalkingAreaIds = $response.find('.Page_walkingAreaIds');
         if(vars.includes('walkingAreaLanes'))
           inputWalkingAreaLanes = $response.find('.Page_walkingAreaLanes');
+        if(vars.includes('netFilePath'))
+          inputNetFilePath = $response.find('.Page_netFilePath');
+        if(vars.includes('paramRunTime'))
+          inputParamRunTime = $response.find('.Page_paramRunTime');
         jsWebsocketTrafficSimulation(pk, vars, $response);
 
         window.trafficSimulation = JSON.parse($response.find('.pageForm .trafficSimulation').val());
@@ -1954,11 +1954,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_fcdFilePath'));
         }
 
-        if(inputNetFilePath) {
-          inputNetFilePath.replaceAll('.Page_netFilePath');
-          addGlow($('.Page_netFilePath'));
-        }
-
         if(inputStartSeconds) {
           inputStartSeconds.replaceAll('.Page_startSeconds');
           addGlow($('.Page_startSeconds'));
@@ -2064,11 +2059,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_paramStepSize'));
         }
 
-        if(inputParamRunTime) {
-          inputParamRunTime.replaceAll('.Page_paramRunTime');
-          addGlow($('.Page_paramRunTime'));
-        }
-
         if(inputParamItersPerPar) {
           inputParamItersPerPar.replaceAll('.Page_paramItersPerPar');
           addGlow($('.Page_paramItersPerPar'));
@@ -2117,6 +2107,16 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputWalkingAreaLanes) {
           inputWalkingAreaLanes.replaceAll('.Page_walkingAreaLanes');
           addGlow($('.Page_walkingAreaLanes'));
+        }
+
+        if(inputNetFilePath) {
+          inputNetFilePath.replaceAll('.Page_netFilePath');
+          addGlow($('.Page_netFilePath'));
+        }
+
+        if(inputParamRunTime) {
+          inputParamRunTime.replaceAll('.Page_paramRunTime');
+          addGlow($('.Page_paramRunTime'));
         }
 
         pageGraphTrafficSimulation();
