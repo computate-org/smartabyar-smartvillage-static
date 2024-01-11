@@ -161,22 +161,6 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -209,17 +193,33 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
-    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
-    if(filterDateCreated != null && filterDateCreated !== '')
-      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
-
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
+
+    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
+    if(filterDateCreated != null && filterDateCreated !== '')
+      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
   }
   return filters;
 }
@@ -644,6 +644,18 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -668,17 +680,17 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
+  var valueDateModified = $formValues.find('.valueDateModified').val();
+  var removeDateModified = $formValues.find('.removeDateModified').val() === 'true';
+  var setDateModified = removeDateModified ? null : $formValues.find('.setDateModified').val();
+  var addDateModified = $formValues.find('.addDateModified').val();
+  if(removeDateModified || setDateModified != null && setDateModified !== '')
+    vals['setDateModified'] = setDateModified;
+  if(addDateModified != null && addDateModified !== '')
+    vals['addDateModified'] = addDateModified;
+  var removeDateModified = $formValues.find('.removeDateModified').val();
+  if(removeDateModified != null && removeDateModified !== '')
+    vals['removeDateModified'] = removeDateModified;
 
   var valueDateCreated = $formValues.find('.valueDateCreated').val();
   var removeDateCreated = $formValues.find('.removeDateCreated').val() === 'true';
@@ -691,18 +703,6 @@ async function patchCrowdFlowObserved($formFilters, $formValues, pk, success, er
   var removeDateCreated = $formValues.find('.removeDateCreated').val();
   if(removeDateCreated != null && removeDateCreated !== '')
     vals['removeDateCreated'] = removeDateCreated;
-
-  var valueDateModified = $formValues.find('.valueDateModified').val();
-  var removeDateModified = $formValues.find('.removeDateModified').val() === 'true';
-  var setDateModified = removeDateModified ? null : $formValues.find('.setDateModified').val();
-  var addDateModified = $formValues.find('.addDateModified').val();
-  if(removeDateModified || setDateModified != null && setDateModified !== '')
-    vals['setDateModified'] = setDateModified;
-  if(addDateModified != null && addDateModified !== '')
-    vals['addDateModified'] = addDateModified;
-  var removeDateModified = $formValues.find('.removeDateModified').val();
-  if(removeDateModified != null && removeDateModified !== '')
-    vals['removeDateModified'] = removeDateModified;
 
   patchCrowdFlowObservedVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -858,22 +858,6 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -906,17 +890,33 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
-    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
-    if(filterDateCreated != null && filterDateCreated !== '')
-      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
-
     var filterDateModified = $formFilters.find('.valueDateModified').val();
     if(filterDateModified != null && filterDateModified !== '')
       filters.push({ name: 'fq', value: 'dateModified:' + filterDateModified });
+
+    var filterDateCreated = $formFilters.find('.valueDateCreated').val();
+    if(filterDateCreated != null && filterDateCreated !== '')
+      filters.push({ name: 'fq', value: 'dateCreated:' + filterDateCreated });
   }
   return filters;
 }
@@ -1077,6 +1077,10 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1085,17 +1089,13 @@ async function postCrowdFlowObserved($formValues, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
+  var valueDateModified = $formValues.find('.valueDateModified').val();
+  if(valueDateModified != null && valueDateModified !== '')
+    vals['dateModified'] = valueDateModified;
 
   var valueDateCreated = $formValues.find('.valueDateCreated').val();
   if(valueDateCreated != null && valueDateCreated !== '')
     vals['dateCreated'] = valueDateCreated;
-
-  var valueDateModified = $formValues.find('.valueDateModified').val();
-  if(valueDateModified != null && valueDateModified !== '')
-    vals['dateModified'] = valueDateModified;
 
   $.ajax({
     url: '/api/crowd-flow-observed'
@@ -1233,10 +1233,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -1245,9 +1241,13 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputEntityShortId = null;
-        var inputDateCreated = null;
         var inputDateModified = null;
+        var inputDateCreated = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1313,14 +1313,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -1337,12 +1329,20 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
-        if(vars.includes('dateCreated'))
-          inputDateCreated = $response.find('.Page_dateCreated');
         if(vars.includes('dateModified'))
           inputDateModified = $response.find('.Page_dateModified');
+        if(vars.includes('dateCreated'))
+          inputDateCreated = $response.find('.Page_dateCreated');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
@@ -1509,26 +1509,6 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_classCanonicalName'));
         }
 
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -1569,19 +1549,39 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputEntityShortId) {
           inputEntityShortId.replaceAll('.Page_entityShortId');
           addGlow($('.Page_entityShortId'));
         }
 
-        if(inputDateCreated) {
-          inputDateCreated.replaceAll('.Page_dateCreated');
-          addGlow($('.Page_dateCreated'));
-        }
-
         if(inputDateModified) {
           inputDateModified.replaceAll('.Page_dateModified');
           addGlow($('.Page_dateModified'));
+        }
+
+        if(inputDateCreated) {
+          inputDateCreated.replaceAll('.Page_dateCreated');
+          addGlow($('.Page_dateCreated'));
         }
 
         pageGraphCrowdFlowObserved();

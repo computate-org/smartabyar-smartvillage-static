@@ -239,22 +239,6 @@ function searchSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -287,6 +271,22 @@ function searchSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -311,17 +311,13 @@ function searchSimulationReportFilters($formFilters) {
     if(filterParamLam != null && filterParamLam !== '')
       filters.push({ name: 'fq', value: 'paramLam:' + filterParamLam });
 
-    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
-    if(filterParamInitialPar != null && filterParamInitialPar !== '')
-      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
-
-    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
-    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
-      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
-
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
       filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
+    if(filterParamInitialPar != null && filterParamInitialPar !== '')
+      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
 
     var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
     if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
@@ -330,6 +326,10 @@ function searchSimulationReportFilters($formFilters) {
     var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
     if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
       filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
+    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
+    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
+      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
   }
   return filters;
 }
@@ -363,42 +363,6 @@ function suggestSimulationReportObjectSuggest($formFilters, $list) {
   };
   error = function( jqXhr, textStatus, errorThrown ) {};
   searchSimulationReportVals($formFilters, success, error);
-}
-
-function suggestSimulationReportSimulationKey(filters, $list, pk = null, relate=true) {
-  success = function( data, textStatus, jQxhr ) {
-    $list.empty();
-    $.each(data['list'], function(i, o) {
-      var $i = $('<i>').attr('class', 'fa fa-traffic-light-stop ');
-      var $span = $('<span>').attr('class', '').text(o['objectTitle']);
-      var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
-      $a.append($i);
-      $a.append($span);
-      var val = o['reportKeys'];
-      var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
-      var $input = $('<input>');
-      $input.attr('id', 'GET_simulationKey_' + pk + '_reportKeys_' + o['pk']);
-      $input.attr('value', o['pk']);
-      $input.attr('class', 'valueSimulationKey w3-check ');
-      if(pk != null) {
-        $input.attr('onchange', "var $input = $('#GET_simulationKey_" + pk + "_reportKeys_" + o['pk'] + "'); patchSimulationReportVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SimulationKey']: \"" + o['pk'] + "\" } ); ");
-        $input.attr('onclick', 'removeGlow($(this)); ');
-      }
-      $input.attr('type', 'checkbox');
-      if(checked)
-        $input.attr('checked', 'checked');
-      var $li = $('<li>');
-      if(relate)
-        $li.append($input);
-      $li.append($a);
-      $list.append($li);
-    });
-    var focusId = $('#SimulationReportForm :input[name="focusId"]').val();
-    if(focusId)
-      $('#' + focusId).parent().next().find('input').focus();
-  };
-  error = function( jqXhr, textStatus, errorThrown ) {};
-  searchTrafficSimulationVals(filters, success, error);
 }
 
 function suggestSimulationReportSmartTrafficLightKey(filters, $list, pk = null, relate=true) {
@@ -435,6 +399,42 @@ function suggestSimulationReportSmartTrafficLightKey(filters, $list, pk = null, 
   };
   error = function( jqXhr, textStatus, errorThrown ) {};
   searchSmartTrafficLightVals(filters, success, error);
+}
+
+function suggestSimulationReportSimulationKey(filters, $list, pk = null, relate=true) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.empty();
+    $.each(data['list'], function(i, o) {
+      var $i = $('<i>').attr('class', 'fa fa-traffic-light-stop ');
+      var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+      var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['reportKeys'];
+      var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+      var $input = $('<input>');
+      $input.attr('id', 'GET_simulationKey_' + pk + '_reportKeys_' + o['pk']);
+      $input.attr('value', o['pk']);
+      $input.attr('class', 'valueSimulationKey w3-check ');
+      if(pk != null) {
+        $input.attr('onchange', "var $input = $('#GET_simulationKey_" + pk + "_reportKeys_" + o['pk'] + "'); patchSimulationReportVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SimulationKey']: \"" + o['pk'] + "\" } ); ");
+        $input.attr('onclick', 'removeGlow($(this)); ');
+      }
+      $input.attr('type', 'checkbox');
+      if(checked)
+        $input.attr('checked', 'checked');
+      var $li = $('<li>');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+    var focusId = $('#SimulationReportForm :input[name="focusId"]').val();
+    if(focusId)
+      $('#' + focusId).parent().next().find('input').focus();
+  };
+  error = function( jqXhr, textStatus, errorThrown ) {};
+  searchTrafficSimulationVals(filters, success, error);
 }
 
 // GET //
@@ -1059,6 +1059,18 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -1082,18 +1094,6 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
-
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
@@ -1131,18 +1131,6 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   if(removeSmartTrafficLightName != null && removeSmartTrafficLightName !== '')
     vals['removeSmartTrafficLightName'] = removeSmartTrafficLightName;
 
-  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
-  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
-  var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
-  var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
-  if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
-    vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
-  if(addAverageQueueLength != null && addAverageQueueLength !== '')
-    vals['addAverageQueueLength'] = addAverageQueueLength;
-  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
-  if(removeAverageQueueLength != null && removeAverageQueueLength !== '')
-    vals['removeAverageQueueLength'] = removeAverageQueueLength;
-
   var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
   var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
   var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
@@ -1178,6 +1166,18 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
   if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
     vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
+
+  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
+  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
+  var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
+  var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
+  if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
+    vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
+  if(addAverageQueueLength != null && addAverageQueueLength !== '')
+    vals['addAverageQueueLength'] = addAverageQueueLength;
+  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
+  if(removeAverageQueueLength != null && removeAverageQueueLength !== '')
+    vals['removeAverageQueueLength'] = removeAverageQueueLength;
 
   patchSimulationReportVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -1411,22 +1411,6 @@ function patchSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -1459,6 +1443,22 @@ function patchSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -1483,17 +1483,13 @@ function patchSimulationReportFilters($formFilters) {
     if(filterParamLam != null && filterParamLam !== '')
       filters.push({ name: 'fq', value: 'paramLam:' + filterParamLam });
 
-    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
-    if(filterParamInitialPar != null && filterParamInitialPar !== '')
-      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
-
-    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
-    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
-      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
-
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
       filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
+    if(filterParamInitialPar != null && filterParamInitialPar !== '')
+      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
 
     var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
     if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
@@ -1502,6 +1498,10 @@ function patchSimulationReportFilters($formFilters) {
     var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
     if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
       filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
+    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
+    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
+      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
   }
   return filters;
 }
@@ -1746,6 +1746,10 @@ async function postSimulationReport($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1753,10 +1757,6 @@ async function postSimulationReport($formValues, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
-
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
@@ -1770,10 +1770,6 @@ async function postSimulationReport($formValues, success, error) {
   if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
     vals['smartTrafficLightName'] = valueSmartTrafficLightName;
 
-  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
-  if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
-    vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
-
   var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
   if(valueParamDemandScale != null && valueParamDemandScale !== '')
     vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
@@ -1785,6 +1781,10 @@ async function postSimulationReport($formValues, success, error) {
   var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
   if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
     vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
+
+  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
+  if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
+    vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
 
   $.ajax({
     url: '/api/simulation-report'
@@ -2051,6 +2051,10 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -2058,10 +2062,6 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
-
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
@@ -2075,10 +2075,6 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   if(valueSmartTrafficLightName != null && valueSmartTrafficLightName !== '')
     vals['smartTrafficLightName'] = valueSmartTrafficLightName;
 
-  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
-  if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
-    vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
-
   var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
   if(valueParamDemandScale != null && valueParamDemandScale !== '')
     vals['paramDemandScale'] = JSON.parse(valueParamDemandScale);
@@ -2090,6 +2086,10 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   var valueUpdatedPerformance = $formValues.find('.valueUpdatedPerformance').val();
   if(valueUpdatedPerformance != null && valueUpdatedPerformance !== '')
     vals['updatedPerformance'] = JSON.parse(valueUpdatedPerformance);
+
+  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
+  if(valueAverageQueueLength != null && valueAverageQueueLength !== '')
+    vals['averageQueueLength'] = JSON.parse(valueAverageQueueLength);
 
   putcopySimulationReportVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -2715,6 +2715,18 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -2738,18 +2750,6 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
-
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
@@ -2787,18 +2787,6 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   if(removeSmartTrafficLightName != null && removeSmartTrafficLightName !== '')
     vals['removeSmartTrafficLightName'] = removeSmartTrafficLightName;
 
-  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
-  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
-  var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
-  var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
-  if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
-    vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
-  if(addAverageQueueLength != null && addAverageQueueLength !== '')
-    vals['addAverageQueueLength'] = addAverageQueueLength;
-  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
-  if(removeAverageQueueLength != null && removeAverageQueueLength !== '')
-    vals['removeAverageQueueLength'] = removeAverageQueueLength;
-
   var valueParamDemandScale = $formValues.find('.valueParamDemandScale').val();
   var removeParamDemandScale = $formValues.find('.removeParamDemandScale').val() === 'true';
   var setParamDemandScale = removeParamDemandScale ? null : $formValues.find('.setParamDemandScale').val();
@@ -2834,6 +2822,18 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   var removeUpdatedPerformance = $formValues.find('.removeUpdatedPerformance').val();
   if(removeUpdatedPerformance != null && removeUpdatedPerformance !== '')
     vals['removeUpdatedPerformance'] = removeUpdatedPerformance;
+
+  var valueAverageQueueLength = $formValues.find('.valueAverageQueueLength').val();
+  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val() === 'true';
+  var setAverageQueueLength = removeAverageQueueLength ? null : $formValues.find('.setAverageQueueLength').val();
+  var addAverageQueueLength = $formValues.find('.addAverageQueueLength').val();
+  if(removeAverageQueueLength || setAverageQueueLength != null && setAverageQueueLength !== '')
+    vals['setAverageQueueLength'] = JSON.parse(setAverageQueueLength);
+  if(addAverageQueueLength != null && addAverageQueueLength !== '')
+    vals['addAverageQueueLength'] = addAverageQueueLength;
+  var removeAverageQueueLength = $formValues.find('.removeAverageQueueLength').val();
+  if(removeAverageQueueLength != null && removeAverageQueueLength !== '')
+    vals['removeAverageQueueLength'] = removeAverageQueueLength;
 
   patchrunsimulationSimulationReportVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -3067,22 +3067,6 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -3115,6 +3099,22 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -3139,17 +3139,13 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterParamLam != null && filterParamLam !== '')
       filters.push({ name: 'fq', value: 'paramLam:' + filterParamLam });
 
-    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
-    if(filterParamInitialPar != null && filterParamInitialPar !== '')
-      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
-
-    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
-    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
-      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
-
     var filterParamDemandScale = $formFilters.find('.valueParamDemandScale').val();
     if(filterParamDemandScale != null && filterParamDemandScale !== '')
       filters.push({ name: 'fq', value: 'paramDemandScale:' + filterParamDemandScale });
+
+    var filterParamInitialPar = $formFilters.find('.valueParamInitialPar').val();
+    if(filterParamInitialPar != null && filterParamInitialPar !== '')
+      filters.push({ name: 'fq', value: 'paramInitialPar:' + filterParamInitialPar });
 
     var filterUpdatedParameters = $formFilters.find('.valueUpdatedParameters').val();
     if(filterUpdatedParameters != null && filterUpdatedParameters !== '')
@@ -3158,6 +3154,10 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     var filterUpdatedPerformance = $formFilters.find('.valueUpdatedPerformance').val();
     if(filterUpdatedPerformance != null && filterUpdatedPerformance !== '')
       filters.push({ name: 'fq', value: 'updatedPerformance:' + filterUpdatedPerformance });
+
+    var filterAverageQueueLength = $formFilters.find('.valueAverageQueueLength').val();
+    if(filterAverageQueueLength != null && filterAverageQueueLength !== '')
+      filters.push({ name: 'fq', value: 'averageQueueLength:' + filterAverageQueueLength });
   }
   return filters;
 }
@@ -3228,18 +3228,18 @@ async function websocketSimulationReport(success) {
       }
     });
 
-    window.eventBus.registerHandler('websocketTrafficSimulation', function (error, message) {
-      $('.Page_simulationKey').trigger('oninput');
-      $('.Page_simulationKey_add').text('add a traffic simulation');
-      $('.Page_simulationKey_add').removeClass('w3-disabled');
-      $('.Page_simulationKey_add').attr('disabled', false);
-    });
-
     window.eventBus.registerHandler('websocketSmartTrafficLight', function (error, message) {
       $('.Page_smartTrafficLightKey').trigger('oninput');
       $('.Page_smartTrafficLightKey_add').text('add a smart traffic light');
       $('.Page_smartTrafficLightKey_add').removeClass('w3-disabled');
       $('.Page_smartTrafficLightKey_add').attr('disabled', false);
+    });
+
+    window.eventBus.registerHandler('websocketTrafficSimulation', function (error, message) {
+      $('.Page_simulationKey').trigger('oninput');
+      $('.Page_simulationKey_add').text('add a traffic simulation');
+      $('.Page_simulationKey_add').removeClass('w3-disabled');
+      $('.Page_simulationKey_add').attr('disabled', false);
     });
   }
 }
@@ -3308,10 +3308,6 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -3320,17 +3316,21 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputAreaServedColors = null;
         var inputAreaServed = null;
         var inputSimulationName = null;
         var inputSmartTrafficLightId = null;
         var inputSmartTrafficLightName = null;
         var inputParamLam = null;
-        var inputParamInitialPar = null;
-        var inputAverageQueueLength = null;
         var inputParamDemandScale = null;
+        var inputParamInitialPar = null;
         var inputUpdatedParameters = null;
         var inputUpdatedPerformance = null;
+        var inputAverageQueueLength = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -3438,14 +3438,6 @@ async function websocketSimulationReportInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -3462,6 +3454,14 @@ async function websocketSimulationReportInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.find('.Page_areaServedColors');
         if(vars.includes('areaServed'))
@@ -3474,16 +3474,16 @@ async function websocketSimulationReportInner(apiRequest) {
           inputSmartTrafficLightName = $response.find('.Page_smartTrafficLightName');
         if(vars.includes('paramLam'))
           inputParamLam = $response.find('.Page_paramLam');
-        if(vars.includes('paramInitialPar'))
-          inputParamInitialPar = $response.find('.Page_paramInitialPar');
-        if(vars.includes('averageQueueLength'))
-          inputAverageQueueLength = $response.find('.Page_averageQueueLength');
         if(vars.includes('paramDemandScale'))
           inputParamDemandScale = $response.find('.Page_paramDemandScale');
+        if(vars.includes('paramInitialPar'))
+          inputParamInitialPar = $response.find('.Page_paramInitialPar');
         if(vars.includes('updatedParameters'))
           inputUpdatedParameters = $response.find('.Page_updatedParameters');
         if(vars.includes('updatedPerformance'))
           inputUpdatedPerformance = $response.find('.Page_updatedPerformance');
+        if(vars.includes('averageQueueLength'))
+          inputAverageQueueLength = $response.find('.Page_averageQueueLength');
         jsWebsocketSimulationReport(pk, vars, $response);
 
         window.simulationReport = JSON.parse($response.find('.pageForm .simulationReport').val());
@@ -3755,26 +3755,6 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_classCanonicalName'));
         }
 
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -3815,6 +3795,26 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputAreaServedColors) {
           inputAreaServedColors.replaceAll('.Page_areaServedColors');
           addGlow($('.Page_areaServedColors'));
@@ -3845,19 +3845,14 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_paramLam'));
         }
 
-        if(inputParamInitialPar) {
-          inputParamInitialPar.replaceAll('.Page_paramInitialPar');
-          addGlow($('.Page_paramInitialPar'));
-        }
-
-        if(inputAverageQueueLength) {
-          inputAverageQueueLength.replaceAll('.Page_averageQueueLength');
-          addGlow($('.Page_averageQueueLength'));
-        }
-
         if(inputParamDemandScale) {
           inputParamDemandScale.replaceAll('.Page_paramDemandScale');
           addGlow($('.Page_paramDemandScale'));
+        }
+
+        if(inputParamInitialPar) {
+          inputParamInitialPar.replaceAll('.Page_paramInitialPar');
+          addGlow($('.Page_paramInitialPar'));
         }
 
         if(inputUpdatedParameters) {
@@ -3868,6 +3863,11 @@ async function websocketSimulationReportInner(apiRequest) {
         if(inputUpdatedPerformance) {
           inputUpdatedPerformance.replaceAll('.Page_updatedPerformance');
           addGlow($('.Page_updatedPerformance'));
+        }
+
+        if(inputAverageQueueLength) {
+          inputAverageQueueLength.replaceAll('.Page_averageQueueLength');
+          addGlow($('.Page_averageQueueLength'));
         }
 
         pageGraphSimulationReport();

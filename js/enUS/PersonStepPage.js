@@ -55,6 +55,10 @@ function searchPersonStepFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
+
     var filterDateTime = $formFilters.find('.valueDateTime').val();
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -68,10 +72,6 @@ function searchPersonStepFilters($formFilters) {
       filterStep = filterStepSelectVal == 'true';
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -105,9 +105,17 @@ function searchPersonStepFilters($formFilters) {
     if(filterSlope != null && filterSlope !== '')
       filters.push({ name: 'fq', value: 'slope:' + filterSlope });
 
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -133,21 +141,9 @@ function searchPersonStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
@@ -164,6 +160,10 @@ function searchPersonStepFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
   }
   return filters;
 }
@@ -309,6 +309,18 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   if(removeSumocfgPath != null && removeSumocfgPath !== '')
     vals['removeSumocfgPath'] = removeSumocfgPath;
 
+  var valueTime = $formValues.find('.valueTime').val();
+  var removeTime = $formValues.find('.removeTime').val() === 'true';
+  var setTime = removeTime ? null : $formValues.find('.setTime').val();
+  var addTime = $formValues.find('.addTime').val();
+  if(removeTime || setTime != null && setTime !== '')
+    vals['setTime'] = setTime;
+  if(addTime != null && addTime !== '')
+    vals['addTime'] = addTime;
+  var removeTime = $formValues.find('.removeTime').val();
+  if(removeTime != null && removeTime !== '')
+    vals['removeTime'] = removeTime;
+
   var valueDateTime = $formValues.find('.valueDateTime').val();
   var removeDateTime = $formValues.find('.removeDateTime').val() === 'true';
   var setDateTime = removeDateTime ? null : $formValues.find('.setDateTime').val();
@@ -335,18 +347,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   var removeStep = $formValues.find('.removeStep').prop('checked');
   if(removeStep != null && removeStep !== '')
     vals['removeStep'] = removeStep;
-
-  var valueTime = $formValues.find('.valueTime').val();
-  var removeTime = $formValues.find('.removeTime').val() === 'true';
-  var setTime = removeTime ? null : $formValues.find('.setTime').val();
-  var addTime = $formValues.find('.addTime').val();
-  if(removeTime || setTime != null && setTime !== '')
-    vals['setTime'] = setTime;
-  if(addTime != null && addTime !== '')
-    vals['addTime'] = addTime;
-  var removeTime = $formValues.find('.removeTime').val();
-  if(removeTime != null && removeTime !== '')
-    vals['removeTime'] = removeTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   var removeLocation = $formValues.find('.removeLocation').val() === 'true';
@@ -444,41 +444,17 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   if(removeSlope != null && removeSlope !== '')
     vals['removeSlope'] = removeSlope;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-  var addTimeStepId = $formValues.find('.addTimeStepId').val();
-  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-    vals['setTimeStepId'] = setTimeStepId;
-  if(addTimeStepId != null && addTimeStepId !== '')
-    vals['addTimeStepId'] = addTimeStepId;
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-  if(removeTimeStepId != null && removeTimeStepId !== '')
-    vals['removeTimeStepId'] = removeTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  var removeX = $formValues.find('.removeX').val() === 'true';
-  var setX = removeX ? null : $formValues.find('.setX').val();
-  var addX = $formValues.find('.addX').val();
-  if(removeX || setX != null && setX !== '')
-    vals['setX'] = setX;
-  if(addX != null && addX !== '')
-    vals['addX'] = addX;
-  var removeX = $formValues.find('.removeX').val();
-  if(removeX != null && removeX !== '')
-    vals['removeX'] = removeX;
-
-  var valueY = $formValues.find('.valueY').val();
-  var removeY = $formValues.find('.removeY').val() === 'true';
-  var setY = removeY ? null : $formValues.find('.setY').val();
-  var addY = $formValues.find('.addY').val();
-  if(removeY || setY != null && setY !== '')
-    vals['setY'] = setY;
-  if(addY != null && addY !== '')
-    vals['addY'] = addY;
-  var removeY = $formValues.find('.removeY').val();
-  if(removeY != null && removeY !== '')
-    vals['removeY'] = removeY;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
 
   var valueId = $formValues.find('.valueId').val();
   var removeId = $formValues.find('.removeId').val() === 'true';
@@ -491,18 +467,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   var removeId = $formValues.find('.removeId').val();
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -539,6 +503,42 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+  var addTimeStepId = $formValues.find('.addTimeStepId').val();
+  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+    vals['setTimeStepId'] = setTimeStepId;
+  if(addTimeStepId != null && addTimeStepId !== '')
+    vals['addTimeStepId'] = addTimeStepId;
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+  if(removeTimeStepId != null && removeTimeStepId !== '')
+    vals['removeTimeStepId'] = removeTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  var removeX = $formValues.find('.removeX').val() === 'true';
+  var setX = removeX ? null : $formValues.find('.setX').val();
+  var addX = $formValues.find('.addX').val();
+  if(removeX || setX != null && setX !== '')
+    vals['setX'] = setX;
+  if(addX != null && addX !== '')
+    vals['addX'] = addX;
+  var removeX = $formValues.find('.removeX').val();
+  if(removeX != null && removeX !== '')
+    vals['removeX'] = removeX;
+
+  var valueY = $formValues.find('.valueY').val();
+  var removeY = $formValues.find('.removeY').val() === 'true';
+  var setY = removeY ? null : $formValues.find('.setY').val();
+  var addY = $formValues.find('.addY').val();
+  if(removeY || setY != null && setY !== '')
+    vals['setY'] = setY;
+  if(addY != null && addY !== '')
+    vals['addY'] = addY;
+  var removeY = $formValues.find('.removeY').val();
+  if(removeY != null && removeY !== '')
+    vals['removeY'] = removeY;
 
   patchPersonStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -588,6 +588,10 @@ function patchPersonStepFilters($formFilters) {
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
 
+    var filterTime = $formFilters.find('.valueTime').val();
+    if(filterTime != null && filterTime !== '')
+      filters.push({ name: 'fq', value: 'time:' + filterTime });
+
     var filterDateTime = $formFilters.find('.valueDateTime').val();
     if(filterDateTime != null && filterDateTime !== '')
       filters.push({ name: 'fq', value: 'dateTime:' + filterDateTime });
@@ -601,10 +605,6 @@ function patchPersonStepFilters($formFilters) {
       filterStep = filterStepSelectVal == 'true';
     if(filterStep != null && filterStep === true)
       filters.push({ name: 'fq', value: 'step:' + filterStep });
-
-    var filterTime = $formFilters.find('.valueTime').val();
-    if(filterTime != null && filterTime !== '')
-      filters.push({ name: 'fq', value: 'time:' + filterTime });
 
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
@@ -638,9 +638,17 @@ function patchPersonStepFilters($formFilters) {
     if(filterSlope != null && filterSlope !== '')
       filters.push({ name: 'fq', value: 'slope:' + filterSlope });
 
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -666,21 +674,9 @@ function patchPersonStepFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSessionId = $formFilters.find('.valueSessionId').val();
     if(filterSessionId != null && filterSessionId !== '')
@@ -697,6 +693,10 @@ function patchPersonStepFilters($formFilters) {
     var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
   }
   return filters;
 }
@@ -765,6 +765,10 @@ async function postPersonStep($formValues, success, error) {
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
     vals['sumocfgPath'] = valueSumocfgPath;
 
+  var valueTime = $formValues.find('.valueTime').val();
+  if(valueTime != null && valueTime !== '')
+    vals['time'] = valueTime;
+
   var valueDateTime = $formValues.find('.valueDateTime').val();
   if(valueDateTime != null && valueDateTime !== '')
     vals['dateTime'] = valueDateTime;
@@ -772,10 +776,6 @@ async function postPersonStep($formValues, success, error) {
   var valueStep = $formValues.find('.valueStep').val();
   if(valueStep != null && valueStep !== '')
     vals['step'] = valueStep == 'true';
-
-  var valueTime = $formValues.find('.valueTime').val();
-  if(valueTime != null && valueTime !== '')
-    vals['time'] = valueTime;
 
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
@@ -809,25 +809,13 @@ async function postPersonStep($formValues, success, error) {
   if(valueSlope != null && valueSlope !== '')
     vals['slope'] = valueSlope;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  if(valueTimeStepId != null && valueTimeStepId !== '')
-    vals['timeStepId'] = valueTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  if(valueX != null && valueX !== '')
-    vals['x'] = valueX;
-
-  var valueY = $formValues.find('.valueY').val();
-  if(valueY != null && valueY !== '')
-    vals['y'] = valueY;
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
 
   var valueId = $formValues.find('.valueId').val();
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
-
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
@@ -840,6 +828,18 @@ async function postPersonStep($formValues, success, error) {
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
+
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  if(valueTimeStepId != null && valueTimeStepId !== '')
+    vals['timeStepId'] = valueTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  if(valueX != null && valueX !== '')
+    vals['x'] = valueX;
+
+  var valueY = $formValues.find('.valueY').val();
+  if(valueY != null && valueY !== '')
+    vals['y'] = valueY;
 
   $.ajax({
     url: '/api/person-step'
@@ -952,9 +952,9 @@ async function websocketPersonStepInner(apiRequest) {
         var inputDeleted = null;
         var inputSimulationName = null;
         var inputSumocfgPath = null;
+        var inputTime = null;
         var inputDateTime = null;
         var inputStep = null;
-        var inputTime = null;
         var inputLocation = null;
         var inputColor = null;
         var inputPersonId = null;
@@ -963,23 +963,23 @@ async function websocketPersonStepInner(apiRequest) {
         var inputSpeed = null;
         var inputPos = null;
         var inputSlope = null;
-        var inputTimeStepId = null;
-        var inputX = null;
-        var inputY = null;
+        var inputInheritPk = null;
+        var inputClassCanonicalName = null;
+        var inputClassCanonicalNames = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputInheritPk = null;
-        var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
+        var inputTimeStepId = null;
+        var inputX = null;
+        var inputY = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -995,12 +995,12 @@ async function websocketPersonStepInner(apiRequest) {
           inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
+        if(vars.includes('time'))
+          inputTime = $response.find('.Page_time');
         if(vars.includes('dateTime'))
           inputDateTime = $response.find('.Page_dateTime');
         if(vars.includes('step'))
           inputStep = $response.find('.Page_step');
-        if(vars.includes('time'))
-          inputTime = $response.find('.Page_time');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
         if(vars.includes('color'))
@@ -1017,12 +1017,12 @@ async function websocketPersonStepInner(apiRequest) {
           inputPos = $response.find('.Page_pos');
         if(vars.includes('slope'))
           inputSlope = $response.find('.Page_slope');
-        if(vars.includes('timeStepId'))
-          inputTimeStepId = $response.find('.Page_timeStepId');
-        if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
-        if(vars.includes('y'))
-          inputY = $response.find('.Page_y');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('.Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1035,14 +1035,8 @@ async function websocketPersonStepInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.find('.Page_sessionId');
         if(vars.includes('userKey'))
@@ -1051,6 +1045,12 @@ async function websocketPersonStepInner(apiRequest) {
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.find('.Page_objectTitle');
+        if(vars.includes('timeStepId'))
+          inputTimeStepId = $response.find('.Page_timeStepId');
+        if(vars.includes('x'))
+          inputX = $response.find('.Page_x');
+        if(vars.includes('y'))
+          inputY = $response.find('.Page_y');
         jsWebsocketPersonStep(id, vars, $response);
 
         window.personStep = JSON.parse($response.find('.pageForm .personStep').val());
@@ -1092,6 +1092,11 @@ async function websocketPersonStepInner(apiRequest) {
           addGlow($('.Page_sumocfgPath'));
         }
 
+        if(inputTime) {
+          inputTime.replaceAll('.Page_time');
+          addGlow($('.Page_time'));
+        }
+
         if(inputDateTime) {
           inputDateTime.replaceAll('.Page_dateTime');
           addGlow($('.Page_dateTime'));
@@ -1100,11 +1105,6 @@ async function websocketPersonStepInner(apiRequest) {
         if(inputStep) {
           inputStep.replaceAll('.Page_step');
           addGlow($('.Page_step'));
-        }
-
-        if(inputTime) {
-          inputTime.replaceAll('.Page_time');
-          addGlow($('.Page_time'));
         }
 
         if(inputLocation) {
@@ -1147,19 +1147,19 @@ async function websocketPersonStepInner(apiRequest) {
           addGlow($('.Page_slope'));
         }
 
-        if(inputTimeStepId) {
-          inputTimeStepId.replaceAll('.Page_timeStepId');
-          addGlow($('.Page_timeStepId'));
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('.Page_inheritPk');
+          addGlow($('.Page_inheritPk'));
         }
 
-        if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
         }
 
-        if(inputY) {
-          inputY.replaceAll('.Page_y');
-          addGlow($('.Page_y'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
         }
 
         if(inputObjectSuggest) {
@@ -1192,24 +1192,9 @@ async function websocketPersonStepInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
-
         if(inputClassSimpleName) {
           inputClassSimpleName.replaceAll('.Page_classSimpleName');
           addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
@@ -1230,6 +1215,21 @@ async function websocketPersonStepInner(apiRequest) {
         if(inputObjectTitle) {
           inputObjectTitle.replaceAll('.Page_objectTitle');
           addGlow($('.Page_objectTitle'));
+        }
+
+        if(inputTimeStepId) {
+          inputTimeStepId.replaceAll('.Page_timeStepId');
+          addGlow($('.Page_timeStepId'));
+        }
+
+        if(inputX) {
+          inputX.replaceAll('.Page_x');
+          addGlow($('.Page_x'));
+        }
+
+        if(inputY) {
+          inputY.replaceAll('.Page_y');
+          addGlow($('.Page_y'));
         }
 
         pageGraphPersonStep();
