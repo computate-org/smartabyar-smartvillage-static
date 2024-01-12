@@ -105,17 +105,41 @@ function searchPersonStepFilters($formFilters) {
     if(filterSlope != null && filterSlope !== '')
       filters.push({ name: 'fq', value: 'slope:' + filterSlope });
 
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterLocationColors = $formFilters.find('.valueLocationColors').val();
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.find('.valueLocationTitles').val();
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.find('.valueLocationLinks').val();
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -145,25 +169,13 @@ function searchPersonStepFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
   }
   return filters;
 }
@@ -444,6 +456,42 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   if(removeSlope != null && removeSlope !== '')
     vals['removeSlope'] = removeSlope;
 
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
+  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
+  var addTimeStepId = $formValues.find('.addTimeStepId').val();
+  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
+    vals['setTimeStepId'] = setTimeStepId;
+  if(addTimeStepId != null && addTimeStepId !== '')
+    vals['addTimeStepId'] = addTimeStepId;
+  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
+  if(removeTimeStepId != null && removeTimeStepId !== '')
+    vals['removeTimeStepId'] = removeTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  var removeX = $formValues.find('.removeX').val() === 'true';
+  var setX = removeX ? null : $formValues.find('.setX').val();
+  var addX = $formValues.find('.addX').val();
+  if(removeX || setX != null && setX !== '')
+    vals['setX'] = setX;
+  if(addX != null && addX !== '')
+    vals['addX'] = addX;
+  var removeX = $formValues.find('.removeX').val();
+  if(removeX != null && removeX !== '')
+    vals['removeX'] = removeX;
+
+  var valueY = $formValues.find('.valueY').val();
+  var removeY = $formValues.find('.removeY').val() === 'true';
+  var setY = removeY ? null : $formValues.find('.setY').val();
+  var addY = $formValues.find('.addY').val();
+  if(removeY || setY != null && setY !== '')
+    vals['setY'] = setY;
+  if(addY != null && addY !== '')
+    vals['addY'] = addY;
+  var removeY = $formValues.find('.removeY').val();
+  if(removeY != null && removeY !== '')
+    vals['removeY'] = removeY;
+
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
   var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -455,18 +503,6 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   var removeInheritPk = $formValues.find('.removeInheritPk').val();
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
-
-  var valueId = $formValues.find('.valueId').val();
-  var removeId = $formValues.find('.removeId').val() === 'true';
-  var setId = removeId ? null : $formValues.find('.setId').val();
-  var addId = $formValues.find('.addId').val();
-  if(removeId || setId != null && setId !== '')
-    vals['setId'] = setId;
-  if(addId != null && addId !== '')
-    vals['addId'] = addId;
-  var removeId = $formValues.find('.removeId').val();
-  if(removeId != null && removeId !== '')
-    vals['removeId'] = removeId;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -504,41 +540,17 @@ async function patchPersonStep($formFilters, $formValues, id, success, error) {
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
-  var setTimeStepId = removeTimeStepId ? null : $formValues.find('.setTimeStepId').val();
-  var addTimeStepId = $formValues.find('.addTimeStepId').val();
-  if(removeTimeStepId || setTimeStepId != null && setTimeStepId !== '')
-    vals['setTimeStepId'] = setTimeStepId;
-  if(addTimeStepId != null && addTimeStepId !== '')
-    vals['addTimeStepId'] = addTimeStepId;
-  var removeTimeStepId = $formValues.find('.removeTimeStepId').val();
-  if(removeTimeStepId != null && removeTimeStepId !== '')
-    vals['removeTimeStepId'] = removeTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  var removeX = $formValues.find('.removeX').val() === 'true';
-  var setX = removeX ? null : $formValues.find('.setX').val();
-  var addX = $formValues.find('.addX').val();
-  if(removeX || setX != null && setX !== '')
-    vals['setX'] = setX;
-  if(addX != null && addX !== '')
-    vals['addX'] = addX;
-  var removeX = $formValues.find('.removeX').val();
-  if(removeX != null && removeX !== '')
-    vals['removeX'] = removeX;
-
-  var valueY = $formValues.find('.valueY').val();
-  var removeY = $formValues.find('.removeY').val() === 'true';
-  var setY = removeY ? null : $formValues.find('.setY').val();
-  var addY = $formValues.find('.addY').val();
-  if(removeY || setY != null && setY !== '')
-    vals['setY'] = setY;
-  if(addY != null && addY !== '')
-    vals['addY'] = addY;
-  var removeY = $formValues.find('.removeY').val();
-  if(removeY != null && removeY !== '')
-    vals['removeY'] = removeY;
+  var valueId = $formValues.find('.valueId').val();
+  var removeId = $formValues.find('.removeId').val() === 'true';
+  var setId = removeId ? null : $formValues.find('.setId').val();
+  var addId = $formValues.find('.addId').val();
+  if(removeId || setId != null && setId !== '')
+    vals['setId'] = setId;
+  if(addId != null && addId !== '')
+    vals['addId'] = addId;
+  var removeId = $formValues.find('.removeId').val();
+  if(removeId != null && removeId !== '')
+    vals['removeId'] = removeId;
 
   patchPersonStepVals(id == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, success, error);
 }
@@ -638,17 +650,41 @@ function patchPersonStepFilters($formFilters) {
     if(filterSlope != null && filterSlope !== '')
       filters.push({ name: 'fq', value: 'slope:' + filterSlope });
 
+    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
+    if(filterTimeStepId != null && filterTimeStepId !== '')
+      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterLocationColors = $formFilters.find('.valueLocationColors').val();
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.find('.valueLocationTitles').val();
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.find('.valueLocationLinks').val();
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -678,25 +714,13 @@ function patchPersonStepFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
-    if(filterTimeStepId != null && filterTimeStepId !== '')
-      filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
   }
   return filters;
 }
@@ -809,13 +833,21 @@ async function postPersonStep($formValues, success, error) {
   if(valueSlope != null && valueSlope !== '')
     vals['slope'] = valueSlope;
 
+  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
+  if(valueTimeStepId != null && valueTimeStepId !== '')
+    vals['timeStepId'] = valueTimeStepId;
+
+  var valueX = $formValues.find('.valueX').val();
+  if(valueX != null && valueX !== '')
+    vals['x'] = valueX;
+
+  var valueY = $formValues.find('.valueY').val();
+  if(valueY != null && valueY !== '')
+    vals['y'] = valueY;
+
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
-
-  var valueId = $formValues.find('.valueId').val();
-  if(valueId != null && valueId !== '')
-    vals['id'] = valueId;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
@@ -829,17 +861,9 @@ async function postPersonStep($formValues, success, error) {
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
-  if(valueTimeStepId != null && valueTimeStepId !== '')
-    vals['timeStepId'] = valueTimeStepId;
-
-  var valueX = $formValues.find('.valueX').val();
-  if(valueX != null && valueX !== '')
-    vals['x'] = valueX;
-
-  var valueY = $formValues.find('.valueY').val();
-  if(valueY != null && valueY !== '')
-    vals['y'] = valueY;
+  var valueId = $formValues.find('.valueId').val();
+  if(valueId != null && valueId !== '')
+    vals['id'] = valueId;
 
   $.ajax({
     url: '/api/person-step'
@@ -963,9 +987,17 @@ async function websocketPersonStepInner(apiRequest) {
         var inputSpeed = null;
         var inputPos = null;
         var inputSlope = null;
+        var inputTimeStepId = null;
+        var inputX = null;
+        var inputY = null;
+        var inputLocationColors = null;
+        var inputLocationTitles = null;
+        var inputLocationLinks = null;
         var inputInheritPk = null;
-        var inputClassCanonicalName = null;
-        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
+        var inputSaves = null;
+        var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
@@ -973,13 +1005,8 @@ async function websocketPersonStepInner(apiRequest) {
         var inputPageUrlApi = null;
         var inputId = null;
         var inputClassSimpleName = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
-        var inputTimeStepId = null;
-        var inputX = null;
-        var inputY = null;
+        var inputClassCanonicalNames = null;
+        var inputClassCanonicalName = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1017,12 +1044,28 @@ async function websocketPersonStepInner(apiRequest) {
           inputPos = $response.find('.Page_pos');
         if(vars.includes('slope'))
           inputSlope = $response.find('.Page_slope');
+        if(vars.includes('timeStepId'))
+          inputTimeStepId = $response.find('.Page_timeStepId');
+        if(vars.includes('x'))
+          inputX = $response.find('.Page_x');
+        if(vars.includes('y'))
+          inputY = $response.find('.Page_y');
+        if(vars.includes('locationColors'))
+          inputLocationColors = $response.find('.Page_locationColors');
+        if(vars.includes('locationTitles'))
+          inputLocationTitles = $response.find('.Page_locationTitles');
+        if(vars.includes('locationLinks'))
+          inputLocationLinks = $response.find('.Page_locationLinks');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1037,20 +1080,10 @@ async function websocketPersonStepInner(apiRequest) {
           inputId = $response.find('.Page_id');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('timeStepId'))
-          inputTimeStepId = $response.find('.Page_timeStepId');
-        if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
-        if(vars.includes('y'))
-          inputY = $response.find('.Page_y');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         jsWebsocketPersonStep(id, vars, $response);
 
         window.personStep = JSON.parse($response.find('.pageForm .personStep').val());
@@ -1147,19 +1180,59 @@ async function websocketPersonStepInner(apiRequest) {
           addGlow($('.Page_slope'));
         }
 
+        if(inputTimeStepId) {
+          inputTimeStepId.replaceAll('.Page_timeStepId');
+          addGlow($('.Page_timeStepId'));
+        }
+
+        if(inputX) {
+          inputX.replaceAll('.Page_x');
+          addGlow($('.Page_x'));
+        }
+
+        if(inputY) {
+          inputY.replaceAll('.Page_y');
+          addGlow($('.Page_y'));
+        }
+
+        if(inputLocationColors) {
+          inputLocationColors.replaceAll('.Page_locationColors');
+          addGlow($('.Page_locationColors'));
+        }
+
+        if(inputLocationTitles) {
+          inputLocationTitles.replaceAll('.Page_locationTitles');
+          addGlow($('.Page_locationTitles'));
+        }
+
+        if(inputLocationLinks) {
+          inputLocationLinks.replaceAll('.Page_locationLinks');
+          addGlow($('.Page_locationLinks'));
+        }
+
         if(inputInheritPk) {
           inputInheritPk.replaceAll('.Page_inheritPk');
           addGlow($('.Page_inheritPk'));
         }
 
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
         }
 
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('.Page_objectTitle');
+          addGlow($('.Page_objectTitle'));
         }
 
         if(inputObjectSuggest) {
@@ -1197,39 +1270,14 @@ async function websocketPersonStepInner(apiRequest) {
           addGlow($('.Page_classSimpleName'));
         }
 
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
         }
 
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
-        }
-
-        if(inputTimeStepId) {
-          inputTimeStepId.replaceAll('.Page_timeStepId');
-          addGlow($('.Page_timeStepId'));
-        }
-
-        if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
-        }
-
-        if(inputY) {
-          inputY.replaceAll('.Page_y');
-          addGlow($('.Page_y'));
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
         }
 
         pageGraphPersonStep();
@@ -1342,10 +1390,10 @@ function pageGraphPersonStep(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipPersonStep(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapPersonStep) {
-      window.geoJSONLayerGroupPersonStep.clearLayers();
+      window.geoJSONPersonStep.clearLayers();
       $.each( window.listPersonStep, function(index, personStep) {
         if(personStep.location) {
           var shapes = [];
@@ -1367,12 +1415,12 @@ function pageGraphPersonStep(apiRequest) {
                 return L.circleMarker(latlng, jsStylePersonStep(feature));
               }
             });
-            window.geoJSONLayerGroupPersonStep.addLayer(layer);
+            window.geoJSONPersonStep.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapPersonStep = L.map('htmBodyGraphLocationPersonStepPage');
+      window.mapPersonStep = L.map('htmBodyGraphLocationPersonStepPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -1380,7 +1428,7 @@ function pageGraphPersonStep(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendPersonStep;
-      //legend.addTo(window.mapPersonStep);
+      legend.addTo(window.mapPersonStep);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1394,7 +1442,7 @@ function pageGraphPersonStep(apiRequest) {
         window.mapPersonStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupPersonStep = L.geoJSON().addTo(window.mapPersonStep);
+      window.geoJSONPersonStep = L.geoJSON().addTo(window.mapPersonStep);
       $.each( window.listPersonStep, function(index, personStep) {
         if(personStep.location) {
           var shapes = [];
@@ -1416,7 +1464,7 @@ function pageGraphPersonStep(apiRequest) {
                 return L.circleMarker(latlng, jsStylePersonStep(feature));
               }
             });
-            window.geoJSONLayerGroupPersonStep.addLayer(layer);
+            window.geoJSONPersonStep.addLayer(layer);
           });
         }
       });

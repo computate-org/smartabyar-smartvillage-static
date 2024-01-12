@@ -109,13 +109,21 @@ function searchVehicleStepFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -145,25 +153,29 @@ function searchVehicleStepFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterLocationColors = $formFilters.find('.valueLocationColors').val();
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.find('.valueLocationTitles').val();
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.find('.valueLocationLinks').val();
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
   }
   return filters;
 }
@@ -456,18 +468,6 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
-  var valueId = $formValues.find('.valueId').val();
-  var removeId = $formValues.find('.removeId').val() === 'true';
-  var setId = removeId ? null : $formValues.find('.setId').val();
-  var addId = $formValues.find('.addId').val();
-  if(removeId || setId != null && setId !== '')
-    vals['setId'] = setId;
-  if(addId != null && addId !== '')
-    vals['addId'] = addId;
-  var removeId = $formValues.find('.removeId').val();
-  if(removeId != null && removeId !== '')
-    vals['removeId'] = removeId;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -503,6 +503,18 @@ async function patchVehicleStep($formFilters, $formValues, id, success, error) {
   var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueId = $formValues.find('.valueId').val();
+  var removeId = $formValues.find('.removeId').val() === 'true';
+  var setId = removeId ? null : $formValues.find('.setId').val();
+  var addId = $formValues.find('.addId').val();
+  if(removeId || setId != null && setId !== '')
+    vals['setId'] = setId;
+  if(addId != null && addId !== '')
+    vals['addId'] = addId;
+  var removeId = $formValues.find('.removeId').val();
+  if(removeId != null && removeId !== '')
+    vals['removeId'] = removeId;
 
   var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
   var removeTimeStepId = $formValues.find('.removeTimeStepId').val() === 'true';
@@ -642,13 +654,21 @@ function patchVehicleStepFilters($formFilters) {
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -678,25 +698,29 @@ function patchVehicleStepFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterLocationColors = $formFilters.find('.valueLocationColors').val();
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.find('.valueLocationTitles').val();
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.find('.valueLocationLinks').val();
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
   }
   return filters;
 }
@@ -813,10 +837,6 @@ async function postVehicleStep($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueId = $formValues.find('.valueId').val();
-  if(valueId != null && valueId !== '')
-    vals['id'] = valueId;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -828,6 +848,10 @@ async function postVehicleStep($formValues, success, error) {
   var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
+
+  var valueId = $formValues.find('.valueId').val();
+  if(valueId != null && valueId !== '')
+    vals['id'] = valueId;
 
   var valueTimeStepId = $formValues.find('.valueTimeStepId').val();
   if(valueTimeStepId != null && valueTimeStepId !== '')
@@ -964,8 +988,10 @@ async function websocketVehicleStepInner(apiRequest) {
         var inputPos = null;
         var inputSlope = null;
         var inputInheritPk = null;
-        var inputClassCanonicalName = null;
-        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
+        var inputSaves = null;
+        var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
@@ -973,13 +999,14 @@ async function websocketVehicleStepInner(apiRequest) {
         var inputPageUrlApi = null;
         var inputId = null;
         var inputClassSimpleName = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
+        var inputClassCanonicalNames = null;
+        var inputClassCanonicalName = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
+        var inputLocationColors = null;
+        var inputLocationTitles = null;
+        var inputLocationLinks = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1019,10 +1046,14 @@ async function websocketVehicleStepInner(apiRequest) {
           inputSlope = $response.find('.Page_slope');
         if(vars.includes('inheritPk'))
           inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('.Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('.Page_objectTitle');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.find('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1037,20 +1068,22 @@ async function websocketVehicleStepInner(apiRequest) {
           inputId = $response.find('.Page_id');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
         if(vars.includes('timeStepId'))
           inputTimeStepId = $response.find('.Page_timeStepId');
         if(vars.includes('x'))
           inputX = $response.find('.Page_x');
         if(vars.includes('y'))
           inputY = $response.find('.Page_y');
+        if(vars.includes('locationColors'))
+          inputLocationColors = $response.find('.Page_locationColors');
+        if(vars.includes('locationTitles'))
+          inputLocationTitles = $response.find('.Page_locationTitles');
+        if(vars.includes('locationLinks'))
+          inputLocationLinks = $response.find('.Page_locationLinks');
         jsWebsocketVehicleStep(id, vars, $response);
 
         window.vehicleStep = JSON.parse($response.find('.pageForm .vehicleStep').val());
@@ -1152,14 +1185,24 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_inheritPk'));
         }
 
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
         }
 
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('.Page_saves');
+          addGlow($('.Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('.Page_objectTitle');
+          addGlow($('.Page_objectTitle'));
         }
 
         if(inputObjectSuggest) {
@@ -1197,24 +1240,14 @@ async function websocketVehicleStepInner(apiRequest) {
           addGlow($('.Page_classSimpleName'));
         }
 
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
         }
 
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
+          addGlow($('.Page_classCanonicalName'));
         }
 
         if(inputTimeStepId) {
@@ -1230,6 +1263,21 @@ async function websocketVehicleStepInner(apiRequest) {
         if(inputY) {
           inputY.replaceAll('.Page_y');
           addGlow($('.Page_y'));
+        }
+
+        if(inputLocationColors) {
+          inputLocationColors.replaceAll('.Page_locationColors');
+          addGlow($('.Page_locationColors'));
+        }
+
+        if(inputLocationTitles) {
+          inputLocationTitles.replaceAll('.Page_locationTitles');
+          addGlow($('.Page_locationTitles'));
+        }
+
+        if(inputLocationLinks) {
+          inputLocationLinks.replaceAll('.Page_locationLinks');
+          addGlow($('.Page_locationLinks'));
         }
 
         pageGraphVehicleStep();
@@ -1342,10 +1390,10 @@ function pageGraphVehicleStep(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipVehicleStep(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapVehicleStep) {
-      window.geoJSONLayerGroupVehicleStep.clearLayers();
+      window.geoJSONVehicleStep.clearLayers();
       $.each( window.listVehicleStep, function(index, vehicleStep) {
         if(vehicleStep.location) {
           var shapes = [];
@@ -1367,12 +1415,12 @@ function pageGraphVehicleStep(apiRequest) {
                 return L.circleMarker(latlng, jsStyleVehicleStep(feature));
               }
             });
-            window.geoJSONLayerGroupVehicleStep.addLayer(layer);
+            window.geoJSONVehicleStep.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapVehicleStep = L.map('htmBodyGraphLocationVehicleStepPage');
+      window.mapVehicleStep = L.map('htmBodyGraphLocationVehicleStepPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -1380,7 +1428,7 @@ function pageGraphVehicleStep(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendVehicleStep;
-      //legend.addTo(window.mapVehicleStep);
+      legend.addTo(window.mapVehicleStep);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1394,7 +1442,7 @@ function pageGraphVehicleStep(apiRequest) {
         window.mapVehicleStep.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupVehicleStep = L.geoJSON().addTo(window.mapVehicleStep);
+      window.geoJSONVehicleStep = L.geoJSON().addTo(window.mapVehicleStep);
       $.each( window.listVehicleStep, function(index, vehicleStep) {
         if(vehicleStep.location) {
           var shapes = [];
@@ -1416,7 +1464,7 @@ function pageGraphVehicleStep(apiRequest) {
                 return L.circleMarker(latlng, jsStyleVehicleStep(feature));
               }
             });
-            window.geoJSONLayerGroupVehicleStep.addLayer(layer);
+            window.geoJSONVehicleStep.addLayer(layer);
           });
         }
       });

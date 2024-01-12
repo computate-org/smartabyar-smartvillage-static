@@ -239,6 +239,22 @@ function searchSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -271,21 +287,9 @@ function searchSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
 
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -365,42 +369,6 @@ function suggestSimulationReportObjectSuggest($formFilters, $list) {
   searchSimulationReportVals($formFilters, success, error);
 }
 
-function suggestSimulationReportSmartTrafficLightKey(filters, $list, pk = null, relate=true) {
-  success = function( data, textStatus, jQxhr ) {
-    $list.empty();
-    $.each(data['list'], function(i, o) {
-      var $i = $('<i>').attr('class', 'fa fa-traffic-light-stop ');
-      var $span = $('<span>').attr('class', '').text(o['objectTitle']);
-      var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
-      $a.append($i);
-      $a.append($span);
-      var val = o['reportKeys'];
-      var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
-      var $input = $('<input>');
-      $input.attr('id', 'GET_smartTrafficLightKey_' + pk + '_reportKeys_' + o['pk']);
-      $input.attr('value', o['pk']);
-      $input.attr('class', 'valueSmartTrafficLightKey w3-check ');
-      if(pk != null) {
-        $input.attr('onchange', "var $input = $('#GET_smartTrafficLightKey_" + pk + "_reportKeys_" + o['pk'] + "'); patchSimulationReportVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SmartTrafficLightKey']: \"" + o['pk'] + "\" } ); ");
-        $input.attr('onclick', 'removeGlow($(this)); ');
-      }
-      $input.attr('type', 'checkbox');
-      if(checked)
-        $input.attr('checked', 'checked');
-      var $li = $('<li>');
-      if(relate)
-        $li.append($input);
-      $li.append($a);
-      $list.append($li);
-    });
-    var focusId = $('#SimulationReportForm :input[name="focusId"]').val();
-    if(focusId)
-      $('#' + focusId).parent().next().find('input').focus();
-  };
-  error = function( jqXhr, textStatus, errorThrown ) {};
-  searchSmartTrafficLightVals(filters, success, error);
-}
-
 function suggestSimulationReportSimulationKey(filters, $list, pk = null, relate=true) {
   success = function( data, textStatus, jQxhr ) {
     $list.empty();
@@ -435,6 +403,42 @@ function suggestSimulationReportSimulationKey(filters, $list, pk = null, relate=
   };
   error = function( jqXhr, textStatus, errorThrown ) {};
   searchTrafficSimulationVals(filters, success, error);
+}
+
+function suggestSimulationReportSmartTrafficLightKey(filters, $list, pk = null, relate=true) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.empty();
+    $.each(data['list'], function(i, o) {
+      var $i = $('<i>').attr('class', 'fa fa-traffic-light-stop ');
+      var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+      var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['reportKeys'];
+      var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+      var $input = $('<input>');
+      $input.attr('id', 'GET_smartTrafficLightKey_' + pk + '_reportKeys_' + o['pk']);
+      $input.attr('value', o['pk']);
+      $input.attr('class', 'valueSmartTrafficLightKey w3-check ');
+      if(pk != null) {
+        $input.attr('onchange', "var $input = $('#GET_smartTrafficLightKey_" + pk + "_reportKeys_" + o['pk'] + "'); patchSimulationReportVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SmartTrafficLightKey']: \"" + o['pk'] + "\" } ); ");
+        $input.attr('onclick', 'removeGlow($(this)); ');
+      }
+      $input.attr('type', 'checkbox');
+      if(checked)
+        $input.attr('checked', 'checked');
+      var $li = $('<li>');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+    var focusId = $('#SimulationReportForm :input[name="focusId"]').val();
+    if(focusId)
+      $('#' + focusId).parent().next().find('input').focus();
+  };
+  error = function( jqXhr, textStatus, errorThrown ) {};
+  searchSmartTrafficLightVals(filters, success, error);
 }
 
 // GET //
@@ -1059,18 +1063,6 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -1094,6 +1086,18 @@ async function patchSimulationReport($formFilters, $formValues, pk, success, err
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
@@ -1411,6 +1415,22 @@ function patchSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -1443,21 +1463,9 @@ function patchSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
 
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -1746,10 +1754,6 @@ async function postSimulationReport($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1757,6 +1761,10 @@ async function postSimulationReport($formValues, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
@@ -2051,10 +2059,6 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -2062,6 +2066,10 @@ async function putcopySimulationReport($formValues, pk, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   if(valueSimulationName != null && valueSimulationName !== '')
@@ -2715,18 +2723,6 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -2750,6 +2746,18 @@ async function patchrunsimulationSimulationReport($formFilters, $formValues, pk,
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSimulationName = $formValues.find('.valueSimulationName').val();
   var removeSimulationName = $formValues.find('.removeSimulationName').val() === 'true';
@@ -3067,6 +3075,22 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -3099,21 +3123,9 @@ function patchrunsimulationSimulationReportFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
 
     var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -3228,18 +3240,18 @@ async function websocketSimulationReport(success) {
       }
     });
 
-    window.eventBus.registerHandler('websocketSmartTrafficLight', function (error, message) {
-      $('.Page_smartTrafficLightKey').trigger('oninput');
-      $('.Page_smartTrafficLightKey_add').text('add a smart traffic light');
-      $('.Page_smartTrafficLightKey_add').removeClass('w3-disabled');
-      $('.Page_smartTrafficLightKey_add').attr('disabled', false);
-    });
-
     window.eventBus.registerHandler('websocketTrafficSimulation', function (error, message) {
       $('.Page_simulationKey').trigger('oninput');
       $('.Page_simulationKey_add').text('add a traffic simulation');
       $('.Page_simulationKey_add').removeClass('w3-disabled');
       $('.Page_simulationKey_add').attr('disabled', false);
+    });
+
+    window.eventBus.registerHandler('websocketSmartTrafficLight', function (error, message) {
+      $('.Page_smartTrafficLightKey').trigger('oninput');
+      $('.Page_smartTrafficLightKey_add').text('add a smart traffic light');
+      $('.Page_smartTrafficLightKey_add').removeClass('w3-disabled');
+      $('.Page_smartTrafficLightKey_add').attr('disabled', false);
     });
   }
 }
@@ -3308,6 +3320,10 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -3316,10 +3332,7 @@ async function websocketSimulationReportInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
+        var inputAreaServedTitles = null;
         var inputAreaServedColors = null;
         var inputAreaServed = null;
         var inputSimulationName = null;
@@ -3438,6 +3451,14 @@ async function websocketSimulationReportInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -3454,14 +3475,8 @@ async function websocketSimulationReportInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.find('.Page_areaServedTitles');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.find('.Page_areaServedColors');
         if(vars.includes('areaServed'))
@@ -3755,6 +3770,26 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_classCanonicalName'));
         }
 
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -3795,24 +3830,9 @@ async function websocketSimulationReportInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
+        if(inputAreaServedTitles) {
+          inputAreaServedTitles.replaceAll('.Page_areaServedTitles');
+          addGlow($('.Page_areaServedTitles'));
         }
 
         if(inputAreaServedColors) {
@@ -3980,10 +4000,10 @@ function pageGraphSimulationReport(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipSimulationReport(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapSimulationReport) {
-      window.geoJSONLayerGroupSimulationReport.clearLayers();
+      window.geoJSONSimulationReport.clearLayers();
       $.each( window.listSimulationReport, function(index, simulationReport) {
         if(simulationReport.areaServed) {
           var shapes = [];
@@ -4005,12 +4025,12 @@ function pageGraphSimulationReport(apiRequest) {
                 return L.circleMarker(latlng, jsStyleSimulationReport(feature));
               }
             });
-            window.geoJSONLayerGroupSimulationReport.addLayer(layer);
+            window.geoJSONSimulationReport.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapSimulationReport = L.map('htmBodyGraphLocationSimulationReportPage');
+      window.mapSimulationReport = L.map('htmBodyGraphLocationSimulationReportPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -4018,7 +4038,7 @@ function pageGraphSimulationReport(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendSimulationReport;
-      //legend.addTo(window.mapSimulationReport);
+      legend.addTo(window.mapSimulationReport);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -4032,7 +4052,7 @@ function pageGraphSimulationReport(apiRequest) {
         window.mapSimulationReport.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupSimulationReport = L.geoJSON().addTo(window.mapSimulationReport);
+      window.geoJSONSimulationReport = L.geoJSON().addTo(window.mapSimulationReport);
       $.each( window.listSimulationReport, function(index, simulationReport) {
         if(simulationReport.areaServed) {
           var shapes = [];
@@ -4054,7 +4074,7 @@ function pageGraphSimulationReport(apiRequest) {
                 return L.circleMarker(latlng, jsStyleSimulationReport(feature));
               }
             });
-            window.geoJSONLayerGroupSimulationReport.addLayer(layer);
+            window.geoJSONSimulationReport.addLayer(layer);
           });
         }
       });

@@ -55,13 +55,13 @@ function searchTrafficSimulationFilters($formFilters) {
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
-    var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
-    if(filterStartDateTime != null && filterStartDateTime !== '')
-      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
 
     var filterReportKeys = $formFilters.find('.valueReportKeys').val();
     if(filterReportKeys != null && filterReportKeys !== '')
@@ -78,6 +78,22 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -110,22 +126,6 @@ function searchTrafficSimulationFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -467,18 +467,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   if(removeEntityId != null && removeEntityId !== '')
     vals['removeEntityId'] = removeEntityId;
 
-  var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
-  var removeStartDateTime = $formValues.find('.removeStartDateTime').val() === 'true';
-  var setStartDateTime = removeStartDateTime ? null : $formValues.find('.setStartDateTime').val();
-  var addStartDateTime = $formValues.find('.addStartDateTime').val();
-  if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
-    vals['setStartDateTime'] = setStartDateTime;
-  if(addStartDateTime != null && addStartDateTime !== '')
-    vals['addStartDateTime'] = addStartDateTime;
-  var removeStartDateTime = $formValues.find('.removeStartDateTime').val();
-  if(removeStartDateTime != null && removeStartDateTime !== '')
-    vals['removeStartDateTime'] = removeStartDateTime;
-
   var valueLocation = $formValues.find('.valueLocation').val();
   var removeLocation = $formValues.find('.removeLocation').val() === 'true';
   var setLocation = removeLocation ? null : $formValues.find('.setLocation').val();
@@ -490,6 +478,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeLocation = $formValues.find('.removeLocation').val();
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
+
+  var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+  var removeStartDateTime = $formValues.find('.removeStartDateTime').val() === 'true';
+  var setStartDateTime = removeStartDateTime ? null : $formValues.find('.setStartDateTime').val();
+  var addStartDateTime = $formValues.find('.addStartDateTime').val();
+  if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
+    vals['setStartDateTime'] = setStartDateTime;
+  if(addStartDateTime != null && addStartDateTime !== '')
+    vals['addStartDateTime'] = addStartDateTime;
+  var removeStartDateTime = $formValues.find('.removeStartDateTime').val();
+  if(removeStartDateTime != null && removeStartDateTime !== '')
+    vals['removeStartDateTime'] = removeStartDateTime;
 
   var valueReportKeys = $formValues.find('input.valueReportKeys:checked').val();
   if(valueReportKeys != null && valueReportKeys !== '')
@@ -506,18 +506,6 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeInheritPk = $formValues.find('.removeInheritPk').val();
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
-
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
@@ -542,6 +530,18 @@ async function patchTrafficSimulation($formFilters, $formValues, pk, success, er
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -1011,13 +1011,13 @@ function patchTrafficSimulationFilters($formFilters) {
     if(filterEntityId != null && filterEntityId !== '')
       filters.push({ name: 'fq', value: 'entityId:' + filterEntityId });
 
-    var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
-    if(filterStartDateTime != null && filterStartDateTime !== '')
-      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
     var filterLocation = $formFilters.find('.valueLocation').val();
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterStartDateTime = $formFilters.find('.valueStartDateTime').val();
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
 
     var filterReportKeys = $formFilters.find('.valueReportKeys').val();
     if(filterReportKeys != null && filterReportKeys !== '')
@@ -1034,6 +1034,22 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
@@ -1066,22 +1082,6 @@ function patchTrafficSimulationFilters($formFilters) {
     var filterId = $formFilters.find('.valueId').val();
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1310,13 +1310,13 @@ async function postTrafficSimulation($formValues, success, error) {
   if(valueEntityId != null && valueEntityId !== '')
     vals['entityId'] = valueEntityId;
 
-  var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
-  if(valueStartDateTime != null && valueStartDateTime !== '')
-    vals['startDateTime'] = valueStartDateTime;
-
   var valueLocation = $formValues.find('.valueLocation').val();
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = JSON.parse(valueLocation);
+
+  var valueStartDateTime = $formValues.find('.valueStartDateTime').val();
+  if(valueStartDateTime != null && valueStartDateTime !== '')
+    vals['startDateTime'] = valueStartDateTime;
 
   var valueReportKeys = [];
   $formValues.find('input.valueReportKeys:checked').each(function(index) {
@@ -1329,10 +1329,6 @@ async function postTrafficSimulation($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1340,6 +1336,10 @@ async function postTrafficSimulation($formValues, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
@@ -1599,12 +1599,16 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputDeleted = null;
         var inputSimulationName = null;
         var inputEntityId = null;
-        var inputStartDateTime = null;
         var inputLocation = null;
+        var inputStartDateTime = null;
         var inputReportKeys = null;
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -1613,10 +1617,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
         var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
@@ -1672,10 +1672,10 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputSimulationName = $response.find('.Page_simulationName');
         if(vars.includes('entityId'))
           inputEntityId = $response.find('.Page_entityId');
-        if(vars.includes('startDateTime'))
-          inputStartDateTime = $response.find('.Page_startDateTime');
         if(vars.includes('location'))
           inputLocation = $response.find('.Page_location');
+        if(vars.includes('startDateTime'))
+          inputStartDateTime = $response.find('.Page_startDateTime');
         if(vars.includes('reportKeys'))
           inputReportKeys = $response.find('.Page_reportKeys');
         if(vars.includes('pk'))
@@ -1684,6 +1684,14 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -1700,14 +1708,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
@@ -1829,14 +1829,14 @@ async function websocketTrafficSimulationInner(apiRequest) {
           addGlow($('.Page_entityId'));
         }
 
-        if(inputStartDateTime) {
-          inputStartDateTime.replaceAll('.Page_startDateTime');
-          addGlow($('.Page_startDateTime'));
-        }
-
         if(inputLocation) {
           inputLocation.replaceAll('.Page_location');
           addGlow($('.Page_location'));
+        }
+
+        if(inputStartDateTime) {
+          inputStartDateTime.replaceAll('.Page_startDateTime');
+          addGlow($('.Page_startDateTime'));
         }
 
         if(inputReportKeys) {
@@ -1857,6 +1857,26 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputClassCanonicalName) {
           inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
           addGlow($('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
         }
 
         if(inputSaves) {
@@ -1897,26 +1917,6 @@ async function websocketTrafficSimulationInner(apiRequest) {
         if(inputId) {
           inputId.replaceAll('.Page_id');
           addGlow($('.Page_id'));
-        }
-
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
         }
 
         if(inputEntityShortId) {
@@ -2229,10 +2229,10 @@ function pageGraphTrafficSimulation(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipTrafficSimulation(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapTrafficSimulation) {
-      window.geoJSONLayerGroupTrafficSimulation.clearLayers();
+      window.geoJSONTrafficSimulation.clearLayers();
       $.each( window.listTrafficSimulation, function(index, trafficSimulation) {
         if(trafficSimulation.areaServed) {
           var shapes = [];
@@ -2254,12 +2254,12 @@ function pageGraphTrafficSimulation(apiRequest) {
                 return L.circleMarker(latlng, jsStyleTrafficSimulation(feature));
               }
             });
-            window.geoJSONLayerGroupTrafficSimulation.addLayer(layer);
+            window.geoJSONTrafficSimulation.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapTrafficSimulation = L.map('htmBodyGraphLocationTrafficSimulationPage');
+      window.mapTrafficSimulation = L.map('htmBodyGraphLocationTrafficSimulationPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -2267,7 +2267,7 @@ function pageGraphTrafficSimulation(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendTrafficSimulation;
-      //legend.addTo(window.mapTrafficSimulation);
+      legend.addTo(window.mapTrafficSimulation);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -2281,7 +2281,7 @@ function pageGraphTrafficSimulation(apiRequest) {
         window.mapTrafficSimulation.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupTrafficSimulation = L.geoJSON().addTo(window.mapTrafficSimulation);
+      window.geoJSONTrafficSimulation = L.geoJSON().addTo(window.mapTrafficSimulation);
       $.each( window.listTrafficSimulation, function(index, trafficSimulation) {
         if(trafficSimulation.areaServed) {
           var shapes = [];
@@ -2303,7 +2303,7 @@ function pageGraphTrafficSimulation(apiRequest) {
                 return L.circleMarker(latlng, jsStyleTrafficSimulation(feature));
               }
             });
-            window.geoJSONLayerGroupTrafficSimulation.addLayer(layer);
+            window.geoJSONTrafficSimulation.addLayer(layer);
           });
         }
       });

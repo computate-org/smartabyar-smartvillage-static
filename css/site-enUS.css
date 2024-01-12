@@ -20,6 +20,7 @@ dt:after { content: ': '; }
 dd { display: inline; margin: 0; padding: 0; font-style: italic; }
 i { font-weight: normal; }
 body {  }
+.text-overflow-ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .w3-modal { z-index: 2000; }
 .siteSidebarToggle { z-index: 1001; }
 .w3-dropdown-content { z-index: 1001; }

@@ -239,6 +239,22 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -271,22 +287,6 @@ function searchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
@@ -294,6 +294,18 @@ function searchTrafficFlowObservedFilters($formFilters) {
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -937,18 +949,6 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-  var addObjectTitle = $formValues.find('.addObjectTitle').val();
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -972,6 +972,18 @@ async function patchTrafficFlowObserved($formFilters, $formValues, pk, success, 
   var removeUserKey = $formValues.find('.removeUserKey').val();
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+  var addObjectTitle = $formValues.find('.addObjectTitle').val();
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   var removeSumocfgPath = $formValues.find('.removeSumocfgPath').val() === 'true';
@@ -1217,6 +1229,22 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.find('.valueSaves').val();
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -1249,22 +1277,6 @@ function patchTrafficFlowObservedFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
     var filterEntityShortId = $formFilters.find('.valueEntityShortId').val();
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
@@ -1272,6 +1284,18 @@ function patchTrafficFlowObservedFilters($formFilters) {
     var filterSumocfgPath = $formFilters.find('.valueSumocfgPath').val();
     if(filterSumocfgPath != null && filterSumocfgPath !== '')
       filters.push({ name: 'fq', value: 'sumocfgPath:' + filterSumocfgPath });
+
+    var filterAreaServedColors = $formFilters.find('.valueAreaServedColors').val();
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.find('.valueAreaServedTitles').val();
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.find('.valueAreaServedLinks').val();
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -1504,10 +1528,6 @@ async function postTrafficFlowObserved($formValues, success, error) {
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
 
-  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1515,6 +1535,10 @@ async function postTrafficFlowObserved($formValues, success, error) {
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
+
+  var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueSumocfgPath = $formValues.find('.valueSumocfgPath').val();
   if(valueSumocfgPath != null && valueSumocfgPath !== '')
@@ -1674,6 +1698,10 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputObjectSuggest = null;
@@ -1682,12 +1710,11 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
         var inputEntityShortId = null;
         var inputSumocfgPath = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
 
         if(vars.includes('created'))
           inputCreated = $response.find('.Page_created');
@@ -1789,6 +1816,14 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputInheritPk = $response.find('.Page_inheritPk');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.find('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -1805,18 +1840,16 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           inputPageUrlApi = $response.find('.Page_pageUrlApi');
         if(vars.includes('id'))
           inputId = $response.find('.Page_id');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.find('.Page_entityShortId');
         if(vars.includes('sumocfgPath'))
           inputSumocfgPath = $response.find('.Page_sumocfgPath');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.find('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.find('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.find('.Page_areaServedLinks');
         jsWebsocketTrafficFlowObserved(pk, vars, $response);
 
         window.trafficFlowObserved = JSON.parse($response.find('.pageForm .trafficFlowObserved').val());
@@ -2073,6 +2106,26 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_classCanonicalName'));
         }
 
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('.Page_classSimpleName');
+          addGlow($('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
+          addGlow($('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('.Page_sessionId');
+          addGlow($('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('.Page_userKey');
+          addGlow($('.Page_userKey'));
+        }
+
         if(inputSaves) {
           inputSaves.replaceAll('.Page_saves');
           addGlow($('.Page_saves'));
@@ -2113,26 +2166,6 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
           addGlow($('.Page_id'));
         }
 
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
         if(inputEntityShortId) {
           inputEntityShortId.replaceAll('.Page_entityShortId');
           addGlow($('.Page_entityShortId'));
@@ -2141,6 +2174,21 @@ async function websocketTrafficFlowObservedInner(apiRequest) {
         if(inputSumocfgPath) {
           inputSumocfgPath.replaceAll('.Page_sumocfgPath');
           addGlow($('.Page_sumocfgPath'));
+        }
+
+        if(inputAreaServedColors) {
+          inputAreaServedColors.replaceAll('.Page_areaServedColors');
+          addGlow($('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          inputAreaServedTitles.replaceAll('.Page_areaServedTitles');
+          addGlow($('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          inputAreaServedLinks.replaceAll('.Page_areaServedLinks');
+          addGlow($('.Page_areaServedLinks'));
         }
 
         pageGraphTrafficFlowObserved();
@@ -2253,10 +2301,10 @@ function pageGraphTrafficFlowObserved(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipTrafficFlowObserved(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapTrafficFlowObserved) {
-      window.geoJSONLayerGroupTrafficFlowObserved.clearLayers();
+      window.geoJSONTrafficFlowObserved.clearLayers();
       $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
         if(trafficFlowObserved.areaServed) {
           var shapes = [];
@@ -2278,12 +2326,12 @@ function pageGraphTrafficFlowObserved(apiRequest) {
                 return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
               }
             });
-            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(layer);
+            window.geoJSONTrafficFlowObserved.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapTrafficFlowObserved = L.map('htmBodyGraphLocationTrafficFlowObservedPage');
+      window.mapTrafficFlowObserved = L.map('htmBodyGraphLocationTrafficFlowObservedPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -2291,7 +2339,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendTrafficFlowObserved;
-      //legend.addTo(window.mapTrafficFlowObserved);
+      legend.addTo(window.mapTrafficFlowObserved);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -2305,7 +2353,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
         window.mapTrafficFlowObserved.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupTrafficFlowObserved = L.geoJSON().addTo(window.mapTrafficFlowObserved);
+      window.geoJSONTrafficFlowObserved = L.geoJSON().addTo(window.mapTrafficFlowObserved);
       $.each( window.listTrafficFlowObserved, function(index, trafficFlowObserved) {
         if(trafficFlowObserved.areaServed) {
           var shapes = [];
@@ -2327,7 +2375,7 @@ function pageGraphTrafficFlowObserved(apiRequest) {
                 return L.circleMarker(latlng, jsStyleTrafficFlowObserved(feature));
               }
             });
-            window.geoJSONLayerGroupTrafficFlowObserved.addLayer(layer);
+            window.geoJSONTrafficFlowObserved.addLayer(layer);
           });
         }
       });
