@@ -159,6 +159,18 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterReportKeys != null && filterReportKeys !== '')
       filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPk = $formFilters.find('.valuePk').val();
     if(filterPk != null && filterPk !== '')
       filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -195,21 +207,9 @@ function searchSmartTrafficLightFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
@@ -927,6 +927,18 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterReportKeys != null && filterReportKeys !== '')
       filters.push({ name: 'fq', value: 'reportKeys:' + filterReportKeys });
 
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPk = $formFilters.find('.valuePk').val();
     if(filterPk != null && filterPk !== '')
       filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -963,21 +975,9 @@ function patchSmartTrafficLightFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
@@ -1345,6 +1345,9 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputParamItersPerPar = null;
         var inputParamTotalIterNum = null;
         var inputReportKeys = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
+        var inputPageUrlPk = null;
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
@@ -1354,10 +1357,7 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
         var inputEntityShortId = null;
@@ -1368,113 +1368,113 @@ async function websocketSmartTrafficLightInner(apiRequest) {
         var inputParamDemandScale = null;
 
         if(vars.includes('created'))
-          inputCreated = $response.find('.Page_created');
+          inputCreated = $response.find('#Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.find('.Page_modified');
+          inputModified = $response.find('#Page_modified');
         if(vars.includes('objectId'))
-          inputObjectId = $response.find('.Page_objectId');
+          inputObjectId = $response.find('#Page_objectId');
         if(vars.includes('archived'))
-          inputArchived = $response.find('.Page_archived');
+          inputArchived = $response.find('#Page_archived');
         if(vars.includes('deleted'))
-          inputDeleted = $response.find('.Page_deleted');
+          inputDeleted = $response.find('#Page_deleted');
         if(vars.includes('location'))
-          inputLocation = $response.find('.Page_location');
+          inputLocation = $response.find('#Page_location');
         if(vars.includes('entityId'))
-          inputEntityId = $response.find('.Page_entityId');
+          inputEntityId = $response.find('#Page_entityId');
         if(vars.includes('smartTrafficLightName'))
-          inputSmartTrafficLightName = $response.find('.Page_smartTrafficLightName');
+          inputSmartTrafficLightName = $response.find('#Page_smartTrafficLightName');
         if(vars.includes('areaServed'))
-          inputAreaServed = $response.find('.Page_areaServed');
+          inputAreaServed = $response.find('#Page_areaServed');
         if(vars.includes('routeIds'))
-          inputRouteIds = $response.find('.Page_routeIds');
+          inputRouteIds = $response.find('#Page_routeIds');
         if(vars.includes('routeIdNorth'))
-          inputRouteIdNorth = $response.find('.Page_routeIdNorth');
+          inputRouteIdNorth = $response.find('#Page_routeIdNorth');
         if(vars.includes('routeIdEast'))
-          inputRouteIdEast = $response.find('.Page_routeIdEast');
+          inputRouteIdEast = $response.find('#Page_routeIdEast');
         if(vars.includes('paramAvgVehiclePerMinFromWestToEast'))
-          inputParamAvgVehiclePerMinFromWestToEast = $response.find('.Page_paramAvgVehiclePerMinFromWestToEast');
+          inputParamAvgVehiclePerMinFromWestToEast = $response.find('#Page_paramAvgVehiclePerMinFromWestToEast');
         if(vars.includes('paramAvgVehiclePerMinFromSouthToNorth'))
-          inputParamAvgVehiclePerMinFromSouthToNorth = $response.find('.Page_paramAvgVehiclePerMinFromSouthToNorth');
+          inputParamAvgVehiclePerMinFromSouthToNorth = $response.find('#Page_paramAvgVehiclePerMinFromSouthToNorth');
         if(vars.includes('paramVehicleDemandScalingFactor'))
-          inputParamVehicleDemandScalingFactor = $response.find('.Page_paramVehicleDemandScalingFactor');
+          inputParamVehicleDemandScalingFactor = $response.find('#Page_paramVehicleDemandScalingFactor');
         if(vars.includes('paramAvgPedestrianPerMinFromWestToEast'))
-          inputParamAvgPedestrianPerMinFromWestToEast = $response.find('.Page_paramAvgPedestrianPerMinFromWestToEast');
+          inputParamAvgPedestrianPerMinFromWestToEast = $response.find('#Page_paramAvgPedestrianPerMinFromWestToEast');
         if(vars.includes('paramAvgPedestrianPerMinFromSouthToNorth'))
-          inputParamAvgPedestrianPerMinFromSouthToNorth = $response.find('.Page_paramAvgPedestrianPerMinFromSouthToNorth');
+          inputParamAvgPedestrianPerMinFromSouthToNorth = $response.find('#Page_paramAvgPedestrianPerMinFromSouthToNorth');
         if(vars.includes('paramPedestrianDemandScalingFactor'))
-          inputParamPedestrianDemandScalingFactor = $response.find('.Page_paramPedestrianDemandScalingFactor');
+          inputParamPedestrianDemandScalingFactor = $response.find('#Page_paramPedestrianDemandScalingFactor');
         if(vars.includes('paramMinGreenTimeSecWestEast'))
-          inputParamMinGreenTimeSecWestEast = $response.find('.Page_paramMinGreenTimeSecWestEast');
+          inputParamMinGreenTimeSecWestEast = $response.find('#Page_paramMinGreenTimeSecWestEast');
         if(vars.includes('paramMaxGreenTimeSecWestEast'))
-          inputParamMaxGreenTimeSecWestEast = $response.find('.Page_paramMaxGreenTimeSecWestEast');
+          inputParamMaxGreenTimeSecWestEast = $response.find('#Page_paramMaxGreenTimeSecWestEast');
         if(vars.includes('paramMinGreenTimeSecSouthNorth'))
-          inputParamMinGreenTimeSecSouthNorth = $response.find('.Page_paramMinGreenTimeSecSouthNorth');
+          inputParamMinGreenTimeSecSouthNorth = $response.find('#Page_paramMinGreenTimeSecSouthNorth');
         if(vars.includes('paramMaxGreenTimeSecSouthNorth'))
-          inputParamMaxGreenTimeSecSouthNorth = $response.find('.Page_paramMaxGreenTimeSecSouthNorth');
+          inputParamMaxGreenTimeSecSouthNorth = $response.find('#Page_paramMaxGreenTimeSecSouthNorth');
         if(vars.includes('paramPedestrianWaitThresholdSecNorthSouth'))
-          inputParamPedestrianWaitThresholdSecNorthSouth = $response.find('.Page_paramPedestrianWaitThresholdSecNorthSouth');
+          inputParamPedestrianWaitThresholdSecNorthSouth = $response.find('#Page_paramPedestrianWaitThresholdSecNorthSouth');
         if(vars.includes('paramPedestrianWaitThresholdSecWestEast'))
-          inputParamPedestrianWaitThresholdSecWestEast = $response.find('.Page_paramPedestrianWaitThresholdSecWestEast');
+          inputParamPedestrianWaitThresholdSecWestEast = $response.find('#Page_paramPedestrianWaitThresholdSecWestEast');
         if(vars.includes('paramVehicleQueueThresholdWestEast'))
-          inputParamVehicleQueueThresholdWestEast = $response.find('.Page_paramVehicleQueueThresholdWestEast');
+          inputParamVehicleQueueThresholdWestEast = $response.find('#Page_paramVehicleQueueThresholdWestEast');
         if(vars.includes('paramVehicleQueueThresholdSouthNorth'))
-          inputParamVehicleQueueThresholdSouthNorth = $response.find('.Page_paramVehicleQueueThresholdSouthNorth');
+          inputParamVehicleQueueThresholdSouthNorth = $response.find('#Page_paramVehicleQueueThresholdSouthNorth');
         if(vars.includes('paramPedestrianQueueThresholdNorthSouth'))
-          inputParamPedestrianQueueThresholdNorthSouth = $response.find('.Page_paramPedestrianQueueThresholdNorthSouth');
+          inputParamPedestrianQueueThresholdNorthSouth = $response.find('#Page_paramPedestrianQueueThresholdNorthSouth');
         if(vars.includes('paramPedestrianQueueThresholdWestEast'))
-          inputParamPedestrianQueueThresholdWestEast = $response.find('.Page_paramPedestrianQueueThresholdWestEast');
+          inputParamPedestrianQueueThresholdWestEast = $response.find('#Page_paramPedestrianQueueThresholdWestEast');
         if(vars.includes('paramRunTime'))
-          inputParamRunTime = $response.find('.Page_paramRunTime');
+          inputParamRunTime = $response.find('#Page_paramRunTime');
         if(vars.includes('paramStepSize'))
-          inputParamStepSize = $response.find('.Page_paramStepSize');
+          inputParamStepSize = $response.find('#Page_paramStepSize');
         if(vars.includes('paramItersPerPar'))
-          inputParamItersPerPar = $response.find('.Page_paramItersPerPar');
+          inputParamItersPerPar = $response.find('#Page_paramItersPerPar');
         if(vars.includes('paramTotalIterNum'))
-          inputParamTotalIterNum = $response.find('.Page_paramTotalIterNum');
+          inputParamTotalIterNum = $response.find('#Page_paramTotalIterNum');
         if(vars.includes('reportKeys'))
-          inputReportKeys = $response.find('.Page_reportKeys');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+          inputReportKeys = $response.find('#Page_reportKeys');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
+          inputObjectSuggest = $response.find('#Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
+          inputObjectText = $response.find('#Page_objectText');
         if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+          inputPageUrlPk = $response.find('#Page_pageUrlPk');
+        if(vars.includes('pk'))
+          inputPk = $response.find('#Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('#Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('#Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('#Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('#Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('#Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('#Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('#Page_objectTitle');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('#Page_pageUrlId');
         if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+          inputPageUrlApi = $response.find('#Page_pageUrlApi');
         if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
+          inputId = $response.find('#Page_id');
         if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.find('.Page_entityShortId');
+          inputEntityShortId = $response.find('#Page_entityShortId');
         if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.find('.Page_areaServedColors');
+          inputAreaServedColors = $response.find('#Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.find('.Page_areaServedTitles');
+          inputAreaServedTitles = $response.find('#Page_areaServedTitles');
         if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.find('.Page_areaServedLinks');
+          inputAreaServedLinks = $response.find('#Page_areaServedLinks');
         if(vars.includes('trafficFlowObservedIds'))
-          inputTrafficFlowObservedIds = $response.find('.Page_trafficFlowObservedIds');
+          inputTrafficFlowObservedIds = $response.find('#Page_trafficFlowObservedIds');
         if(vars.includes('paramDemandScale'))
-          inputParamDemandScale = $response.find('.Page_paramDemandScale');
+          inputParamDemandScale = $response.find('#Page_paramDemandScale');
         jsWebsocketSmartTrafficLight(pk, vars, $response);
 
         window.smartTrafficLight = JSON.parse($response.find('.pageForm .smartTrafficLight').val());
@@ -1482,273 +1482,273 @@ async function websocketSmartTrafficLightInner(apiRequest) {
 
 
         if(inputCreated) {
-          inputCreated.replaceAll('.Page_created');
-          addGlow($('.Page_created'));
+          inputCreated.replaceAll('#Page_created');
+          addGlow($('#Page_created'));
         }
 
         if(inputModified) {
-          inputModified.replaceAll('.Page_modified');
-          addGlow($('.Page_modified'));
+          inputModified.replaceAll('#Page_modified');
+          addGlow($('#Page_modified'));
         }
 
         if(inputObjectId) {
-          inputObjectId.replaceAll('.Page_objectId');
-          addGlow($('.Page_objectId'));
+          inputObjectId.replaceAll('#Page_objectId');
+          addGlow($('#Page_objectId'));
         }
 
         if(inputArchived) {
-          inputArchived.replaceAll('.Page_archived');
-          addGlow($('.Page_archived'));
+          inputArchived.replaceAll('#Page_archived');
+          addGlow($('#Page_archived'));
         }
 
         if(inputDeleted) {
-          inputDeleted.replaceAll('.Page_deleted');
-          addGlow($('.Page_deleted'));
+          inputDeleted.replaceAll('#Page_deleted');
+          addGlow($('#Page_deleted'));
         }
 
         if(inputLocation) {
-          inputLocation.replaceAll('.Page_location');
-          addGlow($('.Page_location'));
+          inputLocation.replaceAll('#Page_location');
+          addGlow($('#Page_location'));
         }
 
         if(inputEntityId) {
-          inputEntityId.replaceAll('.Page_entityId');
-          addGlow($('.Page_entityId'));
+          inputEntityId.replaceAll('#Page_entityId');
+          addGlow($('#Page_entityId'));
         }
 
         if(inputSmartTrafficLightName) {
-          inputSmartTrafficLightName.replaceAll('.Page_smartTrafficLightName');
-          addGlow($('.Page_smartTrafficLightName'));
+          inputSmartTrafficLightName.replaceAll('#Page_smartTrafficLightName');
+          addGlow($('#Page_smartTrafficLightName'));
         }
 
         if(inputAreaServed) {
-          inputAreaServed.replaceAll('.Page_areaServed');
-          addGlow($('.Page_areaServed'));
+          inputAreaServed.replaceAll('#Page_areaServed');
+          addGlow($('#Page_areaServed'));
         }
 
         if(inputRouteIds) {
-          inputRouteIds.replaceAll('.Page_routeIds');
-          addGlow($('.Page_routeIds'));
+          inputRouteIds.replaceAll('#Page_routeIds');
+          addGlow($('#Page_routeIds'));
         }
 
         if(inputRouteIdNorth) {
-          inputRouteIdNorth.replaceAll('.Page_routeIdNorth');
-          addGlow($('.Page_routeIdNorth'));
+          inputRouteIdNorth.replaceAll('#Page_routeIdNorth');
+          addGlow($('#Page_routeIdNorth'));
         }
 
         if(inputRouteIdEast) {
-          inputRouteIdEast.replaceAll('.Page_routeIdEast');
-          addGlow($('.Page_routeIdEast'));
+          inputRouteIdEast.replaceAll('#Page_routeIdEast');
+          addGlow($('#Page_routeIdEast'));
         }
 
         if(inputParamAvgVehiclePerMinFromWestToEast) {
-          inputParamAvgVehiclePerMinFromWestToEast.replaceAll('.Page_paramAvgVehiclePerMinFromWestToEast');
-          addGlow($('.Page_paramAvgVehiclePerMinFromWestToEast'));
+          inputParamAvgVehiclePerMinFromWestToEast.replaceAll('#Page_paramAvgVehiclePerMinFromWestToEast');
+          addGlow($('#Page_paramAvgVehiclePerMinFromWestToEast'));
         }
 
         if(inputParamAvgVehiclePerMinFromSouthToNorth) {
-          inputParamAvgVehiclePerMinFromSouthToNorth.replaceAll('.Page_paramAvgVehiclePerMinFromSouthToNorth');
-          addGlow($('.Page_paramAvgVehiclePerMinFromSouthToNorth'));
+          inputParamAvgVehiclePerMinFromSouthToNorth.replaceAll('#Page_paramAvgVehiclePerMinFromSouthToNorth');
+          addGlow($('#Page_paramAvgVehiclePerMinFromSouthToNorth'));
         }
 
         if(inputParamVehicleDemandScalingFactor) {
-          inputParamVehicleDemandScalingFactor.replaceAll('.Page_paramVehicleDemandScalingFactor');
-          addGlow($('.Page_paramVehicleDemandScalingFactor'));
+          inputParamVehicleDemandScalingFactor.replaceAll('#Page_paramVehicleDemandScalingFactor');
+          addGlow($('#Page_paramVehicleDemandScalingFactor'));
         }
 
         if(inputParamAvgPedestrianPerMinFromWestToEast) {
-          inputParamAvgPedestrianPerMinFromWestToEast.replaceAll('.Page_paramAvgPedestrianPerMinFromWestToEast');
-          addGlow($('.Page_paramAvgPedestrianPerMinFromWestToEast'));
+          inputParamAvgPedestrianPerMinFromWestToEast.replaceAll('#Page_paramAvgPedestrianPerMinFromWestToEast');
+          addGlow($('#Page_paramAvgPedestrianPerMinFromWestToEast'));
         }
 
         if(inputParamAvgPedestrianPerMinFromSouthToNorth) {
-          inputParamAvgPedestrianPerMinFromSouthToNorth.replaceAll('.Page_paramAvgPedestrianPerMinFromSouthToNorth');
-          addGlow($('.Page_paramAvgPedestrianPerMinFromSouthToNorth'));
+          inputParamAvgPedestrianPerMinFromSouthToNorth.replaceAll('#Page_paramAvgPedestrianPerMinFromSouthToNorth');
+          addGlow($('#Page_paramAvgPedestrianPerMinFromSouthToNorth'));
         }
 
         if(inputParamPedestrianDemandScalingFactor) {
-          inputParamPedestrianDemandScalingFactor.replaceAll('.Page_paramPedestrianDemandScalingFactor');
-          addGlow($('.Page_paramPedestrianDemandScalingFactor'));
+          inputParamPedestrianDemandScalingFactor.replaceAll('#Page_paramPedestrianDemandScalingFactor');
+          addGlow($('#Page_paramPedestrianDemandScalingFactor'));
         }
 
         if(inputParamMinGreenTimeSecWestEast) {
-          inputParamMinGreenTimeSecWestEast.replaceAll('.Page_paramMinGreenTimeSecWestEast');
-          addGlow($('.Page_paramMinGreenTimeSecWestEast'));
+          inputParamMinGreenTimeSecWestEast.replaceAll('#Page_paramMinGreenTimeSecWestEast');
+          addGlow($('#Page_paramMinGreenTimeSecWestEast'));
         }
 
         if(inputParamMaxGreenTimeSecWestEast) {
-          inputParamMaxGreenTimeSecWestEast.replaceAll('.Page_paramMaxGreenTimeSecWestEast');
-          addGlow($('.Page_paramMaxGreenTimeSecWestEast'));
+          inputParamMaxGreenTimeSecWestEast.replaceAll('#Page_paramMaxGreenTimeSecWestEast');
+          addGlow($('#Page_paramMaxGreenTimeSecWestEast'));
         }
 
         if(inputParamMinGreenTimeSecSouthNorth) {
-          inputParamMinGreenTimeSecSouthNorth.replaceAll('.Page_paramMinGreenTimeSecSouthNorth');
-          addGlow($('.Page_paramMinGreenTimeSecSouthNorth'));
+          inputParamMinGreenTimeSecSouthNorth.replaceAll('#Page_paramMinGreenTimeSecSouthNorth');
+          addGlow($('#Page_paramMinGreenTimeSecSouthNorth'));
         }
 
         if(inputParamMaxGreenTimeSecSouthNorth) {
-          inputParamMaxGreenTimeSecSouthNorth.replaceAll('.Page_paramMaxGreenTimeSecSouthNorth');
-          addGlow($('.Page_paramMaxGreenTimeSecSouthNorth'));
+          inputParamMaxGreenTimeSecSouthNorth.replaceAll('#Page_paramMaxGreenTimeSecSouthNorth');
+          addGlow($('#Page_paramMaxGreenTimeSecSouthNorth'));
         }
 
         if(inputParamPedestrianWaitThresholdSecNorthSouth) {
-          inputParamPedestrianWaitThresholdSecNorthSouth.replaceAll('.Page_paramPedestrianWaitThresholdSecNorthSouth');
-          addGlow($('.Page_paramPedestrianWaitThresholdSecNorthSouth'));
+          inputParamPedestrianWaitThresholdSecNorthSouth.replaceAll('#Page_paramPedestrianWaitThresholdSecNorthSouth');
+          addGlow($('#Page_paramPedestrianWaitThresholdSecNorthSouth'));
         }
 
         if(inputParamPedestrianWaitThresholdSecWestEast) {
-          inputParamPedestrianWaitThresholdSecWestEast.replaceAll('.Page_paramPedestrianWaitThresholdSecWestEast');
-          addGlow($('.Page_paramPedestrianWaitThresholdSecWestEast'));
+          inputParamPedestrianWaitThresholdSecWestEast.replaceAll('#Page_paramPedestrianWaitThresholdSecWestEast');
+          addGlow($('#Page_paramPedestrianWaitThresholdSecWestEast'));
         }
 
         if(inputParamVehicleQueueThresholdWestEast) {
-          inputParamVehicleQueueThresholdWestEast.replaceAll('.Page_paramVehicleQueueThresholdWestEast');
-          addGlow($('.Page_paramVehicleQueueThresholdWestEast'));
+          inputParamVehicleQueueThresholdWestEast.replaceAll('#Page_paramVehicleQueueThresholdWestEast');
+          addGlow($('#Page_paramVehicleQueueThresholdWestEast'));
         }
 
         if(inputParamVehicleQueueThresholdSouthNorth) {
-          inputParamVehicleQueueThresholdSouthNorth.replaceAll('.Page_paramVehicleQueueThresholdSouthNorth');
-          addGlow($('.Page_paramVehicleQueueThresholdSouthNorth'));
+          inputParamVehicleQueueThresholdSouthNorth.replaceAll('#Page_paramVehicleQueueThresholdSouthNorth');
+          addGlow($('#Page_paramVehicleQueueThresholdSouthNorth'));
         }
 
         if(inputParamPedestrianQueueThresholdNorthSouth) {
-          inputParamPedestrianQueueThresholdNorthSouth.replaceAll('.Page_paramPedestrianQueueThresholdNorthSouth');
-          addGlow($('.Page_paramPedestrianQueueThresholdNorthSouth'));
+          inputParamPedestrianQueueThresholdNorthSouth.replaceAll('#Page_paramPedestrianQueueThresholdNorthSouth');
+          addGlow($('#Page_paramPedestrianQueueThresholdNorthSouth'));
         }
 
         if(inputParamPedestrianQueueThresholdWestEast) {
-          inputParamPedestrianQueueThresholdWestEast.replaceAll('.Page_paramPedestrianQueueThresholdWestEast');
-          addGlow($('.Page_paramPedestrianQueueThresholdWestEast'));
+          inputParamPedestrianQueueThresholdWestEast.replaceAll('#Page_paramPedestrianQueueThresholdWestEast');
+          addGlow($('#Page_paramPedestrianQueueThresholdWestEast'));
         }
 
         if(inputParamRunTime) {
-          inputParamRunTime.replaceAll('.Page_paramRunTime');
-          addGlow($('.Page_paramRunTime'));
+          inputParamRunTime.replaceAll('#Page_paramRunTime');
+          addGlow($('#Page_paramRunTime'));
         }
 
         if(inputParamStepSize) {
-          inputParamStepSize.replaceAll('.Page_paramStepSize');
-          addGlow($('.Page_paramStepSize'));
+          inputParamStepSize.replaceAll('#Page_paramStepSize');
+          addGlow($('#Page_paramStepSize'));
         }
 
         if(inputParamItersPerPar) {
-          inputParamItersPerPar.replaceAll('.Page_paramItersPerPar');
-          addGlow($('.Page_paramItersPerPar'));
+          inputParamItersPerPar.replaceAll('#Page_paramItersPerPar');
+          addGlow($('#Page_paramItersPerPar'));
         }
 
         if(inputParamTotalIterNum) {
-          inputParamTotalIterNum.replaceAll('.Page_paramTotalIterNum');
-          addGlow($('.Page_paramTotalIterNum'));
+          inputParamTotalIterNum.replaceAll('#Page_paramTotalIterNum');
+          addGlow($('#Page_paramTotalIterNum'));
         }
 
         if(inputReportKeys) {
-          inputReportKeys.replaceAll('.Page_reportKeys');
-          addGlow($('.Page_reportKeys'));
-        }
-
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
-
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+          inputReportKeys.replaceAll('#Page_reportKeys');
+          addGlow($('#Page_reportKeys'));
         }
 
         if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
+          inputObjectSuggest.replaceAll('#Page_objectSuggest');
+          addGlow($('#Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
+          inputObjectText.replaceAll('#Page_objectText');
+          addGlow($('#Page_objectText'));
         }
 
         if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
+          inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+          addGlow($('#Page_pageUrlPk'));
+        }
+
+        if(inputPk) {
+          inputPk.replaceAll('#Page_pk');
+          addGlow($('#Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('#Page_inheritPk');
+          addGlow($('#Page_inheritPk'));
+        }
+
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+          addGlow($('#Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('#Page_classSimpleName');
+          addGlow($('#Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+          addGlow($('#Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('#Page_sessionId');
+          addGlow($('#Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('#Page_userKey');
+          addGlow($('#Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('#Page_saves');
+          addGlow($('#Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('#Page_objectTitle');
+          addGlow($('#Page_objectTitle'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('#Page_pageUrlId');
+          addGlow($('#Page_pageUrlId'));
         }
 
         if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
+          inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+          addGlow($('#Page_pageUrlApi'));
         }
 
         if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
+          inputId.replaceAll('#Page_id');
+          addGlow($('#Page_id'));
         }
 
         if(inputEntityShortId) {
-          inputEntityShortId.replaceAll('.Page_entityShortId');
-          addGlow($('.Page_entityShortId'));
+          inputEntityShortId.replaceAll('#Page_entityShortId');
+          addGlow($('#Page_entityShortId'));
         }
 
         if(inputAreaServedColors) {
-          inputAreaServedColors.replaceAll('.Page_areaServedColors');
-          addGlow($('.Page_areaServedColors'));
+          inputAreaServedColors.replaceAll('#Page_areaServedColors');
+          addGlow($('#Page_areaServedColors'));
         }
 
         if(inputAreaServedTitles) {
-          inputAreaServedTitles.replaceAll('.Page_areaServedTitles');
-          addGlow($('.Page_areaServedTitles'));
+          inputAreaServedTitles.replaceAll('#Page_areaServedTitles');
+          addGlow($('#Page_areaServedTitles'));
         }
 
         if(inputAreaServedLinks) {
-          inputAreaServedLinks.replaceAll('.Page_areaServedLinks');
-          addGlow($('.Page_areaServedLinks'));
+          inputAreaServedLinks.replaceAll('#Page_areaServedLinks');
+          addGlow($('#Page_areaServedLinks'));
         }
 
         if(inputTrafficFlowObservedIds) {
-          inputTrafficFlowObservedIds.replaceAll('.Page_trafficFlowObservedIds');
-          addGlow($('.Page_trafficFlowObservedIds'));
+          inputTrafficFlowObservedIds.replaceAll('#Page_trafficFlowObservedIds');
+          addGlow($('#Page_trafficFlowObservedIds'));
         }
 
         if(inputParamDemandScale) {
-          inputParamDemandScale.replaceAll('.Page_paramDemandScale');
-          addGlow($('.Page_paramDemandScale'));
+          inputParamDemandScale.replaceAll('#Page_paramDemandScale');
+          addGlow($('#Page_paramDemandScale'));
         }
 
         pageGraphSmartTrafficLight();

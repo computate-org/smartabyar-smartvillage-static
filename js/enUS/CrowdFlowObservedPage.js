@@ -149,6 +149,18 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPk = $formFilters.find('.valuePk').val();
     if(filterPk != null && filterPk !== '')
       filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -185,21 +197,9 @@ function searchCrowdFlowObservedFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
@@ -858,6 +858,18 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterCongested != null && filterCongested === true)
       filters.push({ name: 'fq', value: 'congested:' + filterCongested });
 
+    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.find('.valueObjectText').val();
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+    if(filterPageUrlPk != null && filterPageUrlPk !== '')
+      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
     var filterPk = $formFilters.find('.valuePk').val();
     if(filterPk != null && filterPk !== '')
       filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -894,21 +906,9 @@ function patchCrowdFlowObservedFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.find('.valueObjectText').val();
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
     if(filterPageUrlId != null && filterPageUrlId !== '')
       filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-    var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-    if(filterPageUrlPk != null && filterPageUrlPk !== '')
-      filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
     var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
     if(filterPageUrlApi != null && filterPageUrlApi !== '')
@@ -1254,6 +1254,9 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputDataProvider = null;
         var inputAverageHeadwayTime = null;
         var inputCongested = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
+        var inputPageUrlPk = null;
         var inputPk = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
@@ -1263,10 +1266,7 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
-        var inputObjectSuggest = null;
-        var inputObjectText = null;
         var inputPageUrlId = null;
-        var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
         var inputEntityShortId = null;
@@ -1277,105 +1277,105 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
         var inputDateModified = null;
 
         if(vars.includes('created'))
-          inputCreated = $response.find('.Page_created');
+          inputCreated = $response.find('#Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.find('.Page_modified');
+          inputModified = $response.find('#Page_modified');
         if(vars.includes('objectId'))
-          inputObjectId = $response.find('.Page_objectId');
+          inputObjectId = $response.find('#Page_objectId');
         if(vars.includes('archived'))
-          inputArchived = $response.find('.Page_archived');
+          inputArchived = $response.find('#Page_archived');
         if(vars.includes('deleted'))
-          inputDeleted = $response.find('.Page_deleted');
+          inputDeleted = $response.find('#Page_deleted');
         if(vars.includes('entityId'))
-          inputEntityId = $response.find('.Page_entityId');
+          inputEntityId = $response.find('#Page_entityId');
         if(vars.includes('customTrafficLightId'))
-          inputCustomTrafficLightId = $response.find('.Page_customTrafficLightId');
+          inputCustomTrafficLightId = $response.find('#Page_customTrafficLightId');
         if(vars.includes('trafficSimulationId'))
-          inputTrafficSimulationId = $response.find('.Page_trafficSimulationId');
+          inputTrafficSimulationId = $response.find('#Page_trafficSimulationId');
         if(vars.includes('location'))
-          inputLocation = $response.find('.Page_location');
+          inputLocation = $response.find('#Page_location');
         if(vars.includes('areaServed'))
-          inputAreaServed = $response.find('.Page_areaServed');
+          inputAreaServed = $response.find('#Page_areaServed');
         if(vars.includes('dateObserved'))
-          inputDateObserved = $response.find('.Page_dateObserved');
+          inputDateObserved = $response.find('#Page_dateObserved');
         if(vars.includes('dateObservedFrom'))
-          inputDateObservedFrom = $response.find('.Page_dateObservedFrom');
+          inputDateObservedFrom = $response.find('#Page_dateObservedFrom');
         if(vars.includes('dateObservedTo'))
-          inputDateObservedTo = $response.find('.Page_dateObservedTo');
+          inputDateObservedTo = $response.find('#Page_dateObservedTo');
         if(vars.includes('color'))
-          inputColor = $response.find('.Page_color');
+          inputColor = $response.find('#Page_color');
         if(vars.includes('description'))
-          inputDescription = $response.find('.Page_description');
+          inputDescription = $response.find('#Page_description');
         if(vars.includes('name'))
-          inputName = $response.find('.Page_name');
+          inputName = $response.find('#Page_name');
         if(vars.includes('direction'))
-          inputDirection = $response.find('.Page_direction');
+          inputDirection = $response.find('#Page_direction');
         if(vars.includes('occupancy'))
-          inputOccupancy = $response.find('.Page_occupancy');
+          inputOccupancy = $response.find('#Page_occupancy');
         if(vars.includes('peopleCount'))
-          inputPeopleCount = $response.find('.Page_peopleCount');
+          inputPeopleCount = $response.find('#Page_peopleCount');
         if(vars.includes('refRoadSegment'))
-          inputRefRoadSegment = $response.find('.Page_refRoadSegment');
+          inputRefRoadSegment = $response.find('#Page_refRoadSegment');
         if(vars.includes('seeAlso'))
-          inputSeeAlso = $response.find('.Page_seeAlso');
+          inputSeeAlso = $response.find('#Page_seeAlso');
         if(vars.includes('owner'))
-          inputOwner = $response.find('.Page_owner');
+          inputOwner = $response.find('#Page_owner');
         if(vars.includes('source'))
-          inputSource = $response.find('.Page_source');
+          inputSource = $response.find('#Page_source');
         if(vars.includes('walkingAreaId'))
-          inputWalkingAreaId = $response.find('.Page_walkingAreaId');
+          inputWalkingAreaId = $response.find('#Page_walkingAreaId');
         if(vars.includes('alternateName'))
-          inputAlternateName = $response.find('.Page_alternateName');
+          inputAlternateName = $response.find('#Page_alternateName');
         if(vars.includes('averageCrowdSpeed'))
-          inputAverageCrowdSpeed = $response.find('.Page_averageCrowdSpeed');
+          inputAverageCrowdSpeed = $response.find('#Page_averageCrowdSpeed');
         if(vars.includes('dataProvider'))
-          inputDataProvider = $response.find('.Page_dataProvider');
+          inputDataProvider = $response.find('#Page_dataProvider');
         if(vars.includes('averageHeadwayTime'))
-          inputAverageHeadwayTime = $response.find('.Page_averageHeadwayTime');
+          inputAverageHeadwayTime = $response.find('#Page_averageHeadwayTime');
         if(vars.includes('congested'))
-          inputCongested = $response.find('.Page_congested');
-        if(vars.includes('pk'))
-          inputPk = $response.find('.Page_pk');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+          inputCongested = $response.find('#Page_congested');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
+          inputObjectSuggest = $response.find('#Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
+          inputObjectText = $response.find('#Page_objectText');
         if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+          inputPageUrlPk = $response.find('#Page_pageUrlPk');
+        if(vars.includes('pk'))
+          inputPk = $response.find('#Page_pk');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('#Page_inheritPk');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.find('#Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.find('#Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('#Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('#Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('#Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('#Page_objectTitle');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('#Page_pageUrlId');
         if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+          inputPageUrlApi = $response.find('#Page_pageUrlApi');
         if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
+          inputId = $response.find('#Page_id');
         if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.find('.Page_entityShortId');
+          inputEntityShortId = $response.find('#Page_entityShortId');
         if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.find('.Page_areaServedColors');
+          inputAreaServedColors = $response.find('#Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.find('.Page_areaServedTitles');
+          inputAreaServedTitles = $response.find('#Page_areaServedTitles');
         if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.find('.Page_areaServedLinks');
+          inputAreaServedLinks = $response.find('#Page_areaServedLinks');
         if(vars.includes('dateCreated'))
-          inputDateCreated = $response.find('.Page_dateCreated');
+          inputDateCreated = $response.find('#Page_dateCreated');
         if(vars.includes('dateModified'))
-          inputDateModified = $response.find('.Page_dateModified');
+          inputDateModified = $response.find('#Page_dateModified');
         jsWebsocketCrowdFlowObserved(pk, vars, $response);
 
         window.crowdFlowObserved = JSON.parse($response.find('.pageForm .crowdFlowObserved').val());
@@ -1383,253 +1383,253 @@ async function websocketCrowdFlowObservedInner(apiRequest) {
 
 
         if(inputCreated) {
-          inputCreated.replaceAll('.Page_created');
-          addGlow($('.Page_created'));
+          inputCreated.replaceAll('#Page_created');
+          addGlow($('#Page_created'));
         }
 
         if(inputModified) {
-          inputModified.replaceAll('.Page_modified');
-          addGlow($('.Page_modified'));
+          inputModified.replaceAll('#Page_modified');
+          addGlow($('#Page_modified'));
         }
 
         if(inputObjectId) {
-          inputObjectId.replaceAll('.Page_objectId');
-          addGlow($('.Page_objectId'));
+          inputObjectId.replaceAll('#Page_objectId');
+          addGlow($('#Page_objectId'));
         }
 
         if(inputArchived) {
-          inputArchived.replaceAll('.Page_archived');
-          addGlow($('.Page_archived'));
+          inputArchived.replaceAll('#Page_archived');
+          addGlow($('#Page_archived'));
         }
 
         if(inputDeleted) {
-          inputDeleted.replaceAll('.Page_deleted');
-          addGlow($('.Page_deleted'));
+          inputDeleted.replaceAll('#Page_deleted');
+          addGlow($('#Page_deleted'));
         }
 
         if(inputEntityId) {
-          inputEntityId.replaceAll('.Page_entityId');
-          addGlow($('.Page_entityId'));
+          inputEntityId.replaceAll('#Page_entityId');
+          addGlow($('#Page_entityId'));
         }
 
         if(inputCustomTrafficLightId) {
-          inputCustomTrafficLightId.replaceAll('.Page_customTrafficLightId');
-          addGlow($('.Page_customTrafficLightId'));
+          inputCustomTrafficLightId.replaceAll('#Page_customTrafficLightId');
+          addGlow($('#Page_customTrafficLightId'));
         }
 
         if(inputTrafficSimulationId) {
-          inputTrafficSimulationId.replaceAll('.Page_trafficSimulationId');
-          addGlow($('.Page_trafficSimulationId'));
+          inputTrafficSimulationId.replaceAll('#Page_trafficSimulationId');
+          addGlow($('#Page_trafficSimulationId'));
         }
 
         if(inputLocation) {
-          inputLocation.replaceAll('.Page_location');
-          addGlow($('.Page_location'));
+          inputLocation.replaceAll('#Page_location');
+          addGlow($('#Page_location'));
         }
 
         if(inputAreaServed) {
-          inputAreaServed.replaceAll('.Page_areaServed');
-          addGlow($('.Page_areaServed'));
+          inputAreaServed.replaceAll('#Page_areaServed');
+          addGlow($('#Page_areaServed'));
         }
 
         if(inputDateObserved) {
-          inputDateObserved.replaceAll('.Page_dateObserved');
-          addGlow($('.Page_dateObserved'));
+          inputDateObserved.replaceAll('#Page_dateObserved');
+          addGlow($('#Page_dateObserved'));
         }
 
         if(inputDateObservedFrom) {
-          inputDateObservedFrom.replaceAll('.Page_dateObservedFrom');
-          addGlow($('.Page_dateObservedFrom'));
+          inputDateObservedFrom.replaceAll('#Page_dateObservedFrom');
+          addGlow($('#Page_dateObservedFrom'));
         }
 
         if(inputDateObservedTo) {
-          inputDateObservedTo.replaceAll('.Page_dateObservedTo');
-          addGlow($('.Page_dateObservedTo'));
+          inputDateObservedTo.replaceAll('#Page_dateObservedTo');
+          addGlow($('#Page_dateObservedTo'));
         }
 
         if(inputColor) {
-          inputColor.replaceAll('.Page_color');
-          addGlow($('.Page_color'));
+          inputColor.replaceAll('#Page_color');
+          addGlow($('#Page_color'));
         }
 
         if(inputDescription) {
-          inputDescription.replaceAll('.Page_description');
-          addGlow($('.Page_description'));
+          inputDescription.replaceAll('#Page_description');
+          addGlow($('#Page_description'));
         }
 
         if(inputName) {
-          inputName.replaceAll('.Page_name');
-          addGlow($('.Page_name'));
+          inputName.replaceAll('#Page_name');
+          addGlow($('#Page_name'));
         }
 
         if(inputDirection) {
-          inputDirection.replaceAll('.Page_direction');
-          addGlow($('.Page_direction'));
+          inputDirection.replaceAll('#Page_direction');
+          addGlow($('#Page_direction'));
         }
 
         if(inputOccupancy) {
-          inputOccupancy.replaceAll('.Page_occupancy');
-          addGlow($('.Page_occupancy'));
+          inputOccupancy.replaceAll('#Page_occupancy');
+          addGlow($('#Page_occupancy'));
         }
 
         if(inputPeopleCount) {
-          inputPeopleCount.replaceAll('.Page_peopleCount');
-          addGlow($('.Page_peopleCount'));
+          inputPeopleCount.replaceAll('#Page_peopleCount');
+          addGlow($('#Page_peopleCount'));
         }
 
         if(inputRefRoadSegment) {
-          inputRefRoadSegment.replaceAll('.Page_refRoadSegment');
-          addGlow($('.Page_refRoadSegment'));
+          inputRefRoadSegment.replaceAll('#Page_refRoadSegment');
+          addGlow($('#Page_refRoadSegment'));
         }
 
         if(inputSeeAlso) {
-          inputSeeAlso.replaceAll('.Page_seeAlso');
-          addGlow($('.Page_seeAlso'));
+          inputSeeAlso.replaceAll('#Page_seeAlso');
+          addGlow($('#Page_seeAlso'));
         }
 
         if(inputOwner) {
-          inputOwner.replaceAll('.Page_owner');
-          addGlow($('.Page_owner'));
+          inputOwner.replaceAll('#Page_owner');
+          addGlow($('#Page_owner'));
         }
 
         if(inputSource) {
-          inputSource.replaceAll('.Page_source');
-          addGlow($('.Page_source'));
+          inputSource.replaceAll('#Page_source');
+          addGlow($('#Page_source'));
         }
 
         if(inputWalkingAreaId) {
-          inputWalkingAreaId.replaceAll('.Page_walkingAreaId');
-          addGlow($('.Page_walkingAreaId'));
+          inputWalkingAreaId.replaceAll('#Page_walkingAreaId');
+          addGlow($('#Page_walkingAreaId'));
         }
 
         if(inputAlternateName) {
-          inputAlternateName.replaceAll('.Page_alternateName');
-          addGlow($('.Page_alternateName'));
+          inputAlternateName.replaceAll('#Page_alternateName');
+          addGlow($('#Page_alternateName'));
         }
 
         if(inputAverageCrowdSpeed) {
-          inputAverageCrowdSpeed.replaceAll('.Page_averageCrowdSpeed');
-          addGlow($('.Page_averageCrowdSpeed'));
+          inputAverageCrowdSpeed.replaceAll('#Page_averageCrowdSpeed');
+          addGlow($('#Page_averageCrowdSpeed'));
         }
 
         if(inputDataProvider) {
-          inputDataProvider.replaceAll('.Page_dataProvider');
-          addGlow($('.Page_dataProvider'));
+          inputDataProvider.replaceAll('#Page_dataProvider');
+          addGlow($('#Page_dataProvider'));
         }
 
         if(inputAverageHeadwayTime) {
-          inputAverageHeadwayTime.replaceAll('.Page_averageHeadwayTime');
-          addGlow($('.Page_averageHeadwayTime'));
+          inputAverageHeadwayTime.replaceAll('#Page_averageHeadwayTime');
+          addGlow($('#Page_averageHeadwayTime'));
         }
 
         if(inputCongested) {
-          inputCongested.replaceAll('.Page_congested');
-          addGlow($('.Page_congested'));
-        }
-
-        if(inputPk) {
-          inputPk.replaceAll('.Page_pk');
-          addGlow($('.Page_pk'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
-        }
-
-        if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
-
-        if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+          inputCongested.replaceAll('#Page_congested');
+          addGlow($('#Page_congested'));
         }
 
         if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
+          inputObjectSuggest.replaceAll('#Page_objectSuggest');
+          addGlow($('#Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
+          inputObjectText.replaceAll('#Page_objectText');
+          addGlow($('#Page_objectText'));
         }
 
         if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
+          inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+          addGlow($('#Page_pageUrlPk'));
+        }
+
+        if(inputPk) {
+          inputPk.replaceAll('#Page_pk');
+          addGlow($('#Page_pk'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('#Page_inheritPk');
+          addGlow($('#Page_inheritPk'));
+        }
+
+        if(inputClassCanonicalName) {
+          inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+          addGlow($('#Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          inputClassSimpleName.replaceAll('#Page_classSimpleName');
+          addGlow($('#Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+          addGlow($('#Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('#Page_sessionId');
+          addGlow($('#Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          inputUserKey.replaceAll('#Page_userKey');
+          addGlow($('#Page_userKey'));
+        }
+
+        if(inputSaves) {
+          inputSaves.replaceAll('#Page_saves');
+          addGlow($('#Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('#Page_objectTitle');
+          addGlow($('#Page_objectTitle'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('#Page_pageUrlId');
+          addGlow($('#Page_pageUrlId'));
         }
 
         if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
+          inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+          addGlow($('#Page_pageUrlApi'));
         }
 
         if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
+          inputId.replaceAll('#Page_id');
+          addGlow($('#Page_id'));
         }
 
         if(inputEntityShortId) {
-          inputEntityShortId.replaceAll('.Page_entityShortId');
-          addGlow($('.Page_entityShortId'));
+          inputEntityShortId.replaceAll('#Page_entityShortId');
+          addGlow($('#Page_entityShortId'));
         }
 
         if(inputAreaServedColors) {
-          inputAreaServedColors.replaceAll('.Page_areaServedColors');
-          addGlow($('.Page_areaServedColors'));
+          inputAreaServedColors.replaceAll('#Page_areaServedColors');
+          addGlow($('#Page_areaServedColors'));
         }
 
         if(inputAreaServedTitles) {
-          inputAreaServedTitles.replaceAll('.Page_areaServedTitles');
-          addGlow($('.Page_areaServedTitles'));
+          inputAreaServedTitles.replaceAll('#Page_areaServedTitles');
+          addGlow($('#Page_areaServedTitles'));
         }
 
         if(inputAreaServedLinks) {
-          inputAreaServedLinks.replaceAll('.Page_areaServedLinks');
-          addGlow($('.Page_areaServedLinks'));
+          inputAreaServedLinks.replaceAll('#Page_areaServedLinks');
+          addGlow($('#Page_areaServedLinks'));
         }
 
         if(inputDateCreated) {
-          inputDateCreated.replaceAll('.Page_dateCreated');
-          addGlow($('.Page_dateCreated'));
+          inputDateCreated.replaceAll('#Page_dateCreated');
+          addGlow($('#Page_dateCreated'));
         }
 
         if(inputDateModified) {
-          inputDateModified.replaceAll('.Page_dateModified');
-          addGlow($('.Page_dateModified'));
+          inputDateModified.replaceAll('#Page_dateModified');
+          addGlow($('#Page_dateModified'));
         }
 
         pageGraphCrowdFlowObserved();

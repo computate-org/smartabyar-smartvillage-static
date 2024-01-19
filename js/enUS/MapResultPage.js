@@ -81,9 +81,29 @@ function searchMapResultFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.find('.valueUserKey').val();
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.find('.valueSaves').val();
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -109,29 +129,21 @@ function searchMapResultFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.find('.valueUserKey').val();
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.find('.valueSaves').val();
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
     var filterTimeStepId = $formFilters.find('.valueTimeStepId').val();
     if(filterTimeStepId != null && filterTimeStepId !== '')
       filters.push({ name: 'fq', value: 'timeStepId:' + filterTimeStepId });
+
+    var filterLocationColors = $formFilters.find('.valueLocationColors').val();
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.find('.valueLocationTitles').val();
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.find('.valueLocationLinks').val();
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
   }
   return filters;
 }
@@ -253,76 +265,85 @@ async function websocketMapResultInner(apiRequest) {
         var inputColor = null;
         var inputInheritPk = null;
         var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
+        var inputSaves = null;
+        var inputObjectTitle = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputPageUrlId = null;
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputClassSimpleName = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
         var inputTimeStepId = null;
         var inputX = null;
         var inputY = null;
+        var inputLocationColors = null;
+        var inputLocationTitles = null;
+        var inputLocationLinks = null;
 
         if(vars.includes('created'))
-          inputCreated = $response.find('.Page_created');
+          inputCreated = $response.find('#Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.find('.Page_modified');
+          inputModified = $response.find('#Page_modified');
         if(vars.includes('objectId'))
-          inputObjectId = $response.find('.Page_objectId');
+          inputObjectId = $response.find('#Page_objectId');
         if(vars.includes('archived'))
-          inputArchived = $response.find('.Page_archived');
+          inputArchived = $response.find('#Page_archived');
         if(vars.includes('deleted'))
-          inputDeleted = $response.find('.Page_deleted');
+          inputDeleted = $response.find('#Page_deleted');
         if(vars.includes('time'))
-          inputTime = $response.find('.Page_time');
+          inputTime = $response.find('#Page_time');
         if(vars.includes('dateTime'))
-          inputDateTime = $response.find('.Page_dateTime');
+          inputDateTime = $response.find('#Page_dateTime');
         if(vars.includes('step'))
-          inputStep = $response.find('.Page_step');
+          inputStep = $response.find('#Page_step');
         if(vars.includes('location'))
-          inputLocation = $response.find('.Page_location');
+          inputLocation = $response.find('#Page_location');
         if(vars.includes('color'))
-          inputColor = $response.find('.Page_color');
+          inputColor = $response.find('#Page_color');
         if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+          inputInheritPk = $response.find('#Page_inheritPk');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
-        if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
-        if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
+          inputClassCanonicalName = $response.find('#Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
+          inputClassSimpleName = $response.find('#Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
         if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
+          inputSessionId = $response.find('#Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
+          inputUserKey = $response.find('#Page_userKey');
         if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
+          inputSaves = $response.find('#Page_saves');
         if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+          inputObjectTitle = $response.find('#Page_objectTitle');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('#Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('#Page_objectText');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('#Page_pageUrlId');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('#Page_pageUrlPk');
+        if(vars.includes('pageUrlApi'))
+          inputPageUrlApi = $response.find('#Page_pageUrlApi');
+        if(vars.includes('id'))
+          inputId = $response.find('#Page_id');
         if(vars.includes('timeStepId'))
-          inputTimeStepId = $response.find('.Page_timeStepId');
+          inputTimeStepId = $response.find('#Page_timeStepId');
         if(vars.includes('x'))
-          inputX = $response.find('.Page_x');
+          inputX = $response.find('#Page_x');
         if(vars.includes('y'))
-          inputY = $response.find('.Page_y');
+          inputY = $response.find('#Page_y');
+        if(vars.includes('locationColors'))
+          inputLocationColors = $response.find('#Page_locationColors');
+        if(vars.includes('locationTitles'))
+          inputLocationTitles = $response.find('#Page_locationTitles');
+        if(vars.includes('locationLinks'))
+          inputLocationLinks = $response.find('#Page_locationLinks');
         jsWebsocketMapResult(id, vars, $response);
 
         window.mapResult = JSON.parse($response.find('.pageForm .mapResult').val());
@@ -330,138 +351,153 @@ async function websocketMapResultInner(apiRequest) {
 
 
         if(inputCreated) {
-          inputCreated.replaceAll('.Page_created');
-          addGlow($('.Page_created'));
+          inputCreated.replaceAll('#Page_created');
+          addGlow($('#Page_created'));
         }
 
         if(inputModified) {
-          inputModified.replaceAll('.Page_modified');
-          addGlow($('.Page_modified'));
+          inputModified.replaceAll('#Page_modified');
+          addGlow($('#Page_modified'));
         }
 
         if(inputObjectId) {
-          inputObjectId.replaceAll('.Page_objectId');
-          addGlow($('.Page_objectId'));
+          inputObjectId.replaceAll('#Page_objectId');
+          addGlow($('#Page_objectId'));
         }
 
         if(inputArchived) {
-          inputArchived.replaceAll('.Page_archived');
-          addGlow($('.Page_archived'));
+          inputArchived.replaceAll('#Page_archived');
+          addGlow($('#Page_archived'));
         }
 
         if(inputDeleted) {
-          inputDeleted.replaceAll('.Page_deleted');
-          addGlow($('.Page_deleted'));
+          inputDeleted.replaceAll('#Page_deleted');
+          addGlow($('#Page_deleted'));
         }
 
         if(inputTime) {
-          inputTime.replaceAll('.Page_time');
-          addGlow($('.Page_time'));
+          inputTime.replaceAll('#Page_time');
+          addGlow($('#Page_time'));
         }
 
         if(inputDateTime) {
-          inputDateTime.replaceAll('.Page_dateTime');
-          addGlow($('.Page_dateTime'));
+          inputDateTime.replaceAll('#Page_dateTime');
+          addGlow($('#Page_dateTime'));
         }
 
         if(inputStep) {
-          inputStep.replaceAll('.Page_step');
-          addGlow($('.Page_step'));
+          inputStep.replaceAll('#Page_step');
+          addGlow($('#Page_step'));
         }
 
         if(inputLocation) {
-          inputLocation.replaceAll('.Page_location');
-          addGlow($('.Page_location'));
+          inputLocation.replaceAll('#Page_location');
+          addGlow($('#Page_location'));
         }
 
         if(inputColor) {
-          inputColor.replaceAll('.Page_color');
-          addGlow($('.Page_color'));
+          inputColor.replaceAll('#Page_color');
+          addGlow($('#Page_color'));
         }
 
         if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+          inputInheritPk.replaceAll('#Page_inheritPk');
+          addGlow($('#Page_inheritPk'));
         }
 
         if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
-        }
-
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
-        if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
-        }
-
-        if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
+          inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+          addGlow($('#Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
+          inputClassSimpleName.replaceAll('#Page_classSimpleName');
+          addGlow($('#Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+          addGlow($('#Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
+          inputSessionId.replaceAll('#Page_sessionId');
+          addGlow($('#Page_sessionId'));
         }
 
         if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
+          inputUserKey.replaceAll('#Page_userKey');
+          addGlow($('#Page_userKey'));
         }
 
         if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
+          inputSaves.replaceAll('#Page_saves');
+          addGlow($('#Page_saves'));
         }
 
         if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+          inputObjectTitle.replaceAll('#Page_objectTitle');
+          addGlow($('#Page_objectTitle'));
+        }
+
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('#Page_objectSuggest');
+          addGlow($('#Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('#Page_objectText');
+          addGlow($('#Page_objectText'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('#Page_pageUrlId');
+          addGlow($('#Page_pageUrlId'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+          addGlow($('#Page_pageUrlPk'));
+        }
+
+        if(inputPageUrlApi) {
+          inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+          addGlow($('#Page_pageUrlApi'));
+        }
+
+        if(inputId) {
+          inputId.replaceAll('#Page_id');
+          addGlow($('#Page_id'));
         }
 
         if(inputTimeStepId) {
-          inputTimeStepId.replaceAll('.Page_timeStepId');
-          addGlow($('.Page_timeStepId'));
+          inputTimeStepId.replaceAll('#Page_timeStepId');
+          addGlow($('#Page_timeStepId'));
         }
 
         if(inputX) {
-          inputX.replaceAll('.Page_x');
-          addGlow($('.Page_x'));
+          inputX.replaceAll('#Page_x');
+          addGlow($('#Page_x'));
         }
 
         if(inputY) {
-          inputY.replaceAll('.Page_y');
-          addGlow($('.Page_y'));
+          inputY.replaceAll('#Page_y');
+          addGlow($('#Page_y'));
+        }
+
+        if(inputLocationColors) {
+          inputLocationColors.replaceAll('#Page_locationColors');
+          addGlow($('#Page_locationColors'));
+        }
+
+        if(inputLocationTitles) {
+          inputLocationTitles.replaceAll('#Page_locationTitles');
+          addGlow($('#Page_locationTitles'));
+        }
+
+        if(inputLocationLinks) {
+          inputLocationLinks.replaceAll('#Page_locationLinks');
+          addGlow($('#Page_locationLinks'));
         }
 
         pageGraphMapResult();
@@ -574,10 +610,10 @@ function pageGraphMapResult(apiRequest) {
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipMapResult(feature, layer);
       layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer._leaflet_id;
+      window.mapLayers[feature.properties.id] = layer;
     };
     if(window.mapMapResult) {
-      window.geoJSONLayerGroupMapResult.clearLayers();
+      window.geoJSONMapResult.clearLayers();
       $.each( window.listMapResult, function(index, mapResult) {
         if(mapResult.location) {
           var shapes = [];
@@ -599,12 +635,12 @@ function pageGraphMapResult(apiRequest) {
                 return L.circleMarker(latlng, jsStyleMapResult(feature));
               }
             });
-            window.geoJSONLayerGroupMapResult.addLayer(layer);
+            window.geoJSONMapResult.addLayer(layer);
           });
         }
       });
     } else {
-      window.mapMapResult = L.map('htmBodyGraphLocationMapResultPage');
+      window.mapMapResult = L.map('htmBodyGraphLocationMapResultPage', {closePopupOnClick: false});
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
@@ -612,7 +648,7 @@ function pageGraphMapResult(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendMapResult;
-      //legend.addTo(window.mapMapResult);
+      legend.addTo(window.mapMapResult);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -626,7 +662,7 @@ function pageGraphMapResult(apiRequest) {
         window.mapMapResult.setView([window['DEFAULT_MAP_LOCATION']['lat'], window['DEFAULT_MAP_LOCATION']['lon']]);
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONLayerGroupMapResult = L.geoJSON().addTo(window.mapMapResult);
+      window.geoJSONMapResult = L.geoJSON().addTo(window.mapMapResult);
       $.each( window.listMapResult, function(index, mapResult) {
         if(mapResult.location) {
           var shapes = [];
@@ -648,7 +684,7 @@ function pageGraphMapResult(apiRequest) {
                 return L.circleMarker(latlng, jsStyleMapResult(feature));
               }
             });
-            window.geoJSONLayerGroupMapResult.addLayer(layer);
+            window.geoJSONMapResult.addLayer(layer);
           });
         }
       });

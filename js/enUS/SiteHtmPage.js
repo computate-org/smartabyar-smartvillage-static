@@ -63,6 +63,18 @@ function searchSiteHtmFilters($formFilters) {
     if(filterSequenceNum != null && filterSequenceNum !== '')
       filters.push({ name: 'fq', value: 'sequenceNum:' + filterSequenceNum });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -107,17 +119,21 @@ function searchSiteHtmFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
+    if(filterHtmGroup != null && filterHtmGroup !== '')
+      filters.push({ name: 'fq', value: 'htmGroup:' + filterHtmGroup });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterLabels = $formFilters.find('.valueLabels').val();
+    if(filterLabels != null && filterLabels !== '')
+      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+    var filterEBefore = $formFilters.find('.valueEBefore').val();
+    if(filterEBefore != null && filterEBefore !== '')
+      filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
+
+    var filterEAfter = $formFilters.find('.valueEAfter').val();
+    if(filterEAfter != null && filterEAfter !== '')
+      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var filterA = $formFilters.find('.valueA').val();
     if(filterA != null && filterA !== '')
@@ -144,22 +160,6 @@ function searchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
-
-    var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
-    if(filterHtmGroup != null && filterHtmGroup !== '')
-      filters.push({ name: 'fq', value: 'htmGroup:' + filterHtmGroup });
-
-    var filterLabels = $formFilters.find('.valueLabels').val();
-    if(filterLabels != null && filterLabels !== '')
-      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
-
-    var filterEBefore = $formFilters.find('.valueEBefore').val();
-    if(filterEBefore != null && filterEBefore !== '')
-      filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
-
-    var filterEAfter = $formFilters.find('.valueEAfter').val();
-    if(filterEAfter != null && filterEAfter !== '')
-      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
     if(filterHtmMiddle != null && filterHtmMiddle !== '')
@@ -265,6 +265,10 @@ async function postSiteHtm($formValues, success, error) {
   if(valueSequenceNum != null && valueSequenceNum !== '')
     vals['sequenceNum'] = valueSequenceNum;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  if(valueInheritPk != null && valueInheritPk !== '')
+    vals['inheritPk'] = valueInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -281,9 +285,21 @@ async function postSiteHtm($formValues, success, error) {
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  if(valueInheritPk != null && valueInheritPk !== '')
-    vals['inheritPk'] = valueInheritPk;
+  var valueHtmGroup = $formValues.find('.valueHtmGroup').val();
+  if(valueHtmGroup != null && valueHtmGroup !== '')
+    vals['htmGroup'] = valueHtmGroup;
+
+  var valueLabels = $formValues.find('.valueLabels').val();
+  if(valueLabels != null && valueLabels !== '')
+    vals['labels'] = JSON.parse(valueLabels);
+
+  var valueEBefore = $formValues.find('.valueEBefore').val();
+  if(valueEBefore != null && valueEBefore !== '')
+    vals['eBefore'] = valueEBefore;
+
+  var valueEAfter = $formValues.find('.valueEAfter').val();
+  if(valueEAfter != null && valueEAfter !== '')
+    vals['eAfter'] = valueEAfter;
 
   var valueA = $formValues.find('.valueA').val();
   if(valueA != null && valueA !== '')
@@ -304,22 +320,6 @@ async function postSiteHtm($formValues, success, error) {
   var valueNewLine = $formValues.find('.valueNewLine').val();
   if(valueNewLine != null && valueNewLine !== '')
     vals['newLine'] = valueNewLine == 'true';
-
-  var valueHtmGroup = $formValues.find('.valueHtmGroup').val();
-  if(valueHtmGroup != null && valueHtmGroup !== '')
-    vals['htmGroup'] = valueHtmGroup;
-
-  var valueLabels = $formValues.find('.valueLabels').val();
-  if(valueLabels != null && valueLabels !== '')
-    vals['labels'] = JSON.parse(valueLabels);
-
-  var valueEBefore = $formValues.find('.valueEBefore').val();
-  if(valueEBefore != null && valueEBefore !== '')
-    vals['eBefore'] = valueEBefore;
-
-  var valueEAfter = $formValues.find('.valueEAfter').val();
-  if(valueEAfter != null && valueEAfter !== '')
-    vals['eAfter'] = valueEAfter;
 
   var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
   if(valueHtmBefore != null && valueHtmBefore !== '')
@@ -477,6 +477,18 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   if(removeSequenceNum != null && removeSequenceNum !== '')
     vals['removeSequenceNum'] = removeSequenceNum;
 
+  var valueInheritPk = $formValues.find('.valueInheritPk').val();
+  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
+  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+  var addInheritPk = $formValues.find('.addInheritPk').val();
+  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+    vals['setInheritPk'] = setInheritPk;
+  if(addInheritPk != null && addInheritPk !== '')
+    vals['addInheritPk'] = addInheritPk;
+  var removeInheritPk = $formValues.find('.removeInheritPk').val();
+  if(removeInheritPk != null && removeInheritPk !== '')
+    vals['removeInheritPk'] = removeInheritPk;
+
   var valueSessionId = $formValues.find('.valueSessionId').val();
   var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
   var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
@@ -525,17 +537,53 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
 
-  var valueInheritPk = $formValues.find('.valueInheritPk').val();
-  var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
-  var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
-  var addInheritPk = $formValues.find('.addInheritPk').val();
-  if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
-    vals['setInheritPk'] = setInheritPk;
-  if(addInheritPk != null && addInheritPk !== '')
-    vals['addInheritPk'] = addInheritPk;
-  var removeInheritPk = $formValues.find('.removeInheritPk').val();
-  if(removeInheritPk != null && removeInheritPk !== '')
-    vals['removeInheritPk'] = removeInheritPk;
+  var valueHtmGroup = $formValues.find('.valueHtmGroup').val();
+  var removeHtmGroup = $formValues.find('.removeHtmGroup').val() === 'true';
+  var setHtmGroup = removeHtmGroup ? null : $formValues.find('.setHtmGroup').val();
+  var addHtmGroup = $formValues.find('.addHtmGroup').val();
+  if(removeHtmGroup || setHtmGroup != null && setHtmGroup !== '')
+    vals['setHtmGroup'] = setHtmGroup;
+  if(addHtmGroup != null && addHtmGroup !== '')
+    vals['addHtmGroup'] = addHtmGroup;
+  var removeHtmGroup = $formValues.find('.removeHtmGroup').val();
+  if(removeHtmGroup != null && removeHtmGroup !== '')
+    vals['removeHtmGroup'] = removeHtmGroup;
+
+  var valueLabels = $formValues.find('.valueLabels').val();
+  var removeLabels = $formValues.find('.removeLabels').val() === 'true';
+  var setLabels = removeLabels ? null : $formValues.find('.setLabels').val();
+  var addLabels = $formValues.find('.addLabels').val();
+  if(removeLabels || setLabels != null && setLabels !== '')
+    vals['setLabels'] = JSON.parse(setLabels);
+  if(addLabels != null && addLabels !== '')
+    vals['addLabels'] = addLabels;
+  var removeLabels = $formValues.find('.removeLabels').val();
+  if(removeLabels != null && removeLabels !== '')
+    vals['removeLabels'] = removeLabels;
+
+  var valueEBefore = $formValues.find('.valueEBefore').val();
+  var removeEBefore = $formValues.find('.removeEBefore').val() === 'true';
+  var setEBefore = removeEBefore ? null : $formValues.find('.setEBefore').val();
+  var addEBefore = $formValues.find('.addEBefore').val();
+  if(removeEBefore || setEBefore != null && setEBefore !== '')
+    vals['setEBefore'] = setEBefore;
+  if(addEBefore != null && addEBefore !== '')
+    vals['addEBefore'] = addEBefore;
+  var removeEBefore = $formValues.find('.removeEBefore').val();
+  if(removeEBefore != null && removeEBefore !== '')
+    vals['removeEBefore'] = removeEBefore;
+
+  var valueEAfter = $formValues.find('.valueEAfter').val();
+  var removeEAfter = $formValues.find('.removeEAfter').val() === 'true';
+  var setEAfter = removeEAfter ? null : $formValues.find('.setEAfter').val();
+  var addEAfter = $formValues.find('.addEAfter').val();
+  if(removeEAfter || setEAfter != null && setEAfter !== '')
+    vals['setEAfter'] = setEAfter;
+  if(addEAfter != null && addEAfter !== '')
+    vals['addEAfter'] = addEAfter;
+  var removeEAfter = $formValues.find('.removeEAfter').val();
+  if(removeEAfter != null && removeEAfter !== '')
+    vals['removeEAfter'] = removeEAfter;
 
   var valueA = $formValues.find('.valueA').val();
   var removeA = $formValues.find('.removeA').val() === 'true';
@@ -599,54 +647,6 @@ async function patchSiteHtm($formFilters, $formValues, id, success, error) {
   var removeNewLine = $formValues.find('.removeNewLine').prop('checked');
   if(removeNewLine != null && removeNewLine !== '')
     vals['removeNewLine'] = removeNewLine;
-
-  var valueHtmGroup = $formValues.find('.valueHtmGroup').val();
-  var removeHtmGroup = $formValues.find('.removeHtmGroup').val() === 'true';
-  var setHtmGroup = removeHtmGroup ? null : $formValues.find('.setHtmGroup').val();
-  var addHtmGroup = $formValues.find('.addHtmGroup').val();
-  if(removeHtmGroup || setHtmGroup != null && setHtmGroup !== '')
-    vals['setHtmGroup'] = setHtmGroup;
-  if(addHtmGroup != null && addHtmGroup !== '')
-    vals['addHtmGroup'] = addHtmGroup;
-  var removeHtmGroup = $formValues.find('.removeHtmGroup').val();
-  if(removeHtmGroup != null && removeHtmGroup !== '')
-    vals['removeHtmGroup'] = removeHtmGroup;
-
-  var valueLabels = $formValues.find('.valueLabels').val();
-  var removeLabels = $formValues.find('.removeLabels').val() === 'true';
-  var setLabels = removeLabels ? null : $formValues.find('.setLabels').val();
-  var addLabels = $formValues.find('.addLabels').val();
-  if(removeLabels || setLabels != null && setLabels !== '')
-    vals['setLabels'] = JSON.parse(setLabels);
-  if(addLabels != null && addLabels !== '')
-    vals['addLabels'] = addLabels;
-  var removeLabels = $formValues.find('.removeLabels').val();
-  if(removeLabels != null && removeLabels !== '')
-    vals['removeLabels'] = removeLabels;
-
-  var valueEBefore = $formValues.find('.valueEBefore').val();
-  var removeEBefore = $formValues.find('.removeEBefore').val() === 'true';
-  var setEBefore = removeEBefore ? null : $formValues.find('.setEBefore').val();
-  var addEBefore = $formValues.find('.addEBefore').val();
-  if(removeEBefore || setEBefore != null && setEBefore !== '')
-    vals['setEBefore'] = setEBefore;
-  if(addEBefore != null && addEBefore !== '')
-    vals['addEBefore'] = addEBefore;
-  var removeEBefore = $formValues.find('.removeEBefore').val();
-  if(removeEBefore != null && removeEBefore !== '')
-    vals['removeEBefore'] = removeEBefore;
-
-  var valueEAfter = $formValues.find('.valueEAfter').val();
-  var removeEAfter = $formValues.find('.removeEAfter').val() === 'true';
-  var setEAfter = removeEAfter ? null : $formValues.find('.setEAfter').val();
-  var addEAfter = $formValues.find('.addEAfter').val();
-  if(removeEAfter || setEAfter != null && setEAfter !== '')
-    vals['setEAfter'] = setEAfter;
-  if(addEAfter != null && addEAfter !== '')
-    vals['addEAfter'] = addEAfter;
-  var removeEAfter = $formValues.find('.removeEAfter').val();
-  if(removeEAfter != null && removeEAfter !== '')
-    vals['removeEAfter'] = removeEAfter;
 
   var valueHtmBefore = $formValues.find('.valueHtmBefore').val();
   var removeHtmBefore = $formValues.find('.removeHtmBefore').val() === 'true';
@@ -740,6 +740,18 @@ function patchSiteHtmFilters($formFilters) {
     if(filterSequenceNum != null && filterSequenceNum !== '')
       filters.push({ name: 'fq', value: 'sequenceNum:' + filterSequenceNum });
 
+    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+    if(filterInheritPk != null && filterInheritPk !== '')
+      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -784,17 +796,21 @@ function patchSiteHtmFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-    if(filterInheritPk != null && filterInheritPk !== '')
-      filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+    var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
+    if(filterHtmGroup != null && filterHtmGroup !== '')
+      filters.push({ name: 'fq', value: 'htmGroup:' + filterHtmGroup });
 
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+    var filterLabels = $formFilters.find('.valueLabels').val();
+    if(filterLabels != null && filterLabels !== '')
+      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
 
-    var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+    var filterEBefore = $formFilters.find('.valueEBefore').val();
+    if(filterEBefore != null && filterEBefore !== '')
+      filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
+
+    var filterEAfter = $formFilters.find('.valueEAfter').val();
+    if(filterEAfter != null && filterEAfter !== '')
+      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var filterA = $formFilters.find('.valueA').val();
     if(filterA != null && filterA !== '')
@@ -821,22 +837,6 @@ function patchSiteHtmFilters($formFilters) {
       filterNewLine = filterNewLineSelectVal == 'true';
     if(filterNewLine != null && filterNewLine === true)
       filters.push({ name: 'fq', value: 'newLine:' + filterNewLine });
-
-    var filterHtmGroup = $formFilters.find('.valueHtmGroup').val();
-    if(filterHtmGroup != null && filterHtmGroup !== '')
-      filters.push({ name: 'fq', value: 'htmGroup:' + filterHtmGroup });
-
-    var filterLabels = $formFilters.find('.valueLabels').val();
-    if(filterLabels != null && filterLabels !== '')
-      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
-
-    var filterEBefore = $formFilters.find('.valueEBefore').val();
-    if(filterEBefore != null && filterEBefore !== '')
-      filters.push({ name: 'fq', value: 'eBefore:' + filterEBefore });
-
-    var filterEAfter = $formFilters.find('.valueEAfter').val();
-    if(filterEAfter != null && filterEAfter !== '')
-      filters.push({ name: 'fq', value: 'eAfter:' + filterEAfter });
 
     var filterHtmMiddle = $formFilters.find('.valueHtmMiddle').val();
     if(filterHtmMiddle != null && filterHtmMiddle !== '')
@@ -953,6 +953,9 @@ async function websocketSiteHtmInner(apiRequest) {
         var inputUri = null;
         var inputPageId = null;
         var inputSequenceNum = null;
+        var inputInheritPk = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
@@ -964,92 +967,89 @@ async function websocketSiteHtmInner(apiRequest) {
         var inputPageUrlPk = null;
         var inputPageUrlApi = null;
         var inputId = null;
-        var inputInheritPk = null;
-        var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
+        var inputHtmGroup = null;
+        var inputLabels = null;
+        var inputEBefore = null;
+        var inputEAfter = null;
         var inputA = null;
         var inputText = null;
         var inputComment = null;
         var inputTabs = null;
         var inputNewLine = null;
-        var inputHtmGroup = null;
-        var inputLabels = null;
-        var inputEBefore = null;
-        var inputEAfter = null;
         var inputHtmBefore = null;
         var inputHtmMiddle = null;
         var inputHtmAfter = null;
 
         if(vars.includes('created'))
-          inputCreated = $response.find('.Page_created');
+          inputCreated = $response.find('#Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.find('.Page_modified');
+          inputModified = $response.find('#Page_modified');
         if(vars.includes('objectId'))
-          inputObjectId = $response.find('.Page_objectId');
+          inputObjectId = $response.find('#Page_objectId');
         if(vars.includes('archived'))
-          inputArchived = $response.find('.Page_archived');
+          inputArchived = $response.find('#Page_archived');
         if(vars.includes('deleted'))
-          inputDeleted = $response.find('.Page_deleted');
+          inputDeleted = $response.find('#Page_deleted');
         if(vars.includes('url'))
-          inputUrl = $response.find('.Page_url');
+          inputUrl = $response.find('#Page_url');
         if(vars.includes('uri'))
-          inputUri = $response.find('.Page_uri');
+          inputUri = $response.find('#Page_uri');
         if(vars.includes('pageId'))
-          inputPageId = $response.find('.Page_pageId');
+          inputPageId = $response.find('#Page_pageId');
         if(vars.includes('sequenceNum'))
-          inputSequenceNum = $response.find('.Page_sequenceNum');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
-        if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
-        if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
-        if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
-        if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
+          inputSequenceNum = $response.find('#Page_sequenceNum');
         if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+          inputInheritPk = $response.find('#Page_inheritPk');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+          inputClassCanonicalName = $response.find('#Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
-        if(vars.includes('a'))
-          inputA = $response.find('.Page_a');
-        if(vars.includes('text'))
-          inputText = $response.find('.Page_text');
-        if(vars.includes('comment'))
-          inputComment = $response.find('.Page_comment');
-        if(vars.includes('tabs'))
-          inputTabs = $response.find('.Page_tabs');
-        if(vars.includes('newLine'))
-          inputNewLine = $response.find('.Page_newLine');
+          inputClassSimpleName = $response.find('#Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('#Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.find('#Page_userKey');
+        if(vars.includes('saves'))
+          inputSaves = $response.find('#Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.find('#Page_objectTitle');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.find('#Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.find('#Page_objectText');
+        if(vars.includes('pageUrlId'))
+          inputPageUrlId = $response.find('#Page_pageUrlId');
+        if(vars.includes('pageUrlPk'))
+          inputPageUrlPk = $response.find('#Page_pageUrlPk');
+        if(vars.includes('pageUrlApi'))
+          inputPageUrlApi = $response.find('#Page_pageUrlApi');
+        if(vars.includes('id'))
+          inputId = $response.find('#Page_id');
         if(vars.includes('htmGroup'))
-          inputHtmGroup = $response.find('.Page_htmGroup');
+          inputHtmGroup = $response.find('#Page_htmGroup');
         if(vars.includes('labels'))
-          inputLabels = $response.find('.Page_labels');
+          inputLabels = $response.find('#Page_labels');
         if(vars.includes('eBefore'))
-          inputEBefore = $response.find('.Page_eBefore');
+          inputEBefore = $response.find('#Page_eBefore');
         if(vars.includes('eAfter'))
-          inputEAfter = $response.find('.Page_eAfter');
+          inputEAfter = $response.find('#Page_eAfter');
+        if(vars.includes('a'))
+          inputA = $response.find('#Page_a');
+        if(vars.includes('text'))
+          inputText = $response.find('#Page_text');
+        if(vars.includes('comment'))
+          inputComment = $response.find('#Page_comment');
+        if(vars.includes('tabs'))
+          inputTabs = $response.find('#Page_tabs');
+        if(vars.includes('newLine'))
+          inputNewLine = $response.find('#Page_newLine');
         if(vars.includes('htmBefore'))
-          inputHtmBefore = $response.find('.Page_htmBefore');
+          inputHtmBefore = $response.find('#Page_htmBefore');
         if(vars.includes('htmMiddle'))
-          inputHtmMiddle = $response.find('.Page_htmMiddle');
+          inputHtmMiddle = $response.find('#Page_htmMiddle');
         if(vars.includes('htmAfter'))
-          inputHtmAfter = $response.find('.Page_htmAfter');
+          inputHtmAfter = $response.find('#Page_htmAfter');
         jsWebsocketSiteHtm(id, vars, $response);
 
         window.siteHtm = JSON.parse($response.find('.pageForm .siteHtm').val());
@@ -1057,178 +1057,178 @@ async function websocketSiteHtmInner(apiRequest) {
 
 
         if(inputCreated) {
-          inputCreated.replaceAll('.Page_created');
-          addGlow($('.Page_created'));
+          inputCreated.replaceAll('#Page_created');
+          addGlow($('#Page_created'));
         }
 
         if(inputModified) {
-          inputModified.replaceAll('.Page_modified');
-          addGlow($('.Page_modified'));
+          inputModified.replaceAll('#Page_modified');
+          addGlow($('#Page_modified'));
         }
 
         if(inputObjectId) {
-          inputObjectId.replaceAll('.Page_objectId');
-          addGlow($('.Page_objectId'));
+          inputObjectId.replaceAll('#Page_objectId');
+          addGlow($('#Page_objectId'));
         }
 
         if(inputArchived) {
-          inputArchived.replaceAll('.Page_archived');
-          addGlow($('.Page_archived'));
+          inputArchived.replaceAll('#Page_archived');
+          addGlow($('#Page_archived'));
         }
 
         if(inputDeleted) {
-          inputDeleted.replaceAll('.Page_deleted');
-          addGlow($('.Page_deleted'));
+          inputDeleted.replaceAll('#Page_deleted');
+          addGlow($('#Page_deleted'));
         }
 
         if(inputUrl) {
-          inputUrl.replaceAll('.Page_url');
-          addGlow($('.Page_url'));
+          inputUrl.replaceAll('#Page_url');
+          addGlow($('#Page_url'));
         }
 
         if(inputUri) {
-          inputUri.replaceAll('.Page_uri');
-          addGlow($('.Page_uri'));
+          inputUri.replaceAll('#Page_uri');
+          addGlow($('#Page_uri'));
         }
 
         if(inputPageId) {
-          inputPageId.replaceAll('.Page_pageId');
-          addGlow($('.Page_pageId'));
+          inputPageId.replaceAll('#Page_pageId');
+          addGlow($('#Page_pageId'));
         }
 
         if(inputSequenceNum) {
-          inputSequenceNum.replaceAll('.Page_sequenceNum');
-          addGlow($('.Page_sequenceNum'));
-        }
-
-        if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
-        }
-
-        if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
-        }
-
-        if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
-        }
-
-        if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
-        }
-
-        if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
-        }
-
-        if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
+          inputSequenceNum.replaceAll('#Page_sequenceNum');
+          addGlow($('#Page_sequenceNum'));
         }
 
         if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+          inputInheritPk.replaceAll('#Page_inheritPk');
+          addGlow($('#Page_inheritPk'));
         }
 
         if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+          inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+          addGlow($('#Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
+          inputClassSimpleName.replaceAll('#Page_classSimpleName');
+          addGlow($('#Page_classSimpleName'));
         }
 
-        if(inputA) {
-          inputA.replaceAll('.Page_a');
-          addGlow($('.Page_a'));
+        if(inputClassCanonicalNames) {
+          inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+          addGlow($('#Page_classCanonicalNames'));
         }
 
-        if(inputText) {
-          inputText.replaceAll('.Page_text');
-          addGlow($('.Page_text'));
+        if(inputSessionId) {
+          inputSessionId.replaceAll('#Page_sessionId');
+          addGlow($('#Page_sessionId'));
         }
 
-        if(inputComment) {
-          inputComment.replaceAll('.Page_comment');
-          addGlow($('.Page_comment'));
+        if(inputUserKey) {
+          inputUserKey.replaceAll('#Page_userKey');
+          addGlow($('#Page_userKey'));
         }
 
-        if(inputTabs) {
-          inputTabs.replaceAll('.Page_tabs');
-          addGlow($('.Page_tabs'));
+        if(inputSaves) {
+          inputSaves.replaceAll('#Page_saves');
+          addGlow($('#Page_saves'));
         }
 
-        if(inputNewLine) {
-          inputNewLine.replaceAll('.Page_newLine');
-          addGlow($('.Page_newLine'));
+        if(inputObjectTitle) {
+          inputObjectTitle.replaceAll('#Page_objectTitle');
+          addGlow($('#Page_objectTitle'));
+        }
+
+        if(inputObjectSuggest) {
+          inputObjectSuggest.replaceAll('#Page_objectSuggest');
+          addGlow($('#Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          inputObjectText.replaceAll('#Page_objectText');
+          addGlow($('#Page_objectText'));
+        }
+
+        if(inputPageUrlId) {
+          inputPageUrlId.replaceAll('#Page_pageUrlId');
+          addGlow($('#Page_pageUrlId'));
+        }
+
+        if(inputPageUrlPk) {
+          inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+          addGlow($('#Page_pageUrlPk'));
+        }
+
+        if(inputPageUrlApi) {
+          inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+          addGlow($('#Page_pageUrlApi'));
+        }
+
+        if(inputId) {
+          inputId.replaceAll('#Page_id');
+          addGlow($('#Page_id'));
         }
 
         if(inputHtmGroup) {
-          inputHtmGroup.replaceAll('.Page_htmGroup');
-          addGlow($('.Page_htmGroup'));
+          inputHtmGroup.replaceAll('#Page_htmGroup');
+          addGlow($('#Page_htmGroup'));
         }
 
         if(inputLabels) {
-          inputLabels.replaceAll('.Page_labels');
-          addGlow($('.Page_labels'));
+          inputLabels.replaceAll('#Page_labels');
+          addGlow($('#Page_labels'));
         }
 
         if(inputEBefore) {
-          inputEBefore.replaceAll('.Page_eBefore');
-          addGlow($('.Page_eBefore'));
+          inputEBefore.replaceAll('#Page_eBefore');
+          addGlow($('#Page_eBefore'));
         }
 
         if(inputEAfter) {
-          inputEAfter.replaceAll('.Page_eAfter');
-          addGlow($('.Page_eAfter'));
+          inputEAfter.replaceAll('#Page_eAfter');
+          addGlow($('#Page_eAfter'));
+        }
+
+        if(inputA) {
+          inputA.replaceAll('#Page_a');
+          addGlow($('#Page_a'));
+        }
+
+        if(inputText) {
+          inputText.replaceAll('#Page_text');
+          addGlow($('#Page_text'));
+        }
+
+        if(inputComment) {
+          inputComment.replaceAll('#Page_comment');
+          addGlow($('#Page_comment'));
+        }
+
+        if(inputTabs) {
+          inputTabs.replaceAll('#Page_tabs');
+          addGlow($('#Page_tabs'));
+        }
+
+        if(inputNewLine) {
+          inputNewLine.replaceAll('#Page_newLine');
+          addGlow($('#Page_newLine'));
         }
 
         if(inputHtmBefore) {
-          inputHtmBefore.replaceAll('.Page_htmBefore');
-          addGlow($('.Page_htmBefore'));
+          inputHtmBefore.replaceAll('#Page_htmBefore');
+          addGlow($('#Page_htmBefore'));
         }
 
         if(inputHtmMiddle) {
-          inputHtmMiddle.replaceAll('.Page_htmMiddle');
-          addGlow($('.Page_htmMiddle'));
+          inputHtmMiddle.replaceAll('#Page_htmMiddle');
+          addGlow($('#Page_htmMiddle'));
         }
 
         if(inputHtmAfter) {
-          inputHtmAfter.replaceAll('.Page_htmAfter');
-          addGlow($('.Page_htmAfter'));
+          inputHtmAfter.replaceAll('#Page_htmAfter');
+          addGlow($('#Page_htmAfter'));
         }
 
         pageGraphSiteHtm();

@@ -59,17 +59,13 @@ function searchSystemEventFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
@@ -78,6 +74,10 @@ function searchSystemEventFilters($formFilters) {
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
@@ -219,13 +219,13 @@ async function postSystemEvent($formValues, success, error) {
   if(valuePageImageUri != null && valuePageImageUri !== '')
     vals['pageImageUri'] = valuePageImageUri;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  if(valueSessionId != null && valueSessionId !== '')
-    vals['sessionId'] = valueSessionId;
-
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   if(valueInheritPk != null && valueInheritPk !== '')
     vals['inheritPk'] = valueInheritPk;
+
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  if(valueSessionId != null && valueSessionId !== '')
+    vals['sessionId'] = valueSessionId;
 
   var valueUserKey = $formValues.find('.valueUserKey').val();
   if(valueUserKey != null && valueUserKey !== '')
@@ -395,18 +395,6 @@ async function patchSystemEvent($formFilters, $formValues, id, success, error) {
   if(removePageImageUri != null && removePageImageUri !== '')
     vals['removePageImageUri'] = removePageImageUri;
 
-  var valueSessionId = $formValues.find('.valueSessionId').val();
-  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
-  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
-  var addSessionId = $formValues.find('.addSessionId').val();
-  if(removeSessionId || setSessionId != null && setSessionId !== '')
-    vals['setSessionId'] = setSessionId;
-  if(addSessionId != null && addSessionId !== '')
-    vals['addSessionId'] = addSessionId;
-  var removeSessionId = $formValues.find('.removeSessionId').val();
-  if(removeSessionId != null && removeSessionId !== '')
-    vals['removeSessionId'] = removeSessionId;
-
   var valueInheritPk = $formValues.find('.valueInheritPk').val();
   var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
   var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
@@ -418,6 +406,18 @@ async function patchSystemEvent($formFilters, $formValues, id, success, error) {
   var removeInheritPk = $formValues.find('.removeInheritPk').val();
   if(removeInheritPk != null && removeInheritPk !== '')
     vals['removeInheritPk'] = removeInheritPk;
+
+  var valueSessionId = $formValues.find('.valueSessionId').val();
+  var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
+  var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+  var addSessionId = $formValues.find('.addSessionId').val();
+  if(removeSessionId || setSessionId != null && setSessionId !== '')
+    vals['setSessionId'] = setSessionId;
+  if(addSessionId != null && addSessionId !== '')
+    vals['addSessionId'] = addSessionId;
+  var removeSessionId = $formValues.find('.removeSessionId').val();
+  if(removeSessionId != null && removeSessionId !== '')
+    vals['removeSessionId'] = removeSessionId;
 
   var valueUserKey = $formValues.find('.valueUserKey').val();
   var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
@@ -507,17 +507,13 @@ function patchSystemEventFilters($formFilters) {
     if(filterPageImageUri != null && filterPageImageUri !== '')
       filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
 
-    var filterSessionId = $formFilters.find('.valueSessionId').val();
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterInheritPk = $formFilters.find('.valueInheritPk').val();
     if(filterInheritPk != null && filterInheritPk !== '')
       filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-    var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
     var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
@@ -526,6 +522,10 @@ function patchSystemEventFilters($formFilters) {
     var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.find('.valueSessionId').val();
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
     var filterUserKey = $formFilters.find('.valueUserKey').val();
     if(filterUserKey != null && filterUserKey !== '')
@@ -675,11 +675,11 @@ async function websocketSystemEventInner(apiRequest) {
         var inputStatus = null;
         var inputCompleted = null;
         var inputPageImageUri = null;
-        var inputSessionId = null;
-        var inputInheritPk = null;
         var inputClassCanonicalName = null;
+        var inputInheritPk = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
+        var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
@@ -691,53 +691,53 @@ async function websocketSystemEventInner(apiRequest) {
         var inputId = null;
 
         if(vars.includes('modified'))
-          inputModified = $response.find('.Page_modified');
+          inputModified = $response.find('#Page_modified');
         if(vars.includes('created'))
-          inputCreated = $response.find('.Page_created');
+          inputCreated = $response.find('#Page_created');
         if(vars.includes('objectId'))
-          inputObjectId = $response.find('.Page_objectId');
+          inputObjectId = $response.find('#Page_objectId');
         if(vars.includes('archived'))
-          inputArchived = $response.find('.Page_archived');
+          inputArchived = $response.find('#Page_archived');
         if(vars.includes('deleted'))
-          inputDeleted = $response.find('.Page_deleted');
+          inputDeleted = $response.find('#Page_deleted');
         if(vars.includes('type'))
-          inputType = $response.find('.Page_type');
+          inputType = $response.find('#Page_type');
         if(vars.includes('message'))
-          inputMessage = $response.find('.Page_message');
+          inputMessage = $response.find('#Page_message');
         if(vars.includes('status'))
-          inputStatus = $response.find('.Page_status');
+          inputStatus = $response.find('#Page_status');
         if(vars.includes('completed'))
-          inputCompleted = $response.find('.Page_completed');
+          inputCompleted = $response.find('#Page_completed');
         if(vars.includes('pageImageUri'))
-          inputPageImageUri = $response.find('.Page_pageImageUri');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.find('.Page_sessionId');
-        if(vars.includes('inheritPk'))
-          inputInheritPk = $response.find('.Page_inheritPk');
+          inputPageImageUri = $response.find('#Page_pageImageUri');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.find('.Page_classCanonicalName');
+          inputClassCanonicalName = $response.find('#Page_classCanonicalName');
+        if(vars.includes('inheritPk'))
+          inputInheritPk = $response.find('#Page_inheritPk');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.find('.Page_classSimpleName');
+          inputClassSimpleName = $response.find('#Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.find('.Page_classCanonicalNames');
+          inputClassCanonicalNames = $response.find('#Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.find('#Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.find('.Page_userKey');
+          inputUserKey = $response.find('#Page_userKey');
         if(vars.includes('saves'))
-          inputSaves = $response.find('.Page_saves');
+          inputSaves = $response.find('#Page_saves');
         if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.find('.Page_objectTitle');
+          inputObjectTitle = $response.find('#Page_objectTitle');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.find('.Page_objectSuggest');
+          inputObjectSuggest = $response.find('#Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.find('.Page_objectText');
+          inputObjectText = $response.find('#Page_objectText');
         if(vars.includes('pageUrlId'))
-          inputPageUrlId = $response.find('.Page_pageUrlId');
+          inputPageUrlId = $response.find('#Page_pageUrlId');
         if(vars.includes('pageUrlPk'))
-          inputPageUrlPk = $response.find('.Page_pageUrlPk');
+          inputPageUrlPk = $response.find('#Page_pageUrlPk');
         if(vars.includes('pageUrlApi'))
-          inputPageUrlApi = $response.find('.Page_pageUrlApi');
+          inputPageUrlApi = $response.find('#Page_pageUrlApi');
         if(vars.includes('id'))
-          inputId = $response.find('.Page_id');
+          inputId = $response.find('#Page_id');
         jsWebsocketSystemEvent(id, vars, $response);
 
         window.systemEvent = JSON.parse($response.find('.pageForm .systemEvent').val());
@@ -745,123 +745,123 @@ async function websocketSystemEventInner(apiRequest) {
 
 
         if(inputModified) {
-          inputModified.replaceAll('.Page_modified');
-          addGlow($('.Page_modified'));
+          inputModified.replaceAll('#Page_modified');
+          addGlow($('#Page_modified'));
         }
 
         if(inputCreated) {
-          inputCreated.replaceAll('.Page_created');
-          addGlow($('.Page_created'));
+          inputCreated.replaceAll('#Page_created');
+          addGlow($('#Page_created'));
         }
 
         if(inputObjectId) {
-          inputObjectId.replaceAll('.Page_objectId');
-          addGlow($('.Page_objectId'));
+          inputObjectId.replaceAll('#Page_objectId');
+          addGlow($('#Page_objectId'));
         }
 
         if(inputArchived) {
-          inputArchived.replaceAll('.Page_archived');
-          addGlow($('.Page_archived'));
+          inputArchived.replaceAll('#Page_archived');
+          addGlow($('#Page_archived'));
         }
 
         if(inputDeleted) {
-          inputDeleted.replaceAll('.Page_deleted');
-          addGlow($('.Page_deleted'));
+          inputDeleted.replaceAll('#Page_deleted');
+          addGlow($('#Page_deleted'));
         }
 
         if(inputType) {
-          inputType.replaceAll('.Page_type');
-          addGlow($('.Page_type'));
+          inputType.replaceAll('#Page_type');
+          addGlow($('#Page_type'));
         }
 
         if(inputMessage) {
-          inputMessage.replaceAll('.Page_message');
-          addGlow($('.Page_message'));
+          inputMessage.replaceAll('#Page_message');
+          addGlow($('#Page_message'));
         }
 
         if(inputStatus) {
-          inputStatus.replaceAll('.Page_status');
-          addGlow($('.Page_status'));
+          inputStatus.replaceAll('#Page_status');
+          addGlow($('#Page_status'));
         }
 
         if(inputCompleted) {
-          inputCompleted.replaceAll('.Page_completed');
-          addGlow($('.Page_completed'));
+          inputCompleted.replaceAll('#Page_completed');
+          addGlow($('#Page_completed'));
         }
 
         if(inputPageImageUri) {
-          inputPageImageUri.replaceAll('.Page_pageImageUri');
-          addGlow($('.Page_pageImageUri'));
-        }
-
-        if(inputSessionId) {
-          inputSessionId.replaceAll('.Page_sessionId');
-          addGlow($('.Page_sessionId'));
-        }
-
-        if(inputInheritPk) {
-          inputInheritPk.replaceAll('.Page_inheritPk');
-          addGlow($('.Page_inheritPk'));
+          inputPageImageUri.replaceAll('#Page_pageImageUri');
+          addGlow($('#Page_pageImageUri'));
         }
 
         if(inputClassCanonicalName) {
-          inputClassCanonicalName.replaceAll('.Page_classCanonicalName');
-          addGlow($('.Page_classCanonicalName'));
+          inputClassCanonicalName.replaceAll('#Page_classCanonicalName');
+          addGlow($('#Page_classCanonicalName'));
+        }
+
+        if(inputInheritPk) {
+          inputInheritPk.replaceAll('#Page_inheritPk');
+          addGlow($('#Page_inheritPk'));
         }
 
         if(inputClassSimpleName) {
-          inputClassSimpleName.replaceAll('.Page_classSimpleName');
-          addGlow($('.Page_classSimpleName'));
+          inputClassSimpleName.replaceAll('#Page_classSimpleName');
+          addGlow($('#Page_classSimpleName'));
         }
 
         if(inputClassCanonicalNames) {
-          inputClassCanonicalNames.replaceAll('.Page_classCanonicalNames');
-          addGlow($('.Page_classCanonicalNames'));
+          inputClassCanonicalNames.replaceAll('#Page_classCanonicalNames');
+          addGlow($('#Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          inputSessionId.replaceAll('#Page_sessionId');
+          addGlow($('#Page_sessionId'));
         }
 
         if(inputUserKey) {
-          inputUserKey.replaceAll('.Page_userKey');
-          addGlow($('.Page_userKey'));
+          inputUserKey.replaceAll('#Page_userKey');
+          addGlow($('#Page_userKey'));
         }
 
         if(inputSaves) {
-          inputSaves.replaceAll('.Page_saves');
-          addGlow($('.Page_saves'));
+          inputSaves.replaceAll('#Page_saves');
+          addGlow($('#Page_saves'));
         }
 
         if(inputObjectTitle) {
-          inputObjectTitle.replaceAll('.Page_objectTitle');
-          addGlow($('.Page_objectTitle'));
+          inputObjectTitle.replaceAll('#Page_objectTitle');
+          addGlow($('#Page_objectTitle'));
         }
 
         if(inputObjectSuggest) {
-          inputObjectSuggest.replaceAll('.Page_objectSuggest');
-          addGlow($('.Page_objectSuggest'));
+          inputObjectSuggest.replaceAll('#Page_objectSuggest');
+          addGlow($('#Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          inputObjectText.replaceAll('.Page_objectText');
-          addGlow($('.Page_objectText'));
+          inputObjectText.replaceAll('#Page_objectText');
+          addGlow($('#Page_objectText'));
         }
 
         if(inputPageUrlId) {
-          inputPageUrlId.replaceAll('.Page_pageUrlId');
-          addGlow($('.Page_pageUrlId'));
+          inputPageUrlId.replaceAll('#Page_pageUrlId');
+          addGlow($('#Page_pageUrlId'));
         }
 
         if(inputPageUrlPk) {
-          inputPageUrlPk.replaceAll('.Page_pageUrlPk');
-          addGlow($('.Page_pageUrlPk'));
+          inputPageUrlPk.replaceAll('#Page_pageUrlPk');
+          addGlow($('#Page_pageUrlPk'));
         }
 
         if(inputPageUrlApi) {
-          inputPageUrlApi.replaceAll('.Page_pageUrlApi');
-          addGlow($('.Page_pageUrlApi'));
+          inputPageUrlApi.replaceAll('#Page_pageUrlApi');
+          addGlow($('#Page_pageUrlApi'));
         }
 
         if(inputId) {
-          inputId.replaceAll('.Page_id');
-          addGlow($('.Page_id'));
+          inputId.replaceAll('#Page_id');
+          addGlow($('#Page_id'));
         }
 
         pageGraphSystemEvent();
