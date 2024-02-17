@@ -1,6 +1,8 @@
 ---
 components:
   schemas:
+    PhotovoltaicMeasurement
+      "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/PhotovoltaicMeasurement/model.yaml#/PhotovoltaicMeasurement
     CrowdFlowObserved
       "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/model.yaml#/CrowdFlowObserved
     ParkingAccess
@@ -34,6 +36,7 @@ paths:
                 keyvalues:
                   summary: "Key-Values Pairs"
                   value:
+                    - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/PhotovoltaicMeasurement/examples/example.json"
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/examples/example.json"
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/ParkingAccess/examples/example.json"
                     - "$ref": "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/examples/example.json"
@@ -42,6 +45,7 @@ paths:
                 normalized:
                   summary: "Normalized NGSI-LD"
                   value:
+                    - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/PhotovoltaicMeasurement/examples/example-normalized.json"
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/CrowdFlowObserved/examples/example-normalized.json"
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/ParkingAccess/examples/example-normalized.json"
                     - $ref: "https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/SmartTrafficLight/examples/example-normalized.json"
